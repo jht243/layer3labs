@@ -1,0 +1,17 @@
+/*functions*/
+
+/*font-size*/
+$browser-context: 16; // Default
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
+}
+
+/*letter-spacing*/
+@function ls($percent) {
+  @return #{$percent/100}rem;
+}
+
+@function px-vw($target, $width) {
+  $vw-context: ($width*.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}

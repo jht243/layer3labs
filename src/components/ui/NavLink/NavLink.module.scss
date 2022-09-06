@@ -1,0 +1,11 @@
+@import "assets/styles/variables/index";
+@import "assets/styles/helpers/index";
+
+.nav-link {
+  transition: all .25s ease;
+
+  &.is-active,
+  &:hover {
+    color: $primary;
+  }
+}
