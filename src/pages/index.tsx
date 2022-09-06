@@ -1,23 +1,22 @@
 import type { NextPage } from 'next'
-import React, { useEffect, useRef, useState } from 'react';
+
 import { gsap } from 'gsap';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useWindowSize } from '@/app/hooks/useWindowSize';
 import Layout from '@/layouts/index';
 
-import styles from '@/styles/pages/Home.module.scss'
-
 import Logo from '@/assets/images/logo.svg'
-
 import desktopText1 from '@/assets/images/desktop1.svg'
 import desktopText2 from '@/assets/images/desktop2.svg'
 import desktopText3 from '@/assets/images/desktop3.svg'
-
 import mobileText1 from '@/assets/images/mobile1.svg'
 import mobileText2 from '@/assets/images/mobile2.svg'
 import mobileText3 from '@/assets/images/mobile3.svg'
 import mobileText4 from '@/assets/images/mobile4.svg'
 import mobileText5 from '@/assets/images/mobile5.svg'
+
+import styles from '@/styles/pages/Home.module.scss'
 
 
 const Home: NextPage = () => {

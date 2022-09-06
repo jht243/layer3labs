@@ -18,6 +18,7 @@ function NavLink ({ href, exact, children, className = '', ...props }: NavProps)
   const { pathname } = useRouter();
   const isActive = exact ? pathname === href : pathname.startsWith(href);
 
+  // @ts-ignore
   const classNames = cx(className, styles['nav-link'], { [styles[`is-active`]]: isActive });
 
   return (
