@@ -1,17 +1,17 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
 
 interface Props {
-  color?: string;
-  miltiplier?: number;
+  color?: string
+  miltiplier?: number
 }
 
-const LoaderSpinner: FC<Props> = ({ color = "#000000", miltiplier = 1 }) => {
+const LoaderSpinner: FC<Props> = ({ color = '#000000', miltiplier = 1 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ shapeRendering: "auto" }}
-      width={100 * miltiplier + "px"}
-      height={100 * miltiplier + "px"}
+      style={{ shapeRendering: 'auto' }}
+      width={100 * miltiplier + 'px'}
+      height={100 * miltiplier + 'px'}
       viewBox={`0 0 ${50 * miltiplier} ${50 * miltiplier}`}
       className="spinner"
       preserveAspectRatio="xMidYMid"
@@ -37,7 +37,7 @@ const LoaderSpinner: FC<Props> = ({ color = "#000000", miltiplier = 1 }) => {
         />
       </circle>
     </svg>
-  );
-};
+  )
+}
 
-export default LoaderSpinner;
+export default LoaderSpinner

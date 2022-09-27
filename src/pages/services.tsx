@@ -1,22 +1,23 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
-import React from "react";
+import React from 'react'
 
-import Layout from "@/layouts/index";
+import cx from 'classnames'
 
-import styles from "@/styles/pages/Services.module.scss";
-import cx from "classnames";
-import { NavLink } from "@/components/ui/NavLink";
+import { NavLink } from '@/components/ui/NavLink'
+import Layout from '@/layouts/index'
+
+import styles from '@/styles/pages/Services.module.scss'
 
 interface PageProps {
-  loaded: boolean;
+  loaded: boolean
 }
 
 const Services: NextPage<PageProps> = ({ loaded }) => {
   return (
     <Layout>
       <div
-        className={cx(styles["services-page"], {
+        className={cx(styles['services-page'], {
           [styles[`is-loaded`]]: loaded,
         })}
       >
@@ -40,7 +41,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         <NavLink href="/">Home</NavLink>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Services;
+export default Services

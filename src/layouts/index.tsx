@@ -1,24 +1,25 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { FC, ReactNode } from "react";
-import { motion } from "framer-motion";
+import { FC, ReactNode } from 'react'
 
-import { slideTransition } from "@/app/utils/motion";
-import Footer from "@/components/layout/Footer";
+import { motion } from 'framer-motion'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+
+import { slideTransition } from '@/app/utils/motion'
+import Footer from '@/components/layout/Footer'
 
 interface LayoutProps {
-  children: ReactNode;
-  title?: string;
-  description?: string;
-  bgImage?: boolean | string;
+  children: ReactNode
+  title?: string
+  description?: string
+  bgImage?: boolean | string
 }
 
 const Layout: FC<LayoutProps> = ({
   children,
-  title = "Layer3",
-  description = "",
+  title = 'Layer3',
+  description = '',
 }) => {
-  const { pathname } = useRouter();
+  const { pathname } = useRouter()
   return (
     <>
       <Head>
@@ -57,7 +58,7 @@ const Layout: FC<LayoutProps> = ({
           initial="hidden"
           animate="enter"
           exit="exit"
-          transition={{ type: "linear" }}
+          transition={{ type: 'linear' }}
           variants={slideTransition}
           className="out-inner"
         >
@@ -66,7 +67,7 @@ const Layout: FC<LayoutProps> = ({
         <Footer />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

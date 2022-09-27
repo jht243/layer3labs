@@ -1,39 +1,39 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { createApi } from '@reduxjs/toolkit/query/react'
 
-import baseQuery from "@/app/utils/queries";
+import baseQuery from '@/app/utils/queries'
 
 export const userApi = createApi({
-  reducerPath: "userApi",
+  reducerPath: 'userApi',
   baseQuery: baseQuery(),
-  tagTypes: ["Settings"],
+  tagTypes: ['Settings'],
   endpoints: (builder) => ({
     getSettings: builder.query<any, void>({
-      query: () => ({ url: "user/settings", isAuthorized: true }),
-      providesTags: ["Settings"],
+      query: () => ({ url: 'user/settings', isAuthorized: true }),
+      providesTags: ['Settings'],
     }),
     getFundsAddress: builder.query<any, void>({
-      query: () => ({ url: "user/wallet/deposit-address", isAuthorized: true }),
+      query: () => ({ url: 'user/wallet/deposit-address', isAuthorized: true }),
     }),
     saveAddressInfo: builder.mutation({
       query: (data) => ({
-        url: "user/settings/shipping-address",
-        method: "POST",
+        url: 'user/settings/shipping-address',
+        method: 'POST',
         data,
         isAuthorized: true,
       }),
     }),
     updateUserPersonalDetails: builder.mutation({
       query: (data) => ({
-        url: "user/settings/account",
-        method: "PUT",
+        url: 'user/settings/account',
+        method: 'PUT',
         data,
         isAuthorized: true,
       }),
     }),
     updateUserShippingAddress: builder.mutation({
       query: (data) => ({
-        url: "user/settings/shipping-address",
-        method: "PUT",
+        url: 'user/settings/shipping-address',
+        method: 'PUT',
         data,
         isAuthorized: true,
       }),
@@ -41,7 +41,7 @@ export const userApi = createApi({
     withdraw: builder.mutation({
       query: ({ address, amount }: { address: string; amount: number }) => ({
         url: `user/wallet/withdraw`,
-        method: "POST",
+        method: 'POST',
         data: {
           address,
           amount,
@@ -61,7 +61,7 @@ export const userApi = createApi({
     //   invalidatesTags: ["Settings"],
     // }),
   }),
-});
+})
 
 export const {
   useGetSettingsQuery,
@@ -70,4 +70,4 @@ export const {
   useWithdrawMutation,
   useUpdateUserPersonalDetailsMutation,
   useUpdateUserShippingAddressMutation,
-} = userApi;
+} = userApi

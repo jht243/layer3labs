@@ -6,10 +6,10 @@ export const slideTransition = {
     opacity: 1,
     transition: {
       duration: 1,
-      when: "beforeChildren",
+      when: 'beforeChildren',
     },
   },
   exit: {
     opacity: 0,
   },
-};
+}

@@ -1,5 +1,5 @@
-@import "assets/styles/variables/index";
-@import "assets/styles/helpers/index";
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
 
 .navigation {
   $this: &;
@@ -50,7 +50,7 @@
     }
 
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       right: calc(100% + 1px);

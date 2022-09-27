@@ -1,11 +1,11 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
-import React from "react";
+import React from 'react'
 
-import Layout from "@/layouts/index";
+import Layout from '@/layouts/index'
 
 interface PageProps {
-  loaded: boolean;
+  loaded: boolean
 }
 
 const Clients: NextPage<PageProps> = ({ loaded }) => {
@@ -13,7 +13,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
     <Layout>
       <div className="services-page">clients</div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Clients;
+export default Clients

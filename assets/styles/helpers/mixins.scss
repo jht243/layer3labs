@@ -1,14 +1,14 @@
-@use "sass:math";
+@use 'sass:math';
 
 // width
 @mixin r($width) {
-  @media only screen and (max-width: $width+ "px") {
+  @media only screen and (max-width: $width+ 'px') {
     @content;
   }
 }
 
 @mixin rmin($width) {
-  @media only screen and (min-width: $width+ "px") {
+  @media only screen and (min-width: $width+ 'px') {
     @content;
   }
 }
@@ -99,12 +99,12 @@
 }
 
 @mixin ff-default {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
 
 @mixin ff-bebas {
-  font-family: "Bebas Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Bebas Neue', Helvetica, Arial, sans-serif;
 }
 
 @mixin descending-z-index($count: 30) {

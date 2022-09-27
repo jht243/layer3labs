@@ -29,4 +29,4 @@ body {
       transform: rotateY(360deg);
     }
 }
-  `;
+  `

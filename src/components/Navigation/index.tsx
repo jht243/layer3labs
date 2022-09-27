@@ -1,65 +1,66 @@
-import React, { FC, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import cx from "classnames";
+import React, { FC, useEffect, useState } from 'react'
 
-import { sleep } from "@/app/utils/helpers";
+import cx from 'classnames'
+import { useRouter } from 'next/router'
 
-import styles from "./Navigation.module.scss";
-import { NavLink } from "@/components/ui/NavLink";
+import { sleep } from '@/app/utils/helpers'
+import { NavLink } from '@/components/ui/NavLink'
+
+import styles from './Navigation.module.scss'
 
 interface Props {
-  changedRoute: string;
-  loaded: boolean;
+  changedRoute: string
+  loaded: boolean
 }
 
 const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
-  const router = useRouter();
-  const { pathname } = router;
-  const [loading, setLoading] = useState<boolean>(false);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [currentPath, setCurrentPath] = useState<string>(pathname);
+  const router = useRouter()
+  const { pathname } = router
+  const [loading, setLoading] = useState<boolean>(false)
+  const [isAnimating, setIsAnimating] = useState<boolean>(false)
+  const [currentPath, setCurrentPath] = useState<string>(pathname)
 
   useEffect(() => {
-    handleRoute(changedRoute).catch((error) => console.log(error));
+    handleRoute(changedRoute).catch((error) => console.log(error))
     return () => {
-      document.body.classList.remove("is-disabled");
-    };
-  }, [changedRoute]);
+      document.body.classList.remove('is-disabled')
+    }
+  }, [changedRoute])
 
   const handleRoute = async (url: string) => {
-    document.body.classList.add("is-disabled");
-    setIsAnimating(true);
-    setLoading(true);
-    setCurrentPath(url);
+    document.body.classList.add('is-disabled')
+    setIsAnimating(true)
+    setLoading(true)
+    setCurrentPath(url)
 
-    await sleep(1.2);
+    await sleep(1.2)
 
-    setLoading(false);
-    setIsAnimating(false);
-    document.body.classList.remove("is-disabled");
-  };
+    setLoading(false)
+    setIsAnimating(false)
+    document.body.classList.remove('is-disabled')
+  }
 
   return (
     <nav
-      className={cx(styles["navigation"], {
+      className={cx(styles['navigation'], {
         [styles[`is-disabled`]]: loading || isAnimating,
         [styles[`is-loaded`]]: loaded,
-        [styles[`is-home`]]: pathname === "/",
+        [styles[`is-home`]]: pathname === '/',
       })}
     >
       <ul>
         <li
-          className={cx(styles["navigation__item"], {
-            [styles[`is-active`]]: currentPath === "/about",
+          className={cx(styles['navigation__item'], {
+            [styles[`is-active`]]: currentPath === '/about',
             [styles[`is-transformed`]]: [
-              "/about",
-              "/services",
-              "/clients",
+              '/about',
+              '/services',
+              '/clients',
             ].includes(currentPath),
-            [styles[`is-animating`]]: isAnimating && currentPath === "/about",
+            [styles[`is-animating`]]: isAnimating && currentPath === '/about',
           })}
         >
-          <NavLink href="/about" className={styles["navigation__link"]}>
+          <NavLink href="/about" className={styles['navigation__link']}>
             <svg
               width="42"
               height="112"
@@ -72,20 +73,20 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
                 fill="#272822"
               />
             </svg>
-            <span className={styles["navigation__text"]}>About Us</span>
+            <span className={styles['navigation__text']}>About Us</span>
           </NavLink>
         </li>
         <li
-          className={cx(styles["navigation__item"], {
-            [styles[`is-active`]]: currentPath === "/services",
-            [styles[`is-transformed`]]: ["/services", "/clients"].includes(
+          className={cx(styles['navigation__item'], {
+            [styles[`is-active`]]: currentPath === '/services',
+            [styles[`is-transformed`]]: ['/services', '/clients'].includes(
               currentPath
             ),
             [styles[`is-animating`]]:
-              isAnimating && currentPath === "/services",
+              isAnimating && currentPath === '/services',
           })}
         >
-          <NavLink href="/services" className={styles["navigation__link"]}>
+          <NavLink href="/services" className={styles['navigation__link']}>
             <svg
               width="26"
               height="111"
@@ -98,17 +99,17 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
                 fill="#272822"
               />
             </svg>
-            <span className={styles["navigation__text"]}>Services</span>
+            <span className={styles['navigation__text']}>Services</span>
           </NavLink>
         </li>
         <li
-          className={cx(styles["navigation__item"], {
-            [styles[`is-active`]]: currentPath === "/clients",
-            [styles[`is-transformed`]]: ["/clients"].includes(currentPath),
-            [styles[`is-animating`]]: isAnimating && currentPath === "/about",
+          className={cx(styles['navigation__item'], {
+            [styles[`is-active`]]: currentPath === '/clients',
+            [styles[`is-transformed`]]: ['/clients'].includes(currentPath),
+            [styles[`is-animating`]]: isAnimating && currentPath === '/about',
           })}
         >
-          <NavLink href="/clients" className={styles["navigation__link"]}>
+          <NavLink href="/clients" className={styles['navigation__link']}>
             <svg
               width="15"
               height="112"
@@ -118,13 +119,13 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
             >
               <path d="M0 111.114H14.483V0.870117H0V111.114Z" fill="#272822" />
             </svg>
-            <span className={styles["navigation__text"]}>Clients</span>
+            <span className={styles['navigation__text']}>Clients</span>
           </NavLink>
         </li>
       </ul>
       {loading}
     </nav>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

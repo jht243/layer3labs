@@ -1,44 +1,44 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
-import { gsap } from "gsap";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
-import Layout from "@/layouts/index";
+import cx from 'classnames'
+import { gsap } from 'gsap'
 
-import desktopText1 from "@/assets/images/desktop1.svg";
-import desktopText2 from "@/assets/images/desktop2.svg";
-import desktopText3 from "@/assets/images/desktop3.svg";
+import desktopText1 from '@/assets/images/desktop1.svg'
+import desktopText2 from '@/assets/images/desktop2.svg'
+import desktopText3 from '@/assets/images/desktop3.svg'
+import { NavLink } from '@/components/ui/NavLink'
+import Layout from '@/layouts/index'
 
-import styles from "@/styles/pages/Home.module.scss";
-import cx from "classnames";
-import { NavLink } from "@/components/ui/NavLink";
+import styles from '@/styles/pages/Home.module.scss'
 
 interface PageProps {
-  loaded: boolean;
+  loaded: boolean
 }
 
 const Home: NextPage<PageProps> = ({ loaded }) => {
-  const [desktopImages] = useState([desktopText1, desktopText2, desktopText3]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [desktopImages] = useState([desktopText1, desktopText2, desktopText3])
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   // const size = useWindowSize();
 
   const changeCurrentImage = () => {
-    const noOfImages = desktopImages.length;
+    const noOfImages = desktopImages.length
 
     if (currentImageIndex !== noOfImages - 1) {
-      setCurrentImageIndex(currentImageIndex + 1);
+      setCurrentImageIndex(currentImageIndex + 1)
     } else {
-      setCurrentImageIndex(0);
+      setCurrentImageIndex(0)
     }
-  };
+  }
 
   useEffect(() => {
-    const interval = setInterval(() => changeCurrentImage(), 500);
+    const interval = setInterval(() => changeCurrentImage(), 500)
 
     return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [currentImageIndex]);
+      if (interval) clearInterval(interval)
+    }
+  }, [currentImageIndex])
 
   useEffect(() => {
     // const tl = gsap.timeline()
@@ -78,23 +78,23 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
     // return () => {
     //   tl.kill()
     // }
-  }, []);
+  }, [])
 
   return (
     <Layout>
       <div
-        className={cx(styles["home-page"], { [styles[`is-loaded`]]: loaded })}
+        className={cx(styles['home-page'], { [styles[`is-loaded`]]: loaded })}
       >
         <div
-          className={cx(styles["anim-head"], { [styles[`is-loaded`]]: loaded })}
+          className={cx(styles['anim-head'], { [styles[`is-loaded`]]: loaded })}
         >
-          <div className={styles["anim-head__text"]}>
+          <div className={styles['anim-head__text']}>
             <img src={desktopImages[currentImageIndex].src} alt="Layer 3" />
           </div>
 
-          <div className={styles["anim-head__dummy"]} />
+          <div className={styles['anim-head__dummy']} />
 
-          <div className={styles["anim-head__path"]}>
+          <div className={styles['anim-head__path']}>
             <svg
               width="187"
               height="179"
@@ -118,7 +118,7 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
           </div>
         </div>
 
-        <div className={styles["home-page__notes"]}>
+        <div className={styles['home-page__notes']}>
           <p>
             We bridge the gap between the physical and digital. We use cutting
             edge tech to catapult our clients into the future of Web3 consumer
@@ -128,7 +128,7 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

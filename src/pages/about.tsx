@@ -1,22 +1,23 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
-import React from "react";
-import cx from "classnames";
+import React from 'react'
 
-import Layout from "@/layouts/index";
-import { NavLink } from "@/components/ui/NavLink";
+import cx from 'classnames'
 
-import styles from "@/styles/pages/About.module.scss";
+import { NavLink } from '@/components/ui/NavLink'
+import Layout from '@/layouts/index'
+
+import styles from '@/styles/pages/About.module.scss'
 
 interface PageProps {
-  loaded: boolean;
+  loaded: boolean
 }
 
 const About: NextPage<PageProps> = ({ loaded }) => {
   return (
     <Layout>
       <div
-        className={cx(styles["about-page"], { [styles[`is-loaded`]]: loaded })}
+        className={cx(styles['about-page'], { [styles[`is-loaded`]]: loaded })}
       >
         about Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
         eos harum provident quibusdam recusandae saepe, sapiente voluptatum!
@@ -37,7 +38,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         <NavLink href="/">Home</NavLink>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default About;
+export default About

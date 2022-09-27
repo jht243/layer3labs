@@ -1,6 +1,8 @@
-import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import loader from "../loader";
+import React from 'react'
+
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+
+import loader from '../loader'
 
 class MyDocument extends Document {
   render() {
@@ -11,15 +13,15 @@ class MyDocument extends Document {
           <style>{loader}</style>
         </head>
         <body>
-          <div id={"globalLoader"}>
+          <div id={'globalLoader'}>
             <img src="/logo.svg" alt="Layer 3" />
           </div>
           <Main />
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument;
+export default MyDocument
