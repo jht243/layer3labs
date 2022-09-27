@@ -1,0 +1,13 @@
+@import "assets/styles/variables/index";
+@import "assets/styles/helpers/index";
+
+.about-page {
+  opacity: 0;
+  padding-left: $nav_link_width + $gap_padding;
+  padding-right: $nav_link_width * 2 + $gap_padding;
+  transition: opacity 1s ease 0.5s;
+
+  &.is-loaded {
+    opacity: 1;
+  }
+}

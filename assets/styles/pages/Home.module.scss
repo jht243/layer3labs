@@ -1,7 +1,21 @@
 @import "assets/styles/variables/index";
 @import "assets/styles/helpers/index";
 
+.home-page {
+
+  opacity: 0;
+  //padding-left: $nav_link_width + $gap_padding;
+  //padding-right: $nav_link_width * 2 + $gap_padding;
+  transition: opacity 1s ease 0.5s;
+
+  &.is-loaded {
+    opacity: 1;
+  }
+}
+
 .anim-head {
+  position: relative;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,12 +35,12 @@
   }
 
   &__dummy {
-    transition: all 1.7s ease;
+    transition: all 1.5s ease 1s;
   }
 
   &__text {
     height: 100%;
-    transition: transform 1s ease;
+    transition: transform 1s ease 1s;
 
     img {
       height: 100%;
@@ -36,7 +50,7 @@
   &__path {
     height: 100%;
     margin-left: 140px;
-    transition: all 0.5s ease 1.7s;
+    transition: all 0.5s ease 2.5s;
     pointer-events: none;
 
     svg {

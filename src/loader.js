@@ -13,7 +13,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 1s ease;
+    transition: opacity 1s ease 0.5s;
 }
 #globalLoader img {
     max-width: 85vw;

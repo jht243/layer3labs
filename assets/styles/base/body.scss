@@ -1,3 +1,7 @@
 body {
   font-family: 'Moderat Regular', Helvetica, Arial, sans-serif;
+
+  &.is-disabled {
+    pointer-events: none;
+  }
 }

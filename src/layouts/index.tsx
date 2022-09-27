@@ -3,10 +3,11 @@ import { FC, ReactNode } from 'react';
 
 import Footer from '@/components/layout/Footer';
 import Navigation from '@/components/Navigation';
+import { slideTransition } from '@/app/utils/motion';
+import { motion } from 'framer-motion';
 
 interface LayoutProps {
   children: ReactNode
-  loaded: boolean
   title?: string
   description?: string
   bgImage?: boolean | string
@@ -17,7 +18,6 @@ const Layout: FC<LayoutProps> = (
       children,
       title = 'Layer3',
       description = '',
-      loaded = false,
     }) => {
 
   return (
@@ -40,10 +40,24 @@ const Layout: FC<LayoutProps> = (
         </Head>
 
         <div className="out">
-          <Navigation loaded={loaded} />
-          <main className="main">
-            {children}
-          </main>
+
+          <motion.div
+          //     transition={{
+          //   y: { type: 'spring', stiffness: 500, damping: 200 },
+          // }}
+                      // initial="in"
+                      // animate="in"
+                      // exit="out"
+                      initial="hidden"
+                      animate="enter"
+                      exit="exit"
+                      // variants={variants}
+                      transition={{ type: 'linear' }}
+                      variants={slideTransition}>
+            <main className="main">
+              {children}
+            </main>
+          </motion.div>
           <Footer />
         </div>
       </>

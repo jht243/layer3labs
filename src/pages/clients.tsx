@@ -12,7 +12,7 @@ interface PageProps {
 
 const Clients: NextPage<PageProps> = ({ loaded }) => {
   return (
-      <Layout loaded={loaded}>
+      <Layout>
         <div className="services-page">
           clients
         </div>

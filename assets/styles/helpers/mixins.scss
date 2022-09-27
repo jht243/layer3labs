@@ -108,3 +108,15 @@
 @mixin ff-bebas {
   font-family: "Bebas Neue", Helvetica, Arial, sans-serif;
 }
+
+@mixin descending-z-index($count: 30) {
+  $target: 0;
+  $index: $count;
+  @while $index > 0 {
+    &:nth-child(#{$target}) {
+      z-index: #{$index};
+    }
+    $target: $target + 1;
+    $index: $index - 1;
+  }
+}

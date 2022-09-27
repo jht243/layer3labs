@@ -11,6 +11,7 @@ import desktopText3 from '@/assets/images/desktop3.svg'
 
 import styles from '@/styles/pages/Home.module.scss'
 import cx from 'classnames';
+import { NavLink } from '@/components/ui/NavLink';
 
 
 interface PageProps {
@@ -85,8 +86,8 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
   }, [])
 
   return (
-      <Layout loaded={loaded}>
-        <div className="home-page">
+      <Layout>
+        <div className={cx(styles['home-page'], { [styles[`is-loaded`]]: loaded, })}>
 
           <div className={cx(styles['anim-head'], { [styles[`is-loaded`]]: loaded })}>
             <div className={styles['anim-head__text']}>
@@ -106,6 +107,10 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
               </svg>
             </div>
           </div>
+
+
+          <br /><br /><br /><br />
+          <NavLink href="/about">DISCOVER MORE ABOUT US</NavLink>
         </div>
       </Layout>
   )
