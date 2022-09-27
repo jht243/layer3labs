@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import { FC, ReactNode } from 'react';
 
+import Footer from '@/components/layout/Footer';
+import Navigation from '@/components/Navigation';
+
 interface LayoutProps {
   children: ReactNode
+  loaded: boolean
   title?: string
   description?: string
   bgImage?: boolean | string
@@ -13,6 +17,7 @@ const Layout: FC<LayoutProps> = (
       children,
       title = 'Layer3',
       description = '',
+      loaded = false,
     }) => {
 
   return (
@@ -35,9 +40,11 @@ const Layout: FC<LayoutProps> = (
         </Head>
 
         <div className="out">
+          <Navigation loaded={loaded} />
           <main className="main">
             {children}
           </main>
+          <Footer />
         </div>
       </>
   )
