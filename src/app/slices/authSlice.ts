@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { authApi } from '@/app/services/AuthService';
-import { RootState } from '@/app/store';
+import { authApi } from "@/app/services/AuthService";
+import { RootState } from "@/app/store";
 
 const slice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: { user: null, token: null } as {
     user: null | any;
     token: null | string;
@@ -17,16 +17,16 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addMatcher(
-        authApi.endpoints.login.matchFulfilled,
-        (state, { payload }) => {
-          state.token = payload.jwt_token;
-        }
+      authApi.endpoints.login.matchFulfilled,
+      (state, { payload }) => {
+        state.token = payload.jwt_token;
+      }
     );
     builder.addMatcher(
-        authApi.endpoints.getCurrentUser.matchFulfilled,
-        (state, { payload }) => {
-          state.user = payload;
-        }
+      authApi.endpoints.getCurrentUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload;
+      }
     );
   },
 });

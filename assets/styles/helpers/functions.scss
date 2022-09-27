@@ -12,6 +12,6 @@ $browser-context: 16; // Default
 }
 
 @function px-vw($target, $width) {
-  $vw-context: ($width*.01) * 1px;
+  $vw-context: ($width * 0.01) * 1px;
   @return ($target/$vw-context) * 1vw;
 }

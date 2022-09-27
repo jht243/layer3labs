@@ -24,7 +24,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    color: #F4F5F4;
+    color: #f4f5f4;
     @include xs {
       font-size: 14px;
       line-height: 1.4;
@@ -49,7 +49,7 @@
     a {
       color: inherit;
       text-decoration: none;
-      transition: all .25s ease;
+      transition: all 0.25s ease;
 
       &:hover {
         color: $primary;

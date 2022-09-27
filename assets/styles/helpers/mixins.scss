@@ -1,16 +1,17 @@
+@use "sass:math";
+
 // width
 @mixin r($width) {
   @media only screen and (max-width: $width+ "px") {
-    @content
+    @content;
   }
 }
 
 @mixin rmin($width) {
   @media only screen and (min-width: $width+ "px") {
-    @content
+    @content;
   }
 }
-
 
 @mixin lg {
   @include r($lg) {
@@ -42,7 +43,6 @@
   }
 }
 
-
 @mixin xlUp {
   @include rmin($xl + 1) {
     @content;
@@ -73,7 +73,7 @@
   }
 }
 
-@mixin line-height($heightValue: 20 ){
+@mixin line-height($heightValue: 20) {
   line-height: $heightValue + px; //fallback for old browsers
   line-height: (0.0625 * $heightValue);
 }
@@ -98,8 +98,6 @@
   text-overflow: ellipsis;
 }
 
-
-
 @mixin ff-default {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -119,4 +117,8 @@
     $target: $target + 1;
     $index: $index - 1;
   }
+}
+
+@function vw($px-vw, $base-vw: 1440px) {
+  @return math.div(($px-vw * 100vw), $base-vw);
 }

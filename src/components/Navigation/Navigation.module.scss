@@ -33,13 +33,16 @@
     background-color: #ffffff;
     border-right: 1px solid #707070;
     border-left: 1px solid transparent;
-    transition: background-color .25s ease, transform 1.5s ease, border-left-color 1s linear 0.8s;
-
+    transition: background-color 0.25s ease, transform 1.5s ease,
+      border-left-color 1s linear 0.8s;
     @include descending-z-index(100);
+
+    @include sm {
+      height: calc(100vh - 47px);
+    }
 
     &.is-animating {
       pointer-events: none;
-
 
       & + #{$this}__item {
         border-left-color: #707070;
@@ -47,21 +50,21 @@
     }
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       right: calc(100% + 1px);
       width: 0;
       height: 100%;
       pointer-events: none;
-      transition: transform .25s ease, width 1s ease-in-out;
+      transition: transform 0.25s ease, width 1s ease-in-out;
     }
 
     &.is-transformed {
-
       & + #{$this}__item {
         border-left-color: #707070;
-        transition: background-color .25s ease, transform 1.5s ease, border-left-color 0.1s linear;
+        transition: background-color 0.25s ease, transform 1.5s ease,
+          border-left-color 0.1s linear;
       }
 
       &:after {
