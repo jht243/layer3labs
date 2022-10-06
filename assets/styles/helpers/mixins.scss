@@ -103,9 +103,10 @@
   font-weight: 400;
 }
 
-@mixin ff-bebas {
-  font-family: 'Bebas Neue', Helvetica, Arial, sans-serif;
+@mixin ff-medium {
+  font-family: 'Moderat Medium', Helvetica, Arial, sans-serif;
 }
+
 
 @mixin descending-z-index($count: 30) {
   $target: 0;

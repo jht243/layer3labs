@@ -27,7 +27,7 @@
     position: fixed;
     top: 0;
     z-index: 99;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 65px);
     width: 65px;
     list-style: none;
     background-color: #ffffff;
@@ -38,7 +38,7 @@
     @include descending-z-index(100);
 
     @include sm {
-      height: calc(100vh - 47px);
+      height: calc(100vh - 40px);
     }
 
     &.is-animating {
