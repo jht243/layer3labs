@@ -10,4 +10,8 @@ img {
   @include md {
     padding-bottom: 65px;
   }
+
+  @include sm {
+    padding-bottom: 40px;
+  }
 }

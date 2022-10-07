@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import cx from 'classnames'
 import { gsap } from 'gsap'
@@ -20,6 +20,7 @@ interface PageProps {
 const Home: NextPage<PageProps> = ({ loaded }) => {
   const [desktopImages] = useState([desktopText1, desktopText2, desktopText3])
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const textRef = useRef(null)
   // const size = useWindowSize();
 
   const changeCurrentImage = () => {
@@ -40,45 +41,29 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
     }
   }, [currentImageIndex])
 
+
   useEffect(() => {
-    // const tl = gsap.timeline()
-    // tl
-    // .to(textRef.current, {
-    //   opacity: 1,
-    //   duration: 0.1,
-    //   stagger: 0.5,
-    //   onComplete: () => {
-    //     const interval = setInterval(() => {
-    //       setCurrentMobileImageIndexes((prevState) => [...prevState.map((i) => {
-    //
-    //         if (i >= currentMobileImageIndexes.length - 2) {
-    //           clearInterval(interval)
-    //
-    //           setTimeout(() => {
-    //             tl
-    //             .to(textRef.current, {
-    //               opacity: 0,
-    //               duration: 0.1,
-    //               stagger: 0.5,
-    //               onComplete: () => {
-    //                 setTimeout(() => {
-    //                   setCurrentMobileImageIndexes([0, 0, 0, 0, 0])
-    //                   setIsRepeat((prevState) => !prevState)
-    //                 }, 500)
-    //               }
-    //             });
-    //           }, 500)
-    //         }
-    //         return i + 1
-    //       })])
-    //     }, 500);
-    //   }
-    // });
-    //
-    // return () => {
-    //   tl.kill()
-    // }
-  }, [])
+    if (!textRef || !loaded) return
+
+    const tl = gsap.timeline()
+    tl
+    .fromTo(
+        textRef.current,
+        {
+          y: 80,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          delay: 2
+        },
+    )
+    return () => {
+      tl.kill()
+    }
+  }, [loaded])
 
   return (
     <Layout>
@@ -118,7 +103,7 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
           </div>
         </div>
 
-        <div className={styles['home-page__notes']}>
+        <div className={styles['home-page__notes']} ref={textRef}>
           <p>
             We bridge the gap between the physical and digital. We use cutting
             edge tech to catapult our clients into the future of Web3 consumer
