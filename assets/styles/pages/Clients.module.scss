@@ -1,10 +1,10 @@
 @import 'assets/styles/variables/index';
 @import 'assets/styles/helpers/index';
 
-.services-page {
+.clients-page {
   height: 100%;
   opacity: 0;
-  padding-left: $nav_link_width * 2 + $gap_padding;
+  padding-left: $nav_link_width * 3 + $gap_padding;
   padding-right: $nav_link_width + $gap_padding;
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
@@ -117,7 +117,7 @@
   }
 
 
-  &__process-title {
+  &__testimonials-title {
     position: absolute;
     top: 0;
     left: 0;
@@ -161,20 +161,13 @@
           top: 10%;
           transform: translate(-50%, -50%);
         }
-
-        &:last-child {
-          //top: 95%;
-          //left: auto !important;
-          //right: -10% !important;
-          //transform: translate(0, -50%);
-        }
       }
     }
   }
 }
 
 
-.benefits-section {
+.clients-section {
   position: absolute;
   top: 0;
   left: 0;
@@ -186,7 +179,7 @@
   height: 100%;
   width: 100%;
   margin: auto;
-  max-width: calc(100 / 1920 * 1200%);
+  max-width: 80%;
 
   @include xl {
     max-width: none;
@@ -211,67 +204,57 @@
     }
   }
 
-  &__row {
+
+  &__boxes {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
+    flex-wrap: wrap;
+    height: 65vh;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(100% / 3 - 78px);
+    margin-right: 78px;
+
+    @include xl {
+      width: calc(100% / 2 - 78px);
+    }
 
     @include md {
-      display: block;
-    }
-
-    & + & {
-      margin-top: 48px;
-
-      @include xs {
-        margin-top: 30px;
-      }
-    }
-  }
-
-  &__col {
-    width: 50%;
-
-    @include xl {
       width: 100%;
-      max-width: 70vw;
-    }
-
-    &:first-child {
-      margin-right: 44px;
-    }
-  }
-
-  &__title {
-    font-size: 40px;
-    line-height: 1.2;
-    color: #272822;
-
-    @include xl {
-      font-size: 36px;
+      margin-right: 0;
+      margin-bottom: 40px;
     }
 
     @include sm {
-      margin-bottom: 8px;
-      font-size: 24px;
+      margin-bottom: 28px;
     }
+  }
+
+  &__logo {
+    margin-bottom: 21px;
   }
 
   &__text {
-    max-width: 650px;
+    max-width: 440px;
     font-size: 20px;
-    line-height: 1.2;
+    line-height: 24px;
     color: #272822;
 
     @include sm {
-      font-size: 14px;
+      max-width: none;
+      padding-top: 4px;
+      font-size: 16px;
+      line-height: 1.2;
+      border-top: 1px solid #272822;
     }
   }
 }
 
 
-.process-section {
+.testimonials-section {
   position: absolute;
   top: 0;
   left: 0;
@@ -309,74 +292,36 @@
     }
   }
 
-  &__block {
-    max-width: 635px;
-
-    @include sm {
-      max-width: 50vw;
-    }
-
-    & + & {
-      margin-top: 69px;
-      @include xs {
-        margin-top: 30px;
-      }
-    }
-
-    &:nth-child(even) {
-      margin-left: auto;
-    }
-  }
-
-
   &__note {
-    margin-bottom: 17px;
-    @include ff-medium;
-    font-size: 20px;
+    margin-bottom: 35px;
+    font-size: 40px;
     line-height: 1.2;
-    color: #272822;
+    color: #272823;
     opacity: 0;
 
-    span {
-      margin-left: 60px;
+    @include sm {
+      margin-bottom: 11px;
+      font-size: 32px;
     }
 
-    @include sm {
-      display: none;
+    @include xs {
+      font-size: 24px;
     }
   }
 
   &__title {
     position: relative;
-    font-size: 40px;
+    font-size: 20px;
     line-height: 1.2;
     color: #272822;
     opacity: 0;
 
-    @include xl {
-      font-size: 36px;
-    }
-
     @include md {
-      font-size: 24px;
-    }
-
-    @include sm {
-      padding-left: 30px;
+      font-size: 18px;
     }
 
     @include xs {
       font-size: 16px;
-    }
-
-    span {
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      @include smUp {
-        display: none;
-      }
     }
   }
 }

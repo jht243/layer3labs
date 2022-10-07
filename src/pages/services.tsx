@@ -255,7 +255,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
             rotate: 0,
           },
           {
-            rotate: -48,
+            rotate: 20,
             duration: 1,
           }, '<'
       )
