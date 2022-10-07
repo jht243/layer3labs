@@ -9,6 +9,12 @@
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
 
+  @include sm {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 100px;
+  }
+
   &.is-loaded {
     opacity: 1;
   }
@@ -33,6 +39,10 @@
     left: 0;
     top: 24px;
     z-index: 99;
+
+    @include sm {
+      top: -10px;
+    }
   }
 
   &__next {
@@ -45,6 +55,11 @@
     z-index: 10;
 
     animation: bounce 3s ease infinite;
+
+    @include sm {
+      bottom: 20px;
+      left: 0;
+    }
   }
 
   &__main-title {
@@ -68,6 +83,10 @@
 
       @include sm {
         font-size: 36px;
+      }
+
+      @include xs {
+        font-size: 30px;
       }
     }
   }
@@ -94,54 +113,6 @@
     div {
       opacity: 0;
       transform: translateY(100px);
-    }
-  }
-
-  &__team-title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(200px);
-
-    span {
-      display: block;
-      position: absolute;
-      @include ff-medium;
-      font-size: 60px;
-      line-height: 72px;
-      color: #2B2E34;
-      text-transform: uppercase;
-
-      @include xl {
-        font-size: 50px;
-        line-height: 1.4;
-      }
-    }
-  }
-
-  &__team {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 11;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    padding-top: 5vh;
-    pointer-events: none;
-
-    @include xl {
-
-      margin-top: 100px;
     }
   }
 
@@ -180,17 +151,23 @@
         font-size: 36px;
       }
 
-      &:first-child {
-        left: 10%;
-        top: 10%;
-        transform: translate(-50%, -50%);
+      @include xs {
+        font-size: 30px;
       }
 
-      &:last-child {
-        top: 95%;
-        left: auto !important;
-        right: -10% !important;
-        transform: translate(0, -50%);
+      @include smUp {
+        &:first-child {
+          left: 10%;
+          top: 10%;
+          transform: translate(-50%, -50%);
+        }
+
+        &:last-child {
+          top: 95%;
+          left: auto !important;
+          right: -10% !important;
+          transform: translate(0, -50%);
+        }
       }
     }
   }
@@ -210,16 +187,9 @@
   width: 100%;
   margin: auto;
   max-width: calc(100 / 1920 * 1200%);
-  //overflow-y: auto;
-
-  @include r(1440) {
-  }
 
   @include xl {
     max-width: none;
-    //display: block;
-    //margin-bottom: 200px;
-    //height: auto;
   }
 
   @include md {
@@ -228,12 +198,16 @@
     margin-top: 120px;
   }
 
+  @include sm {
+    margin-top: 15vh;
+  }
+
   &__inner {
     margin: auto;
     padding: 40px 0;
 
-    @include md {
-      //height: 80%;
+    @include sm {
+      padding: 0;
     }
   }
 
@@ -249,12 +223,15 @@
 
     & + & {
       margin-top: 48px;
+
+      @include xs {
+        margin-top: 30px;
+      }
     }
   }
 
   &__col {
     width: 50%;
-    //margin: auto 40px;
 
     @include xl {
       width: 100%;
@@ -306,29 +283,30 @@
   height: 100%;
   margin: auto;
   width: calc(100 / 1920 * 1200%);
-  //overflow-y: auto;
 
   @include xl {
     display: block;
     margin-bottom: 200px;
-    height: auto;
-
-
     height: 70%;
-    display: block;
     margin-top: 120px;
   }
-  @include md {
-    width: 80%;
-    //height: 70%;
-    //display: block;
-    //margin-top: 120px;
+
+  @include sm {
+    margin-top: 15vh;
+  }
+
+  @include xs {
+    width: 100%;
   }
 
   &__inner {
     width: 100%;
     margin: auto;
     padding: 40px 0;
+
+    @include sm {
+      padding: 0;
+    }
   }
 
   &__block {
@@ -340,6 +318,9 @@
 
     & + & {
       margin-top: 69px;
+      @include xs {
+        margin-top: 30px;
+      }
     }
 
     &:nth-child(even) {
@@ -382,6 +363,10 @@
 
     @include sm {
       padding-left: 30px;
+    }
+
+    @include xs {
+      font-size: 16px;
     }
 
     span {

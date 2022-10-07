@@ -12,15 +12,18 @@ type NavProps = {
   href: string
   exact?: boolean
   className?: string
+  onClick?: Function
 }
 
-function NavLink({
-  href,
-  exact,
-  children,
-  className = '',
-  ...props
-}: NavProps) {
+function NavLink (
+    {
+      href,
+      exact,
+      children,
+      className = '',
+      onClick,
+      ...props
+    }: NavProps) {
   const { pathname } = useRouter()
   const isActive = exact ? pathname === href : pathname.startsWith(href)
 
@@ -30,21 +33,12 @@ function NavLink({
   })
 
   return (
-    <Link href={href}>
-      <a {...props} className={classNames}>
-        {children}
-      </a>
-    </Link>
+      <Link href={href}>
+        <a {...props} className={classNames} onClick={onClick ? () => onClick() : undefined}>
+          {children}
+        </a>
+      </Link>
   )
-}
-
-NavLink.propTypes = {
-  href: PropTypes.string.isRequired,
-  exact: PropTypes.bool,
-}
-
-NavLink.defaultProps = {
-  exact: false,
 }
 
 export { NavLink }

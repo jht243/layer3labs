@@ -9,6 +9,12 @@
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
 
+  @include sm {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 100px;
+  }
+
   &.is-loaded {
     opacity: 1;
   }
@@ -33,6 +39,10 @@
     left: 0;
     top: 24px;
     z-index: 99;
+
+    @include sm {
+      top: -10px;
+    }
   }
 
   &__next {
@@ -45,6 +55,11 @@
     z-index: 10;
 
     animation: bounce 3s ease infinite;
+
+    @include sm {
+      bottom: 20px;
+      left: 0;
+    }
   }
 
   &__vision {
@@ -60,6 +75,18 @@
       @include xl {
         font-size: 50px;
         line-height: 1.4;
+      }
+
+      @include md {
+        font-size: 40px;
+      }
+
+      @include sm {
+        font-size: 36px;
+      }
+
+      @include xs {
+        font-size: 30px;
       }
     }
   }
@@ -79,8 +106,21 @@
     text-transform: uppercase;
 
     @include xl {
-      font-size: 50px;
+      font-size: 44px;
       line-height: 1.4;
+    }
+
+    @include md {
+      font-size: 40px;
+    }
+
+    @include sm {
+      font-size: 36px;
+      max-width: none;
+    }
+
+    @include xs {
+      font-size: 30px;
     }
 
     div {
@@ -114,6 +154,18 @@
         font-size: 50px;
         line-height: 1.4;
       }
+
+      @include md {
+        font-size: 40px;
+      }
+
+      @include sm {
+        font-size: 36px;
+      }
+
+      @include xs {
+        font-size: 30px;
+      }
     }
   }
 
@@ -132,8 +184,13 @@
     pointer-events: none;
 
     @include xl {
-
       margin-top: 100px;
+    }
+
+    @include sm {
+      margin-top: 15vh;
+      padding-top: 0;
+      height: 68%;
     }
   }
 
@@ -161,6 +218,18 @@
       @include xl {
         font-size: 50px;
         line-height: 1.4;
+      }
+
+      @include md {
+        font-size: 40px;
+      }
+
+      @include sm {
+        font-size: 36px;
+      }
+
+      @include xs {
+        font-size: 30px;
       }
 
       &:first-child {
@@ -200,6 +269,13 @@
     img {
       display: block;
       margin: 30px;
+
+      @include xs {
+        max-width: 35vw;
+        max-height: 15vh;
+        object-fit: cover;
+        margin: 20px;
+      }
     }
   }
 }
@@ -225,11 +301,18 @@
       width: 100%;
       max-width: 70vw;
     }
+    @include sm {
+      max-width: none;
+      margin: auto;
+    }
   }
 
   &__block {
     & + & {
       margin-top: 56px;
+      @include sm {
+        margin-top: 37px;
+      }
     }
   }
 
@@ -239,6 +322,11 @@
     line-height: 48px;
     color: #272823;
     opacity: 0;
+
+    @include sm {
+      font-size: 24px;
+      line-height: 29px;
+    }
   }
 
   &__subtitle {
@@ -247,6 +335,11 @@
     line-height: 48px;
     color: #272823;
     opacity: 0;
+    @include sm {
+      margin-bottom: 10px;
+      font-size: 24px;
+      line-height: 29px;
+    }
   }
 
   &__description {
@@ -255,6 +348,11 @@
     line-height: 24px;
     color: #272823;
     opacity: 0;
+    @include sm {
+      margin-bottom: 13px;
+      font-size: 14px;
+      line-height: 17px;
+    }
   }
 
   &__social {
@@ -265,6 +363,11 @@
     text-decoration: none;
     opacity: 0;
     transition: all .2s ease;
+
+    @include sm {
+      font-size: 14px;
+      line-height: 17px;
+    }
 
     &:hover {
       color: $primary;
