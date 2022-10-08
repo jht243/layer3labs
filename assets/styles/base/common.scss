@@ -34,6 +34,14 @@ img {
   @include xl {
     justify-content: flex-start;
     padding-top: 25vh;
+    width: 85vw;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  @include md {
+    padding-top: 17vh;
   }
 
   @include sm {
