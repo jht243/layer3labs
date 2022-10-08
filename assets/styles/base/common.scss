@@ -4,7 +4,7 @@ img {
 }
 
 .main {
-  height: 100vh;
+  //height: 100vh;
   padding-bottom: 100px;
 
   @include md {
@@ -13,5 +13,79 @@ img {
 
   @include sm {
     padding-bottom: 40px;
+  }
+}
+
+
+.section-title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-left: $nav_link_width + $gap_padding;
+  padding-right: $nav_link_width * 2 + $gap_padding;
+
+  @include xl {
+    justify-content: flex-start;
+    padding-top: 25vh;
+  }
+
+  @include sm {
+    justify-content: flex-start;
+    padding-top: 20vh;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &__inner {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.section-heading {
+  //position: absolute;
+  margin: auto;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  text-align: center;
+  color: #272823;
+  text-transform: uppercase;
+
+
+
+  opacity: 0;
+  transform: translateY(50px);
+
+  @include xl {
+    font-size: 44px;
+    line-height: 1.4;
+  }
+
+  @include md {
+    font-size: 40px;
+  }
+
+  @include sm {
+    font-size: 36px;
+    max-width: none;
+  }
+
+  @include xs {
+    font-size: 26px;
   }
 }

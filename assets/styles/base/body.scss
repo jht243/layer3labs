@@ -1,5 +1,6 @@
 body {
   font-family: 'Moderat Regular', Helvetica, Arial, sans-serif;
+  overscroll-behavior-y: none;
 
   &.is-disabled {
     pointer-events: none;

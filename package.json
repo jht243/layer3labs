@@ -31,6 +31,7 @@
     "react-hot-toast": "^2.3.0",
     "react-redux": "^8.0.2",
     "react-transition-group": "^4.4.5",
+    "react-viewport-height": "^1.2.1",
     "sass": "^1.54.8",
     "sass-loader": "^13.0.2",
     "swiper": "^8.3.2",

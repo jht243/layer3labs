@@ -21,7 +21,6 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
   const [desktopImages] = useState([desktopText1, desktopText2, desktopText3])
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const textRef = useRef(null)
-  // const size = useWindowSize();
 
   const changeCurrentImage = () => {
     const noOfImages = desktopImages.length

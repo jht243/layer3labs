@@ -20,6 +20,7 @@ export function useWindowSize() {
       // @ts-ignore
       function handleResize() {
         // Set window width/height to state
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight.toString()}px`);
         setWindowSize({
           width: window.innerWidth,
           height: window.innerHeight,

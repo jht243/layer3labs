@@ -2,7 +2,7 @@
 @import 'assets/styles/helpers/index';
 
 .about-page {
-  height: 100%;
+  height: calc(var(--vh) - 100px);
   opacity: 0;
   padding-left: $nav_link_width + $gap_padding;
   padding-right: $nav_link_width * 2 + $gap_padding;
@@ -12,7 +12,8 @@
   @include sm {
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 100px;
+    padding-top: 40px;
+    height: calc(var(--vh) - 40px);
   }
 
   &.is-loaded {
@@ -22,21 +23,31 @@
   &__inner {
     position: relative;
     height: 100%;
+
+    @include sm {
+      height: calc(var(--vh) - 214px);
+    }
   }
 
   &__bg {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: -1;
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
+
+    @include sm {
+      left: -50vw;
+      width: 200vw;
+    }
   }
 
   &__back {
-    position: absolute;
-    left: 0;
+    position: fixed;
+    left: $nav_link_width + $gap_padding;
     top: 24px;
     z-index: 99;
 
@@ -46,31 +57,36 @@
   }
 
   &__next {
-    position: absolute;
+    position: fixed;
     left: 5vw;
-    bottom: 40px;
+    bottom: 140px;
     cursor: pointer;
-    transform: translateY(100px);
-    opacity: 0;
     z-index: 10;
-
     animation: bounce 3s ease infinite;
 
+    @include xl {
+      left: 100px;
+    }
+
     @include sm {
-      bottom: 20px;
-      left: 0;
+      bottom: 50px;
+      left: 10px;
     }
   }
 
-  &__vision {
+
+  &__vision,
+  &__team-title {
     span {
       display: block;
-      position: absolute;
+      position: fixed;
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
       color: #2B2E34;
       text-transform: uppercase;
+
+      opacity: 0;
 
       @include xl {
         font-size: 50px;
@@ -83,27 +99,54 @@
 
       @include sm {
         font-size: 36px;
+        margin-top: 20px;
+        margin-left: 10px;
       }
 
       @include xs {
         font-size: 30px;
       }
+
+      &:last-child {
+        @include sm {
+          margin-top: 8vh;
+          margin-right: -20px;
+        }
+      }
     }
   }
 
-  &__title {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  &__titles {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 70vw;
+    height: 500vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  &__title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
     font-weight: 400;
     font-size: 60px;
     line-height: 72px;
     text-align: center;
     color: #272823;
     text-transform: uppercase;
+
+    height: fit-content;
+    overflow: hidden;
 
     @include xl {
       font-size: 44px;
@@ -122,59 +165,9 @@
     @include xs {
       font-size: 30px;
     }
-
-    div {
-      opacity: 0;
-      transform: translateY(100px);
-    }
-  }
-
-  &__team-title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(200px);
-
-    span {
-      display: block;
-      position: absolute;
-      @include ff-medium;
-      font-size: 60px;
-      line-height: 72px;
-      color: #2B2E34;
-      text-transform: uppercase;
-
-      @include xl {
-        font-size: 50px;
-        line-height: 1.4;
-      }
-
-      @include md {
-        font-size: 40px;
-      }
-
-      @include sm {
-        font-size: 36px;
-      }
-
-      @include xs {
-        font-size: 30px;
-      }
-    }
   }
 
   &__team {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 11;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -183,28 +176,25 @@
     padding-top: 5vh;
     pointer-events: none;
 
+    opacity: 0;
     @include xl {
       margin-top: 100px;
     }
 
     @include sm {
-      margin-top: 15vh;
+      margin-top: 12vh;
       padding-top: 0;
-      height: 68%;
+      height: 88%;
     }
   }
 
 
   &__partners-title {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
 
     span {
       display: block;
@@ -249,13 +239,22 @@
 
 
   &__partners {
-    opacity: 0;
-    pointer-events: none;
-
+    position: absolute;
+    left: 0;
+    bottom: 10vh;
+    width: 100%;
     display: flex;
     justify-content: center;
-    height: 100%;
-    margin: auto;
+    height: auto;
+
+    opacity: 0;
+    transform: translateY(100px);
+    pointer-events: none;
+    z-index: -1;
+
+    @include sm {
+      bottom: 12vh;
+    }
   }
 
   &__partners-images {
@@ -269,12 +268,18 @@
     img {
       display: block;
       margin: 30px;
+      max-height: 10vh;
+
+      @include sm {
+        max-width: 25vw;
+        max-height: 8vh;
+      }
 
       @include xs {
-        max-width: 35vw;
-        max-height: 15vh;
+        max-width: 25vw;
+        max-height: 8vh;
         object-fit: cover;
-        margin: 20px;
+        margin: 10px;
       }
     }
   }
@@ -321,7 +326,6 @@
     font-size: 40px;
     line-height: 48px;
     color: #272823;
-    opacity: 0;
 
     @include sm {
       font-size: 24px;
@@ -334,7 +338,6 @@
     font-size: 40px;
     line-height: 48px;
     color: #272823;
-    opacity: 0;
     @include sm {
       margin-bottom: 10px;
       font-size: 24px;
@@ -347,7 +350,6 @@
     font-size: 20px;
     line-height: 24px;
     color: #272823;
-    opacity: 0;
     @include sm {
       margin-bottom: 13px;
       font-size: 14px;
@@ -361,7 +363,6 @@
     line-height: 24px;
     color: #272822;
     text-decoration: none;
-    opacity: 0;
     transition: all .2s ease;
 
     @include sm {
