@@ -4,8 +4,8 @@
 .services-page {
   height: calc(var(--vh) - 100px);
   opacity: 0;
-  padding-left: $nav_link_width + $gap_padding;
-  padding-right: $nav_link_width * 2 + $gap_padding;
+  padding-left: $nav_link_width * 2 + $gap_padding;
+  padding-right: $nav_link_width + $gap_padding;
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
 
@@ -47,7 +47,7 @@
 
   &__back {
     position: fixed;
-    left: $nav_link_width + $gap_padding;
+    left: $nav_link_width * 2 + $gap_padding;
     top: 24px;
     z-index: 99;
 
@@ -58,15 +58,11 @@
 
   &__next {
     position: fixed;
-    left: 5vw;
+    left: $nav_link_width * 2 + $gap_padding;
     bottom: 140px;
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
-
-    @include xl {
-      left: 100px;
-    }
 
     @include sm {
       bottom: 50px;
@@ -195,9 +191,10 @@
 
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 68%;
   width: 100%;
   margin: auto;
+  margin-top: 100px;
   max-width: calc(100 / 1920 * 1200%);
 
   @include xl {
@@ -292,8 +289,9 @@
 
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 70%;
   margin: auto;
+  margin-top: 100px;
   width: calc(100 / 1920 * 1200%);
 
   @include xl {
