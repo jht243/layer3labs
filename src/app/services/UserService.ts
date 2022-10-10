@@ -1,6 +1,6 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react'
 
-import baseQuery from '@/app/utils/queries';
+import baseQuery from '@/app/utils/queries'
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -19,7 +19,7 @@ export const userApi = createApi({
         url: 'user/settings/shipping-address',
         method: 'POST',
         data,
-        isAuthorized: true
+        isAuthorized: true,
       }),
     }),
     updateUserPersonalDetails: builder.mutation({
@@ -27,7 +27,7 @@ export const userApi = createApi({
         url: 'user/settings/account',
         method: 'PUT',
         data,
-        isAuthorized: true
+        isAuthorized: true,
       }),
     }),
     updateUserShippingAddress: builder.mutation({
@@ -35,13 +35,13 @@ export const userApi = createApi({
         url: 'user/settings/shipping-address',
         method: 'PUT',
         data,
-        isAuthorized: true
+        isAuthorized: true,
       }),
     }),
     withdraw: builder.mutation({
-      query: ({ address, amount }: { address: string, amount: number }) => ({
+      query: ({ address, amount }: { address: string; amount: number }) => ({
         url: `user/wallet/withdraw`,
-        method: "POST",
+        method: 'POST',
         data: {
           address,
           amount,
@@ -61,7 +61,7 @@ export const userApi = createApi({
     //   invalidatesTags: ["Settings"],
     // }),
   }),
-});
+})
 
 export const {
   useGetSettingsQuery,
@@ -70,4 +70,4 @@ export const {
   useWithdrawMutation,
   useUpdateUserPersonalDetailsMutation,
   useUpdateUserShippingAddressMutation,
-} = userApi;
+} = userApi

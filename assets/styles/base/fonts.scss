@@ -1,7 +1,17 @@
 @font-face {
-  font-family: "Moderat Regular";
+  font-family: 'Moderat Regular';
   font-weight: 400;
-  src: url("../../fonts/moderat-regular.eot");
-  src: url("../../fonts/moderat-regular.ttf") format("truetype"), url("../../fonts/moderat-regular.woff") format("woff"),
-  url("../../fonts/moderat-regular.woff2") format("woff2");
+  src: url('../../fonts/moderat-regular.eot');
+  src: url('../../fonts/moderat-regular.ttf') format('truetype'),
+    url('../../fonts/moderat-regular.woff') format('woff'),
+    url('../../fonts/moderat-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Moderat Medium';
+  font-weight: 500;
+  src: url('../../fonts/moderat-medium.eot');
+  src: url('../../fonts/moderat-medium.ttf') format('truetype'),
+    url('../../fonts/moderat-medium.woff') format('woff'),
+    url('../../fonts/moderat-medium.woff2') format('woff2');
 }

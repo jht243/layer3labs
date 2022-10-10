@@ -1,0 +1,247 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.navigation {
+  $this: &;
+
+  opacity: 0;
+  transition: opacity 1s ease;
+
+  @include sm {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    z-index: 999;
+    background-color: #ffffff;
+    overflow-y: auto;
+    transition: all .3s ease;
+
+    opacity: 0;
+    transform: translateX(-100%);
+
+    &.is-opened {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &.is-home {
+    transition: none;
+  }
+
+  &.is-loaded {
+    opacity: 1;
+
+    &.is-home {
+      transition: opacity 1s ease 2.5s;
+    }
+  }
+
+  &.is-disabled {
+    pointer-events: none;
+  }
+
+  &__item {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    height: calc(100vh - 65px);
+    width: 65px;
+    list-style: none;
+    background-color: #ffffff;
+    border-right: 1px solid #707070;
+    border-left: 1px solid transparent;
+    transition: background-color 0.25s ease, transform 1.5s ease,
+      border-left-color 1s linear 0.8s;
+    @include descending-z-index(100);
+
+    @include sm {
+      position: static;
+      //height: calc(100vh - 40px);
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #272823;
+    }
+
+    &.is-animating {
+      pointer-events: none;
+
+      & + #{$this}__item {
+        border-left-color: #707070;
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: calc(100% + 1px);
+      width: 0;
+      height: 100%;
+      pointer-events: none;
+      transition: transform 0.25s ease, width 1s ease-in-out;
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &.is-transformed {
+      & + #{$this}__item {
+        border-left-color: #707070;
+        transition: background-color 0.25s ease, transform 1.5s ease,
+          border-left-color 0.1s linear;
+      }
+
+      &:after {
+        opacity: 0;
+      }
+
+      &:before {
+        width: calc(100vw - 65px);
+      }
+    }
+
+    &:nth-child(1) {
+      border-left: 1px solid #707070;
+      right: calc(65px * 2);
+
+      &:before {
+        background-color: $primary;
+      }
+
+      &.is-transformed {
+        border-right: 1px solid #707070;
+        transform: translateX(-100vw) translateX(calc(65px * 3));
+
+        @include sm {
+          transform: none;
+        }
+      }
+
+      &.is-active,
+      &:hover {
+        background-color: $primary;
+      }
+    }
+
+    &:nth-child(2) {
+      right: 65px;
+
+      &:before {
+        background-color: $services;
+      }
+
+      &.is-transformed {
+        border-right: 1px solid #707070;
+        border-left: none;
+        transform: translateX(-100vw) translateX(calc(65px * 3));
+        @include sm {
+          transform: none;
+        }
+      }
+
+      &.is-active,
+      &:hover {
+        background-color: $services;
+      }
+    }
+
+    &:nth-child(3) {
+      right: 0;
+
+      &:before {
+        background-color: $clients;
+      }
+
+      &.is-transformed {
+        border-right: 1px solid #707070;
+        border-left: none;
+        transform: translateX(-100vw) translateX(calc(65px * 3));
+        @include sm {
+          transform: none;
+        }
+      }
+
+      &.is-active,
+      &:hover {
+        background-color: $clients;
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 30px 0 50px;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+
+    @include sm {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: row;
+      height: auto;
+      padding: 20px;
+      @include ff-medium;
+      font-size: 28px;
+      line-height: 34px;
+      color: #272822;
+    }
+
+    svg {
+      @include sm {
+        display: none;
+      }
+    }
+  }
+
+  &__text {
+    display: block;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #272823;
+    text-transform: uppercase;
+    text-decoration: none;
+    @include sm {
+      transform: none;
+    }
+  }
+}
+
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 10px 17px;
+  border-bottom: 1px solid #272822;
+  background-color: #ffffff;
+
+  @include smUp {
+    display: none;
+  }
+}
+
+.burger {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}

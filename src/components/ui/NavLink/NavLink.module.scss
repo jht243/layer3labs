@@ -1,8 +1,8 @@
-@import "assets/styles/variables/index";
-@import "assets/styles/helpers/index";
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
 
 .nav-link {
-  transition: all .25s ease;
+  transition: all 0.25s ease;
 
   &.is-active,
   &:hover {
