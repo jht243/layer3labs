@@ -16,7 +16,7 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({
   children,
-  title = 'Layer3',
+  title = 'Layer 3 Labs',
   description = '',
 }) => {
   const { pathname } = useRouter()
