@@ -76,8 +76,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '80%',
-          top: '90%',
+          left: '86%',
+          top: '96%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -506,7 +506,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                         if (ref) testimonBlockSubTitleRef.current[0] = ref;
                       }}
                   >
-                    JAME HIDDEN, CEO AT BOWLERO
+                    JASON KOVAR, COO OF GAMESTATION
                   </div>
                 </div>
               </div>
