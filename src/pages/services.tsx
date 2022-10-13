@@ -69,8 +69,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '80%',
-          top: '90%',
+          left: '86%',
+          top: '96%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -362,7 +362,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                           if (ref) benefitsTitleRef.current[0] = ref;
                         }}
                     >
-                      FULLY FUNCTIONAL NFT MARKETPLACE
+                      
+                      RAPIDLY DEPLOYABLE TECH MODULES
                     </div>
                   </div>
                   <div className={styles['benefits-section__col']}>
@@ -372,7 +373,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                           if (ref) benefitsSubTitleRef.current[0] = ref;
                         }}
                     >
-                      THAT ALLOWS FOR PRIMARY MINTING AND SECONDARY USER SALES, IN JUST 30 DAYS.
+                      NFT MARKETPLACES, TRADING PLATFORMS, TOKENIZATION, AND MUCH MORE IN JUST 30 DAYS.
                     </div>
 
                   </div>
@@ -444,7 +445,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                           if (ref) benefitsSubTitleRef.current[3] = ref;
                         }}
                     >
-                      BY ALLOWING USERS TO REDEEM NFTS FOR PHYSICAL PERKS AT RETAIL LOCATIONS.
+                        RADEEM DIGITAL REWARDS SCROLL DOESN'T WORK TO GO BELOW FIRST SECTION
                     </div>
                   </div>
                 </div>
@@ -474,7 +475,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                         if (ref) processBlockTitleRef.current[0] = ref;
                       }}
                   >
-                    WE DEPLOY YOUR MARKETPLACE USING OUR ROBUST INFRASTRUCTURE
+                    WE DEPLOY YOUR SOFTWARE...
                     <span>
                       <svg width="3" height="13" viewBox="0 0 3 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

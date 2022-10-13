@@ -106,7 +106,7 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
           <p>
             We bridge the gap between the physical and digital. We use cutting
             edge tech to catapult our clients into the future of Web3 consumer
-            experiences, from nft marketplaces to masterful metaverses.
+            experiences, from NFT Marketplaces to masterful Metaverses.
           </p>
           <NavLink href="/about">DISCOVER MORE ABOUT US</NavLink>
         </div>
