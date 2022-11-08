@@ -69,8 +69,9 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '86%',
-          top: '96%',
+          left: '80%',
+          top: '95%',
+
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
