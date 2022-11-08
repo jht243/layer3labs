@@ -77,7 +77,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: '80%',
-          top: '90%',
+          top: '95%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -249,7 +249,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           },
           {
             left: '80%',
-            top: '90%',
+            top: '95%',
             xPercent: -50,
             yPercent: -50,
             duration: 2.5,
@@ -485,7 +485,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
 
             <div className={styles['clients-page__testimonials-title']} ref={testimonTitleMainRef}>
               <span ref={testimonTitle1Ref}>Our</span>
-              <span ref={testimonTitle2Ref}>COSTUMER</span>
+              <span ref={testimonTitle2Ref}>CUSTOMERS</span>
             </div>
 
             <div className={styles['testimonials-section']} ref={processSectionRef}>
