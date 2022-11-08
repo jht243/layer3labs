@@ -230,6 +230,7 @@
 
     @include xl {
       width: calc(100% / 2 - 78px);
+      margin-bottom: 1.5rem;
     }
 
     @include md {
