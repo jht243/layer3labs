@@ -253,8 +253,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '10%',
-          top: '10%',
+          left: '14%',
+          top: '8%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
