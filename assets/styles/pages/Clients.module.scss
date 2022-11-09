@@ -231,7 +231,7 @@
   &__box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     width: calc(100% / 3 - 78px);
     margin-right: 78px;
 
@@ -253,6 +253,11 @@
 
   &__logo {
     margin-bottom: 21px;
+    height: 42px;
+
+    img{
+      height: 100%;
+    }
   }
 
   &__text {
