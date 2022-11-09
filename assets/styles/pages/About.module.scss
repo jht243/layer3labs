@@ -177,6 +177,13 @@
     padding-top: 5vh;
     pointer-events: none;
 
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     opacity: 0;
     @include xl {
       margin-top: 100px;

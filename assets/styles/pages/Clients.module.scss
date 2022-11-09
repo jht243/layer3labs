@@ -191,6 +191,13 @@
   margin-top: 100px;
   max-width: 80%;
 
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   @include xl {
     max-width: none;
   }
@@ -224,7 +231,7 @@
   &__box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     width: calc(100% / 3 - 78px);
     margin-right: 78px;
 
@@ -246,6 +253,11 @@
 
   &__logo {
     margin-bottom: 21px;
+    height: 42px;
+
+    img{
+      height: 100%;
+    }
   }
 
   &__text {
@@ -277,6 +289,13 @@
   height: 100%;
   margin: auto;
   width: calc(100 / 1920 * 1200%);
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @include xl {
     display: block;
