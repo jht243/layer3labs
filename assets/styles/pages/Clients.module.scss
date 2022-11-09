@@ -191,6 +191,13 @@
   margin-top: 100px;
   max-width: 80%;
 
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   @include xl {
     max-width: none;
   }
@@ -277,6 +284,13 @@
   height: 100%;
   margin: auto;
   width: calc(100 / 1920 * 1200%);
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @include xl {
     display: block;
