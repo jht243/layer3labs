@@ -47,113 +47,198 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
 
   useEffect(() => {
     if (!clientsTextRef || !loaded) return
-
+    let listening = false, currentSection = 'initial'
     const tl = gsap.timeline()
 
-    tl.fromTo(
-        ourClientsTextRef.current,
-        {
-          left: '50%',
-          top: '50%',
-          xPercent: -200,
-          yPercent: -50,
-        },
-        {
-          left: '10%',
-          top: '10%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-          delay: 1,
-        }
-    )
-    .fromTo(
-        clientsTextRef.current,
-        {
-          left: '50%',
-          top: '50%',
-          xPercent: -20,
-          yPercent: -50,
-        },
-        {
+    function handleWheel (e: any) {
+      if (!listening) return;
+      let direction = e.wheelDeltaY < 0 ? 'down' : 'up';
+      if(direction === 'down' && currentSection === 'initial') {
+        listening = false
+        setTimeout(() => listening = true, 3000)    
+        currentSection = 'second'
+        onNextSection()
+      } else if (direction === 'up' && currentSection === 'second') {
+        listening = false
+        setTimeout(() => listening = true, 3000)    
+        currentSection = 'initial'
+        console.log("asdadsf")
+        onPrevSection()
+      }
+    }
 
-          left: '80%',
-          top: '95%',
+    window.addEventListener('wheel', handleWheel);
+    setTimeout(() => listening = true, 3000)
+    onPrevSection();
 
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-        }, '<'
-    )
-    .fromTo(
-        bgRef.current,
-        {
-          opacity: 0
-        },
-        {
-          opacity: 1,
-          duration: 0.75,
-        }, '<+=0.5'
-    )
-    .fromTo(
-        clientsSectionRef.current,
-        {
-          pointerEvents: 'none',
-          zIndex: 1,
-        },
-        {
-          pointerEvents: 'auto',
-          zIndex: 30,
-        }, '<'
-    )
-    .fromTo(
-        clientsLogoRef.current,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.3,
-          stagger: 0.2
-        }, '<+=1'
-    )
-    .fromTo(
-        clientsSectionTitleRef.current,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.3,
-          stagger: 0.2,
-        }, '<+=0.05'
-    )
-    .fromTo(
-        clientsSectionRef.current,
-        {
-          overflowY: 'none',
-        },
-        {
-          overflowY: 'auto',
-        }, '<'
-    )
-    .to(
-        nextLinkRef.current,
-        {
-          y: 0,
-          opacity: 1,
-          zIndex: 33,
-          duration: 0.2,
-        }, '<'
-    )
     return () => {
       tl.kill()
+      window.removeEventListener("wheel", handleWheel)
     }
   }, [clientsTextRef, loaded])
+
+  const onPrevSection = () => {
+    const tl = gsap.timeline();
+
+    tl
+    .fromTo(
+      testimonTitle1Ref.current,
+      {
+        y: 0,
+        opacity: 1
+      },
+      {
+        y: 50,
+        duration: 0.2,
+        opacity: 0,
+      }, 
+    )
+    .fromTo(
+      testimonTitle2Ref.current,
+      {
+        y: 0,
+        opacity: 1
+      },
+      {
+        y: 50,
+        duration: 0.2,
+        opacity: 0,
+      }, '>'
+    )
+    .fromTo(
+      clientsSectionRef.current,
+      {
+        y: 0,
+        opacity: 1
+      },
+      {
+        duration: 0.2,
+        opacity: 0,
+      }, '>'
+    )
+    .fromTo(
+      processSectionRef.current,
+      {
+        opacity: 1,
+        y: 0,
+        zIndex: 30,
+      },
+      {
+        pointerEvents: 'none',
+        opacity: 0,
+        y: 50,
+        zIndex: 1,
+      }, '<+=0.5'
+    )
+    .fromTo(
+      ourClientsTextRef.current,
+      {
+        left: '50%',
+        top: '50%',
+        xPercent: -200,
+        opacity: 1,
+        y: 0,
+        yPercent: -50,
+      },
+      {
+        left: '10%',
+        top: '10%',
+        xPercent: -50,
+        yPercent: -50,
+        duration: 2.5,
+        delay: 1,
+      }
+    )
+    .fromTo(
+      clientsTextRef.current,
+      {
+        left: '50%',
+        top: '50%',
+        xPercent: -20,
+        yPercent: -50,
+        opacity: 1,
+        y: 0
+      },
+      {
+
+        left: '80%',
+        top: '95%',        
+        xPercent: -50,
+        yPercent: -50,
+        duration: 2.5,
+      }, '<'
+    )
+    .fromTo(
+      bgRef.current,
+      {
+        opacity: 0,
+        rotate: -48
+      },
+      {
+        opacity: 1,
+        rotate: 0,
+        duration: 0.75,
+      }, '<+=0.5'
+    )
+    .fromTo(
+      clientsSectionRef.current,
+      {
+        opacity: 1,
+        overflowY: 'auto',
+      },
+      {
+        opacity: 1,
+      }, '<'
+    )
+    .fromTo(
+      clientsLogoRef.current,
+      {
+        y: 50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        stagger: 0.2
+      }, '<+=1'
+    )
+    .fromTo(
+      clientsSectionTitleRef.current,
+      {
+        y: 50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        stagger: 0.2,
+      }, '<+=0.05'
+    )
+    .fromTo(
+      clientsSectionTitleRef.current,
+      {
+        y: 50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        stagger: 0.2,
+      }, '<+=0.05'
+    )
+    .to(
+      nextLinkRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        zIndex: 33,
+        duration: 0.2,
+      }, '<'
+    )
+  }
 
 
   const onNextSection = () => {
@@ -230,7 +315,9 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
             left: '50%',
             top: '50%',
             xPercent: -250,
+            opacity: 1,
             yPercent: -50,
+            y: 0
           },
           {
             left: '10%',
@@ -247,6 +334,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
             left: '55%',
             top: '50%',
             xPercent: -20,
+            opacity: 1,
+            y: 0,
             yPercent: -50,
           },
           {
@@ -272,6 +361,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           processSectionRef.current,
           {
             pointerEvents: 'none',
+            opacity: 1,
+            y: 0,
             zIndex: 1,
           },
           {
