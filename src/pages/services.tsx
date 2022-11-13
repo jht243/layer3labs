@@ -27,6 +27,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
 
   const servicesTextRef = useRef(null);
   const ourServicesTextRef = useRef(null);
+  const ourServiceWrapRef = useRef(null);
 
   const benefitsSectionRef = useRef(null);
 
@@ -118,6 +119,11 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       }, '<'
     )
     .fromTo(
+      ourServiceWrapRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5 }
+    )
+    .fromTo(
         ourServicesTextRef.current,
         {
           left: '50%',
@@ -207,7 +213,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
     .fromTo(
         benefitsSectionRef.current,
         {
-          overflowY: 'auto',
+          overflowY: 'visible',
         },
         {
           overflowY: 'visible',
@@ -225,6 +231,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   }
 
   const onNextSection = () => {
+    console.log("fucking")
     if (currentSection === 'initial') {
       const tl = gsap.timeline()
 
@@ -383,10 +390,10 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
           processSectionRef.current,
           {
-            overflowY: 'none',
+            overflowY: 'visible',
           },
           {
-            overflowY: 'auto',
+            overflowY: 'visible',
           }, '<'
       )
       .to(
@@ -431,7 +438,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
               </svg>
             </div>
 
-            <div className={styles['services-page__main-title']}>
+            <div className={styles['services-page__main-title']} ref={ourServiceWrapRef}>
               <span ref={ourServicesTextRef}>Our</span>
               <span ref={servicesTextRef}>SERVICES</span>
             </div>

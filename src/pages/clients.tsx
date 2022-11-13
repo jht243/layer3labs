@@ -80,8 +80,6 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
     const tl = gsap.timeline();
 
     //  Hide Our Customer Section
-    testimonTitle1Ref
-    testimonTitle2Ref
     tl.fromTo(
       testimonTitleMainRef.current,
       { opacity: 1 },
@@ -147,77 +145,6 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
       '<+=0.05'
     )
-
-    // tl.fromTo(
-    //   processSectionRef.current,
-    //   { opacity: 1, y: 0,  zIndex: 30 },
-    //   { opacity: 0, y: 50, zIndex: 1, pointerEvents: 'none' },
-    //   '<+=0.5'
-    // )
-
-    // tl.fromTo()
-    // tl
-    // .fromTo(
-    //   testimonTitle1Ref.current,
-    //   {
-    //     y: 0,
-    //     opacity: 1
-    //   },
-    //   {
-    //     y: 50,
-    //     duration: 0.2,
-    //     opacity: 0,
-    //   }, 
-    // )
-    // .fromTo(
-    //   testimonTitle2Ref.current,
-    //   {
-    //     y: 0,
-    //     opacity: 1
-    //   },
-    //   {
-    //     y: 50,
-    //     duration: 0.2,
-    //     opacity: 0,
-    //   }, '>'
-    // )
-    // .fromTo(
-    //   clientsSectionRef.current,
-    //   {
-    //     y: 0,
-    //     opacity: 1
-    //   },
-    //   {
-    //     duration: 0.2,
-    //     opacity: 0,
-    //   }, '>'
-    // )
-    // .fromTo(
-    //   processSectionRef.current,
-    //   {
-    //     opacity: 1,
-    //     y: 0,
-    //     zIndex: 30,
-    //   },
-    //   {
-    //     pointerEvents: 'none',
-    //     opacity: 0,
-    //     y: 50,
-    //     zIndex: 1,
-    //   }, '<+=0.5'
-    // )
-
-  
-
-    // .to(
-    //   nextLinkRef.current,
-    //   {
-    //     y: 0,
-    //     opacity: 1,
-    //     zIndex: 33,
-    //     duration: 0.2,
-    //   }, '<'
-    // )
   }
 
 
