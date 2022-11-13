@@ -770,51 +770,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   </span>
                     </a>
                   </div>
-
-                  <div className={styles['team-section__block']}>
-                    <h2
-                        className={styles['team-section__title']}
-                        ref={(ref) => {
-                          if (ref) teamMemberTitleRef.current[4] = ref;
-                        }}
-                    >
-                      ROSARIO PABST
-                    </h2>
-                    <div
-                        className={styles['team-section__subtitle']}
-                        ref={(ref) => {
-                          if (ref) teamMemberSubTitleRef.current[4] = ref;
-                        }}
-                    >
-                      COMPANY ADVISOR
-                    </div>
-                    <div
-                        className={styles['team-section__description']}
-                        ref={(ref) => {
-                          if (ref) teamMemberDescriptionRef.current[4] = ref;
-                        }}
-                    >
-                      SENIOR EXECUTIVE AT HORIZEN. OVER 10 YEARS IN SOFTWARE PROGRAM MANAGEMENT.
-                      BS IN PUBLIC ADMINISTRATION AND MS IN SYSTEMS ENGINEERING.
-                    </div>
-                    <a
-                        href="#." className={styles['team-section__social']}
-                        ref={(ref) => {
-                          if (ref) teamMemberSocialRef.current[4] = ref;
-                        }}
-                    >
-
-                      LINKEDIN
-                      <span>
-                      <svg width="18" height="18" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                          d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
-                          fill="#272822"
-                      />
-                    </svg>
-                  </span>
-                    </a>
-                  </div>
                 </div>
 
                 <div className={styles['team-section__col']}>
@@ -907,6 +862,51 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       />
                     </svg>
                   </span>
+                    </a>
+                  </div>
+
+                  <div className={styles['team-section__block']}>
+                    <h2
+                        className={styles['team-section__title']}
+                        ref={(ref) => {
+                          if (ref) teamMemberTitleRef.current[4] = ref;
+                        }}
+                    >
+                      ROSARIO PABST
+                    </h2>
+                    <div
+                        className={styles['team-section__subtitle']}
+                        ref={(ref) => {
+                          if (ref) teamMemberSubTitleRef.current[4] = ref;
+                        }}
+                    >
+                      COMPANY ADVISOR
+                    </div>
+                    <div
+                        className={styles['team-section__description']}
+                        ref={(ref) => {
+                          if (ref) teamMemberDescriptionRef.current[4] = ref;
+                        }}
+                    >
+                      SENIOR EXECUTIVE AT HORIZEN. OVER 10 YEARS IN SOFTWARE PROGRAM MANAGEMENT.
+                      BS IN PUBLIC ADMINISTRATION AND MS IN SYSTEMS ENGINEERING.
+                    </div>
+                    <a
+                        href="#." className={styles['team-section__social']}
+                        ref={(ref) => {
+                          if (ref) teamMemberSocialRef.current[4] = ref;
+                        }}
+                    >
+
+                      LINKEDIN
+                      <span>
+                        <svg width="18" height="18" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                              d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
+                              fill="#272822"
+                          />
+                        </svg>
+                      </span>
                     </a>
                   </div>
                 </div>

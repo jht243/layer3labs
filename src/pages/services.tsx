@@ -18,11 +18,16 @@ interface PageProps {
 
 const Services: NextPage<PageProps> = ({ loaded }) => {
   const [currentSection, setCurrentSection] = useState('initial')
+
+  let timer: any
+  let canMoveBack = true
+
   const bgRef = useRef(null);
   const nextLinkRef = useRef(null);
 
   const servicesTextRef = useRef(null);
   const ourServicesTextRef = useRef(null);
+  const ourServiceWrapRef = useRef(null);
 
   const benefitsSectionRef = useRef(null);
 
@@ -37,18 +42,95 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   const processNoteRef = useRef<HTMLDivElement[]>([]);
   const processBlockTitleRef = useRef<HTMLDivElement[]>([]);
 
-
   useEffect(() => {
     if (!servicesTextRef || !loaded) return
-
     const tl = gsap.timeline()
 
-    tl.fromTo(
+    let listening = false, currentSection = 'initial'
+    
+    function handleWheel (e: any) {
+      if (!listening) return;
+      let direction = e.wheelDeltaY < 0 ? 'down' : 'up';
+      if(direction === 'down' && currentSection === 'initial') {
+        listening = false
+        setTimeout(() => listening = true, 3000)    
+        currentSection = 'second'
+        onNextSection()
+      } else if (direction === 'up' && currentSection === 'second') {
+        listening = false
+        setTimeout(() => listening = true, 3000)    
+        currentSection = 'initial'
+        console.log("asdadsf")
+        onPrevSection()
+      }
+    }
+
+    window.addEventListener('wheel', handleWheel);
+    setTimeout(() => listening = true, 3000)
+    onPrevSection();
+   
+    return () => {
+      tl.kill()
+      window.removeEventListener("wheel", handleWheel)
+    }
+  }, [servicesTextRef, loaded])
+
+  const onPrevSection = () => {
+    const tl = gsap.timeline()
+
+    tl
+    .fromTo(
+      processTitle1Ref.current,
+      {
+        y: 0,
+        opacity: 1,
+      },
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.1,
+        stagger: 0.2
+      },
+    )
+    .fromTo(
+      processTitle2Ref.current,
+      {
+        y: 0,
+        opacity: 1,
+      },
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.1,
+        stagger: 0.2
+      }, '<'
+    )
+    .fromTo(
+      processSectionRef.current,
+      {
+        pointerEvents: 'none',
+        zIndex: 1,
+        opacity: 0
+      },
+      {
+        pointerEvents: 'auto',
+        zIndex: 30,
+        opacity: 0
+      }, '<'
+    )
+    .fromTo(
+      ourServiceWrapRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5 }
+    )
+    .fromTo(
         ourServicesTextRef.current,
         {
           left: '50%',
           top: '50%',
           xPercent: -200,
+          y:0,
+          opacity: 1,
           yPercent: -50,
         },
         {
@@ -65,6 +147,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         {
           left: '50%',
           top: '50%',
+          opacity: 1,
+          y: 0,
           xPercent: -20,
           yPercent: -50,
         },
@@ -80,18 +164,20 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
     .fromTo(
         bgRef.current,
         {
-          opacity: 0
+          opacity: 1,
+          rotate: 0,
         },
         {
           opacity: 1,
-          duration: 0.75,
-        }, '<+=0.5'
+        }, '<+=0.05'
     )
     .fromTo(
         benefitsSectionRef.current,
         {
           pointerEvents: 'none',
+          y: 0,
           zIndex: 1,
+          opacity: 1,
         },
         {
           pointerEvents: 'auto',
@@ -127,10 +213,10 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
     .fromTo(
         benefitsSectionRef.current,
         {
-          overflowY: 'none',
+          overflowY: 'visible',
         },
         {
-          overflowY: 'auto',
+          overflowY: 'visible',
         }, '<'
     )
     .to(
@@ -142,13 +228,10 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           duration: 0.2,
         }, '<'
     )
-    return () => {
-      tl.kill()
-    }
-  }, [servicesTextRef, loaded])
-
+  }
 
   const onNextSection = () => {
+    console.log("fucking")
     if (currentSection === 'initial') {
       const tl = gsap.timeline()
 
@@ -221,8 +304,10 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           {
             left: '50%',
             top: '50%',
+            y: 0,
             xPercent: -250,
             yPercent: -50,
+            opacity: 1
           },
           {
             left: '10%',
@@ -230,6 +315,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
             xPercent: -50,
             yPercent: -50,
             duration: 2.5,
+            opacity: 1,
             delay: 0.2,
           }
       )
@@ -239,6 +325,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
             left: '55%',
             top: '50%',
             xPercent: -20,
+            y: 0,
+            opacity: 1,
             yPercent: -50,
           },
           {
@@ -264,10 +352,12 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           processSectionRef.current,
           {
             pointerEvents: 'none',
+            opacity: 1,
             zIndex: 1,
           },
           {
             pointerEvents: 'auto',
+            opacity: 1,
             zIndex: 30,
           }, '<'
       )
@@ -300,10 +390,10 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
           processSectionRef.current,
           {
-            overflowY: 'none',
+            overflowY: 'visible',
           },
           {
-            overflowY: 'auto',
+            overflowY: 'visible',
           }, '<'
       )
       .to(
@@ -348,7 +438,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
               </svg>
             </div>
 
-            <div className={styles['services-page__main-title']}>
+            <div className={styles['services-page__main-title']} ref={ourServiceWrapRef}>
               <span ref={ourServicesTextRef}>Our</span>
               <span ref={servicesTextRef}>SERVICES</span>
             </div>
