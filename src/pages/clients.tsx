@@ -24,17 +24,17 @@ interface PageProps {
 }
 
 const Clients: NextPage<PageProps> = ({ loaded }) => {
-  const [currentSection, setCurrentSection] = useState('initial')
   const bgRef = useRef(null);
   const nextLinkRef = useRef(null);
-
+  
+  const ourClientsTitleRef = useRef(null);
   const clientsTextRef = useRef(null);
   const ourClientsTextRef = useRef(null);
 
   const clientsSectionRef = useRef(null);
 
-  const clientsLogoRef = useRef<HTMLDivElement[]>([]);
-  const clientsSectionTitleRef = useRef<HTMLDivElement[]>([]);
+  const clientsItemLogoRef = useRef<HTMLDivElement[]>([]);
+  const clientsItemTitleRef = useRef<HTMLDivElement[]>([]);
 
   const testimonTitleMainRef = useRef(null);
   const testimonTitle1Ref = useRef(null);
@@ -62,7 +62,6 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         listening = false
         setTimeout(() => listening = true, 3000)    
         currentSection = 'initial'
-        console.log("asdadsf")
         onPrevSection()
       }
     }
@@ -80,340 +79,217 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
   const onPrevSection = () => {
     const tl = gsap.timeline();
 
-    tl
-    .fromTo(
+    //  Hide Our Customer Section
+    testimonTitle1Ref
+    testimonTitle2Ref
+    tl.fromTo(
+      testimonTitleMainRef.current,
+      { opacity: 1 },
+      { opacity: 2 }
+    )
+    .fromTo( // Hide the "OUR" text of Customer Section
       testimonTitle1Ref.current,
-      {
-        y: 0,
-        opacity: 1
-      },
-      {
-        y: 50,
-        duration: 0.2,
-        opacity: 0,
-      }, 
+      { y: 0, opacity: 1 },
+      { y: 150, opacity: 0, duration: 0.2 },
+      '<'
     )
-    .fromTo(
+    .fromTo( // Hide the "CLIENT" Text of Customer Section
       testimonTitle2Ref.current,
-      {
-        y: 0,
-        opacity: 1
-      },
-      {
-        y: 50,
-        duration: 0.2,
-        opacity: 0,
-      }, '>'
+      { y: 0, opacity: 1 },
+      { y: 150, opacity: 0, duration: 0.2 },
+      '<'
     )
-    .fromTo(
-      clientsSectionRef.current,
-      {
-        y: 0,
-        opacity: 1
-      },
-      {
-        duration: 0.2,
-        opacity: 0,
-      }, '>'
-    )
-    .fromTo(
+    .fromTo( // Hide Block wrap div 
       processSectionRef.current,
-      {
-        opacity: 1,
-        y: 0,
-        zIndex: 30,
-      },
-      {
-        pointerEvents: 'none',
-        opacity: 0,
-        y: 50,
-        zIndex: 1,
-      }, '<+=0.5'
+      { pointerEvents: 'none', opacity: 1, y: 0, zIndex: 1 },
+      { pointerEvents: 'auto', zIndex: 30, opacity: 0, y: 50, duration: 0.2 },
+      '<'
     )
-    .fromTo(
-      ourClientsTextRef.current,
-      {
-        left: '50%',
-        top: '50%',
-        xPercent: -200,
-        opacity: 1,
-        y: 0,
-        yPercent: -50,
-      },
-      {
-        left: '10%',
-        top: '10%',
-        xPercent: -50,
-        yPercent: -50,
-        duration: 2.5,
-        delay: 1,
-      }
-    )
-    .fromTo(
-      clientsTextRef.current,
-      {
-        left: '50%',
-        top: '50%',
-        xPercent: -20,
-        yPercent: -50,
-        opacity: 1,
-        y: 0
-      },
-      {
 
-        left: '80%',
-        top: '95%',        
-        xPercent: -50,
-        yPercent: -50,
-        duration: 2.5,
-      }, '<'
+    // Show Our Client Section
+    .fromTo(  // Show "OUR" & "CLIENT" text wrap div
+      ourClientsTitleRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5 }
     )
-    .fromTo(
+    .fromTo( // show our text
+      ourClientsTextRef.current,
+      { left: '50%', top: '50%', xPercent: -200, opacity: 1, y: 0, yPercent: -50 },
+      { left: '10%', top: '10%', xPercent: -50, yPercent: -50, duration: 2.5, delay: 1 }
+    )
+    .fromTo( // Show the client Text
+      clientsTextRef.current,
+      { left: '50%', top: '50%', xPercent: -20, yPercent: -50, opacity: 1, y: 0 },
+      { left: '80%', top: '95%', xPercent: -50, yPercent: -50, duration: 2.5 }, 
+      '<' // move client text within the same time line with our text
+    )
+    .fromTo( // show background Image
       bgRef.current,
-      {
-        opacity: 0,
-        rotate: -48
-      },
-      {
-        opacity: 1,
-        rotate: 0,
-        duration: 0.75,
-      }, '<+=0.5'
+      { opacity: 0, rotate: -48 },
+      { opacity: 1, rotate: 0, duration: 0.75 },
+      '<+0.5'
     )
-    .fromTo(
+    .fromTo( // show Item Wrap
       clientsSectionRef.current,
-      {
-        opacity: 1,
-        overflowY: 'auto',
-      },
-      {
-        opacity: 1,
-      }, '<'
+      { opacity: 0, y: 0, overflow: 'visible' },
+      { opacity: 1 }, 
+      '<'
     )
-    .fromTo(
-      clientsLogoRef.current,
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        stagger: 0.2
-      }, '<+=1'
+    .fromTo( // Show Items Logo
+      clientsItemLogoRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.3, stagger: 0.2},
+      '<+=1'
     )
-    .fromTo(
-      clientsSectionTitleRef.current,
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        stagger: 0.2,
-      }, '<+=0.05'
+    .fromTo( // Show Items Text
+      clientsItemTitleRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+      '<+=0.05'
     )
-    .fromTo(
-      clientsSectionTitleRef.current,
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        stagger: 0.2,
-      }, '<+=0.05'
-    )
-    .to(
-      nextLinkRef.current,
-      {
-        y: 0,
-        opacity: 1,
-        zIndex: 33,
-        duration: 0.2,
-      }, '<'
-    )
+
+    // tl.fromTo(
+    //   processSectionRef.current,
+    //   { opacity: 1, y: 0,  zIndex: 30 },
+    //   { opacity: 0, y: 50, zIndex: 1, pointerEvents: 'none' },
+    //   '<+=0.5'
+    // )
+
+    // tl.fromTo()
+    // tl
+    // .fromTo(
+    //   testimonTitle1Ref.current,
+    //   {
+    //     y: 0,
+    //     opacity: 1
+    //   },
+    //   {
+    //     y: 50,
+    //     duration: 0.2,
+    //     opacity: 0,
+    //   }, 
+    // )
+    // .fromTo(
+    //   testimonTitle2Ref.current,
+    //   {
+    //     y: 0,
+    //     opacity: 1
+    //   },
+    //   {
+    //     y: 50,
+    //     duration: 0.2,
+    //     opacity: 0,
+    //   }, '>'
+    // )
+    // .fromTo(
+    //   clientsSectionRef.current,
+    //   {
+    //     y: 0,
+    //     opacity: 1
+    //   },
+    //   {
+    //     duration: 0.2,
+    //     opacity: 0,
+    //   }, '>'
+    // )
+    // .fromTo(
+    //   processSectionRef.current,
+    //   {
+    //     opacity: 1,
+    //     y: 0,
+    //     zIndex: 30,
+    //   },
+    //   {
+    //     pointerEvents: 'none',
+    //     opacity: 0,
+    //     y: 50,
+    //     zIndex: 1,
+    //   }, '<+=0.5'
+    // )
+
+  
+
+    // .to(
+    //   nextLinkRef.current,
+    //   {
+    //     y: 0,
+    //     opacity: 1,
+    //     zIndex: 33,
+    //     duration: 0.2,
+    //   }, '<'
+    // )
   }
 
 
   const onNextSection = () => {
-    if (currentSection === 'initial') {
-      const tl = gsap.timeline()
+    const tl = gsap.timeline()
 
-      tl
-      .to(
-          nextLinkRef.current,
-          {
-            pointerEvents: 'none',
-            opacity: 0,
-            duration: 0.5,
-          }
-      )
-      .fromTo(
-          ourClientsTextRef.current,
-          {
-            y: 0,
-            opacity: 1,
-          },
-          {
-            y: 150,
-            opacity: 0,
-            duration: 0.2,
-          }, '<'
-      )
-      .fromTo(
-          clientsTextRef.current,
-          {
-            y: 0,
-            opacity: 1,
-          },
-          {
-            y: 150,
-            opacity: 0,
-            duration: 0.2,
-          }, '<'
-      )
-      .fromTo(
-          clientsSectionRef.current,
-          {
-            y: 0,
-            opacity: 1,
-            overflowY: 'auto',
-            pointerEvents: 'auto',
-            zIndex: 30,
-          },
-          {
-            y: -400,
-            opacity: 0,
-            overflowY: 'none',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }, '<'
-      )
-      .fromTo(
-          testimonTitleMainRef.current,
-          {
-            // y: 200,
-            opacity: 0,
-            zIndex: -1,
-          },
-          {
-            // y: 0,
-            opacity: 1,
-            zIndex: 1,
-            duration: 0.5,
-          }, '<+=0.5'
-      )
-      .fromTo(
-          testimonTitle1Ref.current,
-          {
-            left: '50%',
-            top: '50%',
-            xPercent: -250,
-            opacity: 1,
-            yPercent: -50,
-            y: 0
-          },
-          {
-            left: '10%',
-            top: '10%',
-            xPercent: -50,
-            yPercent: -50,
-            duration: 2.5,
-            delay: 0.2,
-          }
-      )
-      .fromTo(
-          testimonTitle2Ref.current,
-          {
-            left: '55%',
-            top: '50%',
-            xPercent: -20,
-            opacity: 1,
-            y: 0,
-            yPercent: -50,
-          },
-          {
-            left: '80%',
-            top: '95%',
-            xPercent: -50,
-            yPercent: -50,
-            duration: 2.5,
-          }, '<'
-      )
+    // Hide Customer Section
+    tl.to( // Hide Next Section Arrow button
+      nextLinkRef.current,
+      { pointerEvents: 'none', opacity: 0, duration: 0.5 }
+    )
+    .fromTo( // Hide the "OUR" text of Client Section
+      ourClientsTextRef.current,
+      { y: 0, opacity: 1 },
+      { y: 150, opacity: 0, duration: 0.2 },
+      '<'
+    )
+    .fromTo( // Hide the "CLIENT" Text of Client Section
+      clientsTextRef.current,
+      { y: 0, opacity: 1 },
+      { y: 150, opacity: 0, duration: 0.2 },
+      '<'
+    )
+    .fromTo( // Hide Client Items Wrap
+      clientsSectionRef.current,
+        { y: 0, opacity: 1, pointerEvents: 'auto', zIndex: 30 },
+        { y: -400, opacity: 0, pointerEvents: 'none', zIndex: 1 },
+        '<'
+    )
 
-      .fromTo(
-          bgRef.current,
-          {
-            rotate: 0,
-          },
-          {
-            rotate: -48,
-            duration: 1,
-          }, '<'
-      )
-      .fromTo(
-          processSectionRef.current,
-          {
-            pointerEvents: 'none',
-            opacity: 1,
-            y: 0,
-            zIndex: 1,
-          },
-          {
-            pointerEvents: 'auto',
-            zIndex: 30,
-          }, '<'
-      )
-      .fromTo(
-          testimonBlockSubTitleRef.current,
-          {
-            y: 50,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            stagger: 0.2
-          }, '<+=1'
-      )
-      .fromTo(
-          testimonBlockTitleRef.current,
-          {
-            y: 50,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            stagger: 0.2,
-          }, '<+=0.05'
-      )
-      .fromTo(
-          processSectionRef.current,
-          {
-            overflowY: 'none',
-          },
-          {
-            overflowY: 'auto',
-          }, '<'
-      )
-      .to(
-          nextLinkRef.current,
-          {
-            zIndex: -1,
-            opacity: 0,
-            duration: 0.5,
-          }, '<'
-      )
-    }
+    // Show Customer Section
+    .fromTo( // Show "OUR" & "CUSTOMERS" wrap div
+      testimonTitleMainRef.current,
+      { opacity: 0, zIndex: -1 },
+      { opacity: 1, zIndex: 1, duration: 0.5 },
+      '<+=0.5'
+    )
+    .fromTo( // move "OUR" text
+      testimonTitle1Ref.current,
+      { left: '50%', top: '50%', xPercent: -250, opacity: 1, yPercent: -50, y: 0 },
+      { left: '10%', top: '10%', xPercent: -50, yPercent: -50, duration: 2.5, delay: 0.2 }
+    )
+    .fromTo( // move "CUSTOMER" text
+      testimonTitle2Ref.current,
+      { left: '55%', top: '50%', xPercent: -20, opacity: 1, y: 0, yPercent: -50 },
+      { left: '80%', top: '95%', xPercent: -50, yPercent: -50, duration: 2.5 },
+      '<'
+    )
+    .fromTo( // Rotate the background
+      bgRef.current,
+      { rotate: 0 },
+      { rotate: -48, duration: 1 },
+      '<'
+    )
+    .fromTo( // Show Block wrap div 
+      processSectionRef.current,
+      { pointerEvents: 'none', opacity: 1, y: 0, zIndex: 1 },
+      { pointerEvents: 'auto', zIndex: 30 },
+      '<'
+    )
+    .fromTo(
+      testimonBlockSubTitleRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+      '<+=1'
+    )
+    .fromTo(
+      testimonBlockTitleRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+      '<+=0.05'
+    )
   }
 
   return (
@@ -438,7 +314,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
               </NavLink>
             </div>
 
-            <div className={styles['clients-page__next']} onClick={onNextSection} ref={nextLinkRef}>
+            <div className={styles['clients-page__next']} ref={nextLinkRef}>
               <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M23.28 15.28L25.76 17.76L13.56 29.6H13.16L0.96 17.76L3.4 15.28L11.52 23.36V-1.90735e-06H15.16V23.4L23.28 15.28Z"
@@ -447,7 +323,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
               </svg>
             </div>
 
-            <div className={styles['clients-page__main-title']}>
+            <div className={styles['clients-page__main-title']} ref={ourClientsTitleRef}>
               <span ref={ourClientsTextRef}>Our</span>
               <span ref={clientsTextRef}>CLIENTS</span>
             </div>
@@ -460,7 +336,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__logo']}
                         ref={(ref) => {
-                          if (ref) clientsLogoRef.current[0] = ref;
+                          if (ref) clientsItemLogoRef.current[0] = ref;
                         }}
                     >
                       <img src={bowleroLogo.src} alt="Bowlero Corporation" />
@@ -468,7 +344,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__text']}
                         ref={(ref) => {
-                          if (ref) clientsSectionTitleRef.current[0] = ref;
+                          if (ref) clientsItemTitleRef.current[0] = ref;
                         }}
                     >
                       NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER CERTIFICATION PROGRAM
@@ -479,7 +355,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__logo']}
                         ref={(ref) => {
-                          if (ref) clientsLogoRef.current[1] = ref;
+                          if (ref) clientsItemLogoRef.current[1] = ref;
                         }}
                     >
                       <img src={styrLogo.src} alt="STYR" />
@@ -487,7 +363,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__text']}
                         ref={(ref) => {
-                          if (ref) clientsSectionTitleRef.current[1] = ref;
+                          if (ref) clientsItemTitleRef.current[1] = ref;
                         }}
                     >
                       HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET BACKED NFTS
@@ -498,7 +374,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__logo']}
                         ref={(ref) => {
-                          if (ref) clientsLogoRef.current[2] = ref;
+                          if (ref) clientsItemLogoRef.current[2] = ref;
                         }}
                     >
                       <img src={GSLogo.src} alt="Game Station" />
@@ -506,7 +382,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__text']}
                         ref={(ref) => {
-                          if (ref) clientsSectionTitleRef.current[2] = ref;
+                          if (ref) clientsItemTitleRef.current[2] = ref;
                         }}
                     >
                       CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING AND AIRDROPS
@@ -517,7 +393,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__logo']}
                         ref={(ref) => {
-                          if (ref) clientsLogoRef.current[3] = ref;
+                          if (ref) clientsItemLogoRef.current[3] = ref;
                         }}
                     >
                       <img src={JGILogo.src} alt="Jane Goodall Institute" />
@@ -525,7 +401,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__text']}
                         ref={(ref) => {
-                          if (ref) clientsSectionTitleRef.current[3] = ref;
+                          if (ref) clientsItemTitleRef.current[3] = ref;
                         }}
                     >
                       MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR NATIONAL SPORTS ORGANIZATIONS
@@ -536,7 +412,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__logo']}
                         ref={(ref) => {
-                          if (ref) clientsLogoRef.current[4] = ref;
+                          if (ref) clientsItemLogoRef.current[4] = ref;
                         }}
                     >
                       <img src={etherealLogo.src} alt="Ethereal Collective" />
@@ -544,7 +420,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__text']}
                         ref={(ref) => {
-                          if (ref) clientsSectionTitleRef.current[4] = ref;
+                          if (ref) clientsItemTitleRef.current[4] = ref;
                         }}
                     >
                       WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR. GOODALLS LEGACY AND RESEARCH
@@ -555,7 +431,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__logo']}
                         ref={(ref) => {
-                          if (ref) clientsLogoRef.current[5] = ref;
+                          if (ref) clientsItemLogoRef.current[5] = ref;
                         }}
                     >
                       <img src={pipeflareLogo.src} alt="Pipeflare" />
@@ -563,7 +439,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
                     <div
                         className={styles['clients-section__text']}
                         ref={(ref) => {
-                          if (ref) clientsSectionTitleRef.current[5] = ref;
+                          if (ref) clientsItemTitleRef.current[5] = ref;
                         }}
                     >
                       PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY PLAYERS AND 7 CUSTOM GAMES
