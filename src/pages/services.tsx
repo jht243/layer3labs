@@ -53,14 +53,13 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       let direction = e.wheelDeltaY < 0 ? 'down' : 'up';
       if(direction === 'down' && currentSection === 'initial') {
         listening = false
-        setTimeout(() => listening = true, 3000)    
+        setTimeout(() => listening = true, 4000)    
         currentSection = 'second'
         onNextSection()
       } else if (direction === 'up' && currentSection === 'second') {
         listening = false
-        setTimeout(() => listening = true, 3000)    
+        setTimeout(() => listening = true, 4000)    
         currentSection = 'initial'
-        console.log("asdadsf")
         onPrevSection()
       }
     }
@@ -231,7 +230,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   }
 
   const onNextSection = () => {
-    console.log("fucking")
     if (currentSection === 'initial') {
       const tl = gsap.timeline()
 
