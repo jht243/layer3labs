@@ -94,37 +94,17 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     function revealSectionHeading () {
       const tl = gsap.timeline()
       return tl
-      .to(headings[next], {
-        autoAlpha: 1,
-        y: 0,
-        duration: 1,
-        delay: 3,
-        ease: 'power2',
-      })
-      .to(partnersRef.current, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2',
-      }, '<')
+      .to(
+        headings[next],
+        { autoAlpha: 1, y: 0, duration: 1, delay: 3, ease: 'power2' })
+      .to(
+        partnersRef.current,
+        { autoAlpha: 1, y: 0, duration: 1, ease: 'power2' },
+        '<'
+      )
     }
 
-
-    function showTeam () {
-      onNextSection()
-      setTimeout(() => {
-        listening = true;
-      }, 5000)
-    }
-
-    function hideTeam () {
-      onPrevSection()
-      setTimeout(() => {
-        listening = true;
-      }, 5000)
-    }
-
-
+    // Slides a section in on scroll up
     function slideIn () {
       const tl = gsap
       .timeline({
@@ -178,7 +158,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           next = current + 1;
           slideIn();
         } else if (current === headings.length - 1) {
-          showTeam()
+          onNextSection()
+          setTimeout(() => listening = true, 5000)
           current += 1
         } else {
 
@@ -190,6 +171,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       }
 
       if (direction === 'up') {
+        console.log("fucking")
         if (current === 0) {
           listening = true
           return
@@ -198,7 +180,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           next = current - 1;
           slideOut();
         } else if (current >= headings.length && canMoveBack) {
-          hideTeam()
+          onPrevSection()
+          setTimeout(() => {
+            listening = true;
+          }, 5000)
           current -= 1
         } else {
           setTimeout(() => {
@@ -246,38 +231,15 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     .set(visionTextRef.current, { autoAlpha: 1 })
     .fromTo(
         ourVisionTextRef.current,
-        {
-          left: '50%',
-          top: '50%',
-          xPercent: -200,
-          yPercent: -50,
-        },
-        {
-          left: '14%',
-          top: '8%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-          delay: 1,
-        }
+        { left: '50%', top: '50%', xPercent: -200, yPercent: -50 },
+        { left: '14%', top: '8%', xPercent: -50, yPercent: -50, duration: 2.5, delay: 1 }
     )
     .fromTo(
         visionTextRef.current,
-        {
-          right: '50%',
-          top: '50%',
-          xPercent: 50,
-          yPercent: -50,
-        },
-        {
-          right: '8%',
-          top: '80%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-        }, '<'
+        { right: '50%', top: '50%', xPercent: 50, yPercent: -50 },
+        { right: '8%', top: '80%', xPercent: -50, yPercent: -50, duration: 2.5 },
+        '<'
     )
-
 
     return () => {
       tl.kill()
@@ -295,80 +257,39 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
 
   const onPrevSection = () => {
-
     const tl = gsap.timeline()
 
+    // Hide Team Section
     tl
     .set(titlesRef.current, { clearProps: 'all' })
     .set(titlesRef.current, { autoAlpha: 0 })
-    .fromTo(
-        teamSectionRef.current,
-        {
-          autoAlpha: 1,
-          y: 0,
-        },
-        {
-          autoAlpha: 0,
-          y: -200,
-        }
+    .fromTo( // Hide the Team Section
+      teamSectionRef.current,
+      { autoAlpha: 1, y: 0, pointerEvents: 'auto' },
+      { autoAlpha: 0, y: -200, pointerEvents: 'none' }
     )
-    .fromTo(
-        teamSectionRef.current,
-        {
-          pointerEvents: 'auto',
-        },
-        {
-          pointerEvents: 'none',
-        }, '<'
+    .fromTo( // Rotate the Background
+      bgRef.current,
+      { rotate: -45 },
+      { rotate: 0, duration: 1 },
+      '<'
     )
-    .fromTo(
-        bgRef.current,
-        {
-          rotate: -45,
-        },
-        {
-          rotate: 0,
-          duration: 1,
-        }, '<'
-    )
-    .to(teamTitle1Ref.current, { autoAlpha: 0 })
-    .to(teamTitle2Ref.current, { autoAlpha: 0 })
+    .to(teamTitle1Ref.current, { autoAlpha: 0, duration: 0.2 }, '<') // Hide "OUR" text for Team section
+    .to(teamTitle2Ref.current, { autoAlpha: 0, duration: 0.2 }, '<') // Hide "TEAM" text for Team section
 
-    .to(ourVisionTextRef.current, { autoAlpha: 1 })
-    .to(visionTextRef.current, { autoAlpha: 1 })
-    .fromTo(
-        ourVisionTextRef.current,
-        {
-          left: '50%',
-          top: '50%',
-          xPercent: -200,
-          yPercent: -50,
-        },
-        {
-          left: '10%',
-          top: '10%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-          delay: 1,
-        }
+    // Show Vision Section
+    .to(ourVisionTextRef.current, { autoAlpha: 1 }) // Show "OUR" & "TEAM" text for Team Section
+    .to(visionTextRef.current, { autoAlpha: 1 }, '<')
+    .fromTo( // move "OUR" text 
+      ourVisionTextRef.current,
+      { left: '50%', top: '50%', xPercent: -200, yPercent: -50 },
+      { left: '10%', top: '10%', xPercent: -50, yPercent: -50, duration: 2.5 }
     )
-    .fromTo(
-        visionTextRef.current,
-        {
-          right: '50%',
-          top: '50%',
-          xPercent: 50,
-          yPercent: -50,
-        },
-        {
-          right: '8%',
-          // left: 0,
-          top: '80%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-        }, '<'
+    .fromTo( 
+      visionTextRef.current,
+      { right: '50%', top: '50%', xPercent: 50, yPercent: -50 },
+      { right: '8%', top: '80%', xPercent: -50, yPercent: -50, duration: 2.5 },
+      '<'
     )
     .to(titlesRef.current, { autoAlpha: 1 })
   }
