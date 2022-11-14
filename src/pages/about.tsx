@@ -27,6 +27,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
   const bgRef = useRef(null);
   const nextLinkRef = useRef(null);
   const logoRef = useRef<HTMLImageElement[]>([]);
+  const navNextButtonRef = useRef(null);
 
   const visionTextRef = useRef(null);
   const ourVisionTextRef = useRef(null);
@@ -73,7 +74,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         canMoveBack = false
       }
     }
-
 
     teamSectionRef.current.addEventListener('scroll', handleTeamScroll, { passive: false });
 
@@ -172,7 +172,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
             listening = true
           }, 2000)
         }
-
       }
 
       if (direction === 'up') {
@@ -195,7 +194,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
             listening = true
           }, 2000)
         }
-
       }
     }
 
@@ -268,10 +266,17 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     tl
     .set(titlesRef.current, { clearProps: 'all' })
     .set(titlesRef.current, { autoAlpha: 0 })
+    .fromTo(
+      navNextButtonRef.current,
+      { opacity: 0 },
+      { opacity: 1 },
+      '<'
+    )
     .fromTo( // Hide the Team Section
       teamSectionRef.current,
       { autoAlpha: 1, y: 0, pointerEvents: 'auto' },
-      { autoAlpha: 0, y: -200, pointerEvents: 'none' }
+      { autoAlpha: 0, y: -200, pointerEvents: 'none' },
+      '<'
     )
     .fromTo( // Rotate the Background
       bgRef.current,
@@ -305,6 +310,12 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     tl
     .set(teamSectionRef.current, { clearProps: 'all' })
     .fromTo(
+      navNextButtonRef.current,
+      { opacity: 1 },
+      { opacity: 0 },
+      '<'
+    )
+    .fromTo(
         ourVisionTextRef.current,
         {
           y: 0,
@@ -314,7 +325,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           y: -150,
           opacity: 0,
           duration: 0.5,
-        },
+        }, '<'
     )
     .fromTo(
         visionTextRef.current,
@@ -477,7 +488,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         }, '<'
     )
 
-
     .set(ourVisionTextRef.current, { clearProps: 'all' })
     .set(visionTextRef.current, { clearProps: 'all' })
   }
@@ -504,7 +514,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
               </NavLink>
             </div>
 
-            <div className={styles['about-page__next']}>
+            <div className={styles['about-page__next']} ref={navNextButtonRef}>
               <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M23.28 15.28L25.76 17.76L13.56 29.6H13.16L0.96 17.76L3.4 15.28L11.52 23.36V-1.90735e-06H15.16V23.4L23.28 15.28Z"
