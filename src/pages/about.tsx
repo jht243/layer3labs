@@ -26,6 +26,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
   const bgRef = useRef(null);
   const nextLinkRef = useRef(null);
+  const logoRef = useRef<HTMLImageElement[]>([]);
 
   const visionTextRef = useRef(null);
   const ourVisionTextRef = useRef(null);
@@ -57,6 +58,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
     let timer: any
     let canMoveBack = true
+    if(logoRef?.current) 
+      for(let logo in logoRef.current) {
+        logoRef.current[logo].width = logoRef.current[logo].width * 0.8
+      }
 
     const handleTeamScroll = (e: any) => {
       if (e?.currentTarget?.scrollTop <= 0) {
@@ -541,11 +546,40 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
               <div className={cx(styles['about-page__partners'])} ref={partnersRef}>
                 <div className={cx(styles['about-page__partners-images'])}>
-                  <img src={horizenLogo.src} alt="Horizen Labs" />
-                  <img src={dcgLogo.src} alt="Digital Currency Group" />
-                  <img src={polygonLogo.src} alt="Polygon" />
-                  <img src={horizen2Logo.src} alt="Horizen" />
-                  <img src={polygon2Logo.src} alt="Polygon Studios" />
+                  <img 
+                    src={horizenLogo.src}
+                    alt="Horizen Labs"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[0] = ref;
+                    }}
+                  />
+                  <img src={dcgLogo.src}
+                    alt="Digital Currency Group"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[1] = ref;
+                    }}
+                  />
+                  <img
+                    src={polygonLogo.src}
+                    alt="Polygon"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[2] = ref;
+                    }}
+                  />
+                  <img 
+                    src={horizen2Logo.src}
+                    alt="Horizen"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[3] = ref;
+                    }}
+                  />
+                  <img 
+                    src={polygon2Logo.src}
+                    alt="Polygon Studios"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[4] = ref;
+                    }}
+                  />
                 </div>
               </div>
             </div>
