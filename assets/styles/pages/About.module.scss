@@ -303,6 +303,7 @@
   justify-content: center;
   height: 100%;
   margin: auto;
+  padding: 60px 0;
 
   @include xl {
     display: block;
@@ -311,8 +312,8 @@
   }
 
   &__col {
-    width: calc(100 / 1920 * 528%);
-    margin: auto 40px;
+    width: calc(100 / 1920 * 640%);
+    margin: 0px 10px;
 
     @include xl {
       width: 100%;
@@ -327,17 +328,17 @@
 
   &__block {
     & + & {
-      margin-top: 56px;
+      margin-top: 16px;
       @include sm {
-        margin-top: 37px;
+        margin-top: 12px;
       }
     }
   }
 
   &__title {
     @include ff-medium;
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 32px;
+    line-height: 40px;
     color: #272823;
 
     @include sm {
@@ -347,9 +348,9 @@
   }
 
   &__subtitle {
-    margin-bottom: 26px;
-    font-size: 40px;
-    line-height: 48px;
+    margin-bottom: 16px;
+    font-size: 32px;
+    line-height: 40px;
     color: #272823;
     @include sm {
       margin-bottom: 10px;
@@ -359,12 +360,12 @@
   }
 
   &__description {
-    margin-bottom: 28px;
-    font-size: 20px;
-    line-height: 24px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    line-height: 22px;
     color: #272823;
     @include sm {
-      margin-bottom: 13px;
+      margin-bottom: 18px;
       font-size: 14px;
       line-height: 17px;
     }
@@ -372,8 +373,8 @@
 
   &__social {
     display: block;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 22px;
     color: #272822;
     text-decoration: none;
     transition: all .2s ease;
