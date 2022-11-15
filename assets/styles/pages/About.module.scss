@@ -170,11 +170,11 @@
 
   &__team {
     display: flex;
-    // align-items: center;
+    align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding-top: 110px;
+    padding-top: 60px;
     pointer-events: none;
 
     -ms-overflow-style: none;  /* IE and Edge */
@@ -258,7 +258,7 @@
     z-index: -1;
 
     @include xl {
-      bottom: 28vh;
+      // bottom: 28vh;
     }
 
     @include sm {
@@ -279,15 +279,20 @@
       margin: 30px;
       max-height: 10vh;
 
+      @include xl {
+        margin-bottom: 0;
+      }
+
       @include md {
         max-width: 25vw;
         max-height: 8vh;
+        margin-bottom: 0px;
       }
 
       @include xs {
         max-width: 25vw;
         max-height: 8vh;
-        object-fit: cover;
+        // object-fit: cover;
         margin: 10px;
       }
     }
@@ -299,13 +304,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
-  height: calc(80vh - 120px);
-
-  @include md {
-    display: block;
-    margin-bottom: 200px;
-    height: auto;
-  }
+  height: calc(80vh - 60px);
 
   &__col {
     width: calc(100 / 1920 * 640%);
@@ -317,7 +316,6 @@
     @include xl {
       width: 100%;
       max-width: 70vw;
-      margin-bottom: 40px;
     }
     @include sm {
       max-width: none;
@@ -336,51 +334,50 @@
 
   &__title {
     @include ff-medium;
-    font-size: 100vw * 28 / 1680;
-    line-height: 100vw * 28 / 1680;
+    font-size: 100vw * 26 / 1680;
+    line-height: 100vw * 26 / 1680;
     color: #272823;
 
     @include sm {
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 100vw * 24 / 1680;
+      line-height:100vw * 29 / 1680;
     }
   }
 
   &__subtitle {
     margin-bottom: 100vw * 12 / 1680;;
-    font-size: 100vw * 28 / 1680;
-    line-height: 100vw * 28 / 1680;
+    font-size: 100vw * 26 / 1680;
+    line-height: 100vw * 26 / 1680;
     color: #272823;
     @include sm {
       margin-bottom: 10px;
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 100vw * 28 / 1680;
+      line-height: 100vw * 28 / 1680;
     }
   }
 
   &__description {
     margin-bottom: 100vw * 12 / 1680;
-    font-size: 100vw * 18 / 1680;
-    line-height:  100vw * 20 / 1680;;
+    font-size: 100vw * 16 / 1680;
+    line-height:  100vw * 16 / 1680;;
     color: #272823;
     @include sm {
-      margin-bottom: 18px;
-      font-size: 14px;
-      line-height: 17px;
+      font-size: 100vw * 16 / 1680;
     }
   }
 
   &__social {
     display: block;
     font-size: 100vw * 18 / 1680;;
-    line-height: 100vw * 22 / 1680;;
+    line-height: 100vw * 22 / 1680;
     color: #272822;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     transition: all .2s ease;
 
     @include sm {
-      font-size: 14px;
-      line-height: 17px;
+      font-size: 100vw * 20 / 1680;
     }
 
     &:hover {
