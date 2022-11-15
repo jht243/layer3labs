@@ -185,9 +185,6 @@
     }
 
     opacity: 0;
-    @include xl {
-      margin-top: 100px;
-    }
 
     @include sm {
       margin-top: 12vh;
@@ -304,7 +301,7 @@
   overflow: hidden;
   height: calc(80vh - 120px);
 
-  @include xl {
+  @include md {
     display: block;
     margin-bottom: 200px;
     height: auto;
@@ -339,8 +336,8 @@
 
   &__title {
     @include ff-medium;
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 100vw * 28 / 1680;
+    line-height: 100vw * 28 / 1680;
     color: #272823;
 
     @include sm {
@@ -350,9 +347,9 @@
   }
 
   &__subtitle {
-    margin-bottom: 16px;
-    font-size: 32px;
-    line-height: 40px;
+    margin-bottom: 100vw * 12 / 1680;;
+    font-size: 100vw * 28 / 1680;
+    line-height: 100vw * 28 / 1680;
     color: #272823;
     @include sm {
       margin-bottom: 10px;
@@ -362,9 +359,9 @@
   }
 
   &__description {
-    margin-bottom: 12px;
-    font-size: 18px;
-    line-height: 22px;
+    margin-bottom: 100vw * 12 / 1680;
+    font-size: 100vw * 18 / 1680;
+    line-height:  100vw * 20 / 1680;;
     color: #272823;
     @include sm {
       margin-bottom: 18px;
@@ -375,8 +372,8 @@
 
   &__social {
     display: block;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 100vw * 18 / 1680;;
+    line-height: 100vw * 22 / 1680;;
     color: #272822;
     text-decoration: none;
     transition: all .2s ease;
