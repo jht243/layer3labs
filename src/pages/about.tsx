@@ -27,7 +27,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
   const bgRef = useRef(null);
   const nextLinkRef = useRef(null);
   const logoRef = useRef<HTMLImageElement[]>([]);
-  const navNextButtonRef = useRef(null);
+  const navNextButtonRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const visionTextRef = useRef(null);
   const ourVisionTextRef = useRef(null);
@@ -82,6 +82,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         current: any,
         next = 0;
 
+    navNextButtonRef.current.addEventListener('click', onClickNextButton)
     const touch = {
       startX: 0,
       startY: 0,
@@ -154,6 +155,17 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
     }
 
+    function onClickNextButton() {
+      if (current < headings.length - 1) {
+        next = current + 1;
+        slideIn();
+      } else if (current === headings.length - 1) {
+        onNextSection()
+        setTimeout(() => listening = true, 5000)
+        current += 1
+      }
+    }
+
     function handleDirection () {
 
       listening = false;
@@ -175,7 +187,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       }
 
       if (direction === 'up') {
-        console.log("fucking")
         if (current === 0) {
           listening = true
           return

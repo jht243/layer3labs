@@ -230,179 +230,177 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   }
 
   const onNextSection = () => {
-    if (currentSection === 'initial') {
-      const tl = gsap.timeline()
+    const tl = gsap.timeline()
 
-      tl
-      .to(
-          nextLinkRef.current,
-          {
-            pointerEvents: 'none',
-            opacity: 0,
-            duration: 0.5,
-          }
-      )
-      .fromTo(
-          ourServicesTextRef.current,
-          {
-            y: 0,
-            opacity: 1,
-          },
-          {
-            y: 150,
-            opacity: 0,
-            duration: 0.2,
-          }, '<'
-      )
-      .fromTo(
-          servicesTextRef.current,
-          {
-            y: 0,
-            opacity: 1,
-          },
-          {
-            y: 150,
-            opacity: 0,
-            duration: 0.2,
-          }, '<'
-      )
-      .fromTo(
-          benefitsSectionRef.current,
-          {
-            y: 0,
-            opacity: 1,
-            overflowY: 'auto',
-            pointerEvents: 'auto',
-            zIndex: 30,
-          },
-          {
-            y: -400,
-            opacity: 0,
-            overflowY: 'none',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }, '<'
-      )
-      .fromTo(
-          processTitleMainRef.current,
-          {
-            // y: 200,
-            opacity: 0,
-            zIndex: -1,
-          },
-          {
-            // y: 0,
-            opacity: 1,
-            zIndex: 1,
-            duration: 0.5,
-          }, '<+=0.5'
-      )
-      .fromTo(
-          processTitle1Ref.current,
-          {
-            left: '50%',
-            top: '50%',
-            y: 0,
-            xPercent: -250,
-            yPercent: -50,
-            opacity: 1
-          },
-          {
-            left: '10%',
-            top: '10%',
-            xPercent: -50,
-            yPercent: -50,
-            duration: 2.5,
-            opacity: 1,
-            delay: 0.2,
-          }
-      )
-      .fromTo(
-          processTitle2Ref.current,
-          {
-            left: '55%',
-            top: '50%',
-            xPercent: -20,
-            y: 0,
-            opacity: 1,
-            yPercent: -50,
-          },
-          {
-            left: '80%',
-            top: '95%',
-            xPercent: -50,
-            yPercent: -50,
-            duration: 2.5,
-          }, '<'
-      )
+    tl
+    .to(
+        nextLinkRef.current,
+        {
+          pointerEvents: 'none',
+          opacity: 0,
+          duration: 0.5,
+        }
+    )
+    .fromTo(
+        ourServicesTextRef.current,
+        {
+          y: 0,
+          opacity: 1,
+        },
+        {
+          y: 150,
+          opacity: 0,
+          duration: 0.2,
+        }, '<'
+    )
+    .fromTo(
+        servicesTextRef.current,
+        {
+          y: 0,
+          opacity: 1,
+        },
+        {
+          y: 150,
+          opacity: 0,
+          duration: 0.2,
+        }, '<'
+    )
+    .fromTo(
+        benefitsSectionRef.current,
+        {
+          y: 0,
+          opacity: 1,
+          overflowY: 'auto',
+          pointerEvents: 'auto',
+          zIndex: 30,
+        },
+        {
+          y: -400,
+          opacity: 0,
+          overflowY: 'none',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }, '<'
+    )
+    .fromTo(
+        processTitleMainRef.current,
+        {
+          // y: 200,
+          opacity: 0,
+          zIndex: -1,
+        },
+        {
+          // y: 0,
+          opacity: 1,
+          zIndex: 1,
+          duration: 0.5,
+        }, '<+=0.5'
+    )
+    .fromTo(
+        processTitle1Ref.current,
+        {
+          left: '50%',
+          top: '50%',
+          y: 0,
+          xPercent: -250,
+          yPercent: -50,
+          opacity: 1
+        },
+        {
+          left: '10%',
+          top: '10%',
+          xPercent: -50,
+          yPercent: -50,
+          duration: 2.5,
+          opacity: 1,
+          delay: 0.2,
+        }
+    )
+    .fromTo(
+        processTitle2Ref.current,
+        {
+          left: '55%',
+          top: '50%',
+          xPercent: -20,
+          y: 0,
+          opacity: 1,
+          yPercent: -50,
+        },
+        {
+          left: '80%',
+          top: '95%',
+          xPercent: -50,
+          yPercent: -50,
+          duration: 2.5,
+        }, '<'
+    )
 
-      .fromTo(
-          bgRef.current,
-          {
-            rotate: 0,
-          },
-          {
-            rotate: 20,
-            duration: 1,
-          }, '<'
-      )
-      .fromTo(
-          processSectionRef.current,
-          {
-            pointerEvents: 'none',
-            opacity: 1,
-            zIndex: 1,
-          },
-          {
-            pointerEvents: 'auto',
-            opacity: 1,
-            zIndex: 30,
-          }, '<'
-      )
-      .fromTo(
-          processBlockTitleRef.current,
-          {
-            y: 50,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            stagger: 0.2
-          }, '<+=1'
-      )
-      .fromTo(
-          processNoteRef.current,
-          {
-            y: 50,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            stagger: 0.2,
-          }, '<+=0.05'
-      )
-      .fromTo(
-          processSectionRef.current,
-          {
-            overflowY: 'visible',
-          },
-          {
-            overflowY: 'visible',
-          }, '<'
-      )
-      .to(
-          nextLinkRef.current,
-          {
-            zIndex: -1,
-            opacity: 0,
-            duration: 0.5,
-          }, '<'
-      )
-    }
+    .fromTo(
+        bgRef.current,
+        {
+          rotate: 0,
+        },
+        {
+          rotate: 20,
+          duration: 1,
+        }, '<'
+    )
+    .fromTo(
+        processSectionRef.current,
+        {
+          pointerEvents: 'none',
+          opacity: 1,
+          zIndex: 1,
+        },
+        {
+          pointerEvents: 'auto',
+          opacity: 1,
+          zIndex: 30,
+        }, '<'
+    )
+    .fromTo(
+        processBlockTitleRef.current,
+        {
+          y: 50,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.2
+        }, '<+=1'
+    )
+    .fromTo(
+        processNoteRef.current,
+        {
+          y: 50,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.2,
+        }, '<+=0.05'
+    )
+    .fromTo(
+        processSectionRef.current,
+        {
+          overflowY: 'visible',
+        },
+        {
+          overflowY: 'visible',
+        }, '<'
+    )
+    .to(
+        nextLinkRef.current,
+        {
+          zIndex: -1,
+          opacity: 0,
+          duration: 0.5,
+        }, '<'
+    )
   }
 
   return (
@@ -427,7 +425,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
               </NavLink>
             </div>
 
-            <div className={styles['services-page__next']} onClick={onNextSection} ref={nextLinkRef}>
+            <div className={styles['services-page__next']} onClick={() => onNextSection()} ref={nextLinkRef}>
               <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M23.28 15.28L25.76 17.76L13.56 29.6H13.16L0.96 17.76L3.4 15.28L11.52 23.36V-1.90735e-06H15.16V23.4L23.28 15.28Z"
