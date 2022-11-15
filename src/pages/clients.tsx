@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
 import cx from 'classnames'
@@ -25,7 +25,7 @@ interface PageProps {
 
 const Clients: NextPage<PageProps> = ({ loaded }) => {
   const bgRef = useRef(null);
-  const nextLinkRef = useRef(null);
+ const nextLinkRef = useRef() as MutableRefObject<HTMLDivElement>;
   
   const ourClientsTitleRef = useRef(null);
   const clientsTextRef = useRef(null);
@@ -64,6 +64,13 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         currentSection = 'initial'
         onPrevSection()
       }
+    }
+    
+    nextLinkRef.current.addEventListener('click', onClickNextbutton)
+
+    function onClickNextbutton() {
+      if(!listening) return;
+      onNextSection();
     }
 
     window.addEventListener('wheel', handleWheel);
@@ -105,6 +112,17 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
     )
 
     // Show Our Client Section
+    .fromTo( // show background Image
+      bgRef.current,
+      { opacity: 0, rotate: -48 },
+      { opacity: 1, rotate: 0, duration: 0.75 },
+    )
+    .fromTo( // Show Next Section Arrow button
+      nextLinkRef.current,
+      { opacity: 0 },
+      { opacity: 1, zIndex: 1000 },
+      '<'
+    )
     .fromTo(  // Show "OUR" & "CLIENT" text wrap div
       ourClientsTitleRef.current,
       { opacity: 0 },
@@ -120,12 +138,6 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       { left: '50%', top: '50%', xPercent: -20, yPercent: -50, opacity: 1, y: 0 },
       { left: '80%', top: '95%', xPercent: -50, yPercent: -50, duration: 2.5 }, 
       '<' // move client text within the same time line with our text
-    )
-    .fromTo( // show background Image
-      bgRef.current,
-      { opacity: 0, rotate: -48 },
-      { opacity: 1, rotate: 0, duration: 0.75 },
-      '<+0.5'
     )
     .fromTo( // show Item Wrap
       clientsSectionRef.current,
@@ -154,7 +166,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
     // Hide Customer Section
     tl.to( // Hide Next Section Arrow button
       nextLinkRef.current,
-      { pointerEvents: 'none', opacity: 0, duration: 0.5 }
+      { opacity: 0, duration: 0.5 }
     )
     .fromTo( // Hide the "OUR" text of Client Section
       ourClientsTextRef.current,

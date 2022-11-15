@@ -14,7 +14,7 @@
     width: 100%;
     height: calc(100% - 60px);
     z-index: 999;
-    background-color: #ffffff;
+    background-color: #f6f5f5;
     overflow-y: auto;
     transition: all .3s ease;
 
@@ -50,7 +50,7 @@
     height: calc(100vh - 65px);
     width: 65px;
     list-style: none;
-    background-color: #ffffff;
+    background-color: #f6f5f5;
     border-right: 1px solid #707070;
     border-left: 1px solid transparent;
     transition: background-color 0.25s ease, transform 1.5s ease,

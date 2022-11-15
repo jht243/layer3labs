@@ -26,6 +26,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
   const bgRef = useRef(null);
   const nextLinkRef = useRef(null);
+  const logoRef = useRef<HTMLImageElement[]>([]);
+  const navNextButtonRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const visionTextRef = useRef(null);
   const ourVisionTextRef = useRef(null);
@@ -57,6 +59,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
     let timer: any
     let canMoveBack = true
+    if(logoRef?.current) 
+      for(let logo in logoRef.current) {
+        logoRef.current[logo].width = logoRef.current[logo].width * 0.8
+      }
 
     const handleTeamScroll = (e: any) => {
       if (e?.currentTarget?.scrollTop <= 0) {
@@ -69,7 +75,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       }
     }
 
-
     teamSectionRef.current.addEventListener('scroll', handleTeamScroll, { passive: false });
 
     let listening = false,
@@ -77,6 +82,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         current: any,
         next = 0;
 
+    navNextButtonRef.current.addEventListener('click', onClickNextButton)
     const touch = {
       startX: 0,
       startY: 0,
@@ -94,37 +100,17 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     function revealSectionHeading () {
       const tl = gsap.timeline()
       return tl
-      .to(headings[next], {
-        autoAlpha: 1,
-        y: 0,
-        duration: 1,
-        delay: 3,
-        ease: 'power2',
-      })
-      .to(partnersRef.current, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2',
-      }, '<')
+      .to(
+        headings[next],
+        { autoAlpha: 1, y: 0, duration: 1, delay: 3, ease: 'power2' })
+      .to(
+        partnersRef.current,
+        { autoAlpha: 1, y: 0, duration: 1, ease: 'power2' },
+        '<'
+      )
     }
 
-
-    function showTeam () {
-      onNextSection()
-      setTimeout(() => {
-        listening = true;
-      }, 5000)
-    }
-
-    function hideTeam () {
-      onPrevSection()
-      setTimeout(() => {
-        listening = true;
-      }, 5000)
-    }
-
-
+    // Slides a section in on scroll up
     function slideIn () {
       const tl = gsap
       .timeline({
@@ -169,6 +155,17 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
     }
 
+    function onClickNextButton() {
+      if (current < headings.length - 1) {
+        next = current + 1;
+        slideIn();
+      } else if (current === headings.length - 1) {
+        onNextSection()
+        setTimeout(() => listening = true, 5000)
+        current += 1
+      }
+    }
+
     function handleDirection () {
 
       listening = false;
@@ -178,7 +175,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           next = current + 1;
           slideIn();
         } else if (current === headings.length - 1) {
-          showTeam()
+          onNextSection()
+          setTimeout(() => listening = true, 5000)
           current += 1
         } else {
 
@@ -186,7 +184,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
             listening = true
           }, 2000)
         }
-
       }
 
       if (direction === 'up') {
@@ -198,14 +195,16 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           next = current - 1;
           slideOut();
         } else if (current >= headings.length && canMoveBack) {
-          hideTeam()
+          onPrevSection()
+          setTimeout(() => {
+            listening = true;
+          }, 5000)
           current -= 1
         } else {
           setTimeout(() => {
             listening = true
           }, 2000)
         }
-
       }
     }
 
@@ -246,38 +245,15 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     .set(visionTextRef.current, { autoAlpha: 1 })
     .fromTo(
         ourVisionTextRef.current,
-        {
-          left: '50%',
-          top: '50%',
-          xPercent: -200,
-          yPercent: -50,
-        },
-        {
-          left: '14%',
-          top: '8%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-          delay: 1,
-        }
+        { left: '50%', top: '50%', xPercent: -200, yPercent: -50 },
+        { left: '14%', top: '8%', xPercent: -50, yPercent: -50, duration: 2.5, delay: 1 }
     )
     .fromTo(
         visionTextRef.current,
-        {
-          right: '50%',
-          top: '50%',
-          xPercent: 50,
-          yPercent: -50,
-        },
-        {
-          right: '8%',
-          top: '80%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-        }, '<'
+        { right: '50%', top: '50%', xPercent: 50, yPercent: -50 },
+        { right: '8%', top: '80%', xPercent: -50, yPercent: -50, duration: 2.5 },
+        '<'
     )
-
 
     return () => {
       tl.kill()
@@ -295,80 +271,46 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
 
   const onPrevSection = () => {
-
     const tl = gsap.timeline()
 
+    // Hide Team Section
     tl
     .set(titlesRef.current, { clearProps: 'all' })
     .set(titlesRef.current, { autoAlpha: 0 })
     .fromTo(
-        teamSectionRef.current,
-        {
-          autoAlpha: 1,
-          y: 0,
-        },
-        {
-          autoAlpha: 0,
-          y: -200,
-        }
+      navNextButtonRef.current,
+      { opacity: 0 },
+      { opacity: 1 },
+      '<'
     )
-    .fromTo(
-        teamSectionRef.current,
-        {
-          pointerEvents: 'auto',
-        },
-        {
-          pointerEvents: 'none',
-        }, '<'
+    .fromTo( // Hide the Team Section
+      teamSectionRef.current,
+      { autoAlpha: 1, y: 0, pointerEvents: 'auto' },
+      { autoAlpha: 0, y: -200, pointerEvents: 'none' },
+      '<'
     )
-    .fromTo(
-        bgRef.current,
-        {
-          rotate: -45,
-        },
-        {
-          rotate: 0,
-          duration: 1,
-        }, '<'
+    .fromTo( // Rotate the Background
+      bgRef.current,
+      { rotate: -45 },
+      { rotate: 0, duration: 1 },
+      '<'
     )
-    .to(teamTitle1Ref.current, { autoAlpha: 0 })
-    .to(teamTitle2Ref.current, { autoAlpha: 0 })
+    .to(teamTitle1Ref.current, { autoAlpha: 0, duration: 0.2 }, '<') // Hide "OUR" text for Team section
+    .to(teamTitle2Ref.current, { autoAlpha: 0, duration: 0.2 }, '<') // Hide "TEAM" text for Team section
 
-    .to(ourVisionTextRef.current, { autoAlpha: 1 })
-    .to(visionTextRef.current, { autoAlpha: 1 })
-    .fromTo(
-        ourVisionTextRef.current,
-        {
-          left: '50%',
-          top: '50%',
-          xPercent: -200,
-          yPercent: -50,
-        },
-        {
-          left: '10%',
-          top: '10%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-          delay: 1,
-        }
+    // Show Vision Section
+    .to(ourVisionTextRef.current, { autoAlpha: 1 }) // Show "OUR" & "TEAM" text for Team Section
+    .to(visionTextRef.current, { autoAlpha: 1 }, '<')
+    .fromTo( // move "OUR" text 
+      ourVisionTextRef.current,
+      { left: '50%', top: '50%', xPercent: -200, yPercent: -50 },
+      { left: '10%', top: '10%', xPercent: -50, yPercent: -50, duration: 2.5 }
     )
-    .fromTo(
-        visionTextRef.current,
-        {
-          right: '50%',
-          top: '50%',
-          xPercent: 50,
-          yPercent: -50,
-        },
-        {
-          right: '8%',
-          // left: 0,
-          top: '80%',
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-        }, '<'
+    .fromTo( 
+      visionTextRef.current,
+      { right: '50%', top: '50%', xPercent: 50, yPercent: -50 },
+      { right: '8%', top: '80%', xPercent: -50, yPercent: -50, duration: 2.5 },
+      '<'
     )
     .to(titlesRef.current, { autoAlpha: 1 })
   }
@@ -379,6 +321,12 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     tl
     .set(teamSectionRef.current, { clearProps: 'all' })
     .fromTo(
+      navNextButtonRef.current,
+      { opacity: 1 },
+      { opacity: 0 },
+      '<'
+    )
+    .fromTo(
         ourVisionTextRef.current,
         {
           y: 0,
@@ -388,7 +336,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           y: -150,
           opacity: 0,
           duration: 0.5,
-        },
+        }, '<'
     )
     .fromTo(
         visionTextRef.current,
@@ -551,7 +499,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         }, '<'
     )
 
-
     .set(ourVisionTextRef.current, { clearProps: 'all' })
     .set(visionTextRef.current, { clearProps: 'all' })
   }
@@ -578,7 +525,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
               </NavLink>
             </div>
 
-            <div className={styles['about-page__next']}>
+            <div className={styles['about-page__next']} ref={navNextButtonRef}>
               <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M23.28 15.28L25.76 17.76L13.56 29.6H13.16L0.96 17.76L3.4 15.28L11.52 23.36V-1.90735e-06H15.16V23.4L23.28 15.28Z"
@@ -620,11 +567,40 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
               <div className={cx(styles['about-page__partners'])} ref={partnersRef}>
                 <div className={cx(styles['about-page__partners-images'])}>
-                  <img src={horizenLogo.src} alt="Horizen Labs" />
-                  <img src={dcgLogo.src} alt="Digital Currency Group" />
-                  <img src={polygonLogo.src} alt="Polygon" />
-                  <img src={horizen2Logo.src} alt="Horizen" />
-                  <img src={polygon2Logo.src} alt="Polygon Studios" />
+                  <img 
+                    src={horizenLogo.src}
+                    alt="Horizen Labs"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[0] = ref;
+                    }}
+                  />
+                  <img src={dcgLogo.src}
+                    alt="Digital Currency Group"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[1] = ref;
+                    }}
+                  />
+                  <img
+                    src={polygonLogo.src}
+                    alt="Polygon"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[2] = ref;
+                    }}
+                  />
+                  <img 
+                    src={horizen2Logo.src}
+                    alt="Horizen"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[3] = ref;
+                    }}
+                  />
+                  <img 
+                    src={polygon2Logo.src}
+                    alt="Polygon Studios"
+                    ref={(ref) => {
+                      if (ref) logoRef.current[4] = ref;
+                    }}
+                  />
                 </div>
               </div>
             </div>
