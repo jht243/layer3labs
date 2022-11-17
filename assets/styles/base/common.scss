@@ -4,21 +4,15 @@ img {
 }
 
 .main {
-  //height: 100vh;
   padding-bottom: 100px;
-  
-  @include md {
-    padding-bottom: 65px;
-  }
 
   @include sm {
     padding-bottom: 40px;
   }
 }
 
-
 .section-title {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -33,7 +27,7 @@ img {
 
   @include xl {
     justify-content: flex-start;
-    padding-top: 25vh;
+    padding-top: 40vh;
     width: 85vw;
     left: 0;
     right: 0;
@@ -49,6 +43,10 @@ img {
     padding-top: 20vh;
     padding-left: 0;
     padding-right: 0;
+  }
+
+  @include xs {
+    padding-top: 21vh;
   }
 
   &__inner {
@@ -79,8 +77,6 @@ img {
   color: #272823;
   text-transform: uppercase;
 
-
-
   opacity: 0;
   transform: translateY(50px);
 
@@ -94,11 +90,11 @@ img {
   }
 
   @include sm {
-    font-size:  100vw * 26 / 786;
+    font-size: 100vw * 26 / 786;
     max-width: none;
   }
 
   @include xs {
-    font-size:  100vw * 26 / 600;
+    font-size: 100vw * 40 / 600;
   }
 }

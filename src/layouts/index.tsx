@@ -50,7 +50,7 @@ const Layout: FC<LayoutProps> = ({
         <meta name="apple-mobile-web-app-title" content="Layer3" />
         <meta name="application-name" content="Layer3" />
         <meta name="msapplication-TileColor" content="#b791f1" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#f6f5f5" />
       </Head>
 
       <div className="out">
