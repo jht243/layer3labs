@@ -2,7 +2,6 @@
 @import 'assets/styles/helpers/index';
 
 .clients-page {
-
   height: calc(var(--vh) - 100px);
   opacity: 0;
   padding-left: $nav_link_width * 3 + $gap_padding;
@@ -46,23 +45,28 @@
   }
 
   &__back {
-    position: fixed;
-    left: $nav_link_width * 3 + $gap_padding;
+    position: absolute;
+    left: $gap_padding;
     top: 24px;
     z-index: 99;
 
     @include sm {
-      top: -10px;
+      top: -40px;
+      left: 0;
     }
   }
 
   &__next {
-    position: fixed;
-    left: $nav_link_width * 3 + $gap_padding;
-    bottom: 95px;
+    position: absolute;
+    left: $gap_padding;
+    bottom: 15px;
     cursor: pointer;
     z-index: 10;
-    // animation: bounce 3s ease infinite;
+    animation: bounce 3s ease infinite;
+
+    // @include xl {
+    //   left: 100px;
+    // }
 
     @include sm {
       bottom: 50px;
@@ -77,7 +81,7 @@
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       @include xl {
@@ -124,7 +128,6 @@
     }
   }
 
-
   &__testimonials-title {
     position: absolute;
     top: 0;
@@ -143,7 +146,7 @@
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       @include xl {
@@ -174,7 +177,6 @@
   }
 }
 
-
 .clients-section {
   position: absolute;
   top: 0;
@@ -188,8 +190,8 @@
   width: 100%;
   margin-top: 5vh;
 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
     display: none;
@@ -216,7 +218,6 @@
       padding: 0;
     }
   }
-
 
   &__boxes {
     display: grid;
@@ -251,7 +252,7 @@
   &__logo {
     height: 42px;
 
-    img{
+    img {
       height: 100%;
     }
   }
@@ -272,7 +273,6 @@
   }
 }
 
-
 .testimonials-section {
   position: absolute;
   top: 0;
@@ -286,8 +286,8 @@
   margin: auto;
   width: calc(100 / 1920 * 1200%);
 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
     display: none;
@@ -351,7 +351,6 @@
     }
   }
 }
-
 
 @keyframes bounce {
   70% {

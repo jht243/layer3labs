@@ -1,22 +1,29 @@
 @import 'assets/styles/variables/index';
 @import 'assets/styles/helpers/index';
 
+@keyframes backgroundChange {
+  0% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: red;
+  }
+}
+
 .navigation {
   $this: &;
 
   opacity: 0;
   transition: opacity 1s ease;
-
   @include sm {
     position: fixed;
     top: 60px;
     left: 0;
-    width: 100%;
     height: calc(100% - 60px);
     z-index: 999;
     background-color: #f6f5f5;
     overflow-y: auto;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     opacity: 0;
     transform: translateX(-100%);
@@ -43,8 +50,13 @@
     pointer-events: none;
   }
 
+  &__item-list {
+    position: relative;
+    width: 100%;
+  }
+
   &__item {
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 99;
     height: calc(100vh - 65px);
@@ -67,13 +79,16 @@
 
     &.is-animating {
       pointer-events: none;
-
+      &:before {
+        background-color: $primary !important;
+      }
       & + #{$this}__item {
         border-left-color: #707070;
       }
     }
 
-    &:before {
+    &:before,
+    &:after {
       content: '';
       position: absolute;
       top: 0;
@@ -95,27 +110,39 @@
           border-left-color 0.1s linear;
       }
 
-      &:after {
-        opacity: 0;
-      }
-
       &:before {
         width: calc(100vw - 65px);
+      }
+      &:after {
+        opacity: 0;
+        width: 0;
+        background-color: transparent;
       }
     }
 
     &:nth-child(1) {
       border-left: 1px solid #707070;
       right: calc(65px * 2);
-
+      &.is-animating {
+        pointer-events: none;
+        &:before {
+          background-color: $primary !important;
+        }
+      }
       &:before {
         background-color: $primary;
+        // animation: backgroundChange 5s;
       }
-
+      &:after {
+        background-color: transparent;
+      }
       &.is-transformed {
         border-right: 1px solid #707070;
+        // transform: 0;
         transform: translateX(-100vw) translateX(calc(65px * 3));
-
+        @media screen and (min-width: 1920px) {
+          transform: translateX(-1920px) translateX(calc(65px * 3));
+        }
         @include sm {
           transform: none;
         }
@@ -133,11 +160,18 @@
       &:before {
         background-color: $services;
       }
-
+      &.is-animating {
+        &:before {
+          background-color: $services !important;
+        }
+      }
       &.is-transformed {
         border-right: 1px solid #707070;
         border-left: none;
         transform: translateX(-100vw) translateX(calc(65px * 3));
+        @media screen and (min-width: 1920px) {
+          transform: translateX(-1920px) translateX(calc(65px * 3));
+        }
         @include sm {
           transform: none;
         }
@@ -155,11 +189,19 @@
       &:before {
         background-color: $clients;
       }
+      &.is-animating {
+        &:before {
+          background-color: $clients !important;
+        }
+      }
 
       &.is-transformed {
         border-right: 1px solid #707070;
         border-left: none;
         transform: translateX(-100vw) translateX(calc(65px * 3));
+        @media screen and (min-width: 1920px) {
+          transform: translateX(-1920px) translateX(calc(65px * 3));
+        }
         @include sm {
           transform: none;
         }
@@ -219,7 +261,6 @@
   }
 }
 
-
 .header {
   position: fixed;
   top: 0;
@@ -232,7 +273,7 @@
   height: 60px;
   padding: 10px 17px;
   border-bottom: 1px solid #272822;
-  background-color: #ffffff;
+  background-color: #f6f5f5;
 
   @include smUp {
     display: none;

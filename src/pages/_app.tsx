@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { Provider } from 'react-redux'
 
 import { usePageTransitionFix } from '@/app/hooks/usePageTransitionFix'
-import { useWindowSize } from '@/app/hooks/useWindowSize';
+import { useWindowSize } from '@/app/hooks/useWindowSize'
 import { store } from '@/app/store'
 import { sleep } from '@/app/utils/helpers'
 import Navigation from '@/components/Navigation'
@@ -21,7 +21,7 @@ const Application = ({ Component, pageProps }: ApplicationProps) => {
   const [loaded, setLoaded] = useState<boolean>(false)
   const [changedRoute, setChangedRoute] = useState<string>('')
   usePageTransitionFix()
-  useWindowSize();
+  useWindowSize()
 
   useEffect(() => {
     const checkLoader = async () => {
@@ -57,12 +57,14 @@ const Application = ({ Component, pageProps }: ApplicationProps) => {
   }, [router])
 
   return (
-    <Provider store={store}>
-      <Navigation loaded={loaded} changedRoute={changedRoute} />
-      <AnimatePresence mode="wait">
-        <Component {...pageProps} loaded={loaded} key={router.pathname} />
-      </AnimatePresence>
-    </Provider>
+    <div className="container-new">
+      <Provider store={store}>
+        <Navigation loaded={loaded} changedRoute={changedRoute} />
+        <AnimatePresence mode="wait">
+          <Component {...pageProps} loaded={loaded} key={router.pathname} />
+        </AnimatePresence>
+      </Provider>
+    </div>
   )
 }
 

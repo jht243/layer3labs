@@ -31,7 +31,7 @@
 
   &__bg {
     position: fixed;
-    top: 0;
+    top: 7vh;
     left: 0;
     z-index: -1;
     height: 100%;
@@ -46,27 +46,28 @@
   }
 
   &__back {
-    position: fixed;
-    left: $nav_link_width + $gap_padding;
+    position: absolute;
+    left: $gap_padding;
     top: 24px;
     z-index: 99;
 
     @include sm {
-      top: -10px;
+      top: -40px;
+      left: 0;
     }
   }
 
   &__next {
-    position: fixed;
-    left: 5vw;
-    bottom: 95px;
+    position: absolute;
+    left: $gap_padding;
+    bottom: 15px;
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
 
-    @include xl {
-      left: 100px;
-    }
+    // @include xl {
+    //   left: 100px;
+    // }
 
     @include sm {
       bottom: 50px;
@@ -74,16 +75,15 @@
     }
   }
 
-
   &__vision,
   &__team-title {
     span {
       display: block;
-      position: fixed;
+      position: absolute;
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       opacity: 0;
@@ -100,17 +100,23 @@
 
       @include sm {
         font-size: 36px;
-        margin-top: 10px;
+        margin-top: 0;
         margin-left: 10px;
       }
 
       @include xs {
+        margin-top: 0px;
         font-size: 30px;
+      }
+      &:first-child {
+        @include xs {
+          margin-top: -35px;
+        }
       }
 
       &:last-child {
         @include sm {
-          margin-top: 8vh;
+          margin-top: 4vh;
           margin-right: -20px;
         }
       }
@@ -127,7 +133,6 @@
     align-items: center;
     justify-content: center;
   }
-
 
   &__title {
     position: fixed;
@@ -177,8 +182,8 @@
     padding-top: 60px;
     pointer-events: none;
 
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 
     &::-webkit-scrollbar {
       display: none;
@@ -191,8 +196,12 @@
       padding-top: 0;
       height: 88%;
     }
+    @include xs {
+      margin-top: 12vh;
+      padding-top: 0;
+      height: 100%;
+    }
   }
-
 
   &__partners-title {
     width: 100%;
@@ -207,7 +216,7 @@
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       @include xl {
@@ -242,7 +251,6 @@
     }
   }
 
-
   &__partners {
     position: absolute;
     left: 0;
@@ -273,7 +281,6 @@
     flex-wrap: wrap;
     margin: auto;
 
-
     img {
       display: block;
       margin: 30px;
@@ -281,6 +288,8 @@
 
       @include xl {
         margin-bottom: 0;
+        max-height: 8vh;
+        object-fit: cover;
       }
 
       @include md {
@@ -299,13 +308,19 @@
   }
 }
 
-
 .team-section {
   display: flex;
   justify-content: center;
   overflow: hidden;
   height: calc(80vh - 60px);
-
+  width: 90%;
+  @include sm {
+    height: calc(60vh - 60px);
+  }
+  @include xs {
+    flex-direction: column;
+    height: calc(70vh - 60px);
+  }
   &__col {
     width: calc(100 / 1920 * 640%);
     margin: 0px 10px;
@@ -319,7 +334,7 @@
     }
     @include sm {
       max-width: none;
-      margin: auto auto 37px;
+      margin: 5px auto;
     }
   }
 
@@ -339,13 +354,17 @@
     color: #272823;
 
     @include sm {
-      font-size: 100vw * 24 / 1680;
-      line-height:100vw * 29 / 1680;
+      font-size: 100vw * 30 / 1680;
+      line-height: 100vw * 40 / 1680;
+    }
+    @include xs {
+      font-size: 100vw * 50 / 1680;
+      line-height: 100vw * 60 / 1680;
     }
   }
 
   &__subtitle {
-    margin-bottom: 100vw * 12 / 1680;;
+    margin-bottom: 100vw * 12 / 1680;
     font-size: 100vw * 26 / 1680;
     line-height: 100vw * 26 / 1680;
     color: #272823;
@@ -354,30 +373,42 @@
       font-size: 100vw * 28 / 1680;
       line-height: 100vw * 28 / 1680;
     }
+    @include xs {
+      margin-bottom: 5px;
+      font-size: 100vw * 40 / 1680;
+      line-height: 100vw * 50 / 1680;
+    }
   }
 
   &__description {
     margin-bottom: 100vw * 12 / 1680;
     font-size: 100vw * 16 / 1680;
-    line-height:  100vw * 16 / 1680;;
+    line-height: 100vw * 16 / 1680;
     color: #272823;
     @include sm {
       font-size: 100vw * 16 / 1680;
+    }
+    @include xs {
+      font-size: 100vw * 30 / 1680;
+      line-height: 100vw * 40 / 1680;
     }
   }
 
   &__social {
     display: block;
-    font-size: 100vw * 18 / 1680;;
+    font-size: 100vw * 18 / 1680;
     line-height: 100vw * 22 / 1680;
     color: #272822;
     display: flex;
     align-items: center;
     text-decoration: none;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 
     @include sm {
       font-size: 100vw * 20 / 1680;
+    }
+    @include xs {
+      font-size: 100vw * 30 / 1680;
     }
 
     &:hover {
@@ -390,11 +421,10 @@
 
     span {
       display: inline-block;
-      transition: transform .2s ease;
+      transition: transform 0.2s ease;
     }
   }
 }
-
 
 @keyframes bounce {
   70% {
