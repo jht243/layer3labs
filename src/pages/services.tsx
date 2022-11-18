@@ -352,7 +352,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           rotate: 0,
         },
         {
-          rotate: 20,
+          rotate: 0,
           duration: 1,
         },
         '<'
@@ -433,7 +433,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           ref={bgRef}
         />
         <div className={styles['services-page__inner']}>
-          <div className={styles['services-page__back']}>
+          {/* <div className={styles['services-page__back']}>
             <NavLink href="/">
               <svg
                 width="31"
@@ -448,7 +448,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                 />
               </svg>
             </NavLink>
-          </div>
+          </div> */}
 
           <div
             className={styles['services-page__next']}
@@ -511,7 +511,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsTitleRef.current[1] = ref
                     }}
                   >
-                    TOTALLY CUSTOMIZABLE FRONT-END
+                    CUSTOMIZABLE FRONT-END
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -559,7 +559,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsTitleRef.current[3] = ref
                     }}
                   >
-                    BRIDGING THE PHYSICAL AND DIGITAL
+                    BRIDGING PHYSICAL AND DIGITAL
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -569,8 +569,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[3] = ref
                     }}
                   >
-                    RADEEM DIGITAL REWARDS SCROLL DOESN'T WORK TO GO BELOW FIRST
-                    SECTION
+                    BY ALLOWING USERS TO REDEEM NFTS FOR PHYSICAL PERKS AT
+                    RETAIL LOCATIONS.
                   </div>
                 </div>
               </div>

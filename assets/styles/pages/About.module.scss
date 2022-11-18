@@ -8,6 +8,7 @@
   padding-right: $nav_link_width * 2 + $gap_padding;
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
+  position: relative;
 
   @include sm {
     padding-left: 20px;
@@ -30,15 +31,14 @@
   }
 
   &__bg {
-    position: fixed;
-    top: 7vh;
+    position: absolute;
+    top: 4%;
     left: 0;
     z-index: -1;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
-
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -339,6 +339,12 @@
   }
 
   &__block {
+    height: 200px;
+
+    @include sm {
+      height: auto;
+    }
+
     & + & {
       margin-top: 10px;
       @include sm {
@@ -350,9 +356,12 @@
   &__title {
     @include ff-medium;
     font-size: 100vw * 26 / 1680;
-    line-height: 100vw * 26 / 1680;
+    // line-height: 100vw * 26 / 1680;
+    line-height: 3rem;
     color: #272823;
-
+    display: flex;
+    font-weight: 400;
+    gap: 20px;
     @include sm {
       font-size: 100vw * 30 / 1680;
       line-height: 100vw * 40 / 1680;
@@ -366,8 +375,10 @@
   &__subtitle {
     margin-bottom: 100vw * 12 / 1680;
     font-size: 100vw * 26 / 1680;
-    line-height: 100vw * 26 / 1680;
+    // line-height: 100vw * 26 / 1680;
+    line-height: 1.5rem;
     color: #272823;
+    font-weight: 300;
     @include sm {
       margin-bottom: 10px;
       font-size: 100vw * 28 / 1680;
@@ -383,7 +394,8 @@
   &__description {
     margin-bottom: 100vw * 12 / 1680;
     font-size: 100vw * 16 / 1680;
-    line-height: 100vw * 16 / 1680;
+    // line-height: 100vw * 16 / 1680;
+    line-height: 1.5rem;
     color: #272823;
     @include sm {
       font-size: 100vw * 16 / 1680;
@@ -403,6 +415,11 @@
     align-items: center;
     text-decoration: none;
     transition: all 0.2s ease;
+
+    // & svg {
+    //   width: 18 !important;
+    //   height: 18 !important;
+    // }
 
     @include sm {
       font-size: 100vw * 20 / 1680;

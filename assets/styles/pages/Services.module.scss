@@ -187,7 +187,7 @@
 
   display: flex;
   justify-content: center;
-  height: 90vh;
+  height: 95vh;
   width: 100%;
   margin: auto;
   max-width: calc(100 / 1440 * 1200%);
@@ -212,7 +212,8 @@
     align-items: flex-start;
     justify-content: space-between;
     width: 100%;
-
+    margin-bottom: 48px;
+    // height: 128px;
     @include md {
       display: block;
     }
@@ -240,7 +241,7 @@
   }
 
   &__title {
-    font-size: 100vw * 32 / 1680;
+    font-size: 2.5rem;
     line-height: 1.2;
     color: #272822;
 
@@ -260,7 +261,7 @@
 
   &__text {
     max-width: 650px;
-    font-size: 100vw * 22 / 1680;
+    font-size: 1.2rem;
     line-height: 1.2;
     color: #272822;
 
@@ -346,7 +347,7 @@
 
   &__title {
     position: relative;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     line-height: 1.2;
     color: #272822;
     opacity: 0;

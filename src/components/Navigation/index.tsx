@@ -132,10 +132,16 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
               [styles[`is-animating`]]: isAnimating && currentPath === '/about',
             })}
           >
-            <NavLink
-              href="/about"
+            <div
               className={styles['navigation__link']}
-              onClick={() => setOpenedMenu(false)}
+              onClick={() => {
+                if (currentPath === '/about') {
+                  router.back()
+                } else {
+                  router.push('/about')
+                }
+                setOpenedMenu(false)
+              }}
             >
               <svg
                 width="42"
@@ -150,7 +156,7 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
                 />
               </svg>
               <span className={styles['navigation__text']}>About Us</span>
-            </NavLink>
+            </div>
           </div>
           <div
             className={cx(styles['navigation__item'], {
@@ -162,10 +168,16 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
                 isAnimating && currentPath === '/services',
             })}
           >
-            <NavLink
-              href="/services"
+            <div
               className={styles['navigation__link']}
-              onClick={() => setOpenedMenu(false)}
+              onClick={() => {
+                if (currentPath === '/services') {
+                  router.back()
+                } else {
+                  router.push('/services')
+                }
+                setOpenedMenu(false)
+              }}
             >
               <svg
                 width="26"
@@ -180,7 +192,7 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
                 />
               </svg>
               <span className={styles['navigation__text']}>Services</span>
-            </NavLink>
+            </div>
           </div>
           <div
             className={cx(styles['navigation__item'], {
@@ -190,10 +202,16 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
                 isAnimating && currentPath === '/clients',
             })}
           >
-            <NavLink
-              href="/clients"
+            <div
               className={styles['navigation__link']}
-              onClick={() => setOpenedMenu(false)}
+              onClick={() => {
+                if (currentPath === '/clients') {
+                  router.back()
+                } else {
+                  router.push('/clients')
+                }
+                setOpenedMenu(false)
+              }}
             >
               <svg
                 width="15"
@@ -208,7 +226,7 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
                 />
               </svg>
               <span className={styles['navigation__text']}>Clients</span>
-            </NavLink>
+            </div>
           </div>
         </div>
         {loading}

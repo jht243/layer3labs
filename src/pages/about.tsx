@@ -247,10 +247,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .set(visionTextRef.current, { autoAlpha: 1 })
       .fromTo(
         ourVisionTextRef.current,
-        { left: '50%', top: '50%', xPercent: -100, yPercent: -50 },
+        { left: '50%', top: '50%', xPercent: -200, yPercent: -50 },
         {
-          left: '11%',
-          top: '9%',
+          left: '17.4%',
+          top: '17.9%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -261,8 +261,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         visionTextRef.current,
         { right: '50%', top: '50%', xPercent: 100, yPercent: -50 },
         {
-          right: '0%',
-          top: '90%',
+          right: '6.7%',
+          top: '70.3%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -314,15 +314,21 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         // move "OUR" text
         ourVisionTextRef.current,
-        { left: '50%', top: '50%', xPercent: -100, yPercent: -50 },
-        { left: '10%', top: '10%', xPercent: -50, yPercent: -50, duration: 2.5 }
+        { left: '50%', top: '50%', xPercent: -115, yPercent: -50 },
+        {
+          left: '17.4%',
+          top: '17.9%',
+          xPercent: -50,
+          yPercent: -50,
+          duration: 2.5,
+        }
       )
       .fromTo(
         visionTextRef.current,
-        { right: '50%', top: '50%', xPercent: 100, yPercent: -50 },
+        { right: '50%', top: '50%', xPercent: 115, yPercent: -50 },
         {
-          right: '0%',
-          top: '90%',
+          right: '6.7%',
+          top: '70.3%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -379,7 +385,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         bgRef.current,
         {
-          rotate: 0,
+          rotate: 11,
         },
         {
           rotate: -45,
@@ -396,7 +402,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         {
           left: '50%',
           top: '50%',
-          xPercent: -100,
+          xPercent: -115,
           yPercent: -50,
         },
         {
@@ -413,7 +419,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         {
           right: '50%',
           top: '50%',
-          xPercent: 100,
+          xPercent: 115,
           yPercent: -50,
         },
         {
@@ -536,9 +542,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           className={styles['about-page__bg']}
           style={{ backgroundImage: `url(${purpleBlock.src})` }}
           ref={bgRef}
-        />
+        >
+          <div className={styles['about-page__vision']}>
+            <span ref={ourVisionTextRef}>Our</span>
+            <span ref={visionTextRef}>vision</span>
+          </div>
+        </div>
         <div className={styles['about-page__inner']}>
-          <div className={styles['about-page__back']}>
+          {/* <div className={styles['about-page__back']}>
             <NavLink href="/">
               <svg
                 width="31"
@@ -553,7 +564,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                 />
               </svg>
             </NavLink>
-          </div>
+          </div> */}
 
           <div className={styles['about-page__next']} ref={navNextButtonRef}>
             <svg
@@ -568,11 +579,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                 fill="#272822"
               />
             </svg>
-          </div>
-
-          <div className={styles['about-page__vision']}>
-            <span ref={ourVisionTextRef}>Our</span>
-            <span ref={visionTextRef}>vision</span>
           </div>
 
           <div className="sections-wrapper" ref={titlesRef}>
@@ -665,6 +671,23 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     JONATHAN TEPLITSKY
+                    <a
+                      href="#."
+                      className={styles['team-section__social']}
+                      ref={(ref) => {
+                        if (ref) teamMemberSocialRef.current[3] = ref
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        color="#fff000"
+                      >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -683,7 +706,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     JONATHAN HOLDS AN MBA FROM HARVARD BUSINESS SCHOOL AND HAS
                     10+ YEARS OF MARKETING EXPERIENCE.
                   </div>
-                  <a
+                  {/* <a
                     href="#."
                     className={styles['team-section__social']}
                     ref={(ref) => {
@@ -693,8 +716,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     LINKEDIN
                     <span>
                       <svg
-                        width="18"
-                        height="18"
+                        width="20"
+                        height="20"
                         viewBox="0 0 39 39"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -705,7 +728,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         />
                       </svg>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
 
                 <div className={styles['team-section__block']}>
@@ -716,6 +739,23 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     MAY LUNAWONG
+                    <a
+                      href="#."
+                      className={styles['team-section__social']}
+                      ref={(ref) => {
+                        if (ref) teamMemberSocialRef.current[3] = ref
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        color="#fff000"
+                      >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -735,7 +775,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     MANAGEMENT OF TELECOMMUNICATION TECHNOLOGY FOR OVER 7+
                     YEARS.
                   </div>
-                  <a
+                  {/* <a
                     href="#."
                     className={styles['team-section__social']}
                     ref={(ref) => {
@@ -745,8 +785,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     LINKEDIN
                     <span>
                       <svg
-                        width="18"
-                        height="18"
+                        width="20"
+                        height="20"
                         viewBox="0 0 39 39"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -757,7 +797,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         />
                       </svg>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
 
                 <div className={styles['team-section__block']}>
@@ -768,6 +808,23 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     ROBERT VIGLIONE
+                    <a
+                      href="#."
+                      className={styles['team-section__social']}
+                      ref={(ref) => {
+                        if (ref) teamMemberSocialRef.current[3] = ref
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        color="#fff000"
+                      >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -787,7 +844,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     AIR FORCE PHYSICIST AND MILITARY INTELLIGENCE. BA IN
                     PHYSICS, MBA AND PHD IN FINANCE.
                   </div>
-                  <a
+                  {/* <a
                     href="#."
                     className={styles['team-section__social']}
                     ref={(ref) => {
@@ -797,8 +854,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     LINKEDIN
                     <span>
                       <svg
-                        width="18"
-                        height="18"
+                        width="20"
+                        height="20"
                         viewBox="0 0 39 39"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -809,7 +866,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         />
                       </svg>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
               </div>
 
@@ -822,7 +879,25 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     LIAT AARONSON
+                    <a
+                      href="#."
+                      className={styles['team-section__social']}
+                      ref={(ref) => {
+                        if (ref) teamMemberSocialRef.current[3] = ref
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        color="#fff000"
+                      >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
                   </h2>
+
                   <div
                     className={styles['team-section__subtitle']}
                     ref={(ref) => {
@@ -841,29 +916,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN
                     ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.
                   </div>
-                  <a
-                    href="#."
-                    className={styles['team-section__social']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSocialRef.current[3] = ref
-                    }}
-                  >
-                    LINKEDIN
-                    <span>
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 39 39"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
-                          fill="#272822"
-                        />
-                      </svg>
-                    </span>
-                  </a>
                 </div>
 
                 <div className={styles['team-section__block']}>
@@ -874,6 +926,23 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     DEAN STEINBECK
+                    <a
+                      href="#."
+                      className={styles['team-section__social']}
+                      ref={(ref) => {
+                        if (ref) teamMemberSocialRef.current[3] = ref
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        color="#fff000"
+                      >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -893,7 +962,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     REPRESENTING VC-BACKED SOFTWARE DEVELOPMENT COMPANIES WITH A
                     FOCUS ON DATA.
                   </div>
-                  <a
+                  {/* <a
                     href="#."
                     className={styles['team-section__social']}
                     ref={(ref) => {
@@ -903,8 +972,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     LINKEDIN
                     <span>
                       <svg
-                        width="18"
-                        height="18"
+                        width="20"
+                        height="20"
                         viewBox="0 0 39 39"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -915,7 +984,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         />
                       </svg>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
 
                 <div className={styles['team-section__block']}>
@@ -926,6 +995,23 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     ROSARIO PABST
+                    <a
+                      href="#."
+                      className={styles['team-section__social']}
+                      ref={(ref) => {
+                        if (ref) teamMemberSocialRef.current[3] = ref
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        color="#fff000"
+                      >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -945,7 +1031,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     PROGRAM MANAGEMENT. BS IN PUBLIC ADMINISTRATION AND MS IN
                     SYSTEMS ENGINEERING.
                   </div>
-                  <a
+                  {/* <a
                     href="#."
                     className={styles['team-section__social']}
                     ref={(ref) => {
@@ -955,8 +1041,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     LINKEDIN
                     <span>
                       <svg
-                        width="18"
-                        height="18"
+                        width="20"
+                        height="20"
                         viewBox="0 0 39 39"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -967,7 +1053,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         />
                       </svg>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
