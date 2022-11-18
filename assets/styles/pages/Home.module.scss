@@ -2,11 +2,10 @@
 @import 'assets/styles/helpers/index';
 
 .home-page {
-  min-height: 100vh;
+  height: calc(var(--vh) - 100px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 134px;
   padding-left: 68px;
   opacity: 0;
   //padding-left: $nav_link_width + $gap_padding;
@@ -31,7 +30,6 @@
 
   &__notes {
     max-width: 1285px;
-    margin-bottom: 41px;
     padding-right: $nav_link_width * 3 + $gap_padding;
     font-weight: 400;
     font-size: 40px;

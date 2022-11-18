@@ -40,24 +40,23 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
     }
   }, [currentImageIndex])
 
-
   useEffect(() => {
     if (!textRef || !loaded) return
 
     const tl = gsap.timeline()
-    tl
-    .fromTo(
-        textRef.current,
-        {
-          y: 80,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.5,
-          delay: 2
-        },
+    tl.fromTo(
+      textRef.current,
+      {
+        y: 80,
+        ease: 'power4.out',
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        delay: 2,
+      }
     )
     return () => {
       tl.kill()

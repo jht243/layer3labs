@@ -37,7 +37,7 @@
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
-
+    transform: rotate(11deg);
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -186,9 +186,8 @@
 
   display: flex;
   justify-content: center;
-  height: 80vh;
+  height: 95vh;
   width: 100%;
-  margin-top: 5vh;
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -223,7 +222,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: center;
-    height: 60vh;
+    height: 40vh;
     overflow: hidden;
   }
 
@@ -250,8 +249,8 @@
   }
 
   &__logo {
-    height: 42px;
-
+    height: 44px;
+    margin-bottom: 1.2rem;
     img {
       height: 100%;
     }
