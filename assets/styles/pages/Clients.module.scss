@@ -2,7 +2,7 @@
 @import 'assets/styles/helpers/index';
 
 .clients-page {
-  height: calc(var(--vh) - 100px);
+  height: calc(var(--vh) - 65px);
   opacity: 0;
   padding-left: $nav_link_width * 3 + $gap_padding;
   transition: opacity 1s ease 0.5s;
@@ -37,7 +37,7 @@
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    transform: rotate(11deg);
+    transform: rotate(17deg);
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -222,7 +222,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: center;
-    height: 40vh;
+    min-height: 25rem;
     overflow: hidden;
   }
 

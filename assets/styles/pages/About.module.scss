@@ -2,7 +2,7 @@
 @import 'assets/styles/helpers/index';
 
 .about-page {
-  height: calc(var(--vh) - 100px);
+  height: calc(var(--vh) - 65px);
   opacity: 0;
   padding-left: $nav_link_width + $gap_padding;
   padding-right: $nav_link_width * 2 + $gap_padding;
@@ -39,6 +39,7 @@
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    transform: rotate(10deg);
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -273,7 +274,9 @@
       bottom: 12vh;
     }
   }
-
+  &__partners-images-div {
+    padding: 0 20px;
+  }
   &__partners-images {
     display: flex;
     align-items: center;

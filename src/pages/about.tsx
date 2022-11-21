@@ -16,6 +16,11 @@ import dcgLogo from '@/images/dcg.png'
 import polygonLogo from '@/images/polygon.svg'
 import horizen2Logo from '@/images/horizen2.png'
 import polygon2Logo from '@/images/polygon2.png'
+import Image from 'next/image'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/app/store'
+import { setReloadAnimation } from '@/app/slices/commonSlice'
+import { useDispatch } from 'react-redux'
 
 interface PageProps {
   loaded: boolean
@@ -26,7 +31,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
   const bgRef = useRef(null)
   const nextLinkRef = useRef(null)
-  const logoRef = useRef<HTMLImageElement[]>([])
+  const logoRef = useRef<HTMLDivElement[]>([])
   const navNextButtonRef = useRef() as MutableRefObject<HTMLDivElement>
 
   const visionTextRef = useRef(null)
@@ -46,6 +51,19 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
   const partnersRef = useRef(null)
 
+  const isReloadAnimation = useSelector(
+    (state: RootState) => state.common.reloadAnimation
+  )
+
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   if (isReloadAnimation) {
+  //     onPrevSection()
+  //     dispatch(setReloadAnimation(false))
+  //   }
+  // }, [isReloadAnimation])
+
   useEffect(() => {
     if (!loaded) return
 
@@ -60,10 +78,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
     let timer: any
     let canMoveBack = true
-    if (logoRef?.current)
-      for (let logo in logoRef.current) {
-        logoRef.current[logo].width = logoRef.current[logo].width * 0.8
-      }
 
     const handleTeamScroll = (e: any) => {
       if (e?.currentTarget?.scrollTop <= 0) {
@@ -247,10 +261,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .set(visionTextRef.current, { autoAlpha: 1 })
       .fromTo(
         ourVisionTextRef.current,
-        { left: '50%', top: '50%', xPercent: -200, yPercent: -50 },
+        { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
           left: '17.4%',
-          top: '17.9%',
+          top: '12%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -259,10 +273,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       )
       .fromTo(
         visionTextRef.current,
-        { right: '50%', top: '50%', xPercent: 100, yPercent: -50 },
+        { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
         {
           right: '6.7%',
-          top: '70.3%',
+          top: '92.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -302,7 +316,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         // Rotate the Background
         bgRef.current,
         { rotate: -45 },
-        { rotate: 0, duration: 1 },
+        { rotate: 12, duration: 1 },
         '<'
       )
       .to(teamTitle1Ref.current, { autoAlpha: 0, duration: 0.2 }, '<') // Hide "OUR" text for Team section
@@ -314,10 +328,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         // move "OUR" text
         ourVisionTextRef.current,
-        { left: '50%', top: '50%', xPercent: -115, yPercent: -50 },
+        { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
           left: '17.4%',
-          top: '17.9%',
+          top: '12%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -325,10 +339,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       )
       .fromTo(
         visionTextRef.current,
-        { right: '50%', top: '50%', xPercent: 115, yPercent: -50 },
+        { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
         {
           right: '6.7%',
-          top: '70.3%',
+          top: '92.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -385,7 +399,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         bgRef.current,
         {
-          rotate: 11,
+          rotate: 10,
         },
         {
           rotate: -45,
@@ -402,12 +416,12 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         {
           left: '50%',
           top: '50%',
-          xPercent: -115,
+          xPercent: -150,
           yPercent: -50,
         },
         {
-          left: '11%',
-          top: '9%',
+          left: '15%',
+          top: '12%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -419,13 +433,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         {
           right: '50%',
           top: '50%',
-          xPercent: 115,
+          xPercent: 155,
           yPercent: -50,
         },
         {
-          right: '0%',
+          right: '5%',
           // left: 0,
-          top: '90%',
+          top: '92.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -542,11 +556,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           className={styles['about-page__bg']}
           style={{ backgroundImage: `url(${purpleBlock.src})` }}
           ref={bgRef}
-        >
-          <div className={styles['about-page__vision']}>
-            <span ref={ourVisionTextRef}>Our</span>
-            <span ref={visionTextRef}>vision</span>
-          </div>
+        ></div>
+        <div className={styles['about-page__vision']}>
+          <span ref={ourVisionTextRef}>Our</span>
+          <span ref={visionTextRef}>vision</span>
         </div>
         <div className={styles['about-page__inner']}>
           {/* <div className={styles['about-page__back']}>
@@ -613,41 +626,76 @@ const About: NextPage<PageProps> = ({ loaded }) => {
               ref={partnersRef}
             >
               <div className={cx(styles['about-page__partners-images'])}>
-                <img
-                  src={horizenLogo.src}
-                  alt="Horizen Labs"
+                <div
                   ref={(ref) => {
                     if (ref) logoRef.current[0] = ref
                   }}
-                />
-                <img
-                  src={dcgLogo.src}
-                  alt="Digital Currency Group"
+                  className={cx(styles['about-page__partners-images-div'])}
+                >
+                  <Image
+                    src={horizenLogo.src}
+                    alt="Horizen Labs"
+                    width={240}
+                    height={95}
+                    objectFit="contain"
+                  />
+                </div>
+                <div
                   ref={(ref) => {
                     if (ref) logoRef.current[1] = ref
                   }}
-                />
-                <img
-                  src={polygonLogo.src}
-                  alt="Polygon"
+                  className={cx(styles['about-page__partners-images-div'])}
+                >
+                  <Image
+                    src={dcgLogo.src}
+                    alt="Digital Currency Group"
+                    width={160}
+                    height={111}
+                    objectFit="contain"
+                  />
+                </div>
+                <div
                   ref={(ref) => {
                     if (ref) logoRef.current[2] = ref
                   }}
-                />
-                <img
-                  src={horizen2Logo.src}
-                  alt="Horizen"
+                  className={cx(styles['about-page__partners-images-div'])}
+                >
+                  <Image
+                    src={polygonLogo.src}
+                    alt="Polygon"
+                    width={195}
+                    height={92}
+                    objectFit="contain"
+                  />
+                </div>
+                <div
                   ref={(ref) => {
                     if (ref) logoRef.current[3] = ref
                   }}
-                />
-                <img
-                  src={polygon2Logo.src}
-                  alt="Polygon Studios"
+                  className={cx(styles['about-page__partners-images-div'])}
+                >
+                  <Image
+                    src={horizen2Logo.src}
+                    alt="Horizen"
+                    width={175}
+                    height={125}
+                    objectFit="contain"
+                  />
+                </div>
+                <div
                   ref={(ref) => {
                     if (ref) logoRef.current[4] = ref
                   }}
-                />
+                  className={cx(styles['about-page__partners-images-div'])}
+                >
+                  <Image
+                    src={polygon2Logo.src}
+                    alt="Polygon Studios"
+                    width={208}
+                    height={88}
+                    objectFit="contain"
+                  />
+                </div>
               </div>
             </div>
           </div>
