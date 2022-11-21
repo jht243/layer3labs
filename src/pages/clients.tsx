@@ -18,6 +18,10 @@ import GSLogo from '@/images/game-station.png'
 import JGILogo from '@/images/JGI.png'
 import etherealLogo from '@/images/ethereal.png'
 import pipeflareLogo from '@/images/pipeflare.png'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/app/store'
+import { useDispatch } from 'react-redux'
+import { setReloadAnimation } from '@/app/slices/commonSlice'
 
 interface PageProps {
   loaded: boolean
@@ -43,6 +47,12 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
 
   const testimonBlockTitleRef = useRef<HTMLDivElement[]>([])
   const testimonBlockSubTitleRef = useRef<HTMLDivElement[]>([])
+
+  const isReloadAnimation = useSelector(
+    (state: RootState) => state.common.reloadAnimation
+  )
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!clientsTextRef || !loaded) return
@@ -115,7 +125,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         // show background Image
         bgRef.current,
         { opacity: 0, rotate: 0 },
-        { opacity: 1, rotate: 11, duration: 0.75 }
+        { opacity: 1, rotate: 17, duration: 0.75 }
       )
       .fromTo(
         // Show Next Section Arrow button
@@ -136,14 +146,14 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         {
           left: '50%',
           top: '50%',
-          xPercent: -200,
+          xPercent: -250,
+          yPercent: -50,
           opacity: 1,
           y: 0,
-          yPercent: -50,
         },
         {
           left: '7%',
-          top: '17%',
+          top: '12%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -163,7 +173,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: '79.5%',
-          top: '90.5%',
+          top: '92.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -246,7 +256,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         {
           left: '10%',
           top: '32%',
-          xPercent: -50,
+          xPercent: -100,
           yPercent: -50,
           duration: 2.5,
           delay: 0.2,
@@ -258,7 +268,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         {
           left: '55%',
           top: '50%',
-          xPercent: -20,
+          xPercent: -37,
           opacity: 1,
           y: 0,
           yPercent: -50,
@@ -299,6 +309,13 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         '<+=0.05'
       )
   }
+
+  useEffect(() => {
+    if (isReloadAnimation) {
+      onPrevSection()
+      dispatch(setReloadAnimation(false))
+    }
+  }, [isReloadAnimation])
 
   return (
     <Layout>

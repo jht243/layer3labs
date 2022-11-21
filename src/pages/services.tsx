@@ -136,7 +136,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: '10%',
-          top: '10%',
+          top: '12%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -156,7 +156,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: '80%',
-          top: '95%',
+          top: '92.7%',
 
           xPercent: -50,
           yPercent: -50,
@@ -318,7 +318,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: '10%',
-          top: '10%',
+          top: '12%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -338,7 +338,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: '80%',
-          top: '95%',
+          top: '92.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,

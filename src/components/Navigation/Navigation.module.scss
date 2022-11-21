@@ -21,7 +21,7 @@
     left: 0;
     height: calc(100% - 60px);
     z-index: 999;
-    background-color: #F4F5F4;
+    background-color: #f4f5f4;
     overflow-y: auto;
     transition: all 0.3s ease;
 
@@ -62,7 +62,7 @@
     height: calc(100vh - 65px);
     width: 65px;
     list-style: none;
-    background-color: #F4F5F4;
+    background-color: #f4f5f4;
     border-right: 1px solid #707070;
     border-left: 1px solid transparent;
     transition: background-color 0.25s ease, transform 1.5s ease,
@@ -255,6 +255,7 @@
     color: #272823;
     text-transform: uppercase;
     text-decoration: none;
+    width: 100%;
     @include sm {
       transform: none;
     }
@@ -273,7 +274,7 @@
   height: 60px;
   padding: 10px 17px;
   border-bottom: 1px solid #272822;
-  background-color: #F4F5F4;
+  background-color: #f4f5f4;
 
   @include smUp {
     display: none;
