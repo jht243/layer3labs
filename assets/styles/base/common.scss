@@ -22,8 +22,8 @@ img {
   align-items: center;
   justify-content: center;
 
-  padding-left: $nav_link_width + $gap_padding;
-  padding-right: $nav_link_width * 2 + $gap_padding;
+  // padding-left: $nav_link_width + $gap_padding;
+  // padding-right: $nav_link_width * 2 + $gap_padding;
 
   @include xl {
     justify-content: flex-start;

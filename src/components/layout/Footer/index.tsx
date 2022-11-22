@@ -1,8 +1,12 @@
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 import React, { FC } from 'react'
 
 import styles from './Footer.module.scss'
 
 const Footer: FC = () => {
+  const router = useRouter()
+
   return (
     <footer className={styles['footer']}>
       <div className={styles['footer__col']}>
@@ -12,6 +16,19 @@ const Footer: FC = () => {
         <a href="#." target="_blank" rel="noopener nofollow">
           INSTAGRAM
         </a>
+      </div>
+      <div>
+        <Image
+          className={styles['footer__logo']}
+          src="/logo.svg"
+          alt="Layer 3"
+          height={30}
+          width={30}
+          onClick={() => {
+            console.log('gfhsbvjsbjkv')
+            router.push('/')
+          }}
+        />
       </div>
       <div className={styles['footer__col']}>
         <a href="mailto:PARTNERS@LAYER3LABS.IO">PARTNERS@LAYER3LABS.IO</a>

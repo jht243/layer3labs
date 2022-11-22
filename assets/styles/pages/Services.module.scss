@@ -30,13 +30,13 @@
   }
 
   &__bg {
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 0;
+    left: 13%;
     z-index: -1;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
+    height: var(--vh);
+    width: 76vw;
+    // background-repeat: no-repeat;
     background-position: center;
 
     @include sm {
@@ -60,7 +60,7 @@
   &__next {
     position: absolute;
     left: $gap_padding;
-    bottom: 15px;
+    bottom: 27px;
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
@@ -260,7 +260,7 @@
   }
 
   &__text {
-    max-width: 650px;
+    max-width: 690px;
     font-size: 1.2rem;
     line-height: 1.2;
     color: #272822;
@@ -310,7 +310,7 @@
   }
 
   &__block {
-    max-width: 635px;
+    max-width: 690px;
 
     @include sm {
       max-width: 50vw;

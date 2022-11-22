@@ -10,7 +10,7 @@ import { NavLink } from '@/components/ui/NavLink'
 
 import styles from '@/styles/pages/Clients.module.scss'
 
-import orangeBlock from '@/images/orange-bg.svg'
+import orangeBlock from '@/images/orange-bg.png'
 
 import bowleroLogo from '@/images/bowlero.png'
 import styrLogo from '@/images/styr.png'
@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/app/store'
 import { useDispatch } from 'react-redux'
 import { setReloadAnimation } from '@/app/slices/commonSlice'
+import Image from 'next/image'
 
 interface PageProps {
   loaded: boolean
@@ -125,7 +126,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         // show background Image
         bgRef.current,
         { opacity: 0, rotate: 0 },
-        { opacity: 1, rotate: 17, duration: 0.75 }
+        { opacity: 1, rotate: 10, duration: 0.75 }
       )
       .fromTo(
         // Show Next Section Arrow button
@@ -152,7 +153,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '7%',
+          left: '11%',
           top: '12%',
           xPercent: -50,
           yPercent: -50,
@@ -172,7 +173,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '79.5%',
+          left: '85%',
           top: '92.7%',
           xPercent: -50,
           yPercent: -50,
@@ -254,8 +255,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '10%',
-          top: '32%',
+          left: '15%',
+          top: '12%',
           xPercent: -100,
           yPercent: -50,
           duration: 2.5,
@@ -274,8 +275,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '80%',
-          top: '81%',
+          left: '82.5%',
+          top: '92.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -285,8 +286,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         // Rotate the background
         bgRef.current,
-        { rotate: 11 },
-        { rotate: 0, duration: 1 },
+        { rotate: 10 },
+        { rotate: 10, duration: 1 },
         '<'
       )
       .fromTo(
@@ -326,9 +327,11 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       >
         <div
           className={styles['clients-page__bg']}
-          style={{ backgroundImage: `url(${orangeBlock.src})` }}
+          // style={{ backgroundImage: `url(${orangeBlock.src})` }}
           ref={bgRef}
-        />
+        >
+          <Image src={orangeBlock.src} alt="bg_about" layout="fill" />
+        </div>
         <div className={styles['clients-page__inner']}>
           {/* <div className={styles['clients-page__back']}>
               <NavLink href="/">

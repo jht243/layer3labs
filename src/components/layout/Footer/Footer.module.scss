@@ -21,6 +21,7 @@
 
   &__col {
     display: flex;
+    width: 200px;
     flex-direction: column;
     font-weight: 400;
     font-size: 14px;
@@ -46,7 +47,9 @@
         display: none;
       }
     }
-
+    &__logo {
+      cursor: pointer;
+    }
     a {
       color: inherit;
       text-decoration: none;

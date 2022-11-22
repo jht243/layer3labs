@@ -33,13 +33,11 @@
   &__bg {
     position: absolute;
     top: 4%;
-    left: 0;
+    left: 3%;
     z-index: -1;
-    height: 100vh;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: rotate(10deg);
+    height: var(--vh);
+    width: 88vw;
+    transform: rotate(12deg);
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -61,7 +59,7 @@
   &__next {
     position: absolute;
     left: $gap_padding;
-    bottom: 15px;
+    bottom: 27px;
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
@@ -255,7 +253,7 @@
   &__partners {
     position: absolute;
     left: 0;
-    bottom: 14vh;
+    bottom: 18vh;
     width: 100%;
     display: flex;
     justify-content: center;
