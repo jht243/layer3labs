@@ -10,7 +10,8 @@ import { NavLink } from '@/components/ui/NavLink'
 
 import styles from '@/styles/pages/Services.module.scss'
 
-import greenBlock from '@/images/green-bg.svg'
+import greenBlock from '@/images/green-bg.png'
+import Image from 'next/image'
 
 interface PageProps {
   loaded: boolean
@@ -135,7 +136,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '10%',
+          left: '7.5%',
           top: '12%',
           xPercent: -50,
           yPercent: -50,
@@ -155,7 +156,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '80%',
+          left: '88%',
           top: '92.7%',
 
           xPercent: -50,
@@ -317,7 +318,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           opacity: 1,
         },
         {
-          left: '10%',
+          left: '7.5%',
           top: '12%',
           xPercent: -50,
           yPercent: -50,
@@ -337,7 +338,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '80%',
+          left: '88%',
           top: '92.7%',
           xPercent: -50,
           yPercent: -50,
@@ -429,9 +430,16 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       >
         <div
           className={styles['services-page__bg']}
+          // style={{ backgroundImage: `url(${purpleBlock.src})` }}
+          ref={bgRef}
+        >
+          <Image src={greenBlock.src} alt="bg_services" layout="fill" />
+        </div>
+        {/* <div
+          className={styles['services-page__bg']}
           style={{ backgroundImage: `url(${greenBlock.src})` }}
           ref={bgRef}
-        />
+        /> */}
         <div className={styles['services-page__inner']}>
           {/* <div className={styles['services-page__back']}>
             <NavLink href="/">

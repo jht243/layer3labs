@@ -10,7 +10,7 @@ import Layout from '@/layouts/index'
 
 import styles from '@/styles/pages/About.module.scss'
 
-import purpleBlock from '@/images/purple-block.svg'
+import purpleBlock from '@/images/purple-block-p.png'
 import horizenLogo from '@/images/horizen.png'
 import dcgLogo from '@/images/dcg.png'
 import polygonLogo from '@/images/polygon.svg'
@@ -263,7 +263,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         ourVisionTextRef.current,
         { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
-          left: '17.4%',
+          left: '13.8vw',
           top: '12%',
           xPercent: -50,
           yPercent: -50,
@@ -275,8 +275,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         visionTextRef.current,
         { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
         {
-          right: '6.7%',
-          top: '92.7%',
+          right: '7%',
+          top: '89.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -315,8 +315,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         // Rotate the Background
         bgRef.current,
-        { rotate: -45 },
-        { rotate: 12, duration: 1 },
+        { rotate: -45, left: '6%' },
+        { rotate: 12, duration: 1, left: '3%' },
         '<'
       )
       .to(teamTitle1Ref.current, { autoAlpha: 0, duration: 0.2 }, '<') // Hide "OUR" text for Team section
@@ -330,7 +330,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         ourVisionTextRef.current,
         { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
-          left: '17.4%',
+          left: '13.8vw',
           top: '12%',
           xPercent: -50,
           yPercent: -50,
@@ -341,8 +341,8 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         visionTextRef.current,
         { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
         {
-          right: '6.7%',
-          top: '92.7%',
+          right: '7%',
+          top: '89.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -399,11 +399,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         bgRef.current,
         {
-          rotate: 10,
+          rotate: 12,
+          left: '3%',
         },
         {
           rotate: -45,
           duration: 1,
+          left: '6%',
         },
         '<'
       )
@@ -420,7 +422,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '15%',
+          left: '8.8vw',
           top: '12%',
           xPercent: -50,
           yPercent: -50,
@@ -437,9 +439,9 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          right: '5%',
+          right: '0%',
           // left: 0,
-          top: '92.7%',
+          top: '89.7%',
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -554,9 +556,11 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       >
         <div
           className={styles['about-page__bg']}
-          style={{ backgroundImage: `url(${purpleBlock.src})` }}
+          // style={{ backgroundImage: `url(${purpleBlock.src})` }}
           ref={bgRef}
-        ></div>
+        >
+          <Image src={purpleBlock.src} alt="bg_about" layout="fill" />
+        </div>
         <div className={styles['about-page__vision']}>
           <span ref={ourVisionTextRef}>Our</span>
           <span ref={visionTextRef}>vision</span>

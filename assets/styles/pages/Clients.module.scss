@@ -4,7 +4,7 @@
 .clients-page {
   height: calc(var(--vh) - 65px);
   opacity: 0;
-  padding-left: $nav_link_width * 3 + $gap_padding;
+  padding-left: $nav_link_width * 3;
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
 
@@ -29,15 +29,15 @@
   }
 
   &__bg {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+    top: 22%;
+    left: 15%;
     z-index: -1;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
+    width: 80vw;
+    height: 54vh;
+    // background-repeat: no-repeat;
     background-position: center;
-    transform: rotate(17deg);
+    transform: rotate(11deg);
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -59,7 +59,7 @@
   &__next {
     position: absolute;
     left: $gap_padding;
-    bottom: 15px;
+    bottom: 27px;
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
