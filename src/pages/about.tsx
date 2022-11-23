@@ -62,29 +62,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     (state: RootState) => state.common.reloadAnimation
   )
 
-  const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   if (isReloadAnimation) {
-  //     onPrevSection()
-  //     dispatch(setReloadAnimation(false))
-  //   }
-  // }, [isReloadAnimation])
-  // const countBarNumber = () => {
-  //   console.log(aboutUsContainer.current?.clientHeight)
-  //   console.log(bgRef.current?.clientWidth)
-  //   console.log(
-  //     bgRef.current?.clientHeight - aboutUsContainer.current?.clientHeight + 20
-  //   )
-  //   console.log(
-  //     aboutUsContainer.current?.clientHeight -
-  //       (bgRef.current?.clientHeight - aboutUsContainer.current?.clientHeight)
-  //   )
-  // }
-
-  // useLayoutEffect(() => {
-  //   countBarNumber()
-  // })
+  var mediaQueries = [
+    { id: 'x-small', media: '(max-width: 400px)' },
+    { id: 'small', media: '(min-width: 400px) and (max-width: 700px)' },
+    { id: 'medium', media: '(min-width: 700px) and (max-width: 1000px)' },
+    { id: 'large', media: '(min-width: 1000px) and (max-width: 1300px)' },
+    { id: 'x-large', media: '(min-width: 1300px)' },
+  ]
 
   useEffect(() => {
     if (!loaded) return
@@ -279,38 +263,48 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
     const tl = gsap.timeline()
 
-    tl.set(ourVisionTextRef.current, { autoAlpha: 1 })
-      .set(visionTextRef.current, { autoAlpha: 1 })
-      .fromTo(
-        ourVisionTextRef.current,
-        { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
-        {
-          left: '13.8%',
-          top:
-            bgRef.current?.clientHeight -
-            aboutUsContainer.current?.clientHeight +
-            20,
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-          delay: 1,
-        }
-      )
-      .fromTo(
-        visionTextRef.current,
-        { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
-        {
-          right: '7%',
-          top:
-            aboutUsContainer.current?.clientHeight -
-            (bgRef.current?.clientHeight -
-              aboutUsContainer.current?.clientHeight),
-          xPercent: -50,
-          yPercent: -50,
-          duration: 2.5,
-        },
-        '<'
-      )
+    let mm = gsap.matchMedia(),
+      breakPoint = 769
+
+    mm.add(
+      {
+        isDesktop: `(min-width: ${breakPoint}px)`,
+        isMobile: `(max-width: ${breakPoint - 1}px)`,
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      (context) => {
+        let { isDesktop, isMobile, reduceMotion } = context.conditions;
+        console.log(isDesktop, isMobile, reduceMotion);
+        tl.set(ourVisionTextRef.current, { autoAlpha: 1 })
+        .set(visionTextRef.current, { autoAlpha: 1 })
+        .fromTo(
+          ourVisionTextRef.current,
+          { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
+          {
+            left: isDesktop ? '13.8%' : '20.8%',
+            top: isDesktop ? '12.5%': '18.5%',
+            xPercent: -50,
+            yPercent: -50,
+            duration: 2.5,
+            delay: 1,
+          }
+        )
+        .fromTo(
+          visionTextRef.current,
+          { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
+          {
+            right: '7%',
+            top: '89.7%',
+            xPercent: -50,
+            yPercent: -50,
+            duration: 2.5,
+          },
+          '<'
+        )
+      }
+    )
+
+   
 
     return () => {
       tl.kill()
@@ -359,9 +353,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
           left: '13.8%',
-          top:
-            aboutUsContainer.current?.clientHeight -
-            bgRef.current?.clientHeight,
+          top: '12.5%',
+          // top:
+          // (bgRef.current?.clientHeight -
+          //   aboutUsContainer.current?.clientHeight )  + 55,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -373,6 +368,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         {
           right: '7%',
           top: '89.7%',
+          // top:
+          // aboutUsContainer.current?.clientHeight -
+          // (bgRef.current?.clientHeight -
+          //   aboutUsContainer.current?.clientHeight) - 55,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
