@@ -39,6 +39,14 @@
     // background-repeat: no-repeat;
     background-position: center;
 
+    @include xl {
+      left: 14%;
+    }
+
+    @include md {
+      left: 15.3%;
+    }
+
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -214,9 +222,9 @@
     width: 100%;
     margin-bottom: 48px;
     // height: 128px;
-    @include md {
-      display: block;
-    }
+    // @include md {
+    //   display: block;
+    // }
 
     & + & {
       margin-top: 32px;
@@ -325,6 +333,9 @@
 
     &:nth-child(even) {
       margin-left: auto;
+      @include xl {
+        margin-left: 29%;
+      }
     }
   }
 

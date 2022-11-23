@@ -32,13 +32,13 @@
       line-height: 1.4;
     }
 
-    &:nth-child(1) {
-      @include sm {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-      }
-    }
+    // &:nth-child(1) {
+    //   @include sm {
+    //     flex-direction: row;
+    //     justify-content: space-between;
+    //     width: 100%;
+    //   }
+    // }
 
     &:nth-child(2) {
       text-align: right;
