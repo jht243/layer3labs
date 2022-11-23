@@ -1,6 +1,12 @@
 import type { NextPage } from 'next'
 
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
+import React, {
+  MutableRefObject,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import cx from 'classnames'
@@ -29,6 +35,7 @@ interface PageProps {
 const About: NextPage<PageProps> = ({ loaded }) => {
   gsap.registerPlugin(ScrollTrigger)
 
+  const aboutUsContainer = useRef(null)
   const bgRef = useRef(null)
   const nextLinkRef = useRef(null)
   const logoRef = useRef<HTMLDivElement[]>([])
@@ -63,6 +70,21 @@ const About: NextPage<PageProps> = ({ loaded }) => {
   //     dispatch(setReloadAnimation(false))
   //   }
   // }, [isReloadAnimation])
+  // const countBarNumber = () => {
+  //   console.log(aboutUsContainer.current?.clientHeight)
+  //   console.log(bgRef.current?.clientWidth)
+  //   console.log(
+  //     bgRef.current?.clientHeight - aboutUsContainer.current?.clientHeight + 20
+  //   )
+  //   console.log(
+  //     aboutUsContainer.current?.clientHeight -
+  //       (bgRef.current?.clientHeight - aboutUsContainer.current?.clientHeight)
+  //   )
+  // }
+
+  // useLayoutEffect(() => {
+  //   countBarNumber()
+  // })
 
   useEffect(() => {
     if (!loaded) return
@@ -263,8 +285,11 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         ourVisionTextRef.current,
         { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
-          left: '13.8vw',
-          top: '12%',
+          left: '13.8%',
+          top:
+            bgRef.current?.clientHeight -
+            aboutUsContainer.current?.clientHeight +
+            20,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -276,7 +301,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
         {
           right: '7%',
-          top: '89.7%',
+          top:
+            aboutUsContainer.current?.clientHeight -
+            (bgRef.current?.clientHeight -
+              aboutUsContainer.current?.clientHeight),
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -330,8 +358,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
         ourVisionTextRef.current,
         { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
-          left: '13.8vw',
-          top: '12%',
+          left: '13.8%',
+          top:
+            aboutUsContainer.current?.clientHeight -
+            bgRef.current?.clientHeight,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -422,7 +452,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '8.8vw',
+          left: '10.8%',
           top: '12%',
           xPercent: -50,
           yPercent: -50,
@@ -553,6 +583,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
     <Layout>
       <div
         className={cx(styles['about-page'], { [styles[`is-loaded`]]: loaded })}
+        ref={aboutUsContainer}
       >
         <div
           className={styles['about-page__bg']}
@@ -566,23 +597,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           <span ref={visionTextRef}>vision</span>
         </div>
         <div className={styles['about-page__inner']}>
-          {/* <div className={styles['about-page__back']}>
-            <NavLink href="/">
-              <svg
-                width="31"
-                height="26"
-                viewBox="0 0 31 26"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15.22 22.78L12.74 25.26L0.899999 13.06L0.899999 12.66L12.74 0.459999L15.22 2.9L7.14 11.02L30.5 11.02L30.5 14.66L7.1 14.66L15.22 22.78Z"
-                  fill="#272822"
-                />
-              </svg>
-            </NavLink>
-          </div> */}
-
           <div className={styles['about-page__next']} ref={navNextButtonRef}>
             <svg
               width="26"
@@ -724,11 +738,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   >
                     JONATHAN TEPLITSKY
                     <a
-                      href="#."
+                      href="https://www.linkedin.com/in/jonathanteplitsky/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -758,29 +774,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     JONATHAN HOLDS AN MBA FROM HARVARD BUSINESS SCHOOL AND HAS
                     10+ YEARS OF MARKETING EXPERIENCE.
                   </div>
-                  {/* <a
-                    href="#."
-                    className={styles['team-section__social']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSocialRef.current[0] = ref
-                    }}
-                  >
-                    LINKEDIN
-                    <span>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 39 39"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
-                          fill="#272822"
-                        />
-                      </svg>
-                    </span>
-                  </a> */}
                 </div>
 
                 <div className={styles['team-section__block']}>
@@ -792,11 +785,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   >
                     MAY LUNAWONG
                     <a
-                      href="#."
+                      href="https://www.linkedin.com/in/nutchara-lunawong-954183190/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -827,29 +822,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     MANAGEMENT OF TELECOMMUNICATION TECHNOLOGY FOR OVER 7+
                     YEARS.
                   </div>
-                  {/* <a
-                    href="#."
-                    className={styles['team-section__social']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSocialRef.current[1] = ref
-                    }}
-                  >
-                    LINKEDIN
-                    <span>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 39 39"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
-                          fill="#272822"
-                        />
-                      </svg>
-                    </span>
-                  </a> */}
                 </div>
 
                 <div className={styles['team-section__block']}>
@@ -861,11 +833,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   >
                     ROBERT VIGLIONE
                     <a
-                      href="#."
+                      href="https://www.linkedin.com/in/robert-viglione-2780634/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -896,29 +870,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     AIR FORCE PHYSICIST AND MILITARY INTELLIGENCE. BA IN
                     PHYSICS, MBA AND PHD IN FINANCE.
                   </div>
-                  {/* <a
-                    href="#."
-                    className={styles['team-section__social']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSocialRef.current[2] = ref
-                    }}
-                  >
-                    LINKEDIN
-                    <span>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 39 39"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
-                          fill="#272822"
-                        />
-                      </svg>
-                    </span>
-                  </a> */}
                 </div>
               </div>
 
@@ -932,11 +883,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   >
                     LIAT AARONSON
                     <a
-                      href="#."
+                      href="https://www.linkedin.com/in/liataaronson/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -979,11 +932,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   >
                     DEAN STEINBECK
                     <a
-                      href="#."
+                      href="https://www.linkedin.com/in/dean-steinbeck/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -1014,29 +969,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     REPRESENTING VC-BACKED SOFTWARE DEVELOPMENT COMPANIES WITH A
                     FOCUS ON DATA.
                   </div>
-                  {/* <a
-                    href="#."
-                    className={styles['team-section__social']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSocialRef.current[5] = ref
-                    }}
-                  >
-                    LINKEDIN
-                    <span>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 39 39"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
-                          fill="#272822"
-                        />
-                      </svg>
-                    </span>
-                  </a> */}
                 </div>
 
                 <div className={styles['team-section__block']}>
@@ -1048,11 +980,13 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   >
                     ROSARIO PABST
                     <a
-                      href="#."
+                      href="https://www.linkedin.com/in/rosario-pabst/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -1083,29 +1017,6 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     PROGRAM MANAGEMENT. BS IN PUBLIC ADMINISTRATION AND MS IN
                     SYSTEMS ENGINEERING.
                   </div>
-                  {/* <a
-                    href="#."
-                    className={styles['team-section__social']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSocialRef.current[4] = ref
-                    }}
-                  >
-                    LINKEDIN
-                    <span>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 39 39"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.4385 11.591L13.6388 8.08952L30.5953 9.31415L30.8616 9.61268L30.1452 26.5983L26.6703 26.428L27.2961 14.9899L9.86197 30.5379L7.43924 27.8213L24.9032 12.2467L13.4385 11.591Z"
-                          fill="#272822"
-                        />
-                      </svg>
-                    </span>
-                  </a> */}
                 </div>
               </div>
             </div>

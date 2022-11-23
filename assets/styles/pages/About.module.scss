@@ -37,7 +37,17 @@
     z-index: -1;
     height: var(--vh);
     width: 88vw;
+    max-width: 1689px;
     transform: rotate(12deg);
+    @include md {
+      position: absolute;
+      top: 3%;
+      z-index: -1;
+      height: var(--vh);
+      width: 87vw;
+      max-width: 1689px;
+      transform: rotate(16deg);
+    }
     @include sm {
       left: -50vw;
       width: 200vw;
@@ -253,7 +263,7 @@
   &__partners {
     position: absolute;
     left: 0;
-    bottom: 18vh;
+    bottom: 30vh;
     width: 100%;
     display: flex;
     justify-content: center;

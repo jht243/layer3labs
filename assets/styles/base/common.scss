@@ -13,7 +13,7 @@ img {
 
 .section-title {
   position: absolute;
-  top: 0;
+  top: -7%;
   left: 0;
   width: 100%;
   height: var(--vh);
@@ -32,10 +32,6 @@ img {
     left: 0;
     right: 0;
     margin: 0 auto;
-  }
-
-  @include md {
-    padding-top: 17vh;
   }
 
   @include sm {
