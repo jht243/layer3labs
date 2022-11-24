@@ -380,6 +380,7 @@
     line-height: 3rem;
     color: #272823;
     display: flex;
+    align-items: center;
     font-weight: 400;
     gap: 20px;
     @include sm {
