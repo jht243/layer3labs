@@ -37,7 +37,14 @@ interface PageProps {
 const About: NextPage<PageProps> = ({ loaded }) => {
   gsap.registerPlugin(ScrollTrigger)
   const router = useRouter()
-
+  // start comman variable -- for animation
+  let topOur = '12.5%'
+  let leftOur = '13.8%'
+  let topVision = '87.7%'
+  let rightVision = '7%'
+  let bgEndRotate = -42
+  let bgRotate = 12
+  // end comman variable 
   const aboutUsContainer = useRef(null)
   const bgRef = useRef(null)
   const nextLinkRef = useRef(null)
@@ -75,6 +82,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
 
   useEffect(() => {
     if (!loaded) return
+    
 
     const headings: any = gsap.utils.toArray('.section-heading')
 
@@ -273,41 +281,71 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       {
         isDesktop: `(min-width: ${breakPoint}px)`,
         isMobile: `(max-width: ${breakPoint - 1}px)`,
+        isDesktopHeight: `(min-height: ${1022}px)`,
         reduceMotion: '(prefers-reduced-motion: reduce)',
       },
-      (context) => {
-        let { isDesktop, isMobile, reduceMotion } = context.conditions;
-        console.log(isDesktop, isMobile, reduceMotion);
-        tl.set(ourVisionTextRef.current, { autoAlpha: 1 })
-        .set(visionTextRef.current, { autoAlpha: 1 })
-        .fromTo(
-          ourVisionTextRef.current,
-          { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
-          {
-            left: isDesktop ? '13.8%' : '20.8%',
-            top: isDesktop ? '12.5%': '18.5%',
-            xPercent: -50,
-            yPercent: -50,
-            duration: 2.5,
-            delay: 1,
+      (context: any) => {
+        let { isDesktop, isMobile, reduceMotion, isDesktopHeight } =
+          context.conditions
+        console.log(isDesktop, isMobile, reduceMotion, '----', isDesktopHeight)
+        // let topOur = '12.5%'
+        // let leftOur = '13.8%'
+        // let topVision = '87.7%'
+        // let rightVision = '7%'
+        if (isMobile && isDesktopHeight) {
+          topOur = '17.5%'
+          leftOur = '17.8%'
+          topVision = '81.7%'
+          rightVision = '7%'
+        } else {
+          if(isDesktopHeight){
+            topOur = '17.5%'
+            leftOur = '17.8%'
+            topVision = '81.7%'
+            rightVision = '7%'
           }
-        )
-        .fromTo(
-          visionTextRef.current,
-          { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
-          {
-            right: '7%',
-            top: '89.7%',
-            xPercent: -50,
-            yPercent: -50,
-            duration: 2.5,
-          },
-          '<'
-        )
+          if (isDesktop) {
+            topOur = '12.5%'
+            leftOur = '13.8%'
+            topVision = '87.7%'
+            rightVision = '7%'
+          }
+          if (isMobile) {
+            topOur = '17.5%'
+            leftOur = '17.8%'
+            topVision = '87.7%'
+            rightVision = '7%'
+          }
+        }
+
+        tl.set(ourVisionTextRef.current, { autoAlpha: 1 })
+          .set(visionTextRef.current, { autoAlpha: 1 })
+          .fromTo(
+            ourVisionTextRef.current,
+            { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
+            {
+              left: leftOur,
+              top: topOur,
+              xPercent: -50,
+              yPercent: -50,
+              duration: 2.5,
+              // delay: 1,
+            }
+          )
+          .fromTo(
+            visionTextRef.current,
+            { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
+            {
+              right: rightVision,
+              top: topVision,
+              xPercent: -50,
+              yPercent: -50,
+              duration: 2.5,
+            },
+            '<'
+          )
       }
     )
-
-   
 
     return () => {
       tl.kill()
@@ -340,7 +378,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
       .fromTo(
         // Rotate the Background
         bgRef.current,
-        { rotate: -45, left: '6%' },
+        { rotate: -42, left: '6%' },
         { rotate: 12, duration: 1, left: '3%' },
         '<'
       )
@@ -435,7 +473,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
           left: '3%',
         },
         {
-          rotate: -45,
+          rotate: -42,
           duration: 1,
           left: '6%',
         },
@@ -655,8 +693,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                   <Image
                     src={horizenLogo.src}
                     alt="Horizen Labs"
-                    width={240}
-                    height={95}
+                    layout="fill"
                     objectFit="contain"
                   />
                 </div>
@@ -745,7 +782,9 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
                       onClick={() => {
-                        router.push('https://www.linkedin.com/in/jonathanteplitsky/')
+                        router.push(
+                          'https://www.linkedin.com/in/jonathanteplitsky/'
+                        )
                       }}
                     >
                       <svg
@@ -792,7 +831,9 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
                       onClick={() => {
-                        router.push('https://www.linkedin.com/in/nutchara-lunawong-954183190/')
+                        router.push(
+                          'https://www.linkedin.com/in/nutchara-lunawong-954183190/'
+                        )
                       }}
                     >
                       <svg
@@ -840,9 +881,10 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
                       onClick={() => {
-                        router.push('https://www.linkedin.com/in/robert-viglione-2780634/')
+                        router.push(
+                          'https://www.linkedin.com/in/robert-viglione-2780634/'
+                        )
                       }}
-                      
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -940,7 +982,9 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
                       onClick={() => {
-                        router.push('https://www.linkedin.com/in/dean-steinbeck/')
+                        router.push(
+                          'https://www.linkedin.com/in/dean-steinbeck/'
+                        )
                       }}
                     >
                       <svg
@@ -988,7 +1032,9 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
                       onClick={() => {
-                        router.push('https://www.linkedin.com/in/rosario-pabst/')
+                        router.push(
+                          'https://www.linkedin.com/in/rosario-pabst/'
+                        )
                       }}
                     >
                       <svg
