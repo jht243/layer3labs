@@ -27,6 +27,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/app/store'
 import { setReloadAnimation } from '@/app/slices/commonSlice'
 import { useDispatch } from 'react-redux'
+import Link from 'next/link'
 
 interface PageProps {
   loaded: boolean
@@ -736,14 +737,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     JONATHAN TEPLITSKY
-                    <a
+                    <Link
                       href="https://www.linkedin.com/in/jonathanteplitsky/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      passHref={true}
+                      rel="noopener noreferrer" target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -754,7 +755,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </a>
+                    </Link>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -783,14 +784,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     MAY LUNAWONG
-                    <a
+                    <Link
                       href="https://www.linkedin.com/in/nutchara-lunawong-954183190/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      passHref={true}
+                      rel="noopener noreferrer" target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -801,7 +802,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </a>
+                    </Link>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -831,14 +832,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     ROBERT VIGLIONE
-                    <a
+                    <Link
                       href="https://www.linkedin.com/in/robert-viglione-2780634/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      passHref={true}
+                      rel="noopener noreferrer" target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -849,7 +850,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </a>
+                    </Link>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -881,14 +882,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     LIAT AARONSON
-                    <a
+                    <Link
                       href="https://www.linkedin.com/in/liataaronson/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener noreferrer" target="_blank"
+                      passHref={true}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -899,7 +900,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </a>
+                    </Link>
                   </h2>
 
                   <div
@@ -930,14 +931,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     DEAN STEINBECK
-                    <a
+                    <Link
                       href="https://www.linkedin.com/in/dean-steinbeck/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener noreferrer" target="_blank"
+                      passHref={true}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -948,7 +949,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </a>
+                    </Link>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -978,14 +979,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     ROSARIO PABST
-                    <a
+                    <Link
                       href="https://www.linkedin.com/in/rosario-pabst/"
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      passHref={true}
+                      rel="noopener noreferrer" target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -996,7 +997,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </a>
+                    </Link>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
