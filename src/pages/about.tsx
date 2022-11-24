@@ -10,6 +10,7 @@ import React, {
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import cx from 'classnames'
+import { useRouter } from 'next/router'
 
 import { NavLink } from '@/components/ui/NavLink'
 import Layout from '@/layouts/index'
@@ -35,6 +36,7 @@ interface PageProps {
 
 const About: NextPage<PageProps> = ({ loaded }) => {
   gsap.registerPlugin(ScrollTrigger)
+  const router = useRouter()
 
   const aboutUsContainer = useRef(null)
   const bgRef = useRef(null)
@@ -55,7 +57,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
   const teamMemberTitleRef = useRef<HTMLDivElement[]>([])
   const teamMemberSubTitleRef = useRef<HTMLDivElement[]>([])
   const teamMemberDescriptionRef = useRef<HTMLDivElement[]>([])
-  const teamMemberSocialRef = useRef<HTMLAnchorElement[]>([])
+  const teamMemberSocialRef = useRef<HTMLDivElement[]>([])
 
   const partnersRef = useRef(null)
 
@@ -737,14 +739,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     JONATHAN TEPLITSKY
-                    <Link
-                      href="https://www.linkedin.com/in/jonathanteplitsky/"
+                    <div
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      passHref={true}
-                      rel="noopener noreferrer" target="_blank"
+                      onClick={() => {
+                        router.push('https://www.linkedin.com/in/jonathanteplitsky/')
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -755,7 +757,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </Link>
+                    </div>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -784,14 +786,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     MAY LUNAWONG
-                    <Link
-                      href="https://www.linkedin.com/in/nutchara-lunawong-954183190/"
+                    <div
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      passHref={true}
-                      rel="noopener noreferrer" target="_blank"
+                      onClick={() => {
+                        router.push('https://www.linkedin.com/in/nutchara-lunawong-954183190/')
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -802,7 +804,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </Link>
+                    </div>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -832,14 +834,15 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     ROBERT VIGLIONE
-                    <Link
-                      href="https://www.linkedin.com/in/robert-viglione-2780634/"
+                    <div
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      passHref={true}
-                      rel="noopener noreferrer" target="_blank"
+                      onClick={() => {
+                        router.push('https://www.linkedin.com/in/robert-viglione-2780634/')
+                      }}
+                      
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -850,7 +853,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </Link>
+                    </div>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -882,14 +885,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     LIAT AARONSON
-                    <Link
-                      href="https://www.linkedin.com/in/liataaronson/"
+                    <div
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      rel="noopener noreferrer" target="_blank"
-                      passHref={true}
+                      onClick={() => {
+                        router.push('https://www.linkedin.com/in/liataaronson/')
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -900,7 +903,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </Link>
+                    </div>
                   </h2>
 
                   <div
@@ -931,14 +934,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     DEAN STEINBECK
-                    <Link
-                      href="https://www.linkedin.com/in/dean-steinbeck/"
+                    <div
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      rel="noopener noreferrer" target="_blank"
-                      passHref={true}
+                      onClick={() => {
+                        router.push('https://www.linkedin.com/in/dean-steinbeck/')
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -949,7 +952,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </Link>
+                    </div>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}
@@ -979,14 +982,14 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     ROSARIO PABST
-                    <Link
-                      href="https://www.linkedin.com/in/rosario-pabst/"
+                    <div
                       className={styles['team-section__social']}
                       ref={(ref) => {
                         if (ref) teamMemberSocialRef.current[3] = ref
                       }}
-                      passHref={true}
-                      rel="noopener noreferrer" target="_blank"
+                      onClick={() => {
+                        router.push('https://www.linkedin.com/in/rosario-pabst/')
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -997,7 +1000,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
                       >
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                    </Link>
+                    </div>
                   </h2>
                   <div
                     className={styles['team-section__subtitle']}

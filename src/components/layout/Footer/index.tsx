@@ -17,9 +17,8 @@ const Footer: FC = () => {
           INSTAGRAM
         </a>
       </div>
-      <div>
+      <div className={styles['footer__logo']}>
         <Image
-          className={styles['footer__logo']}
           src="/logo.svg"
           alt="Layer 3"
           height={30}
