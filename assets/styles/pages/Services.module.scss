@@ -2,7 +2,7 @@
 @import 'assets/styles/helpers/index';
 
 .services-page {
-  height: calc(var(--vh) - 100px);
+  height: calc(var(--vh) - 65px);
   opacity: 0;
   padding-left: $nav_link_width * 2 + $gap_padding;
   padding-right: $nav_link_width + $gap_padding;
@@ -30,14 +30,22 @@
   }
 
   &__bg {
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 0;
+    left: 13%;
     z-index: -1;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
+    height: var(--vh);
+    width: 76vw;
+    // background-repeat: no-repeat;
     background-position: center;
+
+    @include xl {
+      left: 14%;
+    }
+
+    @include md {
+      left: 15.3%;
+    }
 
     @include sm {
       left: -50vw;
@@ -46,20 +54,21 @@
   }
 
   &__back {
-    position: fixed;
-    left: $nav_link_width * 2 + $gap_padding;
+    position: absolute;
+    left: $gap_padding;
     top: 24px;
     z-index: 99;
 
     @include sm {
-      top: -10px;
+      top: 40px;
+      left: 0;
     }
   }
 
   &__next {
-    position: fixed;
-    left: $nav_link_width * 2 + $gap_padding;
-    bottom: 95px;
+    position: absolute;
+    left: $gap_padding;
+    bottom: 27px;
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
@@ -77,7 +86,7 @@
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       @include xl {
@@ -124,7 +133,6 @@
     }
   }
 
-
   &__process-title {
     position: absolute;
     top: 0;
@@ -143,7 +151,7 @@
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       @include xl {
@@ -153,13 +161,17 @@
 
       @include md {
         font-size: 40px;
+        margin-left: 30px;
       }
 
       @include sm {
         font-size: 36px;
+        margin-top: 0;
+        margin-left: 10px;
       }
 
       @include xs {
+        margin-top: 10px;
         font-size: 30px;
       }
 
@@ -169,18 +181,10 @@
           top: 10%;
           transform: translate(-50%, -50%);
         }
-
-        //&:last-child {
-          //top: 95%;
-          //left: auto !important;
-          //right: -10% !important;
-          //transform: translate(0, -50%);
-        //}
       }
     }
   }
 }
-
 
 .benefits-section {
   position: absolute;
@@ -191,36 +195,20 @@
 
   display: flex;
   justify-content: center;
-  height: 68%;
+  height: 95vh;
   width: 100%;
   margin: auto;
-  margin-top: 100px;
-  max-width: calc(100 / 1920 * 1200%);
+  max-width: calc(100 / 1440 * 1200%);
 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
     display: none;
   }
 
-  @include xl {
-    max-width: none;
-  }
-
-  @include md {
-    height: 70%;
-    display: block;
-    margin-top: 120px;
-  }
-
-  @include sm {
-    margin-top: 15vh;
-  }
-
   &__inner {
     margin: auto;
-    padding: 40px 0;
 
     @include sm {
       padding: 0;
@@ -232,13 +220,14 @@
     align-items: flex-start;
     justify-content: space-between;
     width: 100%;
-
-    @include md {
-      display: block;
-    }
+    margin-bottom: 48px;
+    // height: 128px;
+    // @include md {
+    //   display: block;
+    // }
 
     & + & {
-      margin-top: 48px;
+      margin-top: 32px;
 
       @include xs {
         margin-top: 30px;
@@ -254,38 +243,44 @@
       max-width: 70vw;
     }
 
-    &:first-child {
-      margin-right: 44px;
+    &:nth-child(2) {
+      margin-left: 16px;
     }
   }
 
   &__title {
-    font-size: 40px;
-    line-height: 1.2;
+    font-size: 2.5rem;
+    // line-height: 1.2;
     color: #272822;
 
     @include xl {
-      font-size: 36px;
+      font-size: 100vw * 36 / 1680;
     }
 
     @include sm {
       margin-bottom: 8px;
       font-size: 24px;
     }
+
+    @include xs {
+      font-size: 1.2rem;
+    }
   }
 
   &__text {
-    max-width: 650px;
-    font-size: 20px;
+    max-width: 690px;
+    font-size: 1.2rem;
     line-height: 1.2;
     color: #272822;
 
+    @include md {
+      font-size: 100vw * 22 / 1680;
+    }
     @include sm {
       font-size: 14px;
     }
   }
 }
-
 
 .process-section {
   position: absolute;
@@ -296,27 +291,17 @@
 
   display: flex;
   justify-content: center;
-  height: 70%;
+  height: 90vh;
+  align-items: center;
   margin: auto;
-  margin-top: 100px;
+
   width: calc(100 / 1920 * 1200%);
 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  @include xl {
-    display: block;
-    margin-bottom: 200px;
-    height: 70%;
-    margin-top: 120px;
-  }
-
-  @include sm {
-    margin-top: 15vh;
   }
 
   @include xs {
@@ -326,7 +311,6 @@
   &__inner {
     width: 100%;
     margin: auto;
-    padding: 40px 0;
 
     @include sm {
       padding: 0;
@@ -334,14 +318,14 @@
   }
 
   &__block {
-    max-width: 635px;
+    max-width: 690px;
 
     @include sm {
       max-width: 50vw;
     }
 
     & + & {
-      margin-top: 69px;
+      margin-top: 50px;
       @include xs {
         margin-top: 30px;
       }
@@ -349,9 +333,11 @@
 
     &:nth-child(even) {
       margin-left: auto;
+      @include xl {
+        margin-left: 29%;
+      }
     }
   }
-
 
   &__note {
     margin-bottom: 17px;
@@ -372,19 +358,14 @@
 
   &__title {
     position: relative;
-    font-size: 40px;
+    font-size: 2.25rem;
     line-height: 1.2;
     color: #272822;
     opacity: 0;
 
-    @include xl {
-      font-size: 36px;
+    @include lg {
+      font-size: 2rem;
     }
-
-    @include md {
-      font-size: 24px;
-    }
-
     @include sm {
       padding-left: 30px;
     }
@@ -404,7 +385,6 @@
     }
   }
 }
-
 
 @keyframes bounce {
   70% {

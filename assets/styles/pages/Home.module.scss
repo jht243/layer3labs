@@ -2,11 +2,10 @@
 @import 'assets/styles/helpers/index';
 
 .home-page {
-  min-height: 100vh;
+  height: calc(var(--vh) - 65px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 134px;
   padding-left: 68px;
   opacity: 0;
   //padding-left: $nav_link_width + $gap_padding;
@@ -31,12 +30,12 @@
 
   &__notes {
     max-width: 1285px;
-    margin-bottom: 41px;
     padding-right: $nav_link_width * 3 + $gap_padding;
     font-weight: 400;
     font-size: 40px;
     line-height: 48px;
     color: #272822;
+    padding-bottom: 20px;
 
     @include r(1600) {
       font-size: 36px;
@@ -89,7 +88,7 @@
   justify-content: center;
   width: 100%;
   height: 144px;
-  padding: 43px 1.8vw 0;
+  padding: 43px 1.8vw 0 0;
 
   @include sm {
     padding: 0;

@@ -2,12 +2,13 @@
 @import 'assets/styles/helpers/index';
 
 .about-page {
-  height: calc(var(--vh) - 100px);
+  height: calc(var(--vh) - 65px);
   opacity: 0;
   padding-left: $nav_link_width + $gap_padding;
   padding-right: $nav_link_width * 2 + $gap_padding;
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
+  position: relative;
 
   @include sm {
     padding-left: 20px;
@@ -30,43 +31,48 @@
   }
 
   &__bg {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+    top: 4%;
+    left: 3%;
     z-index: -1;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    @include sm {
-      left: -50vw;
-      width: 200vw;
+    height: var(--vh);
+    width: 88vw;
+    max-width: 1689px;
+    transform: rotate(12deg);
+    @include md {
+      position: absolute;
+      top: 3%;
+      z-index: -1;
+      height: var(--vh);
+      width: 87vw;
+      max-width: 1689px;
+      transform: rotate(16deg);
     }
   }
 
   &__back {
-    position: fixed;
-    left: $nav_link_width + $gap_padding;
+    position: absolute;
+    left: $gap_padding;
     top: 24px;
     z-index: 99;
 
     @include sm {
-      top: -10px;
+      top: -40px;
+      left: 0;
     }
   }
 
   &__next {
-    position: fixed;
-    left: 5vw;
-    bottom: 95px;
+    position: absolute;
+    left: $gap_padding;
+    bottom: 27px;
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
 
-    @include xl {
-      left: 100px;
-    }
+    // @include xl {
+    //   left: 100px;
+    // }
 
     @include sm {
       bottom: 50px;
@@ -74,16 +80,15 @@
     }
   }
 
-
   &__vision,
   &__team-title {
     span {
       display: block;
-      position: fixed;
+      position: absolute;
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       opacity: 0;
@@ -100,17 +105,23 @@
 
       @include sm {
         font-size: 36px;
-        margin-top: 20px;
+        margin-top: 0;
         margin-left: 10px;
       }
 
       @include xs {
+        margin-top: 0px;
         font-size: 30px;
+      }
+      &:first-child {
+        @include xs {
+          // margin-top: -35px;
+        }
       }
 
       &:last-child {
         @include sm {
-          margin-top: 8vh;
+          // margin-top: 4vh;
           margin-right: -20px;
         }
       }
@@ -127,7 +138,6 @@
     align-items: center;
     justify-content: center;
   }
-
 
   &__title {
     position: fixed;
@@ -174,28 +184,29 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding-top: 5vh;
+    padding-top: 60px;
     pointer-events: none;
 
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 
     &::-webkit-scrollbar {
       display: none;
     }
 
     opacity: 0;
-    @include xl {
-      margin-top: 100px;
-    }
 
     @include sm {
       margin-top: 12vh;
       padding-top: 0;
       height: 88%;
     }
+    @include xs {
+      margin-top: 12vh;
+      padding-top: 0;
+      height: 100%;
+    }
   }
-
 
   &__partners-title {
     width: 100%;
@@ -210,7 +221,7 @@
       @include ff-medium;
       font-size: 60px;
       line-height: 72px;
-      color: #2B2E34;
+      color: #2b2e34;
       text-transform: uppercase;
 
       @include xl {
@@ -245,30 +256,122 @@
     }
   }
 
-
   &__partners {
     position: absolute;
     left: 0;
-    bottom: 14vh;
+    // bottom: 30vh;
     width: 100%;
     display: flex;
     justify-content: center;
     height: auto;
+    margin-top: 200px ;
 
     opacity: 0;
     transform: translateY(100px);
     pointer-events: none;
     z-index: -1;
+    // padding-top: 50vh;
+    // @media screen and (max-width: '768px') {
+    //   padding-top: 35vh;
+    // }
+    // @include xl {
+    //   // bottom: 28vh;
+    // }
 
-    @include xl {
-      bottom: 28vh;
+    // @include md{
+    //   bottom: 25vh ;
+    // }
+
+    // @include sm {
+    //   bottom: 12vh ;
+    // }
+
+  }
+  &__partners-images-div {
+    padding: 0 20px;
+    position: relative;
+    display: flex;
+    &:nth-child(1) {
+      width: 240px;
+      height: 95px;
+      @include md{
+        width: 200px;
+        height: 95px;
+      }
+      @include sm{
+        width: 150px;
+        height: 95px;
+      }
+      @include xs{
+        width: 100px;
+        height: 85px;
+      }
     }
-
-    @include sm {
-      bottom: 12vh;
+    &:nth-child(2) {
+      width: 160px;
+      height: 111px;
+      @include md{
+        width: 100px;
+        height: 111px;
+      }
+      @include sm{
+        width: 80px;
+        height: 91px;
+      }
+      @include xs{
+        width: 70px;
+        height: 81px;
+      }
+    }
+    &:nth-child(3) {
+      width: 195px;
+      height: 92px;
+      @include md{
+        width: 150px;
+        height: 92px;
+      }
+      @include sm{
+        width: 110px;
+        height: 92px;
+      }
+      @include xs{
+        width: 100px;
+        height: 82px;
+      }
+    }
+    &:nth-child(4) {
+      width: 175px;
+      height: 125px;
+      @include md{
+        width: 120px;
+        height: 125px;
+      }
+      @include sm{
+        width: 100px;
+        height: 115px;
+      }
+      @include xs{
+        width: 90px;
+        height: 105px;
+      }
+    }
+    &:nth-child(5) {
+      width: 208px;
+      height: 88px;
+      @include md{
+        width: 170px;
+        height: 88px;
+      }
+      @include sm{
+        width: 150px;
+        height: 80px;
+      }
+      @include xs{
+        width: 120px;
+        height: 70px;
+      }
     }
   }
-
   &__partners-images {
     display: flex;
     align-items: center;
@@ -276,111 +379,169 @@
     flex-wrap: wrap;
     margin: auto;
 
-
     img {
       display: block;
       margin: 30px;
       max-height: 10vh;
 
+      @include xl {
+        margin-bottom: 0;
+        max-height: 8vh;
+        object-fit: cover;
+      }
+
       @include md {
         max-width: 25vw;
         max-height: 8vh;
+        margin-bottom: 0px;
       }
 
       @include xs {
         max-width: 25vw;
         max-height: 8vh;
-        object-fit: cover;
+        // object-fit: cover;
         margin: 10px;
       }
     }
   }
 }
 
-
 .team-section {
   display: flex;
   justify-content: center;
-  height: 100%;
-  margin: auto;
-
-  @include xl {
-    display: block;
-    margin-bottom: 200px;
-    height: auto;
+  overflow: hidden;
+  height: calc(80vh - 60px);
+  width: 90%;
+  @include sm {
+    height: calc(60vh - 60px);
   }
-
+  @include xs {
+    flex-direction: column;
+    height: calc(70vh - 60px);
+  }
+  @include xl {
+    width: 80%;
+    height: calc(80vh - 175px);
+  }
+  @include md {
+    width: 75%;
+    height: calc(80vh - 150px);
+  }
   &__col {
-    width: calc(100 / 1920 * 528%);
-    margin: auto 40px;
+    width: calc(100 / 1920 * 640%);
+    margin: 0px 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
     @include xl {
       width: 100%;
       max-width: 70vw;
-      margin-bottom: 40px;
     }
     @include sm {
       max-width: none;
-      margin: auto auto 37px;
+      margin: 5px auto;
     }
   }
 
   &__block {
+    height: 200px;
+
+    @include sm {
+      height: auto;
+    }
+
     & + & {
-      margin-top: 56px;
+      margin-top: 10px;
       @include sm {
-        margin-top: 37px;
+        margin-top: 12px;
       }
     }
   }
 
   &__title {
     @include ff-medium;
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 100vw * 26 / 1680;
+    // line-height: 100vw * 26 / 1680;
+    line-height: 3rem;
     color: #272823;
-
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    gap: 20px;
     @include sm {
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 100vw * 30 / 1680;
+      line-height: 100vw * 40 / 1680;
+    }
+    @include xs {
+      font-size: 100vw * 50 / 1680;
+      line-height: 100vw * 60 / 1680;
+    }
+    @include md {
+      font-size: 100vw * 35 / 1680;
+      line-height: 100vw * 45 / 1680;
     }
   }
 
   &__subtitle {
-    margin-bottom: 26px;
-    font-size: 40px;
-    line-height: 48px;
+    margin-bottom: 100vw * 12 / 1680;
+    font-size: 100vw * 26 / 1680;
+    // line-height: 100vw * 26 / 1680;
+    line-height: 1.5rem;
     color: #272823;
+    font-weight: 300;
     @include sm {
       margin-bottom: 10px;
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 100vw * 28 / 1680;
+      line-height: 100vw * 28 / 1680;
+    }
+    @include xs {
+      margin-bottom: 5px;
+      font-size: 100vw * 40 / 1680;
+      line-height: 100vw * 50 / 1680;
     }
   }
 
   &__description {
-    margin-bottom: 28px;
-    font-size: 20px;
-    line-height: 24px;
+    margin-bottom: 100vw * 12 / 1680;
+    font-size: 100vw * 16 / 1680;
+    // line-height: 100vw * 16 / 1680;
+    line-height: 1.5rem;
     color: #272823;
     @include sm {
-      margin-bottom: 13px;
-      font-size: 14px;
-      line-height: 17px;
+      font-size: 100vw * 16 / 1680;
+    }
+    @include xs {
+      font-size: 100vw * 30 / 1680;
+      line-height: 100vw * 40 / 1680;
+    }
+    @include md {
+      font-size: 100vw * 20 / 1680;
+      line-height: 100vw * 28 / 1680;
     }
   }
 
   &__social {
     display: block;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 100vw * 18 / 1680;
+    line-height: 100vw * 22 / 1680;
     color: #272822;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    // & svg {
+    //   width: 18 !important;
+    //   height: 18 !important;
+    // }
 
     @include sm {
-      font-size: 14px;
-      line-height: 17px;
+      font-size: 100vw * 20 / 1680;
+    }
+    @include xs {
+      font-size: 100vw * 30 / 1680;
     }
 
     &:hover {
@@ -393,11 +554,10 @@
 
     span {
       display: inline-block;
-      transition: transform .2s ease;
+      transition: transform 0.2s ease;
     }
   }
 }
-
 
 @keyframes bounce {
   70% {

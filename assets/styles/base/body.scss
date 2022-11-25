@@ -1,8 +1,15 @@
 body {
   font-family: 'Moderat Regular', Helvetica, Arial, sans-serif;
   overscroll-behavior-y: none;
+  background-color: #f4f5f4;
 
   &.is-disabled {
     pointer-events: none;
+  }
+  .container-new {
+    max-width: 1920px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
   }
 }
