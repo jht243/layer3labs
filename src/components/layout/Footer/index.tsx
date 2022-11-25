@@ -13,7 +13,7 @@ const Footer: FC = () => {
         <a href="https://www.linkedin.com/company/layer3labs/mycompany/?viewAsMember=true" target="_blank" rel="noopener noreferrer nofollow">
           LINKEDIN
         </a>
-        <a href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry">Contact Us</a>
+        <a href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry">CONTACT US</a>
         {/* <a href="#." target="_blank" rel="noopener nofollow">
           INSTAGRAM
         </a> */}
