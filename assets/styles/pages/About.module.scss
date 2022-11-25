@@ -264,15 +264,16 @@
     display: flex;
     justify-content: center;
     height: auto;
+    margin-top: 200px ;
 
     opacity: 0;
     transform: translateY(100px);
     pointer-events: none;
     z-index: -1;
-    padding-top: 50vh;
-    @media screen and (max-width: '768px') {
-      padding-top: 35vh;
-    }
+    // padding-top: 50vh;
+    // @media screen and (max-width: '768px') {
+    //   padding-top: 35vh;
+    // }
     // @include xl {
     //   // bottom: 28vh;
     // }

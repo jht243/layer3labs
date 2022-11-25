@@ -103,9 +103,10 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
 
         <div className={styles['home-page__notes']} ref={textRef}>
           <p>
-            We bridge the gap between the physical and digital. We use cutting
-            edge tech to catapult our clients into the future of Web3 consumer
-            experiences, from NFT Marketplaces to masterful Metaverses.
+            We are a software development and advisory firm that will help you
+            navigate the world of Web3. We start by getting to know you, your
+            brand, and your goals. Then we create amazing Web3 experiences, from
+            NFT Marketplaces to masterful Metaverses.
           </p>
           <NavLink href="/about">DISCOVER MORE ABOUT US</NavLink>
         </div>
