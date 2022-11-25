@@ -495,7 +495,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsTitleRef.current[0] = ref
                     }}
                   >
-                    RAPIDLY DEPLOYABLE TECH MODULES
+                    NFT MARKETPLACES
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -505,8 +505,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[0] = ref
                     }}
                   >
-                    NFT MARKETPLACES, TRADING PLATFORMS, TOKENIZATION, AND MUCH
-                    MORE IN JUST 30 DAYS.
+                    DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT CREDIT CARD PAYMENTS
                   </div>
                 </div>
               </div>
@@ -519,7 +518,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsTitleRef.current[1] = ref
                     }}
                   >
-                    CUSTOMIZABLE FRONT-END
+                    LOYALTY PROGRAMS
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -529,8 +528,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[1] = ref
                     }}
                   >
-                    THAT ALLOWS COMPANIES TO USE THEIR OWN BRANDING AND
-                    MARKETING MATERIALS.
+                    DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND RETENTION
                   </div>
                 </div>
               </div>
@@ -543,7 +541,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsTitleRef.current[2] = ref
                     }}
                   >
-                    MULTIPLE PAYMENT OPTIONS
+                    TRADING PLATFORMS
+
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -553,8 +552,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[2] = ref
                     }}
                   >
-                    INCLUDING WEB 3.0 WALLETS, CRYPTO PROCESSING COMPANIES, AND
-                    CREDIT CARDS.
+                    CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD DIGITIZED GOODS
                   </div>
                 </div>
               </div>
@@ -567,7 +565,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsTitleRef.current[3] = ref
                     }}
                   >
-                    BRIDGING PHYSICAL AND DIGITAL
+                    PLAY-TO-EARN GAMES
+
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -577,8 +576,33 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[3] = ref
                     }}
                   >
-                    BY ALLOWING USERS TO REDEEM NFTS FOR PHYSICAL PERKS AT
-                    RETAIL LOCATIONS.
+                    HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E
+                    GAMES BUILT IN UNITY
+                  </div>
+                </div>
+              </div>
+
+
+              <div className={styles['benefits-section__row']}>
+                <div className={styles['benefits-section__col']}>
+                  <div
+                    className={styles['benefits-section__title']}
+                    ref={(ref) => {
+                      if (ref) benefitsTitleRef.current[4] = ref
+                    }}
+                  >
+                    METAVERSE BUILDS
+                  </div>
+                </div>
+                <div className={styles['benefits-section__col']}>
+                  <div
+                    className={styles['benefits-section__text']}
+                    ref={(ref) => {
+                      if (ref) benefitsSubTitleRef.current[4] = ref
+                    }}
+                  >
+                    CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR
+                    BRAND'S VALUE PROPOSITION
                   </div>
                 </div>
               </div>
@@ -602,7 +626,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processNoteRef.current[0] = ref
                   }}
                 >
-                  DEPLOY <span>I</span>
+                  STUDY <span>I</span>
                 </div>
                 <div
                   className={styles['process-section__title']}
@@ -610,7 +634,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[0] = ref
                   }}
                 >
-                  WE DEPLOY YOUR SOFTWARE...
+                 WE STUDY YOUR UNIQUE BUSINESS REQUIREMENTS AND BUILD SOFTWARE TO FIT YOUR BUSINESS GOAL
                   <span>
                     <svg
                       width="3"
@@ -635,7 +659,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processNoteRef.current[1] = ref
                   }}
                 >
-                  MANAGE <span>II</span>
+                  DEPLOY <span>II</span>
                 </div>
                 <div
                   className={styles['process-section__title']}
@@ -643,7 +667,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[1] = ref
                   }}
                 >
-                  WE MANAGE THE DAY-TO-DAY BACKEND OPERATIONS
+                  WE DEPLOY YOUR SOFTWARE
                   <span>
                     <svg
                       width="7"
@@ -672,7 +696,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processNoteRef.current[2] = ref
                   }}
                 >
-                  CUSTOMIZE <span>III</span>
+                  MANAGE <span>III</span>
                 </div>
                 <div
                   className={styles['process-section__title']}
@@ -680,8 +704,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[2] = ref
                   }}
                 >
-                  WE CAN CUSTOMIZE YOUR MARKETPLACE TO MEET YOUR BUSINESS’S
-                  UNIQUE NEEDS
+                  WE MANAGE THE DAY-TO-DAY BAKEND OPERATIONS 
                   <span>
                     <svg
                       width="10"

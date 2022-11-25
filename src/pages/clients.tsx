@@ -139,7 +139,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         // Show "OUR" & "CLIENT" text wrap div
         ourClientsTitleRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5 }
+        { opacity: 1, duration: 0.5},
+        '<+=0.5'
       )
       .fromTo(
         // show our text
@@ -158,7 +159,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
-          delay: 1,
+          delay: 0.2,
         }
       )
       .fromTo(
