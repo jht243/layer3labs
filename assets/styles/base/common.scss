@@ -119,3 +119,10 @@ img {
     font-size: 1.7rem;
   }
 }
+
+.ticker-items{
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}

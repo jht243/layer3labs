@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { gsap } from 'gsap'
+import { gsap, Power0 } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import cx from 'classnames'
 import { useRouter } from 'next/router'
@@ -59,6 +59,7 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
   const teamTitleMainRef = useRef(null)
   const teamTitle1Ref = useRef(null)
   const teamTitle2Ref = useRef(null)
+  const leftToRightScroll = useRef<any>([])
 
   const teamSectionRef = useRef() as MutableRefObject<HTMLDivElement>
   const teamMemberTitleRef = useRef<HTMLDivElement[]>([])
@@ -363,9 +364,19 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
   const onPrevSection = () => {
     const tl = gsap.timeline()
 
+    console.log('===>', leftToRightScroll)
+
     // Hide Team Section
     tl.set(titlesRef.current, { clearProps: 'all' })
       .set(titlesRef.current, { autoAlpha: 0 })
+      .set('.ticker-items', { opacity: 0 })
+      .to('.ticker-items', {
+        duration: 22,
+        xPercent: -85,
+        ease:  Power0.easeNone,
+        repeat: -1,
+        opacity: 0,
+      })
       .fromTo(navNextButtonRef.current, { opacity: 0 }, { opacity: 1 }, '<')
       .fromTo(
         // Hide the Team Section
@@ -423,6 +434,29 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
 
   const onNextSection = () => {
     const tl = gsap.timeline()
+    let tickerWidth = leftToRightScroll?.current && leftToRightScroll?.current?.offsetWidth ?  leftToRightScroll?.current?.offsetWidth : 0
+
+    let new_html =
+      "<div class='ticker-items'>" +
+      leftToRightScroll?.current?.innerHTML +
+      '</div>'
+
+    if (leftToRightScroll?.current?.innerHTML) {
+      leftToRightScroll.current.innerHTML = new_html
+      leftToRightScroll.current.innerHTML += new_html
+      let tickerItems : any = document.querySelector('.ticker-items')
+      tickerWidth = tickerItems?.offsetWidth
+    }
+
+    let initDuration = tickerWidth / 50
+    // let target = leftToRightScroll?.current;
+    // let original_html = target?.innerHTML ;
+    // let new_html = "<div class='ticker-items'>" + original_html + "</div>";
+    // target.innerHTML = new_html;
+    // target.innerHTML += new_html;
+
+    // let tickerWidth = document.querySelector(".ticker-items")?.offsetWidth;
+    // let initDuration = tickerWidth / speed;
 
     tl.set(teamSectionRef.current, { clearProps: 'all' })
       .fromTo(navNextButtonRef.current, { opacity: 1 }, { opacity: 0 }, '<')
@@ -613,463 +647,502 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
-
       .set(ourVisionTextRef.current, { clearProps: 'all' })
       .set(visionTextRef.current, { clearProps: 'all' })
+      .set(leftToRightScroll.current, { opacity: 1 })
+      .set('.ticker-items', { opacity: 1 })
+      .to('.ticker-items', {
+        duration: initDuration,
+        xPercent: -85,
+        ease: Power0.easeNone,
+        repeat: -1,
+        opacity: 1,
+      })
   }
 
   return (
+    <div
+      className={cx(styles['about-page'], { [styles[`is-loaded`]]: loaded })}
+      ref={aboutUsContainer}
+    >
       <div
-        className={cx(styles['about-page'], { [styles[`is-loaded`]]: loaded })}
-        ref={aboutUsContainer}
+        className={styles['about-page__bg']}
+        // style={{ backgroundImage: `url(${purpleBlock.src})` }}
+        ref={bgRef}
       >
-        <div
-          className={styles['about-page__bg']}
-          // style={{ backgroundImage: `url(${purpleBlock.src})` }}
-          ref={bgRef}
-        >
-          <Image src={purpleBlock.src} alt="bg_about" layout="fill" />
-        </div>
-        <div className={styles['about-page__vision']}>
-          <span ref={ourVisionTextRef}>Our</span>
-          <span ref={visionTextRef}>vision</span>
-        </div>
-        <div className={styles['about-page__inner']}>
-          <div className={styles['about-page__next']} ref={navNextButtonRef}>
-            <svg
-              width="26"
-              height="30"
-              viewBox="0 0 26 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M23.28 15.28L25.76 17.76L13.56 29.6H13.16L0.96 17.76L3.4 15.28L11.52 23.36V-1.90735e-06H15.16V23.4L23.28 15.28Z"
-                fill="#272822"
-              />
-            </svg>
-          </div>
-
-          <div className="sections-wrapper" ref={titlesRef}>
-            <section className="section-title">
-              <div className="section-title__inner">
-                <h2 className="section-heading">
-                  <div>EMPOWERING PROGRESSIVE BRANDS TO</div>
-                  <div>BRIDGE THE GAP INTO WEB3</div>
-                </h2>
-              </div>
-            </section>
-
-            <section className="section-title">
-              <div className="section-title__inner">
-                <h2 className="section-heading">
-                  WE ARE WORLD-LEADING DEVELOPERS
-                </h2>
-              </div>
-            </section>
-
-            <section className="section-title">
-              <div className="section-title__inner">
-                <h2 className="section-heading">
-                  <div>BACKED BY THE LARGEST INVESTORS</div>
-                  <div>IN CRYPTO</div>
-                </h2>
-              </div>
-            </section>
-
-            <div
-              className={cx(styles['about-page__partners'])}
-              ref={partnersRef}
-            >
-              <div className={cx(styles['about-page__partners-images'])}>
-                <div
-                  ref={(ref) => {
-                    if (ref) logoRef.current[0] = ref
-                  }}
-                  className={cx(styles['about-page__partners-images-div'])}
-                >
-                  <Image
-                    src={horizenLogo.src}
-                    alt="Horizen Labs"
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                </div>
-                <div
-                  ref={(ref) => {
-                    if (ref) logoRef.current[1] = ref
-                  }}
-                  className={cx(styles['about-page__partners-images-div'])}
-                >
-                  <Image
-                    src={dcgLogo.src}
-                    alt="Digital Currency Group"
-                    width={160}
-                    height={111}
-                    objectFit="contain"
-                  />
-                </div>
-                <div
-                  ref={(ref) => {
-                    if (ref) logoRef.current[2] = ref
-                  }}
-                  className={cx(styles['about-page__partners-images-div'])}
-                >
-                  <Image
-                    src={polygonLogo.src}
-                    alt="Polygon"
-                    width={195}
-                    height={92}
-                    objectFit="contain"
-                  />
-                </div>
-                <div
-                  ref={(ref) => {
-                    if (ref) logoRef.current[3] = ref
-                  }}
-                  className={cx(styles['about-page__partners-images-div'])}
-                >
-                  <Image
-                    src={horizen2Logo.src}
-                    alt="Horizen"
-                    width={175}
-                    height={125}
-                    objectFit="contain"
-                  />
-                </div>
-                <div
-                  ref={(ref) => {
-                    if (ref) logoRef.current[4] = ref
-                  }}
-                  className={cx(styles['about-page__partners-images-div'])}
-                >
-                  <Image
-                    src={polygon2Logo.src}
-                    alt="Polygon Studios"
-                    width={208}
-                    height={88}
-                    objectFit="contain"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={styles['about-page__team-title']}
-            ref={teamTitleMainRef}
+        <Image src={purpleBlock.src} alt="bg_about" layout="fill" />
+      </div>
+      <div className={styles['about-page__vision']}>
+        <span ref={ourVisionTextRef}>Our</span>
+        <span ref={visionTextRef}>vision</span>
+      </div>
+      <div className={styles['about-page__inner']}>
+        <div className={styles['about-page__next']} ref={navNextButtonRef}>
+          <svg
+            width="26"
+            height="30"
+            viewBox="0 0 26 30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span ref={teamTitle1Ref}>Our</span>
-            <span ref={teamTitle2Ref}>Team</span>
+            <path
+              d="M23.28 15.28L25.76 17.76L13.56 29.6H13.16L0.96 17.76L3.4 15.28L11.52 23.36V-1.90735e-06H15.16V23.4L23.28 15.28Z"
+              fill="#272822"
+            />
+          </svg>
+        </div>
+
+        <div className="sections-wrapper" ref={titlesRef}>
+          <section className="section-title">
+            <div className="section-title__inner">
+              <h2 className="section-heading">
+                <div>EMPOWERING PROGRESSIVE BRANDS TO</div>
+                <div>BRIDGE THE GAP INTO WEB3</div>
+              </h2>
+            </div>
+          </section>
+
+          <section className="section-title">
+            <div className="section-title__inner">
+              <h2 className="section-heading">
+                WE ARE WORLD-LEADING DEVELOPERS
+              </h2>
+            </div>
+          </section>
+
+          <section className="section-title">
+            <div className="section-title__inner">
+              <h2 className="section-heading">
+                <div>BACKED BY THE LARGEST INVESTORS</div>
+                <div>IN CRYPTO</div>
+              </h2>
+            </div>
+          </section>
+
+          <div className={cx(styles['about-page__partners'])} ref={partnersRef}>
+            <div className={cx(styles['about-page__partners-images'])}>
+              <div
+                ref={(ref) => {
+                  if (ref) logoRef.current[0] = ref
+                }}
+                className={cx(styles['about-page__partners-images-div'])}
+              >
+                <Image
+                  src={horizenLogo.src}
+                  alt="Horizen Labs"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+              <div
+                ref={(ref) => {
+                  if (ref) logoRef.current[1] = ref
+                }}
+                className={cx(styles['about-page__partners-images-div'])}
+              >
+                <Image
+                  src={dcgLogo.src}
+                  alt="Digital Currency Group"
+                  width={160}
+                  height={111}
+                  objectFit="contain"
+                />
+              </div>
+              <div
+                ref={(ref) => {
+                  if (ref) logoRef.current[2] = ref
+                }}
+                className={cx(styles['about-page__partners-images-div'])}
+              >
+                <Image
+                  src={polygonLogo.src}
+                  alt="Polygon"
+                  width={195}
+                  height={92}
+                  objectFit="contain"
+                />
+              </div>
+              <div
+                ref={(ref) => {
+                  if (ref) logoRef.current[3] = ref
+                }}
+                className={cx(styles['about-page__partners-images-div'])}
+              >
+                <Image
+                  src={horizen2Logo.src}
+                  alt="Horizen"
+                  width={175}
+                  height={125}
+                  objectFit="contain"
+                />
+              </div>
+              <div
+                ref={(ref) => {
+                  if (ref) logoRef.current[4] = ref
+                }}
+                className={cx(styles['about-page__partners-images-div'])}
+              >
+                <Image
+                  src={polygon2Logo.src}
+                  alt="Polygon Studios"
+                  width={208}
+                  height={88}
+                  objectFit="contain"
+                />
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div className={cx(styles['about-page__team'])} ref={teamSectionRef}>
-            <div className={styles['team-section']}>
-              <div className={styles['team-section__col']}>
-                <div className={styles['team-section__block']}>
-                  <h2
-                    className={styles['team-section__title']}
+        <div
+          className={styles['about-page__team-title']}
+          ref={teamTitleMainRef}
+        >
+          <span ref={teamTitle1Ref}>Our</span>
+          <span ref={teamTitle2Ref}>Team</span>
+        </div>
+
+        <div className={cx(styles['about-page__team'])} ref={teamSectionRef}>
+          <div className={styles['team-section']}>
+            <div className={styles['team-section__col']}>
+              <div className={styles['team-section__block']}>
+                <h2
+                  className={styles['team-section__title']}
+                  ref={(ref) => {
+                    if (ref) teamMemberTitleRef.current[0] = ref
+                  }}
+                >
+                  JONATHAN TEPLITSKY
+                  <div
+                    className={styles['team-section__social']}
                     ref={(ref) => {
-                      if (ref) teamMemberTitleRef.current[0] = ref
+                      if (ref) teamMemberSocialRef.current[3] = ref
+                    }}
+                    onClick={() => {
+                      router.push(
+                        'https://www.linkedin.com/in/jonathanteplitsky/'
+                      )
                     }}
                   >
-                    JONATHAN TEPLITSKY
-                    <div
-                      className={styles['team-section__social']}
-                      ref={(ref) => {
-                        if (ref) teamMemberSocialRef.current[3] = ref
-                      }}
-                      onClick={() => {
-                        router.push(
-                          'https://www.linkedin.com/in/jonathanteplitsky/'
-                        )
-                      }}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      color="#fff000"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        color="#fff000"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </div>
-                  </h2>
-                  <div
-                    className={styles['team-section__subtitle']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSubTitleRef.current[0] = ref
-                    }}
-                  >
-                    CEO & TEAM LEAD
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
                   </div>
-                  <div
-                    className={styles['team-section__description']}
-                    ref={(ref) => {
-                      if (ref) teamMemberDescriptionRef.current[0] = ref
-                    }}
-                  >
-                    JONATHAN HOLDS AN MBA FROM HARVARD BUSINESS SCHOOL AND HAS
-                    10+ YEARS OF MARKETING EXPERIENCE.
-                  </div>
+                </h2>
+                <div
+                  className={styles['team-section__subtitle']}
+                  ref={(ref) => {
+                    if (ref) teamMemberSubTitleRef.current[0] = ref
+                  }}
+                >
+                  CEO & TEAM LEAD
                 </div>
-
-                <div className={styles['team-section__block']}>
-                  <h2
-                    className={styles['team-section__title']}
-                    ref={(ref) => {
-                      if (ref) teamMemberTitleRef.current[1] = ref
-                    }}
-                  >
-                    MAY LUNAWONG
-                    <div
-                      className={styles['team-section__social']}
-                      ref={(ref) => {
-                        if (ref) teamMemberSocialRef.current[3] = ref
-                      }}
-                      onClick={() => {
-                        router.push(
-                          'https://www.linkedin.com/in/nutchara-lunawong-954183190/'
-                        )
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        color="#fff000"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </div>
-                  </h2>
-                  <div
-                    className={styles['team-section__subtitle']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSubTitleRef.current[1] = ref
-                    }}
-                  >
-                    PRODUCT MANAGER
-                  </div>
-                  <div
-                    className={styles['team-section__description']}
-                    ref={(ref) => {
-                      if (ref) teamMemberDescriptionRef.current[1] = ref
-                    }}
-                  >
-                    MAY IS A PRODUCT MANAGER WITH A BACKGROUND IN PRODUCT
-                    MANAGEMENT OF TELECOMMUNICATION TECHNOLOGY FOR OVER 7+
-                    YEARS.
-                  </div>
-                </div>
-
-                <div className={styles['team-section__block']}>
-                  <h2
-                    className={styles['team-section__title']}
-                    ref={(ref) => {
-                      if (ref) teamMemberTitleRef.current[2] = ref
-                    }}
-                  >
-                    ROBERT VIGLIONE
-                    <div
-                      className={styles['team-section__social']}
-                      ref={(ref) => {
-                        if (ref) teamMemberSocialRef.current[3] = ref
-                      }}
-                      onClick={() => {
-                        router.push(
-                          'https://www.linkedin.com/in/robert-viglione-2780634/'
-                        )
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        color="#fff000"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </div>
-                  </h2>
-                  <div
-                    className={styles['team-section__subtitle']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSubTitleRef.current[2] = ref
-                    }}
-                  >
-                    COMPANY ADVISOR
-                  </div>
-                  <div
-                    className={styles['team-section__description']}
-                    ref={(ref) => {
-                      if (ref) teamMemberDescriptionRef.current[2] = ref
-                    }}
-                  >
-                    CEO AND CO-FOUNDER OF HORIZEN AND HORIZEN LABS. FORMER US
-                    AIR FORCE PHYSICIST AND MILITARY INTELLIGENCE. BA IN
-                    PHYSICS, MBA AND PHD IN FINANCE.
-                  </div>
+                <div
+                  className={styles['team-section__description']}
+                  ref={(ref) => {
+                    if (ref) teamMemberDescriptionRef.current[0] = ref
+                  }}
+                >
+                  JONATHAN HOLDS AN MBA FROM HARVARD BUSINESS SCHOOL AND HAS 10+
+                  YEARS OF MARKETING EXPERIENCE.
                 </div>
               </div>
 
-              <div className={styles['team-section__col']}>
-                <div className={styles['team-section__block']}>
-                  <h2
-                    className={styles['team-section__title']}
+              <div className={styles['team-section__block']}>
+                <h2
+                  className={styles['team-section__title']}
+                  ref={(ref) => {
+                    if (ref) teamMemberTitleRef.current[1] = ref
+                  }}
+                >
+                  MAY LUNAWONG
+                  <div
+                    className={styles['team-section__social']}
                     ref={(ref) => {
-                      if (ref) teamMemberTitleRef.current[3] = ref
+                      if (ref) teamMemberSocialRef.current[3] = ref
+                    }}
+                    onClick={() => {
+                      router.push(
+                        'https://www.linkedin.com/in/nutchara-lunawong-954183190/'
+                      )
                     }}
                   >
-                    LIAT AARONSON
-                    <div
-                      className={styles['team-section__social']}
-                      ref={(ref) => {
-                        if (ref) teamMemberSocialRef.current[3] = ref
-                      }}
-                      onClick={() => {
-                        router.push('https://www.linkedin.com/in/liataaronson/')
-                      }}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      color="#fff000"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        color="#fff000"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </div>
-                  </h2>
-
-                  <div
-                    className={styles['team-section__subtitle']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSubTitleRef.current[3] = ref
-                    }}
-                  >
-                    COMPANY ADVISOR
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
                   </div>
-                  <div
-                    className={styles['team-section__description']}
-                    ref={(ref) => {
-                      if (ref) teamMemberDescriptionRef.current[3] = ref
-                    }}
-                  >
-                    COO AT HORIZEN LABS, HIGH-GROWTH BLOCKCHAIN STARTUP.
-                    INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN
-                    ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.
-                  </div>
+                </h2>
+                <div
+                  className={styles['team-section__subtitle']}
+                  ref={(ref) => {
+                    if (ref) teamMemberSubTitleRef.current[1] = ref
+                  }}
+                >
+                  PRODUCT MANAGER
                 </div>
-
-                <div className={styles['team-section__block']}>
-                  <h2
-                    className={styles['team-section__title']}
-                    ref={(ref) => {
-                      if (ref) teamMemberTitleRef.current[5] = ref
-                    }}
-                  >
-                    DEAN STEINBECK
-                    <div
-                      className={styles['team-section__social']}
-                      ref={(ref) => {
-                        if (ref) teamMemberSocialRef.current[3] = ref
-                      }}
-                      onClick={() => {
-                        router.push(
-                          'https://www.linkedin.com/in/dean-steinbeck/'
-                        )
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        color="#fff000"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </div>
-                  </h2>
-                  <div
-                    className={styles['team-section__subtitle']}
-                    ref={(ref) => {
-                      if (ref) teamMemberSubTitleRef.current[5] = ref
-                    }}
-                  >
-                    COMPANY ADVISOR
-                  </div>
-                  <div
-                    className={styles['team-section__description']}
-                    ref={(ref) => {
-                      if (ref) teamMemberDescriptionRef.current[5] = ref
-                    }}
-                  >
-                    PRESIDENT AND GENERAL COUNSEL OF HORIZEN LABS. 15 YEARS
-                    REPRESENTING VC-BACKED SOFTWARE DEVELOPMENT COMPANIES WITH A
-                    FOCUS ON DATA.
-                  </div>
+                <div
+                  className={styles['team-section__description']}
+                  ref={(ref) => {
+                    if (ref) teamMemberDescriptionRef.current[1] = ref
+                  }}
+                >
+                  MAY IS A PRODUCT MANAGER WITH A BACKGROUND IN PRODUCT
+                  MANAGEMENT OF TELECOMMUNICATION TECHNOLOGY FOR OVER 7+ YEARS.
                 </div>
+              </div>
 
-                <div className={styles['team-section__block']}>
-                  <h2
-                    className={styles['team-section__title']}
+              <div className={styles['team-section__block']}>
+                <h2
+                  className={styles['team-section__title']}
+                  ref={(ref) => {
+                    if (ref) teamMemberTitleRef.current[2] = ref
+                  }}
+                >
+                  ROBERT VIGLIONE
+                  <div
+                    className={styles['team-section__social']}
                     ref={(ref) => {
-                      if (ref) teamMemberTitleRef.current[4] = ref
+                      if (ref) teamMemberSocialRef.current[3] = ref
+                    }}
+                    onClick={() => {
+                      router.push(
+                        'https://www.linkedin.com/in/robert-viglione-2780634/'
+                      )
                     }}
                   >
-                    ROSARIO PABST
-                    <div
-                      className={styles['team-section__social']}
-                      ref={(ref) => {
-                        if (ref) teamMemberSocialRef.current[3] = ref
-                      }}
-                      onClick={() => {
-                        router.push(
-                          'https://www.linkedin.com/in/rosario-pabst/'
-                        )
-                      }}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      color="#fff000"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        color="#fff000"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </div>
-                  </h2>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </div>
+                </h2>
+                <div
+                  className={styles['team-section__subtitle']}
+                  ref={(ref) => {
+                    if (ref) teamMemberSubTitleRef.current[2] = ref
+                  }}
+                >
+                  COMPANY ADVISOR
+                </div>
+                <div
+                  className={styles['team-section__description']}
+                  ref={(ref) => {
+                    if (ref) teamMemberDescriptionRef.current[2] = ref
+                  }}
+                >
+                  CEO AND CO-FOUNDER OF HORIZEN AND HORIZEN LABS. FORMER US AIR
+                  FORCE PHYSICIST AND MILITARY INTELLIGENCE. BA IN PHYSICS, MBA
+                  AND PHD IN FINANCE.
+                </div>
+              </div>
+            </div>
+
+            <div className={styles['team-section__col']}>
+              <div className={styles['team-section__block']}>
+                <h2
+                  className={styles['team-section__title']}
+                  ref={(ref) => {
+                    if (ref) teamMemberTitleRef.current[3] = ref
+                  }}
+                >
+                  LIAT AARONSON
                   <div
-                    className={styles['team-section__subtitle']}
+                    className={styles['team-section__social']}
                     ref={(ref) => {
-                      if (ref) teamMemberSubTitleRef.current[4] = ref
+                      if (ref) teamMemberSocialRef.current[3] = ref
+                    }}
+                    onClick={() => {
+                      router.push('https://www.linkedin.com/in/liataaronson/')
                     }}
                   >
-                    COMPANY ADVISOR
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      color="#fff000"
+                    >
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
                   </div>
+                </h2>
+
+                <div
+                  className={styles['team-section__subtitle']}
+                  ref={(ref) => {
+                    if (ref) teamMemberSubTitleRef.current[3] = ref
+                  }}
+                >
+                  COMPANY ADVISOR
+                </div>
+                <div
+                  className={styles['team-section__description']}
+                  ref={(ref) => {
+                    if (ref) teamMemberDescriptionRef.current[3] = ref
+                  }}
+                >
+                  COO AT HORIZEN LABS, HIGH-GROWTH BLOCKCHAIN STARTUP.
+                  INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN
+                  ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.
+                </div>
+              </div>
+
+              <div className={styles['team-section__block']}>
+                <h2
+                  className={styles['team-section__title']}
+                  ref={(ref) => {
+                    if (ref) teamMemberTitleRef.current[5] = ref
+                  }}
+                >
+                  DEAN STEINBECK
                   <div
-                    className={styles['team-section__description']}
+                    className={styles['team-section__social']}
                     ref={(ref) => {
-                      if (ref) teamMemberDescriptionRef.current[4] = ref
+                      if (ref) teamMemberSocialRef.current[3] = ref
+                    }}
+                    onClick={() => {
+                      router.push('https://www.linkedin.com/in/dean-steinbeck/')
                     }}
                   >
-                    SENIOR EXECUTIVE AT HORIZEN. OVER 10 YEARS IN SOFTWARE
-                    PROGRAM MANAGEMENT. BS IN PUBLIC ADMINISTRATION AND MS IN
-                    SYSTEMS ENGINEERING.
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      color="#fff000"
+                    >
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
                   </div>
+                </h2>
+                <div
+                  className={styles['team-section__subtitle']}
+                  ref={(ref) => {
+                    if (ref) teamMemberSubTitleRef.current[5] = ref
+                  }}
+                >
+                  COMPANY ADVISOR
+                </div>
+                <div
+                  className={styles['team-section__description']}
+                  ref={(ref) => {
+                    if (ref) teamMemberDescriptionRef.current[5] = ref
+                  }}
+                >
+                  PRESIDENT AND GENERAL COUNSEL OF HORIZEN LABS. 15 YEARS
+                  REPRESENTING VC-BACKED SOFTWARE DEVELOPMENT COMPANIES WITH A
+                  FOCUS ON DATA.
+                </div>
+              </div>
+
+              <div className={styles['team-section__block']}>
+                <h2
+                  className={styles['team-section__title']}
+                  ref={(ref) => {
+                    if (ref) teamMemberTitleRef.current[4] = ref
+                  }}
+                >
+                  ROSARIO PABST
+                  <div
+                    className={styles['team-section__social']}
+                    ref={(ref) => {
+                      if (ref) teamMemberSocialRef.current[3] = ref
+                    }}
+                    onClick={() => {
+                      router.push('https://www.linkedin.com/in/rosario-pabst/')
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      color="#fff000"
+                    >
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </div>
+                </h2>
+                <div
+                  className={styles['team-section__subtitle']}
+                  ref={(ref) => {
+                    if (ref) teamMemberSubTitleRef.current[4] = ref
+                  }}
+                >
+                  COMPANY ADVISOR
+                </div>
+                <div
+                  className={styles['team-section__description']}
+                  ref={(ref) => {
+                    if (ref) teamMemberDescriptionRef.current[4] = ref
+                  }}
+                >
+                  SENIOR EXECUTIVE AT HORIZEN. OVER 10 YEARS IN SOFTWARE PROGRAM
+                  MANAGEMENT. BS IN PUBLIC ADMINISTRATION AND MS IN SYSTEMS
+                  ENGINEERING.
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* <div className={cx(styles['about-page__headline'])}>
+          <div className={cx(styles['about-page__headline--content'])}>
+            <span className={cx(styles['about-page__headline--subhead'])}>IN THE PRESS</span>
+            <span className={cx(styles['about-page__headline--head'])}>A BETTER DEAL FOR GAME DEVELOPER</span>
+          </div>
+          <div  className={cx(styles['about-page__headline--content'])}>
+            <span className={cx(styles['about-page__headline--subhead'])}>IN THE PRESS</span>
+            <span  className={cx(styles['about-page__headline--head'])}>WHAT IS BLOCKCHAIN?</span>
+          </div>
+          <div className={cx(styles['about-page__headline--content'])}>
+            <span className={cx(styles['about-page__headline--subhead'])}>IN THE PRESS</span>
+            <span className={cx(styles['about-page__headline--head'])}>5 THINGS YOU NEED TO KNOW IN THE NFT INDUSTRY</span>
+          </div>
+        </div> */}
+
+        <div
+          className={cx(styles['about-page__headline'])}
+          ref={leftToRightScroll}
+        >
+          <div className={cx(styles['about-page__headline--subhead'])}>
+            IN THE PRESS
+          </div>
+          <div className={cx(styles['about-page__headline--head'])}>
+            A BETTER DEAL FOR GAME DEVELOPER
+          </div>
+          <div className={cx(styles['about-page__headline--subhead'])}>
+            IN THE PRESS
+          </div>
+          <div className={cx(styles['about-page__headline--head'])}>
+            WHAT IS BLOCKCHAIN?
+          </div>
+          {/* <div className={cx(styles['about-page__headline--subhead'])}>
+        IN THE PRESS
+        </div>
+        <div className={cx(styles['about-page__headline--head'])}>
+        5 THINGS YOU NEED TO KNOW IN THE NFT INDUSTRY
+        </div> */}
         </div>
       </div>
+    </div>
   )
 }
 
