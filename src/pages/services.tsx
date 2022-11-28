@@ -667,7 +667,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[1] = ref
                   }}
                 >
-                  WE DEPLOY YOUR SOFTWARE
+                  WE TEST AND DEPLOY YOUR SOFTWARE
                   <span>
                     <svg
                       width="7"
@@ -704,7 +704,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[2] = ref
                   }}
                 >
-                  WE MANAGE THE DAY-TO-DAY BAKEND OPERATIONS 
+                  WE MANAGE THE DAY-TO-DAY BACKEND OPERATIONS 
                   <span>
                     <svg
                       width="10"
