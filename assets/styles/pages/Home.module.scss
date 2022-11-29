@@ -22,6 +22,8 @@
 
   @include sm {
     padding: 100px 20px 47px;
+  height: calc(var(--vh) - 40px);
+
   }
 
   &.is-loaded {
