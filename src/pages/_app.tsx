@@ -13,6 +13,7 @@ import { sleep } from '@/app/utils/helpers'
 import Navigation from '@/components/Navigation'
 
 import '@/styles/globals.scss'
+import "swiper/css/bundle";
 
 interface ApplicationProps extends AppProps {}
 
