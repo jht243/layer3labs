@@ -9,12 +9,10 @@ img {
   @include sm {
     padding-bottom: 40px;
   }
-
 }
-
 .mobile-container{
   display: none;
-  // padding-bottom: 40px;
+  padding-bottom: 65px;
   @media screen and (max-width: '768px') {
     display: block
   }
@@ -22,7 +20,7 @@ img {
 }
 .desktop-container{
   display: none;
-  // padding-bottom: 65px;
+  padding-bottom: 65px;
   @media screen and (min-width: '769px') {
     display: block
   }

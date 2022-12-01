@@ -22,7 +22,8 @@
 
   @include sm {
     padding: 100px 20px 47px;
-    height: calc(var(--vh) - 40px);
+  height: calc(var(--vh) - 40px);
+
   }
 
   &.is-loaded {
@@ -74,7 +75,6 @@
       line-height: 24px;
       color: #272822;
       text-decoration: none;
-
       @include xs {
         font-size: 18px;
       }

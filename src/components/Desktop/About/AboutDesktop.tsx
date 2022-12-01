@@ -35,10 +35,6 @@ interface PageProps {
 }
 
 const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
-  useEffect(() => {
-    console.log(" desktop - abvout us");
-    
-  }, [])
   gsap.registerPlugin(ScrollTrigger)
   const router = useRouter()
   // start comman variable -- for animation

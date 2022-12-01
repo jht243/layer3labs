@@ -11,7 +11,6 @@
   position: relative;
 
   @include sm {
-    // display: none;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 40px;
@@ -211,7 +210,6 @@
     align-items: center;
     white-space: nowrap;
     opacity: 0;
-    border-top: 1px solid #000000;
 
     &--subhead {
       margin-right: 28px;
@@ -252,7 +250,7 @@
     @include sm {
       margin-top: 12vh;
       padding-top: 0;
-      // height: 88%;
+      height: 88%;
     }
 
     @include xs {
