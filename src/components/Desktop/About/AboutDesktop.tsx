@@ -667,7 +667,7 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
       .set(visionTextRef.current, { clearProps: 'all' })
       .set(leftToRightScroll.current, {
         opacity: 1,
-        borderTop: '2px solid black',
+        borderTop: '1px solid black',
         marginLeft: '-20px',
         marginRight: '-20px',
       })
