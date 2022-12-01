@@ -69,7 +69,7 @@
     // }
 
     @include sm {
-      bottom: 50px;
+      bottom: 4vh;
       left: 10px;
     }
   }
@@ -224,6 +224,11 @@
     justify-content: center;
     min-height: 25rem;
     overflow: hidden;
+
+    @include sm {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__box {
@@ -244,7 +249,9 @@
     }
 
     @include sm {
-      margin-bottom: 28px;
+      margin-bottom: -20px;
+      padding-top: 10px;
+
     }
   }
 
@@ -253,6 +260,15 @@
     margin-bottom: 1.2rem;
     img {
       height: 100%;
+
+      @include sm {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+      }
+    }
+    @include sm {
+      margin-bottom: 0;
     }
   }
 
@@ -265,7 +281,7 @@
     @include sm {
       max-width: none;
       padding-top: 4px;
-      font-size: 16px;
+      font-size: 12px;
       line-height: 1.2;
       border-top: 1px solid #272822;
     }

@@ -29,6 +29,15 @@ interface PageProps {
 }
 
 const Clients: NextPage<PageProps> = ({ loaded }) => {
+  let topOur = '12%'
+  let leftOur = '11%'
+  let topClients = '92.7%'
+  let leftClients = '85%'
+  let topCustomersOur = '12%'
+  let leftCustomersOur = '15%'
+  let topCustomersCustomers = '92.7%'
+  let leftCustomersCustomers = '82.5%'
+
   const bgRef = useRef(null)
   const nextLinkRef = useRef() as MutableRefObject<HTMLDivElement>
 
@@ -60,6 +69,64 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
     let listening = false,
       currentSection = 'initial'
     const tl = gsap.timeline()
+
+    let mm = gsap.matchMedia(),
+      breakPoint = 769
+
+    mm.add(
+      {
+        isDesktop: `(min-width: ${breakPoint}px)`,
+        isMobile: `(max-width: ${breakPoint - 1}px)`,
+        isDesktopHeight: `(min-height: ${1022}px)`,
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      (context: any) => {
+        let { isDesktop, isMobile, reduceMotion, isDesktopHeight } =
+          context.conditions
+        console.log(isDesktop, isMobile, reduceMotion, '----', isDesktopHeight)
+        if (isMobile && isDesktopHeight) {
+          topOur = '12%'
+          leftOur = '11%'
+          topClients = '92.7%'
+          leftClients = '85%'
+          topCustomersOur = '12%'
+          leftCustomersOur = '15%'
+          topCustomersCustomers = '92.7%'
+          leftCustomersCustomers = '82.5%'
+        } else {
+          if (isDesktopHeight) {
+            topOur = '12%'
+            leftOur = '11%'
+            topClients = '92.7%'
+            leftClients = '85%'
+            topCustomersOur = '12%'
+            leftCustomersOur = '15%'
+            topCustomersCustomers = '92.7%'
+            leftCustomersCustomers = '82.5%'
+          }
+          if (isDesktop) {
+            topOur = '12%'
+            leftOur = '11%'
+            topClients = '92.7%'
+            leftClients = '85%'
+            topCustomersOur = '12%'
+            leftCustomersOur = '15%'
+            topCustomersCustomers = '92.7%'
+            leftCustomersCustomers = '82.5%'
+          }
+          if (isMobile) {
+            topOur = '10%'
+            leftOur = '11%'
+            topClients = '92.7%'
+            leftClients = '80%'
+            topCustomersOur = '12%'
+            leftCustomersOur = '20%'
+            topCustomersCustomers = '92.7%'
+            leftCustomersCustomers = '72.5%'
+          }
+        }
+      }
+    )
 
     function handleWheel(e: any) {
       if (!listening) return
@@ -139,7 +206,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         // Show "OUR" & "CLIENT" text wrap div
         ourClientsTitleRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5},
+        { opacity: 1, duration: 0.5 },
         '<+=0.5'
       )
       .fromTo(
@@ -154,8 +221,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '11%',
-          top: '12%',
+          left: leftOur,
+          top: topOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -174,8 +241,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '85%',
-          top: '92.7%',
+          left: leftClients,
+          top: topClients,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -256,8 +323,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '15%',
-          top: '12%',
+          left: leftCustomersOur,
+          top: topCustomersOur,
           xPercent: -100,
           yPercent: -50,
           duration: 2.5,
@@ -276,8 +343,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '82.5%',
-          top: '92.7%',
+          left: leftCustomersCustomers,
+          top: topCustomersCustomers,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,

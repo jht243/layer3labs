@@ -42,6 +42,10 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
   let leftOur = '13.8%'
   let topVision = '87.7%'
   let rightVision = '7%'
+  let topTeamOur = '12%'
+  let leftTeamOur = '10.8%'
+  let topTeamTeam = '89.7%'
+  let rightTeamTeam = '0%'
   let bgEndRotate = -42
   let bgRotate = 12
   // end comman variable
@@ -297,24 +301,40 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
           leftOur = '17.8%'
           topVision = '81.7%'
           rightVision = '7%'
+          topTeamOur = '0%'
+          leftTeamOur = '10.8%'
+          topTeamTeam = '86.7%'
+          rightTeamTeam = '0%'
         } else {
           if (isDesktopHeight) {
             topOur = '17.5%'
             leftOur = '17.8%'
             topVision = '81.7%'
             rightVision = '7%'
+            topTeamOur = '0%'
+            leftTeamOur = '10.8%'
+            topTeamTeam = '96.7%'
+            rightTeamTeam = '0%'
           }
           if (isDesktop) {
             topOur = '12.5%'
             leftOur = '13.8%'
             topVision = '87.7%'
             rightVision = '7%'
+            topTeamOur = '12%'
+            leftTeamOur = '10.8%'
+            topTeamTeam = '89.7%'
+            rightTeamTeam = '0%'
           }
           if (isMobile) {
             topOur = '17.5%'
             leftOur = '17.8%'
             topVision = '87.7%'
             rightVision = '7%'
+            topTeamOur = '-2.5%'
+            leftTeamOur = '9.8%'
+            topTeamTeam = '95%'
+            rightTeamTeam = '0%'
           }
         }
 
@@ -370,10 +390,11 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
     tl.set(titlesRef.current, { clearProps: 'all' })
       .set(titlesRef.current, { autoAlpha: 0 })
       .set('.ticker-items', { opacity: 0 })
+      .set(leftToRightScroll.current, { opacity: 0, borderTop: 'none' })
       .to('.ticker-items', {
         duration: 22,
         xPercent: -85,
-        ease:  Power0.easeNone,
+        ease: Power0.easeNone,
         repeat: -1,
         opacity: 0,
       })
@@ -399,30 +420,23 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
       .to(ourVisionTextRef.current, { autoAlpha: 1 }) // Show "OUR" & "TEAM" text for Team Section
       .to(visionTextRef.current, { autoAlpha: 1 }, '<')
       .fromTo(
-        // move "OUR" text
         ourVisionTextRef.current,
         { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
         {
-          left: '13.8%',
-          top: '12.5%',
-          // top:
-          // (bgRef.current?.clientHeight -
-          //   aboutUsContainer.current?.clientHeight )  + 55,
+          left: leftOur,
+          top: topOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
+          delay: 1,
         }
       )
       .fromTo(
         visionTextRef.current,
         { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
         {
-          right: '7%',
-          top: '89.7%',
-          // top:
-          // aboutUsContainer.current?.clientHeight -
-          // (bgRef.current?.clientHeight -
-          //   aboutUsContainer.current?.clientHeight) - 55,
+          right: rightVision,
+          top: topVision,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -434,7 +448,10 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
 
   const onNextSection = () => {
     const tl = gsap.timeline()
-    let tickerWidth = leftToRightScroll?.current && leftToRightScroll?.current?.offsetWidth ?  leftToRightScroll?.current?.offsetWidth : 0
+    let tickerWidth =
+      leftToRightScroll?.current && leftToRightScroll?.current?.offsetWidth
+        ? leftToRightScroll?.current?.offsetWidth
+        : 0
 
     let new_html =
       "<div class='ticker-items'>" +
@@ -444,7 +461,7 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
     if (leftToRightScroll?.current?.innerHTML) {
       leftToRightScroll.current.innerHTML = new_html
       leftToRightScroll.current.innerHTML += new_html
-      let tickerItems : any = document.querySelector('.ticker-items')
+      let tickerItems: any = document.querySelector('.ticker-items')
       tickerWidth = tickerItems?.offsetWidth
     }
 
@@ -525,8 +542,8 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '10.8%',
-          top: '12%',
+          left: leftTeamOur,
+          top: topTeamOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -542,9 +559,8 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          right: '0%',
-          // left: 0,
-          top: '89.7%',
+          right: rightTeamTeam,
+          top: topTeamTeam,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -649,7 +665,12 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
       )
       .set(ourVisionTextRef.current, { clearProps: 'all' })
       .set(visionTextRef.current, { clearProps: 'all' })
-      .set(leftToRightScroll.current, { opacity: 1 })
+      .set(leftToRightScroll.current, {
+        opacity: 1,
+        borderTop: '2px solid black',
+        marginLeft: '-20px',
+        marginRight: '-20px',
+      })
       .set('.ticker-items', { opacity: 1 })
       .to('.ticker-items', {
         duration: initDuration,
@@ -798,8 +819,18 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
           className={styles['about-page__team-title']}
           ref={teamTitleMainRef}
         >
-          <span ref={teamTitle1Ref}>Our</span>
-          <span ref={teamTitle2Ref}>Team</span>
+          <span
+            ref={teamTitle1Ref}
+            className={cx(styles['about-page__logo__our'])}
+          >
+            Our
+          </span>
+          <span
+            ref={teamTitle2Ref}
+            className={cx(styles['about-page__logo__team'])}
+          >
+            Team
+          </span>
         </div>
 
         <div className={cx(styles['about-page__team'])} ref={teamSectionRef}>
@@ -1117,22 +1148,23 @@ const AboutDesktop: NextPage<PageProps> = ({ loaded }) => {
             <span className={cx(styles['about-page__headline--head'])}>5 THINGS YOU NEED TO KNOW IN THE NFT INDUSTRY</span>
           </div>
         </div> */}
-
-        <div
-          className={cx(styles['about-page__headline'])}
-          ref={leftToRightScroll}
-        >
-          <div className={cx(styles['about-page__headline--subhead'])}>
-            IN THE PRESS
-          </div>
-          <div className={cx(styles['about-page__headline--head'])}>
-            A BETTER DEAL FOR GAME DEVELOPER
-          </div>
-          <div className={cx(styles['about-page__headline--subhead'])}>
-            IN THE PRESS
-          </div>
-          <div className={cx(styles['about-page__headline--head'])}>
-            WHAT IS BLOCKCHAIN?
+        <div>
+          <div
+            className={cx(styles['about-page__headline'])}
+            ref={leftToRightScroll}
+          >
+            <div className={cx(styles['about-page__headline--subhead'])}>
+              IN THE PRESS
+            </div>
+            <div className={cx(styles['about-page__headline--head'])}>
+              A BETTER DEAL FOR GAME DEVELOPER
+            </div>
+            <div className={cx(styles['about-page__headline--subhead'])}>
+              IN THE PRESS
+            </div>
+            <div className={cx(styles['about-page__headline--head'])}>
+              WHAT IS BLOCKCHAIN?
+            </div>
           </div>
           {/* <div className={cx(styles['about-page__headline--subhead'])}>
         IN THE PRESS
