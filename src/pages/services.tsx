@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 
-import React, { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
+import React, {MutableRefObject ,useEffect, useRef, useState } from 'react'
+import { gsap,Power0 } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 import cx from 'classnames'
 
@@ -18,10 +19,21 @@ interface PageProps {
 }
 
 const Services: NextPage<PageProps> = ({ loaded }) => {
+  gsap.registerPlugin(ScrollTrigger)
   const [currentSection, setCurrentSection] = useState('initial')
 
   let timer: any
   let canMoveBack = true
+
+   // start comman variable -- for animation
+  let topOur = '12%'
+  let leftOur = '7.5%'
+  let topServices = '92.7%'
+  let leftServices = '88%'
+  let topProcessOur = '12%'
+  let leftProcessOur = '7.5%'
+  let topProcessProcess = '92.7%'
+  let leftProcessProcess = '88%'
 
   const bgRef = useRef(null)
   const nextLinkRef = useRef(null)
@@ -43,12 +55,86 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   const processNoteRef = useRef<HTMLDivElement[]>([])
   const processBlockTitleRef = useRef<HTMLDivElement[]>([])
 
+  const titlesRef = useRef(null)
+
+  const partnersRef = useRef(null)
+
   useEffect(() => {
     if (!servicesTextRef || !loaded) return
     const tl = gsap.timeline()
 
     let listening = false,
       currentSection = 'initial'
+    const headings: any = gsap.utils.toArray('.section-heading')
+
+    document.addEventListener('touchstart', handleTouchStart, {
+      passive: false,
+    })
+    document.addEventListener('touchmove', handleTouchMove, { passive: false })
+    document.addEventListener('touchend', handleTouchEnd, { passive: false })
+
+    let mm = gsap.matchMedia(),
+      breakPoint = 769
+
+
+    mm.add(
+      {
+        isDesktop: `(min-width: ${breakPoint}px)`,
+        isMobile: `(max-width: ${breakPoint - 1}px)`,
+        isDesktopHeight: `(min-height: ${1022}px)`,
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      (context: any) => {
+        let { isDesktop, isMobile, reduceMotion, isDesktopHeight } =
+          context.conditions
+        console.log(isDesktop, isMobile, reduceMotion, '----', isDesktopHeight)
+        if (isMobile && isDesktopHeight) {
+          topOur = '12%'
+          leftOur = '10.5%'
+          topServices = '91.7%'
+          leftServices = '79%'
+          topProcessOur = '12%'
+          leftProcessOur = '9.5%'
+          topProcessProcess = '91.7%'
+          leftProcessProcess = '75%'
+        } else {
+          if (isDesktopHeight) {
+            topOur = '12%'
+            leftOur = '7.5%'
+            topServices = '92.7%'
+            leftServices = '88%'
+            topProcessOur = '12%'
+            leftProcessOur = '7.5%'
+            topProcessProcess = '92.7%'
+            leftProcessProcess = '88%'
+          }
+          if (isDesktop) {
+            topOur = '12%'
+            leftOur = '7.5%'
+            topServices = '92.7%'
+            leftServices = '88%'
+            topProcessOur = '12%'
+            leftProcessOur = '7.5%'
+            topProcessProcess = '92.7%'
+            leftProcessProcess = '88%'
+          }
+          if (isMobile) {
+            topOur = '12%'
+            leftOur = '10.5%'
+            topServices = '91.7%'
+            leftServices = '79%'
+            topProcessOur = '12%'
+            leftProcessOur = '9.5%'
+            topProcessProcess = '91.7%'
+            leftProcessProcess = '75%'
+          }
+        }
+      })
+
+
+    let direction = 'down',
+    current: any,
+    next = 0
 
     function handleWheel(e: any) {
       if (!listening) return
@@ -70,28 +156,174 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
     setTimeout(() => (listening = true), 3000)
     onPrevSection()
 
+
+    function handleDirection() {
+      listening = false
+
+      if (direction === 'down') {
+        if (current < headings.length - 1) {
+          next = current + 1
+          slideIn()
+        } else if (current === headings.length - 1) {
+          onNextSection()
+          setTimeout(() => (listening = true), 5000)
+          current += 1
+        } else {
+          setTimeout(() => {
+            listening = true
+          }, 2000)
+        }
+      }
+
+      if (direction === 'up') {
+        if (current === 0) {
+          listening = true
+          return
+        }
+        if (current < headings.length) {
+          next = current - 1
+          slideOut()
+        } else if (current >= headings.length && canMoveBack) {
+          onPrevSection()
+          setTimeout(() => {
+            listening = true
+          }, 5000)
+          current -= 1
+        } else {
+          setTimeout(() => {
+            listening = true
+          }, 2000)
+        }
+      }
+    }
+
+    const touch = {
+      startX: 0,
+      startY: 0,
+      dx: 0,
+      dy: 0,
+      startTime: 0,
+      dt: 0,
+    }
+
+
+    function handleTouchStart(e: any) {
+      if (!listening) return
+      const t = e.changedTouches[0]
+      touch.startX = t.pageX
+      touch.startY = t.pageY
+    }
+
+    function handleTouchMove(e: any) {
+      if (!listening) return
+      e.preventDefault()
+    }
+
+    function handleTouchEnd(e: any) {
+      if (!listening) return
+      const t = e.changedTouches[0]
+      touch.dx = t.pageX - touch.startX
+      touch.dy = t.pageY - touch.startY
+      if (touch.dy > 10) direction = 'up'
+      if (touch.dy < -10) direction = 'down'
+      handleDirection()
+    }
+
+    function revealSectionHeading() {
+      const tl = gsap.timeline()
+      return tl
+        .to(headings[next], {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          delay: 2,
+          ease: 'power2',
+        })
+        .to(
+          partnersRef.current,
+          { autoAlpha: 1, y: 0, duration: 1, ease: 'power2' },
+          '<'
+        )
+    }
+
+    const tlDefaults = {
+      ease: 'slow.inOut',
+      duration: 1,
+    }
+
+    function slideIn() {
+      const tl = gsap.timeline({
+        defaults: tlDefaults,
+        onComplete: () => {
+          setTimeout(() => {
+            listening = true
+            current = next
+          }, 500)
+        },
+      })
+      if (current === undefined) {
+        tl.add(revealSectionHeading(), 0)
+      }
+
+      if (current !== undefined) {
+        tl.add(
+          gsap
+            .timeline()
+            .to(headings[current], { y: -100, autoAlpha: 0, duration: 0.3 })
+            .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
+        )
+      }
+
+      tl.play(0)
+    }
+
+     // Slides a section out on scroll up
+     function slideOut() {
+      gsap
+        .timeline({
+          defaults: tlDefaults,
+          onComplete: () => {
+            setTimeout(() => {
+              listening = true
+              current = next
+            }, 500)
+          },
+        })
+        .to(headings[current], { y: 100, autoAlpha: 0, duration: 0.3 })
+        .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
+    }
+
+    
+
+
     return () => {
       tl.kill()
       window.removeEventListener('wheel', handleWheel)
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchmove', handleTouchMove)
+      document.removeEventListener('touchend', handleTouchEnd)
+
     }
   }, [servicesTextRef, loaded])
 
   const onPrevSection = () => {
     const tl = gsap.timeline()
 
-    tl.fromTo(
-      processTitle1Ref.current,
-      {
-        y: 0,
-        opacity: 1,
-      },
-      {
-        y: 50,
-        opacity: 0,
-        duration: 0.1,
-        stagger: 0.2,
-      }
-    )
+      tl.set(titlesRef.current, { clearProps: 'all' })
+      .set(titlesRef.current, { autoAlpha: 0 })
+      .fromTo(
+        processTitle1Ref.current,
+        {
+          y: 0,
+          opacity: 1,
+        },
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.1,
+          stagger: 0.2,
+        }
+      )
       .fromTo(
         processTitle2Ref.current,
         {
@@ -136,8 +368,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '7.5%',
-          top: '12%',
+          left: leftOur,
+          top: topOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -156,8 +388,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '88%',
-          top: '92.7%',
+          left: leftServices,
+          top:  topServices,
 
           xPercent: -50,
           yPercent: -50,
@@ -238,6 +470,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
+      .to(titlesRef.current, { autoAlpha: 1 })
   }
 
   const onNextSection = () => {
@@ -273,6 +506,18 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           duration: 0.2,
         },
         '<'
+      ).fromTo(
+        titlesRef.current,
+        {
+          y: 0,
+          opacity: 1,
+        },
+        {
+          y: -150,
+          opacity: 0,
+          duration: 0.5,
+        },
+        '<'
       )
       .fromTo(
         benefitsSectionRef.current,
@@ -289,6 +534,14 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           overflowY: 'none',
           pointerEvents: 'none',
           zIndex: 1,
+        },
+        '<'
+      )
+      .set(titlesRef.current, { pointerEvents: 'none', zIndex: -1 })
+      .to(
+        nextLinkRef.current,
+        {
+          zIndex: 1000,
         },
         '<'
       )
@@ -318,8 +571,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           opacity: 1,
         },
         {
-          left: '7.5%',
-          top: '12%',
+          left: leftProcessOur,
+          top:  topProcessOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -338,8 +591,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '88%',
-          top: '92.7%',
+          left: leftProcessProcess,
+          top: topProcessProcess,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -410,6 +663,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
+      .set(titlesRef.current, { pointerEvents: 'none', zIndex: -1 })
       .to(
         nextLinkRef.current,
         {
@@ -485,6 +739,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
             <span ref={servicesTextRef}>SERVICES</span>
           </div>
 
+{/* desktop component */}
           <div className={styles['benefits-section']} ref={benefitsSectionRef}>
             <div className={styles['benefits-section__inner']}>
               <div className={styles['benefits-section__row']}>
@@ -505,7 +760,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[0] = ref
                     }}
                   >
-                    DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT CREDIT CARD PAYMENTS
+                    DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT
+                    CREDIT CARD PAYMENTS
                   </div>
                 </div>
               </div>
@@ -528,7 +784,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[1] = ref
                     }}
                   >
-                    DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND RETENTION
+                    DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND
+                    RETENTION
                   </div>
                 </div>
               </div>
@@ -542,7 +799,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     TRADING PLATFORMS
-
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -552,7 +808,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[2] = ref
                     }}
                   >
-                    CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD DIGITIZED GOODS
+                    CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD
+                    DIGITIZED GOODS
                   </div>
                 </div>
               </div>
@@ -566,7 +823,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     }}
                   >
                     PLAY-TO-EARN GAMES
-
                   </div>
                 </div>
                 <div className={styles['benefits-section__col']}>
@@ -576,12 +832,11 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[3] = ref
                     }}
                   >
-                    HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E
-                    GAMES BUILT IN UNITY
+                    HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT
+                    IN UNITY
                   </div>
                 </div>
               </div>
-
 
               <div className={styles['benefits-section__row']}>
                 <div className={styles['benefits-section__col']}>
@@ -601,13 +856,16 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                       if (ref) benefitsSubTitleRef.current[4] = ref
                     }}
                   >
-                    CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR
-                    BRAND'S VALUE PROPOSITION
+                    CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S VALUE
+                    PROPOSITION
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+
+          
 
           <div
             className={styles['services-page__process-title']}
@@ -634,7 +892,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[0] = ref
                   }}
                 >
-                 WE STUDY YOUR UNIQUE BUSINESS REQUIREMENTS AND BUILD SOFTWARE TO FIT YOUR BUSINESS GOAL
+                  WE STUDY YOUR UNIQUE BUSINESS REQUIREMENTS AND BUILD SOFTWARE
+                  TO FIT YOUR BUSINESS GOAL
                   <span>
                     <svg
                       width="3"
@@ -704,7 +963,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[2] = ref
                   }}
                 >
-                  WE MANAGE THE DAY-TO-DAY BACKEND OPERATIONS 
+                  WE MANAGE THE DAY-TO-DAY BACKEND OPERATIONS
                   <span>
                     <svg
                       width="10"

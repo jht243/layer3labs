@@ -49,6 +49,15 @@
       max-width: 1689px;
       transform: rotate(16deg);
     }
+
+    @include sm{
+      position: absolute;
+      top: -3%;
+      left: 0%;
+      z-index: -1;
+      height: calc(var(--vh) + 100px);
+      width: 87vw;
+    }
   }
 
   &__back {
@@ -76,8 +85,8 @@
     // }
 
     @include sm {
-      bottom: 50px;
-      left: 10px;
+      bottom: 0px;
+      left: 25px;
     }
   }
 
@@ -204,13 +213,24 @@
   //     line-height: 48px;
   //   }
   // }
+  
   &__headline {
     display: flex;
     flex-direction: row;
     align-items: center;
     white-space: nowrap;
     opacity: 0;
+    bottom: 0;
+    position: absolute;
 
+    @include sm{
+      bottom: calc(100vh - calc(100vh - 23vh));
+      position: absolute;
+    }
+    @include xs{
+      bottom: calc(100vh - calc(100vh * 1.035));;
+      position: absolute;
+    }
     &--subhead {
       margin-right: 28px;
       font-weight: 500;
@@ -224,6 +244,11 @@
       font-weight: 400;
       font-size: 36px;
       line-height: 44px;
+
+      @include sm{
+        font-size: 20px;
+        line-height: 36px;
+      }
       }
   }
 
@@ -235,6 +260,7 @@
     height: calc(100% - 50px);
     padding-top: 60px;
     pointer-events: none;
+    margin-bottom:5px;
 
     -ms-overflow-style: none;
     /* IE and Edge */
@@ -307,6 +333,19 @@
       }
     }
   }
+
+  // &__logo__our {
+  //   @include sm {
+  //     top: 0% !important;
+  //     left: 10.8% !important;
+  //   }
+  // }
+  // &__logo__team {
+  //   @include sm {
+  //     top: 98.7%;
+  //     right: 0%;
+  //   }
+  // }
 
   &__partners {
     position: absolute;
@@ -487,15 +526,6 @@
   height: calc(80vh - 60px);
   width: 90%;
 
-  @include sm {
-    height: calc(60vh - 60px);
-  }
-
-  @include xs {
-    flex-direction: column;
-    height: calc(70vh - 60px);
-  }
-
   @include xl {
     width: 80%;
     height: calc(80vh - 175px);
@@ -506,6 +536,15 @@
     height: calc(80vh - 150px);
   }
 
+  @include sm {
+    height: calc(60vh - 50px);
+  }
+  
+  @include xs {
+    flex-direction: column;
+    height: calc(75vh - 60px);
+  }
+  
   &__col {
     width: calc(100 / 1920 * 640%);
     margin: 0px 10px;
@@ -551,20 +590,20 @@
     font-weight: 400;
     gap: 20px;
 
-    @include sm {
-      font-size: 100vw * 30 / 1680;
-      line-height: 100vw * 40 / 1680;
-    }
-
-    @include xs {
-      font-size: 100vw * 50 / 1680;
-      line-height: 100vw * 60 / 1680;
-    }
-
     @include md {
       font-size: 100vw * 35 / 1680;
       line-height: 100vw * 45 / 1680;
     }
+    @include sm {
+      font-size: 100vw * 30 / 1680;
+      line-height: 100vw * 40 / 599;
+    }
+
+    @include xs {
+      font-size: 0.875rem;
+      line-height: 100vw * 60 / 1680;
+    }
+
   }
 
   &__subtitle {
@@ -577,7 +616,7 @@
 
     @include sm {
       margin-bottom: 10px;
-      font-size: 100vw * 28 / 1680;
+      font-size:  0.625rem;
       line-height: 100vw * 28 / 1680;
     }
 
@@ -595,18 +634,18 @@
     line-height: 1.5rem;
     color: #272823;
 
+    @include md {
+      font-size: 100vw * 20 / 1680;
+      line-height: 100vw * 28 / 1680;
+    }
+
     @include sm {
-      font-size: 100vw * 16 / 1680;
+      font-size: 0.42rem;
     }
 
     @include xs {
       font-size: 100vw * 30 / 1680;
       line-height: 100vw * 40 / 1680;
-    }
-
-    @include md {
-      font-size: 100vw * 20 / 1680;
-      line-height: 100vw * 28 / 1680;
     }
   }
 
