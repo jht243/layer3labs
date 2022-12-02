@@ -7,9 +7,11 @@ import AboutDesktop from '@/components/Desktop/About/AboutDesktop'
 
 interface PageProps {
   loaded: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (data: boolean) => void
 }
 
-const About: NextPage<PageProps> = ({ loaded }) => {
+const About: NextPage<PageProps> = ({ loaded , isMenuOpen, setIsMenuOpen}) => {
 
 
   return (
@@ -18,7 +20,7 @@ const About: NextPage<PageProps> = ({ loaded }) => {
      <AboutMobile />
     </div>
     <div  className='desktop-container'> */}
-     <AboutDesktop loaded={loaded}/>
+     <AboutDesktop loaded={loaded}  isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
     {/* </div> */}
     </Layout>
   )

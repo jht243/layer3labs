@@ -22,6 +22,45 @@
 
   @include sm {
     padding: 100px 20px 47px;
+  height: calc(var(--vh) - 40px);
+
+  }
+
+  &__optionMenu {
+    text-transform: capitalize;
+    width: 100%;
+    display: none;
+    // background-color: $primary;
+    padding: 7px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    &--about{
+      background-color: $primary;
+    }
+    &--client{
+      background-color: $clients;
+    }
+    &--services{
+      background-color: $services;
+    }
+
+    @include sm {
+      display: flex;
+    }
+  }
+  
+  &__optiongroup{
+    position: absolute;
+    width: 100%;
+    z-index: 100000;
+    text-transform: capitalize;
+    margin-top: 60px;
   }
 
   &.is-loaded {

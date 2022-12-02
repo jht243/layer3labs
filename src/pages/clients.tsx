@@ -1,9 +1,16 @@
 import type { NextPage } from 'next'
 
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
+import React, {
+  Fragment,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { gsap } from 'gsap'
 
 import cx from 'classnames'
+import { useRouter } from 'next/router'
 
 import Layout from '@/layouts/index'
 import { NavLink } from '@/components/ui/NavLink'
@@ -26,12 +33,26 @@ import Image from 'next/image'
 
 interface PageProps {
   loaded: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (data: boolean) => void
 }
 
-const Clients: NextPage<PageProps> = ({ loaded }) => {
+const Clients: NextPage<PageProps> = ({ loaded, 
+  isMenuOpen,
+  setIsMenuOpen, }) => {
+  let topOur = '12%'
+  let leftOur = '11%'
+  let topClients = '92.7%'
+  let leftClients = '85%'
+  let topCustomersOur = '12%'
+  let leftCustomersOur = '15%'
+  let topCustomersCustomers = '92.7%'
+  let leftCustomersCustomers = '82.5%'
+  const router = useRouter()
+
   const bgRef = useRef(null)
   const nextLinkRef = useRef() as MutableRefObject<HTMLDivElement>
-
+  const nextSliderArrowRef = useRef() as MutableRefObject<HTMLDivElement>
   const ourClientsTitleRef = useRef(null)
   const clientsTextRef = useRef(null)
   const ourClientsTextRef = useRef(null)
@@ -40,6 +61,9 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
 
   const clientsItemLogoRef = useRef<HTMLDivElement[]>([])
   const clientsItemTitleRef = useRef<HTMLDivElement[]>([])
+
+  const clientsMobileItemLogoRef = useRef<HTMLDivElement[]>([])
+  const clientsMobileItemTitleRef = useRef<HTMLDivElement[]>([])
 
   const testimonTitleMainRef = useRef(null)
   const testimonTitle1Ref = useRef(null)
@@ -60,6 +84,64 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
     let listening = false,
       currentSection = 'initial'
     const tl = gsap.timeline()
+
+    let mm = gsap.matchMedia(),
+      breakPoint = 769
+
+    mm.add(
+      {
+        isDesktop: `(min-width: ${breakPoint}px)`,
+        isMobile: `(max-width: ${breakPoint - 1}px)`,
+        isDesktopHeight: `(min-height: ${1022}px)`,
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      (context: any) => {
+        let { isDesktop, isMobile, reduceMotion, isDesktopHeight } =
+          context.conditions
+
+        if (isMobile && isDesktopHeight) {
+          topOur = '12%'
+          leftOur = '11%'
+          topClients = '92.7%'
+          leftClients = '85%'
+          topCustomersOur = '12%'
+          leftCustomersOur = '15%'
+          topCustomersCustomers = '92.7%'
+          leftCustomersCustomers = '82.5%'
+        } else {
+          if (isDesktopHeight) {
+            topOur = '12%'
+            leftOur = '11%'
+            topClients = '92.7%'
+            leftClients = '85%'
+            topCustomersOur = '12%'
+            leftCustomersOur = '15%'
+            topCustomersCustomers = '92.7%'
+            leftCustomersCustomers = '82.5%'
+          }
+          if (isDesktop) {
+            topOur = '12%'
+            leftOur = '11%'
+            topClients = '92.7%'
+            leftClients = '85%'
+            topCustomersOur = '12%'
+            leftCustomersOur = '15%'
+            topCustomersCustomers = '92.7%'
+            leftCustomersCustomers = '82.5%'
+          }
+          if (isMobile) {
+            topOur = '10%'
+            leftOur = '11%'
+            topClients = '92.7%'
+            leftClients = '80%'
+            topCustomersOur = '12%'
+            leftCustomersOur = '20%'
+            topCustomersCustomers = '92.7%'
+            leftCustomersCustomers = '72.5%'
+          }
+        }
+      }
+    )
 
     function handleWheel(e: any) {
       if (!listening) return
@@ -139,7 +221,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         // Show "OUR" & "CLIENT" text wrap div
         ourClientsTitleRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5},
+        { opacity: 1, duration: 0.5 },
         '<+=0.5'
       )
       .fromTo(
@@ -154,8 +236,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '11%',
-          top: '12%',
+          left: leftOur,
+          top: topOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -174,8 +256,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '85%',
-          top: '92.7%',
+          left: leftClients,
+          top: topClients,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -203,6 +285,25 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
         '<+=0.05'
       )
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
+      )
+      .to(
+        // Show Next Client Arrow
+        nextSliderArrowRef.current,
+        { opacity: 1, duration: 0.5 }
+      )
   }
 
   const onNextSection = () => {
@@ -214,6 +315,11 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       nextLinkRef.current,
       { opacity: 0, duration: 0.5 }
     )
+      .to(
+        // Show Next Client Arrow
+        nextSliderArrowRef.current,
+        { opacity: 0, duration: 0.5 }
+      )
       .fromTo(
         // Hide the "OUR" text of Client Section
         ourClientsTextRef.current,
@@ -256,8 +362,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           y: 0,
         },
         {
-          left: '15%',
-          top: '12%',
+          left: leftCustomersOur,
+          top: topCustomersOur,
           xPercent: -100,
           yPercent: -50,
           duration: 2.5,
@@ -276,8 +382,8 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '82.5%',
-          top: '92.7%',
+          left: leftCustomersCustomers,
+          top: topCustomersCustomers,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -311,6 +417,37 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         '<+=0.05'
       )
   }
+  const onNextClients = () => {
+    const tl = gsap.timeline()
+
+    // Hide Customer Section
+    tl.to(
+      // Hide Next Section Arrow button
+      nextLinkRef.current,
+      { opacity: 0, duration: 0.5 }
+    )
+      .fromTo(
+        // Show Next Section Arrow button
+        nextLinkRef.current,
+        { opacity: 0 },
+        { opacity: 1, zIndex: 1000 },
+        '<'
+      )
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
+      )
+  }
 
   useEffect(() => {
     if (isReloadAnimation) {
@@ -318,6 +455,48 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       dispatch(setReloadAnimation(false))
     }
   }, [isReloadAnimation])
+
+  const [curretnIndex, setCurrentIndex] = useState(0)
+  const [backArrow, setBackArrow] = useState(false)
+
+  const sectionArray = [
+    [
+      {
+        image: bowleroLogo.src,
+        description:
+          'NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER CERTIFICATION PROGRAM',
+      },
+      {
+        image: styrLogo.src,
+        description:
+          'HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET BACKED NFTS',
+      },
+    ],
+    [
+      {
+        image: GSLogo.src,
+        description:
+          'CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING AND AIRDROPS',
+      },
+      {
+        image: JGILogo.src,
+        description:
+          'MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR NATIONAL SPORTS ORGANIZATIONS',
+      },
+    ],
+    [
+      {
+        image: etherealLogo.src,
+        description:
+          'WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR. GOODALLS LEGACY AND RESEARCH',
+      },
+      {
+        image: pipeflareLogo.src,
+        description:
+          'PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY PLAYERS  AND 7 CUSTOM GAMES',
+      },
+    ],
+  ]
 
   return (
     <Layout>
@@ -332,6 +511,107 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
           ref={bgRef}
         >
           <Image src={orangeBlock.src} alt="bg_about" layout="fill" />
+        </div>
+        <div className={styles['clients-page__menugroup']}>
+          <div className={styles['clients-page__selectedMenu']}>
+            <div>CLIENTS</div>
+            <div>
+              <svg
+                width="16px"
+                height="16px"
+                viewBox="0 0 42 112"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
+                  fill="#272822"
+                />
+              </svg>
+            </div>
+          </div>
+          {isMenuOpen && (
+          <div className={styles['clients-page__optiongroup']}>
+            <div
+              onClick={() => {
+                router.push('about')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['clients-page__optionMenu'],
+                styles['clients-page__optionMenu--about']
+              )}
+            >
+              <div>ABOUT US</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 42 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className={cx(
+                styles['clients-page__optionMenu'],
+                styles['clients-page__optionMenu--services']
+              )}
+              onClick={() => {
+                router.push('services')
+                setIsMenuOpen(false)
+              }}
+            >
+              <div>SERVICES</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 26 111"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                router.push('clients')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['clients-page__optionMenu'],
+                styles['clients-page__optionMenu--client']
+              )}
+            >
+              <div>CLIENTS</div>
+              <div>
+              <svg
+                   width="16px"
+                   height="16px"
+                  viewBox="0 0 15 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 111.114H14.483V0.870117H0V111.114Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
         </div>
         <div className={styles['clients-page__inner']}>
           {/* <div className={styles['clients-page__back']}>
@@ -367,127 +647,193 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
             <span ref={ourClientsTextRef}>Our</span>
             <span ref={clientsTextRef}>CLIENTS</span>
           </div>
+          <div
+            className={styles['clients-page__next-slider']}
+            ref={nextSliderArrowRef}
+            style={{
+              transform: backArrow ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
+            onClick={() => {
+              if (backArrow) {
+                onNextClients()
+                setCurrentIndex(curretnIndex - 1)
+                if (curretnIndex - 1 == 0) {
+                  setBackArrow(false)
+                }
+              } else {
+                setCurrentIndex(curretnIndex + 1)
+                onNextClients()
+                if (curretnIndex + 1 == 2) {
+                  setBackArrow(true)
+                }
+              }
+            }}
+          >
+            <svg
+              width="30"
+              height="26"
+              viewBox="0 0 12 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.03406 0.83L11.1361 5.044V5.156L7.03406 9.37L6.26406 8.6L9.23207 5.646H0.776064V4.554H9.23207L6.26406 1.6L7.03406 0.83Z"
+                fill="#272822"
+              />
+            </svg>
+          </div>
 
           <div className={styles['clients-section']} ref={clientsSectionRef}>
             <div className={styles['clients-section__inner']}>
               <div className={styles['clients-section__boxes']}>
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[0] = ref
-                    }}
-                  >
-                    <img src={bowleroLogo.src} alt="Bowlero Corporation" />
-                  </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[0] = ref
-                    }}
-                  >
-                    NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER
-                    CERTIFICATION PROGRAM
-                  </div>
+                <div className={styles['clients-section__boxes--mobile']}>
+                  {sectionArray[curretnIndex].map((data, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <div className={styles['clients-section__box']}>
+                          <div
+                            className={styles['clients-section__logo']}
+                            ref={(ref) => {
+                              if (ref)
+                                clientsMobileItemLogoRef.current[index] = ref
+                            }}
+                          >
+                            <img src={data.image} alt="Bowlero Corporation" />
+                          </div>
+                          <div
+                            className={styles['clients-section__text']}
+                            ref={(ref) => {
+                              if (ref)
+                                clientsMobileItemTitleRef.current[index] = ref
+                            }}
+                          >
+                            {data.description}
+                          </div>
+                        </div>
+                      </Fragment>
+                    )
+                  })}
                 </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[1] = ref
-                    }}
-                  >
-                    <img src={styrLogo.src} alt="STYR" />
+                <div className={styles['clients-section__boxes--desktop']}>
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[0] = ref
+                      }}
+                    >
+                      <img src={bowleroLogo.src} alt="Bowlero Corporation" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[0] = ref
+                      }}
+                    >
+                      NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER
+                      CERTIFICATION PROGRAM
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[1] = ref
-                    }}
-                  >
-                    HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET BACKED
-                    NFTS
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[2] = ref
-                    }}
-                  >
-                    <img src={GSLogo.src} alt="Game Station" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[1] = ref
+                      }}
+                    >
+                      <img src={styrLogo.src} alt="STYR" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[1] = ref
+                      }}
+                    >
+                      HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET
+                      BACKED NFTS
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[2] = ref
-                    }}
-                  >
-                    CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING AND
-                    AIRDROPS
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[3] = ref
-                    }}
-                  >
-                    <img src={JGILogo.src} alt="Jane Goodall Institute" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[2] = ref
+                      }}
+                    >
+                      <img src={GSLogo.src} alt="Game Station" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[2] = ref
+                      }}
+                    >
+                      CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING
+                      AND AIRDROPS
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[3] = ref
-                    }}
-                  >
-                    MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR NATIONAL
-                    SPORTS ORGANIZATIONS
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[4] = ref
-                    }}
-                  >
-                    <img src={etherealLogo.src} alt="Ethereal Collective" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[3] = ref
+                      }}
+                    >
+                      <img src={JGILogo.src} alt="Jane Goodall Institute" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[3] = ref
+                      }}
+                    >
+                      MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR
+                      NATIONAL SPORTS ORGANIZATIONS
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[4] = ref
-                    }}
-                  >
-                    WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR. GOODALLS
-                    LEGACY AND RESEARCH
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[5] = ref
-                    }}
-                  >
-                    <img src={pipeflareLogo.src} alt="Pipeflare" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[4] = ref
+                      }}
+                    >
+                      <img src={etherealLogo.src} alt="Ethereal Collective" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[4] = ref
+                      }}
+                    >
+                      WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR.
+                      GOODALLS LEGACY AND RESEARCH
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[5] = ref
-                    }}
-                  >
-                    PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY PLAYERS
-                    AND 7 CUSTOM GAMES
+
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[5] = ref
+                      }}
+                    >
+                      <img src={pipeflareLogo.src} alt="Pipeflare" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[5] = ref
+                      }}
+                    >
+                      PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY
+                      PLAYERS AND 7 CUSTOM GAMES
+                    </div>
                   </div>
                 </div>
               </div>

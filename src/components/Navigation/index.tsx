@@ -12,9 +12,11 @@ import { setReloadAnimation } from '@/app/slices/commonSlice'
 interface Props {
   changedRoute: string
   loaded: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (data: boolean) => void
 }
 
-const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
+const Navigation: FC<Props> = ({ changedRoute, loaded, setIsMenuOpen, isMenuOpen }) => {
   const router = useRouter()
   const { pathname } = router
   const [loading, setLoading] = useState<boolean>(false)
@@ -90,7 +92,7 @@ const Navigation: FC<Props> = ({ changedRoute, loaded }) => {
             [styles[`is-loaded`]]: loaded,
             [styles[`is-home`]]: pathname === '/',
           })}
-          onClick={() => setOpenedMenu((prevState) => !prevState)}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <svg
             width="21"

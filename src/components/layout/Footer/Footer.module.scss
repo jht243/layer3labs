@@ -20,6 +20,9 @@
   }
   &__logo {
     cursor: pointer;
+    @include sm {
+      display: none;
+    }
   }
   &__col {
     display: flex;
@@ -32,6 +35,10 @@
     @include xs {
       font-size: 14px;
       line-height: 1.4;
+    }
+
+    &--left{
+      text-align: right;
     }
 
     // &:nth-child(1) {

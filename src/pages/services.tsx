@@ -1,7 +1,14 @@
 import type { NextPage } from 'next'
 
-import React, { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
+import React, {
+  Fragment,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
+import { gsap, Power0 } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 import cx from 'classnames'
 
@@ -12,12 +19,30 @@ import styles from '@/styles/pages/Services.module.scss'
 
 import greenBlock from '@/images/green-bg.png'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 interface PageProps {
   loaded: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (data: boolean) => void
 }
 
-const Services: NextPage<PageProps> = ({ loaded }) => {
+// start comman variable -- for animation
+let topOur = '12%'
+let leftOur = '7.5%'
+let topServices = '92.7%'
+let leftServices = '88%'
+let topProcessOur = '12%'
+let leftProcessOur = '7.5%'
+let topProcessProcess = '92.7%'
+let leftProcessProcess = '88%'
+
+const Services: NextPage<PageProps> = ({
+  loaded,
+  isMenuOpen,
+  setIsMenuOpen,
+}) => {
+  gsap.registerPlugin(ScrollTrigger)
   const [currentSection, setCurrentSection] = useState('initial')
 
   let timer: any
@@ -25,6 +50,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
 
   const bgRef = useRef(null)
   const nextLinkRef = useRef(null)
+  const nextSliderArrowRef = useRef() as MutableRefObject<HTMLDivElement>
 
   const servicesTextRef = useRef(null)
   const ourServicesTextRef = useRef(null)
@@ -43,12 +69,86 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   const processNoteRef = useRef<HTMLDivElement[]>([])
   const processBlockTitleRef = useRef<HTMLDivElement[]>([])
 
+  const clientsMobileItemLogoRef = useRef<HTMLDivElement[]>([])
+  const clientsMobileItemTitleRef = useRef<HTMLDivElement[]>([])
+
+  const partnersRef = useRef(null)
+
   useEffect(() => {
     if (!servicesTextRef || !loaded) return
     const tl = gsap.timeline()
 
     let listening = false,
       currentSection = 'initial'
+    const headings: any = gsap.utils.toArray('.section-heading')
+
+    document.addEventListener('touchstart', handleTouchStart, {
+      passive: false,
+    })
+    document.addEventListener('touchmove', handleTouchMove, { passive: false })
+    document.addEventListener('touchend', handleTouchEnd, { passive: false })
+
+    let mm = gsap.matchMedia(),
+      breakPoint = 769
+
+    mm.add(
+      {
+        isDesktop: `(min-width: ${breakPoint}px)`,
+        isMobile: `(max-width: ${breakPoint - 1}px)`,
+        isDesktopHeight: `(min-height: ${1022}px)`,
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      (context: any) => {
+        let { isDesktop, isMobile, reduceMotion, isDesktopHeight } =
+          context.conditions
+
+        if (isMobile && isDesktopHeight) {
+          topOur = '12%'
+          leftOur = '10.5%'
+          topServices = '91.7%'
+          leftServices = '79%'
+          topProcessOur = '12%'
+          leftProcessOur = '9.5%'
+          topProcessProcess = '91.7%'
+          leftProcessProcess = '75%'
+        } else {
+          if (isDesktopHeight) {
+            topOur = '12%'
+            leftOur = '7.5%'
+            topServices = '92.7%'
+            leftServices = '88%'
+            topProcessOur = '12%'
+            leftProcessOur = '7.5%'
+            topProcessProcess = '92.7%'
+            leftProcessProcess = '88%'
+          }
+          if (isDesktop) {
+            topOur = '12%'
+            leftOur = '7.5%'
+            topServices = '92.7%'
+            leftServices = '88%'
+            topProcessOur = '12%'
+            leftProcessOur = '7.5%'
+            topProcessProcess = '92.7%'
+            leftProcessProcess = '88%'
+          }
+          if (isMobile) {
+            topOur = '12%'
+            leftOur = '10.5%'
+            topServices = '91.7%'
+            leftServices = '79%'
+            topProcessOur = '12%'
+            leftProcessOur = '9.5%'
+            topProcessProcess = '91.7%'
+            leftProcessProcess = '75%'
+          }
+        }
+      }
+    )
+
+    let direction = 'down',
+      current: any,
+      next = 0
 
     function handleWheel(e: any) {
       if (!listening) return
@@ -70,11 +170,198 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
     setTimeout(() => (listening = true), 3000)
     onPrevSection()
 
+    function handleDirection() {
+      listening = false
+
+      if (direction === 'down') {
+        if (current < headings.length - 1) {
+          next = current + 1
+          slideIn()
+        } else if (current === headings.length - 1) {
+          onNextSection()
+          setTimeout(() => (listening = true), 5000)
+          current += 1
+        } else {
+          setTimeout(() => {
+            listening = true
+          }, 2000)
+        }
+      }
+
+      if (direction === 'up') {
+        if (current === 0) {
+          listening = true
+          return
+        }
+        if (current < headings.length) {
+          next = current - 1
+          slideOut()
+        } else if (current >= headings.length && canMoveBack) {
+          onPrevSection()
+          setTimeout(() => {
+            listening = true
+          }, 5000)
+          current -= 1
+        } else {
+          setTimeout(() => {
+            listening = true
+          }, 2000)
+        }
+      }
+    }
+
+    const touch = {
+      startX: 0,
+      startY: 0,
+      dx: 0,
+      dy: 0,
+      startTime: 0,
+      dt: 0,
+    }
+
+    function handleTouchStart(e: any) {
+      if (!listening) return
+      const t = e.changedTouches[0]
+      touch.startX = t.pageX
+      touch.startY = t.pageY
+    }
+
+    function handleTouchMove(e: any) {
+      if (!listening) return
+      e.preventDefault()
+    }
+
+    function handleTouchEnd(e: any) {
+      if (!listening) return
+      const t = e.changedTouches[0]
+      touch.dx = t.pageX - touch.startX
+      touch.dy = t.pageY - touch.startY
+      if (touch.dy > 10) direction = 'up'
+      if (touch.dy < -10) direction = 'down'
+      handleDirection()
+    }
+
+    function revealSectionHeading() {
+      const tl = gsap.timeline()
+      return tl
+        .to(headings[next], {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          delay: 2,
+          ease: 'power2',
+        })
+        .to(
+          partnersRef.current,
+          { autoAlpha: 1, y: 0, duration: 1, ease: 'power2' },
+          '<'
+        )
+    }
+
+    const tlDefaults = {
+      ease: 'slow.inOut',
+      duration: 1,
+    }
+
+    function slideIn() {
+      const tl = gsap.timeline({
+        defaults: tlDefaults,
+        onComplete: () => {
+          setTimeout(() => {
+            listening = true
+            current = next
+          }, 500)
+        },
+      })
+      if (current === undefined) {
+        tl.add(revealSectionHeading(), 0)
+      }
+
+      if (current !== undefined) {
+        tl.add(
+          gsap
+            .timeline()
+            .to(headings[current], { y: -100, autoAlpha: 0, duration: 0.3 })
+            .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
+        )
+      }
+
+      tl.play(0)
+    }
+
+    // Slides a section out on scroll up
+    function slideOut() {
+      gsap
+        .timeline({
+          defaults: tlDefaults,
+          onComplete: () => {
+            setTimeout(() => {
+              listening = true
+              current = next
+            }, 500)
+          },
+        })
+        .to(headings[current], { y: 100, autoAlpha: 0, duration: 0.3 })
+        .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
+    }
+
     return () => {
       tl.kill()
+      topOur = '12%'
+      leftOur = '7.5%'
+      topServices = '92.7%'
+      leftServices = '88%'
+      topProcessOur = '12%'
+      leftProcessOur = '7.5%'
+      topProcessProcess = '92.7%'
+      leftProcessProcess = '88%'
       window.removeEventListener('wheel', handleWheel)
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchmove', handleTouchMove)
+      document.removeEventListener('touchend', handleTouchEnd)
     }
   }, [servicesTextRef, loaded])
+
+  const [curretnIndex, setCurrentIndex] = useState(0)
+  const [backArrow, setBackArrow] = useState(false)
+
+  const sectionArray = [
+    [
+      {
+        title: 'NFT MARKETPLACES',
+        description:
+          'DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT CREDIT CARD PAYMENTS',
+      },
+      {
+        title: 'LOYALTY PROGRAMS',
+        description:
+          'DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND RETENTION',
+      },
+    ],
+    [
+      {
+        title: 'TRADING PLATFORMS',
+        description:
+          'CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD DIGITIZED GOODS',
+      },
+      {
+        title: 'PLAY-TO-EARN GAMES',
+        description:
+          'HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT IN UNITY',
+      },
+    ],
+    [
+      {
+        title: 'METAVERSE BUILDS',
+        description:
+          "CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S VALUE PROPOSITION",
+      },
+      {
+        title: '',
+        description: '',
+      },
+    ],
+  ]
 
   const onPrevSection = () => {
     const tl = gsap.timeline()
@@ -136,8 +423,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '7.5%',
-          top: '12%',
+          left: leftOur,
+          top: topOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -156,8 +443,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '88%',
-          top: '92.7%',
+          left: leftServices,
+          top: topServices,
 
           xPercent: -50,
           yPercent: -50,
@@ -238,6 +525,25 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
+      )
+      .to(
+        // Show Next Client Arrow
+        nextSliderArrowRef.current,
+        { opacity: 1, duration: 0.2 }
+      )
   }
 
   const onNextSection = () => {
@@ -248,6 +554,11 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       opacity: 0,
       duration: 0.5,
     })
+      .to(
+        // Show Next Services Arrow
+        nextSliderArrowRef.current,
+        { opacity: 0, duration: 0.5 }
+      )
       .fromTo(
         ourServicesTextRef.current,
         {
@@ -292,6 +603,13 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
+      .to(
+        nextLinkRef.current,
+        {
+          zIndex: 1000,
+        },
+        '<'
+      )
       .fromTo(
         processTitleMainRef.current,
         {
@@ -318,8 +636,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           opacity: 1,
         },
         {
-          left: '7.5%',
-          top: '12%',
+          left: leftProcessOur,
+          top: topProcessOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -338,8 +656,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           yPercent: -50,
         },
         {
-          left: '88%',
-          top: '92.7%',
+          left: leftProcessProcess,
+          top: topProcessProcess,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -420,6 +738,38 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         '<'
       )
   }
+  const router = useRouter()
+  const onNextServices = () => {
+    const tl = gsap.timeline()
+
+    // Hide Customer Section
+    tl.to(
+      // Hide Next Section Arrow button
+      nextLinkRef.current,
+      { opacity: 0, duration: 0.5 }
+    )
+      .fromTo(
+        // Show Next Section Arrow button
+        nextLinkRef.current,
+        { opacity: 0 },
+        { opacity: 1, zIndex: 1000 },
+        '<'
+      )
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
+      )
+  }
 
   return (
     <Layout>
@@ -434,6 +784,107 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           ref={bgRef}
         >
           <Image src={greenBlock.src} alt="bg_services" layout="fill" />
+        </div>
+        <div className={styles['services-page__menugroup']}>
+          <div className={styles['services-page__selectedMenu']}>
+            <div>SERVICES</div>
+            <div>
+              <svg
+                width="16px"
+                height="16px"
+                viewBox="0 0 26 111"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
+                  fill="#272822"
+                />
+              </svg>
+            </div>
+          </div>
+          {isMenuOpen && (
+          <div className={styles['services-page__optiongroup']}>
+            <div
+              onClick={() => {
+                router.push('about')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['services-page__optionMenu'],
+                styles['services-page__optionMenu--about']
+              )}
+            >
+              <div>ABOUT US</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 42 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className={cx(
+                styles['services-page__optionMenu'],
+                styles['services-page__optionMenu--services']
+              )}
+              onClick={() => {
+                router.push('services')
+                setIsMenuOpen(false)
+              }}
+            >
+              <div>SERVICES</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 26 111"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                router.push('clients')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['services-page__optionMenu'],
+                styles['services-page__optionMenu--client']
+              )}
+            >
+              <div>CLIENTS</div>
+              <div>
+              <svg
+                   width="16px"
+                   height="16px"
+                  viewBox="0 0 15 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 111.114H14.483V0.870117H0V111.114Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
         </div>
         {/* <div
           className={styles['services-page__bg']}
@@ -485,126 +936,193 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
             <span ref={servicesTextRef}>SERVICES</span>
           </div>
 
+          <div
+            className={styles['services-page__next-slider']}
+            ref={nextSliderArrowRef}
+            style={{
+              transform: backArrow ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
+            onClick={() => {
+              if (backArrow) {
+                onNextServices()
+                setCurrentIndex(curretnIndex - 1)
+                if (curretnIndex - 1 == 0) {
+                  setBackArrow(false)
+                }
+              } else {
+                setCurrentIndex(curretnIndex + 1)
+                onNextServices()
+                if (curretnIndex + 1 == 2) {
+                  setBackArrow(true)
+                }
+              }
+            }}
+          >
+            <svg
+              width="30"
+              height="26"
+              viewBox="0 0 12 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.03406 0.83L11.1361 5.044V5.156L7.03406 9.37L6.26406 8.6L9.23207 5.646H0.776064V4.554H9.23207L6.26406 1.6L7.03406 0.83Z"
+                fill="#272822"
+              />
+            </svg>
+          </div>
+
           <div className={styles['benefits-section']} ref={benefitsSectionRef}>
             <div className={styles['benefits-section__inner']}>
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[0] = ref
-                    }}
-                  >
-                    NFT MARKETPLACES
+              <div className={styles['benefits-section--desktop']}>
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[0] = ref
+                      }}
+                    >
+                      NFT MARKETPLACES
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[0] = ref
+                      }}
+                    >
+                      DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT
+                      CREDIT CARD PAYMENTS
+                    </div>
                   </div>
                 </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[0] = ref
-                    }}
-                  >
-                    DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT CREDIT CARD PAYMENTS
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[1] = ref
+                      }}
+                    >
+                      LOYALTY PROGRAMS
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[1] = ref
+                      }}
+                    >
+                      DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND
+                      RETENTION
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[2] = ref
+                      }}
+                    >
+                      TRADING PLATFORMS
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[2] = ref
+                      }}
+                    >
+                      CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND
+                      HOLD DIGITIZED GOODS
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[3] = ref
+                      }}
+                    >
+                      PLAY-TO-EARN GAMES
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[3] = ref
+                      }}
+                    >
+                      HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT
+                      IN UNITY
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[4] = ref
+                      }}
+                    >
+                      METAVERSE BUILDS
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[4] = ref
+                      }}
+                    >
+                      CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S
+                      VALUE PROPOSITION
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[1] = ref
-                    }}
-                  >
-                    LOYALTY PROGRAMS
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[1] = ref
-                    }}
-                  >
-                    DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND RETENTION
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[2] = ref
-                    }}
-                  >
-                    TRADING PLATFORMS
-
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[2] = ref
-                    }}
-                  >
-                    CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD DIGITIZED GOODS
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[3] = ref
-                    }}
-                  >
-                    PLAY-TO-EARN GAMES
-
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[3] = ref
-                    }}
-                  >
-                    HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E
-                    GAMES BUILT IN UNITY
-                  </div>
-                </div>
-              </div>
-
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[4] = ref
-                    }}
-                  >
-                    METAVERSE BUILDS
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[4] = ref
-                    }}
-                  >
-                    CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR
-                    BRAND'S VALUE PROPOSITION
-                  </div>
-                </div>
+              {/* mobile */}
+              <div className={styles['benefits-section--mobile']}>
+                {sectionArray[curretnIndex].map((data, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <div className={styles['benefits-section__row']}>
+                        <div
+                          className={styles['benefits-section__title']}
+                          ref={(ref) => {
+                            if (ref)
+                              clientsMobileItemLogoRef.current[index] = ref
+                          }}
+                        >
+                          {data.title}
+                        </div>
+                        <div
+                          className={styles['benefits-section__text']}
+                          ref={(ref) => {
+                            if (ref)
+                              clientsMobileItemTitleRef.current[index] = ref
+                          }}
+                        >
+                          {data.description}
+                        </div>
+                      </div>
+                    </Fragment>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -634,7 +1152,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[0] = ref
                   }}
                 >
-                 WE STUDY YOUR UNIQUE BUSINESS REQUIREMENTS AND BUILD SOFTWARE TO FIT YOUR BUSINESS GOAL
+                  WE STUDY YOUR UNIQUE BUSINESS REQUIREMENTS AND BUILD SOFTWARE
+                  TO FIT YOUR BUSINESS GOAL
                   <span>
                     <svg
                       width="3"
@@ -704,7 +1223,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
                     if (ref) processBlockTitleRef.current[2] = ref
                   }}
                 >
-                  WE MANAGE THE DAY-TO-DAY BACKEND OPERATIONS 
+                  WE MANAGE THE DAY-TO-DAY BACKEND OPERATIONS
                   <span>
                     <svg
                       width="10"
