@@ -19,9 +19,12 @@ import styles from '@/styles/pages/Services.module.scss'
 
 import greenBlock from '@/images/green-bg.png'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 interface PageProps {
   loaded: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (data: boolean) => void
 }
 
 // start comman variable -- for animation
@@ -34,7 +37,11 @@ let leftProcessOur = '7.5%'
 let topProcessProcess = '92.7%'
 let leftProcessProcess = '88%'
 
-const Services: NextPage<PageProps> = ({ loaded }) => {
+const Services: NextPage<PageProps> = ({
+  loaded,
+  isMenuOpen,
+  setIsMenuOpen,
+}) => {
   gsap.registerPlugin(ScrollTrigger)
   const [currentSection, setCurrentSection] = useState('initial')
 
@@ -542,8 +549,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   const onNextSection = () => {
     const tl = gsap.timeline()
 
-
-
     tl.to(nextLinkRef.current, {
       pointerEvents: 'none',
       opacity: 0,
@@ -733,9 +738,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         '<'
       )
   }
-
+  const router = useRouter()
   const onNextServices = () => {
-
     const tl = gsap.timeline()
 
     // Hide Customer Section
@@ -780,6 +784,107 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           ref={bgRef}
         >
           <Image src={greenBlock.src} alt="bg_services" layout="fill" />
+        </div>
+        <div className={styles['services-page__menugroup']}>
+          <div className={styles['services-page__selectedMenu']}>
+            <div>SERVICES</div>
+            <div>
+              <svg
+                width="16px"
+                height="16px"
+                viewBox="0 0 26 111"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
+                  fill="#272822"
+                />
+              </svg>
+            </div>
+          </div>
+          {isMenuOpen && (
+          <div className={styles['services-page__optiongroup']}>
+            <div
+              onClick={() => {
+                router.push('about')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['services-page__optionMenu'],
+                styles['services-page__optionMenu--about']
+              )}
+            >
+              <div>ABOUT US</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 42 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className={cx(
+                styles['services-page__optionMenu'],
+                styles['services-page__optionMenu--services']
+              )}
+              onClick={() => {
+                router.push('services')
+                setIsMenuOpen(false)
+              }}
+            >
+              <div>SERVICES</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 26 111"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                router.push('clients')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['services-page__optionMenu'],
+                styles['services-page__optionMenu--client']
+              )}
+            >
+              <div>CLIENTS</div>
+              <div>
+              <svg
+                   width="16px"
+                   height="16px"
+                  viewBox="0 0 15 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 111.114H14.483V0.870117H0V111.114Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
         </div>
         {/* <div
           className={styles['services-page__bg']}

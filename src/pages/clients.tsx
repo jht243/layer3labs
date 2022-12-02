@@ -10,6 +10,7 @@ import React, {
 import { gsap } from 'gsap'
 
 import cx from 'classnames'
+import { useRouter } from 'next/router'
 
 import Layout from '@/layouts/index'
 import { NavLink } from '@/components/ui/NavLink'
@@ -32,9 +33,13 @@ import Image from 'next/image'
 
 interface PageProps {
   loaded: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (data: boolean) => void
 }
 
-const Clients: NextPage<PageProps> = ({ loaded }) => {
+const Clients: NextPage<PageProps> = ({ loaded, 
+  isMenuOpen,
+  setIsMenuOpen, }) => {
   let topOur = '12%'
   let leftOur = '11%'
   let topClients = '92.7%'
@@ -43,6 +48,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
   let leftCustomersOur = '15%'
   let topCustomersCustomers = '92.7%'
   let leftCustomersCustomers = '82.5%'
+  const router = useRouter()
 
   const bgRef = useRef(null)
   const nextLinkRef = useRef() as MutableRefObject<HTMLDivElement>
@@ -301,7 +307,6 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
   }
 
   const onNextSection = () => {
-
     const tl = gsap.timeline()
 
     // Hide Customer Section
@@ -413,7 +418,6 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       )
   }
   const onNextClients = () => {
-
     const tl = gsap.timeline()
 
     // Hide Customer Section
@@ -508,6 +512,107 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         >
           <Image src={orangeBlock.src} alt="bg_about" layout="fill" />
         </div>
+        <div className={styles['clients-page__menugroup']}>
+          <div className={styles['clients-page__selectedMenu']}>
+            <div>CLIENTS</div>
+            <div>
+              <svg
+                width="16px"
+                height="16px"
+                viewBox="0 0 42 112"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
+                  fill="#272822"
+                />
+              </svg>
+            </div>
+          </div>
+          {isMenuOpen && (
+          <div className={styles['clients-page__optiongroup']}>
+            <div
+              onClick={() => {
+                router.push('about')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['clients-page__optionMenu'],
+                styles['clients-page__optionMenu--about']
+              )}
+            >
+              <div>ABOUT US</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 42 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className={cx(
+                styles['clients-page__optionMenu'],
+                styles['clients-page__optionMenu--services']
+              )}
+              onClick={() => {
+                router.push('services')
+                setIsMenuOpen(false)
+              }}
+            >
+              <div>SERVICES</div>
+              <div>
+                <svg
+                  width="16px"
+                  height="16px"
+                  viewBox="0 0 26 111"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                router.push('clients')
+                setIsMenuOpen(false)
+              }}
+              className={cx(
+                styles['clients-page__optionMenu'],
+                styles['clients-page__optionMenu--client']
+              )}
+            >
+              <div>CLIENTS</div>
+              <div>
+              <svg
+                   width="16px"
+                   height="16px"
+                  viewBox="0 0 15 112"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 111.114H14.483V0.870117H0V111.114Z"
+                    fill="#272822"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
+        </div>
         <div className={styles['clients-page__inner']}>
           {/* <div className={styles['clients-page__back']}>
               <NavLink href="/">
@@ -549,18 +654,13 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
               transform: backArrow ? 'rotate(180deg)' : 'rotate(0deg)',
             }}
             onClick={() => {
-
-
               if (backArrow) {
-
                 onNextClients()
                 setCurrentIndex(curretnIndex - 1)
                 if (curretnIndex - 1 == 0) {
                   setBackArrow(false)
                 }
               } else {
-
-
                 setCurrentIndex(curretnIndex + 1)
                 onNextClients()
                 if (curretnIndex + 1 == 2) {
@@ -582,7 +682,6 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
               />
             </svg>
           </div>
-
 
           <div className={styles['clients-section']} ref={clientsSectionRef}>
             <div className={styles['clients-section__inner']}>

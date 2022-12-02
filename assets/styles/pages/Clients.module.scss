@@ -11,7 +11,7 @@
   @include sm {
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 40px;
+    padding-top: 60px;
     height: calc(var(--vh) - 40px);
   }
 
@@ -25,6 +25,69 @@
 
     @include sm {
       height: calc(var(--vh) - 80px);
+    }
+  }
+
+  &__menugroup{
+    position: absolute;
+    width: 100%;
+    margin-left: -20px;
+  }
+
+  &__optiongroup{
+    position: absolute;
+    width: 100%;
+    z-index: 100000;
+    text-transform: capitalize;
+  }
+
+  &__selectedMenu {
+    text-transform: capitalize;
+    position: absolute;
+    display: none;
+    background-color: $clients;
+    width: 100%;
+    padding: 7px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+
+    @include sm {
+      display: flex;
+    }
+  }
+
+  &__optionMenu {
+    text-transform: capitalize;
+    display: none;
+    // background-color: $primary;
+    width: 100%;
+    padding: 7px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    &--about{
+      background-color: $primary;
+    }
+    &--client{
+      background-color: $clients;
+    }
+    &--services{
+      background-color: $services;
+    }
+
+    @include sm {
+      display: flex;
     }
   }
 
