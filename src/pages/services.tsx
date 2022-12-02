@@ -1,7 +1,13 @@
 import type { NextPage } from 'next'
 
-import React, {MutableRefObject ,useEffect, useRef, useState } from 'react'
-import { gsap,Power0 } from 'gsap'
+import React, {
+  Fragment,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
+import { gsap, Power0 } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 import cx from 'classnames'
@@ -18,6 +24,16 @@ interface PageProps {
   loaded: boolean
 }
 
+// start comman variable -- for animation
+let topOur = '12%'
+let leftOur = '7.5%'
+let topServices = '92.7%'
+let leftServices = '88%'
+let topProcessOur = '12%'
+let leftProcessOur = '7.5%'
+let topProcessProcess = '92.7%'
+let leftProcessProcess = '88%'
+
 const Services: NextPage<PageProps> = ({ loaded }) => {
   gsap.registerPlugin(ScrollTrigger)
   const [currentSection, setCurrentSection] = useState('initial')
@@ -25,18 +41,9 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   let timer: any
   let canMoveBack = true
 
-   // start comman variable -- for animation
-  let topOur = '12%'
-  let leftOur = '7.5%'
-  let topServices = '92.7%'
-  let leftServices = '88%'
-  let topProcessOur = '12%'
-  let leftProcessOur = '7.5%'
-  let topProcessProcess = '92.7%'
-  let leftProcessProcess = '88%'
-
   const bgRef = useRef(null)
   const nextLinkRef = useRef(null)
+  const nextSliderArrowRef = useRef() as MutableRefObject<HTMLDivElement>
 
   const servicesTextRef = useRef(null)
   const ourServicesTextRef = useRef(null)
@@ -55,7 +62,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
   const processNoteRef = useRef<HTMLDivElement[]>([])
   const processBlockTitleRef = useRef<HTMLDivElement[]>([])
 
-  const titlesRef = useRef(null)
+  const clientsMobileItemLogoRef = useRef<HTMLDivElement[]>([])
+  const clientsMobileItemTitleRef = useRef<HTMLDivElement[]>([])
 
   const partnersRef = useRef(null)
 
@@ -76,7 +84,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
     let mm = gsap.matchMedia(),
       breakPoint = 769
 
-
     mm.add(
       {
         isDesktop: `(min-width: ${breakPoint}px)`,
@@ -87,7 +94,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       (context: any) => {
         let { isDesktop, isMobile, reduceMotion, isDesktopHeight } =
           context.conditions
-        console.log(isDesktop, isMobile, reduceMotion, '----', isDesktopHeight)
+
         if (isMobile && isDesktopHeight) {
           topOur = '12%'
           leftOur = '10.5%'
@@ -129,12 +136,12 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
             leftProcessProcess = '75%'
           }
         }
-      })
-
+      }
+    )
 
     let direction = 'down',
-    current: any,
-    next = 0
+      current: any,
+      next = 0
 
     function handleWheel(e: any) {
       if (!listening) return
@@ -155,7 +162,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
     window.addEventListener('wheel', handleWheel)
     setTimeout(() => (listening = true), 3000)
     onPrevSection()
-
 
     function handleDirection() {
       listening = false
@@ -205,7 +211,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       startTime: 0,
       dt: 0,
     }
-
 
     function handleTouchStart(e: any) {
       if (!listening) return
@@ -277,8 +282,8 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
       tl.play(0)
     }
 
-     // Slides a section out on scroll up
-     function slideOut() {
+    // Slides a section out on scroll up
+    function slideOut() {
       gsap
         .timeline({
           defaults: tlDefaults,
@@ -293,37 +298,80 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
     }
 
-    
-
-
     return () => {
       tl.kill()
+      topOur = '12%'
+      leftOur = '7.5%'
+      topServices = '92.7%'
+      leftServices = '88%'
+      topProcessOur = '12%'
+      leftProcessOur = '7.5%'
+      topProcessProcess = '92.7%'
+      leftProcessProcess = '88%'
       window.removeEventListener('wheel', handleWheel)
       document.removeEventListener('touchstart', handleTouchStart)
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('touchend', handleTouchEnd)
-
     }
   }, [servicesTextRef, loaded])
+
+  const [curretnIndex, setCurrentIndex] = useState(0)
+  const [backArrow, setBackArrow] = useState(false)
+
+  const sectionArray = [
+    [
+      {
+        title: 'NFT MARKETPLACES',
+        description:
+          'DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT CREDIT CARD PAYMENTS',
+      },
+      {
+        title: 'LOYALTY PROGRAMS',
+        description:
+          'DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND RETENTION',
+      },
+    ],
+    [
+      {
+        title: 'TRADING PLATFORMS',
+        description:
+          'CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD DIGITIZED GOODS',
+      },
+      {
+        title: 'PLAY-TO-EARN GAMES',
+        description:
+          'HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT IN UNITY',
+      },
+    ],
+    [
+      {
+        title: 'METAVERSE BUILDS',
+        description:
+          "CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S VALUE PROPOSITION",
+      },
+      {
+        title: '',
+        description: '',
+      },
+    ],
+  ]
 
   const onPrevSection = () => {
     const tl = gsap.timeline()
 
-      tl.set(titlesRef.current, { clearProps: 'all' })
-      .set(titlesRef.current, { autoAlpha: 0 })
-      .fromTo(
-        processTitle1Ref.current,
-        {
-          y: 0,
-          opacity: 1,
-        },
-        {
-          y: 50,
-          opacity: 0,
-          duration: 0.1,
-          stagger: 0.2,
-        }
-      )
+    tl.fromTo(
+      processTitle1Ref.current,
+      {
+        y: 0,
+        opacity: 1,
+      },
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.1,
+        stagger: 0.2,
+      }
+    )
       .fromTo(
         processTitle2Ref.current,
         {
@@ -389,7 +437,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: leftServices,
-          top:  topServices,
+          top: topServices,
 
           xPercent: -50,
           yPercent: -50,
@@ -470,17 +518,42 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
-      .to(titlesRef.current, { autoAlpha: 1 })
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
+      )
+      .to(
+        // Show Next Client Arrow
+        nextSliderArrowRef.current,
+        { opacity: 1, duration: 0.2 }
+      )
   }
 
   const onNextSection = () => {
     const tl = gsap.timeline()
+
+
 
     tl.to(nextLinkRef.current, {
       pointerEvents: 'none',
       opacity: 0,
       duration: 0.5,
     })
+      .to(
+        // Show Next Services Arrow
+        nextSliderArrowRef.current,
+        { opacity: 0, duration: 0.5 }
+      )
       .fromTo(
         ourServicesTextRef.current,
         {
@@ -506,18 +579,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           duration: 0.2,
         },
         '<'
-      ).fromTo(
-        titlesRef.current,
-        {
-          y: 0,
-          opacity: 1,
-        },
-        {
-          y: -150,
-          opacity: 0,
-          duration: 0.5,
-        },
-        '<'
       )
       .fromTo(
         benefitsSectionRef.current,
@@ -537,7 +598,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
-      .set(titlesRef.current, { pointerEvents: 'none', zIndex: -1 })
       .to(
         nextLinkRef.current,
         {
@@ -572,7 +632,7 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         {
           left: leftProcessOur,
-          top:  topProcessOur,
+          top: topProcessOur,
           xPercent: -50,
           yPercent: -50,
           duration: 2.5,
@@ -663,7 +723,6 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
         },
         '<'
       )
-      .set(titlesRef.current, { pointerEvents: 'none', zIndex: -1 })
       .to(
         nextLinkRef.current,
         {
@@ -672,6 +731,39 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
           duration: 0.5,
         },
         '<'
+      )
+  }
+
+  const onNextServices = () => {
+
+    const tl = gsap.timeline()
+
+    // Hide Customer Section
+    tl.to(
+      // Hide Next Section Arrow button
+      nextLinkRef.current,
+      { opacity: 0, duration: 0.5 }
+    )
+      .fromTo(
+        // Show Next Section Arrow button
+        nextLinkRef.current,
+        { opacity: 0 },
+        { opacity: 1, zIndex: 1000 },
+        '<'
+      )
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
       )
   }
 
@@ -739,133 +831,196 @@ const Services: NextPage<PageProps> = ({ loaded }) => {
             <span ref={servicesTextRef}>SERVICES</span>
           </div>
 
-{/* desktop component */}
+          <div
+            className={styles['services-page__next-slider']}
+            ref={nextSliderArrowRef}
+            style={{
+              transform: backArrow ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
+            onClick={() => {
+              if (backArrow) {
+                onNextServices()
+                setCurrentIndex(curretnIndex - 1)
+                if (curretnIndex - 1 == 0) {
+                  setBackArrow(false)
+                }
+              } else {
+                setCurrentIndex(curretnIndex + 1)
+                onNextServices()
+                if (curretnIndex + 1 == 2) {
+                  setBackArrow(true)
+                }
+              }
+            }}
+          >
+            <svg
+              width="30"
+              height="26"
+              viewBox="0 0 12 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.03406 0.83L11.1361 5.044V5.156L7.03406 9.37L6.26406 8.6L9.23207 5.646H0.776064V4.554H9.23207L6.26406 1.6L7.03406 0.83Z"
+                fill="#272822"
+              />
+            </svg>
+          </div>
+
           <div className={styles['benefits-section']} ref={benefitsSectionRef}>
             <div className={styles['benefits-section__inner']}>
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[0] = ref
-                    }}
-                  >
-                    NFT MARKETPLACES
+              <div className={styles['benefits-section--desktop']}>
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[0] = ref
+                      }}
+                    >
+                      NFT MARKETPLACES
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[0] = ref
+                      }}
+                    >
+                      DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT
+                      CREDIT CARD PAYMENTS
+                    </div>
                   </div>
                 </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[0] = ref
-                    }}
-                  >
-                    DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT
-                    CREDIT CARD PAYMENTS
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[1] = ref
+                      }}
+                    >
+                      LOYALTY PROGRAMS
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[1] = ref
+                      }}
+                    >
+                      DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND
+                      RETENTION
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[2] = ref
+                      }}
+                    >
+                      TRADING PLATFORMS
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[2] = ref
+                      }}
+                    >
+                      CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND
+                      HOLD DIGITIZED GOODS
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[3] = ref
+                      }}
+                    >
+                      PLAY-TO-EARN GAMES
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[3] = ref
+                      }}
+                    >
+                      HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT
+                      IN UNITY
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles['benefits-section__row']}>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__title']}
+                      ref={(ref) => {
+                        if (ref) benefitsTitleRef.current[4] = ref
+                      }}
+                    >
+                      METAVERSE BUILDS
+                    </div>
+                  </div>
+                  <div className={styles['benefits-section__col']}>
+                    <div
+                      className={styles['benefits-section__text']}
+                      ref={(ref) => {
+                        if (ref) benefitsSubTitleRef.current[4] = ref
+                      }}
+                    >
+                      CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S
+                      VALUE PROPOSITION
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[1] = ref
-                    }}
-                  >
-                    LOYALTY PROGRAMS
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[1] = ref
-                    }}
-                  >
-                    DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND
-                    RETENTION
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[2] = ref
-                    }}
-                  >
-                    TRADING PLATFORMS
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[2] = ref
-                    }}
-                  >
-                    CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD
-                    DIGITIZED GOODS
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[3] = ref
-                    }}
-                  >
-                    PLAY-TO-EARN GAMES
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[3] = ref
-                    }}
-                  >
-                    HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT
-                    IN UNITY
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles['benefits-section__row']}>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__title']}
-                    ref={(ref) => {
-                      if (ref) benefitsTitleRef.current[4] = ref
-                    }}
-                  >
-                    METAVERSE BUILDS
-                  </div>
-                </div>
-                <div className={styles['benefits-section__col']}>
-                  <div
-                    className={styles['benefits-section__text']}
-                    ref={(ref) => {
-                      if (ref) benefitsSubTitleRef.current[4] = ref
-                    }}
-                  >
-                    CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S VALUE
-                    PROPOSITION
-                  </div>
-                </div>
+              {/* mobile */}
+              <div className={styles['benefits-section--mobile']}>
+                {sectionArray[curretnIndex].map((data, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <div className={styles['benefits-section__row']}>
+                        <div
+                          className={styles['benefits-section__title']}
+                          ref={(ref) => {
+                            if (ref)
+                              clientsMobileItemLogoRef.current[index] = ref
+                          }}
+                        >
+                          {data.title}
+                        </div>
+                        <div
+                          className={styles['benefits-section__text']}
+                          ref={(ref) => {
+                            if (ref)
+                              clientsMobileItemTitleRef.current[index] = ref
+                          }}
+                        >
+                          {data.description}
+                        </div>
+                      </div>
+                    </Fragment>
+                  )
+                })}
               </div>
             </div>
           </div>
-
-
-          
 
           <div
             className={styles['services-page__process-title']}
