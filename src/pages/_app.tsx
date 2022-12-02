@@ -20,6 +20,8 @@ const Application = ({ Component, pageProps }: ApplicationProps) => {
   const router = useRouter()
   const [loaded, setLoaded] = useState<boolean>(false)
   const [changedRoute, setChangedRoute] = useState<string>('')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   usePageTransitionFix()
   useWindowSize()
 
@@ -59,9 +61,9 @@ const Application = ({ Component, pageProps }: ApplicationProps) => {
   return (
     <div className="container-new">
       <Provider store={store}>
-        <Navigation loaded={loaded} changedRoute={changedRoute} />
+        <Navigation loaded={loaded} changedRoute={changedRoute} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <AnimatePresence mode="wait">
-          <Component {...pageProps} loaded={loaded} key={router.pathname} />
+          <Component {...pageProps} loaded={loaded} key={router.pathname} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         </AnimatePresence>
       </Provider>
     </div>

@@ -8,6 +8,7 @@
   padding-right: $nav_link_width + $gap_padding;
   transition: opacity 1s ease 0.5s;
   overflow: hidden;
+  
 
   @include sm {
     padding-left: 20px;
@@ -68,9 +69,75 @@
     }
   }
 
+ 
+  &__menugroup{
+    position: absolute;
+    width: 100%;
+    margin-left: -20px;
+    margin-top: 20px;
+  }
+
+  &__optiongroup{
+    position: absolute;
+    width: 100%;
+    z-index: 100000;
+    text-transform: capitalize;
+
+  }
+
+  &__selectedMenu {
+    text-transform: capitalize;
+    position: absolute;
+    display: none;
+    background-color: $services;
+    width: 100%;
+    padding: 7px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+
+    @include sm {
+      display: flex;
+    }
+  }
+
+  &__optionMenu {
+    text-transform: capitalize;
+    display: none;
+    // background-color: $primary;
+    width: 100%;
+    padding: 7px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    &--about{
+      background-color: $primary;
+    }
+    &--client{
+      background-color: $clients;
+    }
+    &--services{
+      background-color: $services;
+    }
+
+    @include sm {
+      display: flex;
+    }
+  }
+
   &__next-slider {
     position: absolute;
-    top: 7vh;
+    top: 9vh;
     right: 1vw;
     cursor: pointer;
     z-index: 99;
@@ -201,6 +268,7 @@
     }
   }
 }
+
 
 .benefits-section {
   position: absolute;
