@@ -31,14 +31,14 @@ const Footer: FC = () => {
           height={30}
           width={30}
           onClick={() => {
-            console.log('gfhsbvjsbjkv')
+
             router.push('/')
           }}
         />
       </div>
       <div className={styles['footer__col']}>
-        <a href="mailto:PARTNERS@LAYER3LABS.IO">PARTNERS@LAYER3LABS.IO</a>
-        <div>ALL RIGHTS RESERVED</div>
+        <a className={styles['footer__col--left']} href="mailto:PARTNERS@LAYER3LABS.IO">PARTNERS@LAYER3LABS.IO</a>
+        <div className={styles['footer__col--left']}>ALL RIGHTS RESERVED</div>
       </div>
     </footer>
   )

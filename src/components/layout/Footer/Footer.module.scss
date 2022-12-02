@@ -37,6 +37,10 @@
       line-height: 1.4;
     }
 
+    &--left{
+      text-align: right;
+    }
+
     // &:nth-child(1) {
     //   @include sm {
     //     flex-direction: row;

@@ -1,6 +1,12 @@
 import type { NextPage } from 'next'
 
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
+import React, {
+  Fragment,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { gsap } from 'gsap'
 
 import cx from 'classnames'
@@ -40,7 +46,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
 
   const bgRef = useRef(null)
   const nextLinkRef = useRef() as MutableRefObject<HTMLDivElement>
-
+  const nextSliderArrowRef = useRef() as MutableRefObject<HTMLDivElement>
   const ourClientsTitleRef = useRef(null)
   const clientsTextRef = useRef(null)
   const ourClientsTextRef = useRef(null)
@@ -49,6 +55,9 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
 
   const clientsItemLogoRef = useRef<HTMLDivElement[]>([])
   const clientsItemTitleRef = useRef<HTMLDivElement[]>([])
+
+  const clientsMobileItemLogoRef = useRef<HTMLDivElement[]>([])
+  const clientsMobileItemTitleRef = useRef<HTMLDivElement[]>([])
 
   const testimonTitleMainRef = useRef(null)
   const testimonTitle1Ref = useRef(null)
@@ -83,7 +92,7 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       (context: any) => {
         let { isDesktop, isMobile, reduceMotion, isDesktopHeight } =
           context.conditions
-        console.log(isDesktop, isMobile, reduceMotion, '----', isDesktopHeight)
+
         if (isMobile && isDesktopHeight) {
           topOur = '12%'
           leftOur = '11%'
@@ -270,9 +279,29 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
         '<+=0.05'
       )
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
+      )
+      .to(
+        // Show Next Client Arrow
+        nextSliderArrowRef.current,
+        { opacity: 1, duration: 0.5 }
+      )
   }
 
   const onNextSection = () => {
+
     const tl = gsap.timeline()
 
     // Hide Customer Section
@@ -281,6 +310,11 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       nextLinkRef.current,
       { opacity: 0, duration: 0.5 }
     )
+      .to(
+        // Show Next Client Arrow
+        nextSliderArrowRef.current,
+        { opacity: 0, duration: 0.5 }
+      )
       .fromTo(
         // Hide the "OUR" text of Client Section
         ourClientsTextRef.current,
@@ -378,6 +412,38 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
         '<+=0.05'
       )
   }
+  const onNextClients = () => {
+
+    const tl = gsap.timeline()
+
+    // Hide Customer Section
+    tl.to(
+      // Hide Next Section Arrow button
+      nextLinkRef.current,
+      { opacity: 0, duration: 0.5 }
+    )
+      .fromTo(
+        // Show Next Section Arrow button
+        nextLinkRef.current,
+        { opacity: 0 },
+        { opacity: 1, zIndex: 1000 },
+        '<'
+      )
+      .fromTo(
+        // Show Items Logo
+        clientsMobileItemLogoRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=1'
+      )
+      .fromTo(
+        // Show Items Text
+        clientsMobileItemTitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        '<+=0.05'
+      )
+  }
 
   useEffect(() => {
     if (isReloadAnimation) {
@@ -385,6 +451,48 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
       dispatch(setReloadAnimation(false))
     }
   }, [isReloadAnimation])
+
+  const [curretnIndex, setCurrentIndex] = useState(0)
+  const [backArrow, setBackArrow] = useState(false)
+
+  const sectionArray = [
+    [
+      {
+        image: bowleroLogo.src,
+        description:
+          'NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER CERTIFICATION PROGRAM',
+      },
+      {
+        image: styrLogo.src,
+        description:
+          'HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET BACKED NFTS',
+      },
+    ],
+    [
+      {
+        image: GSLogo.src,
+        description:
+          'CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING AND AIRDROPS',
+      },
+      {
+        image: JGILogo.src,
+        description:
+          'MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR NATIONAL SPORTS ORGANIZATIONS',
+      },
+    ],
+    [
+      {
+        image: etherealLogo.src,
+        description:
+          'WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR. GOODALLS LEGACY AND RESEARCH',
+      },
+      {
+        image: pipeflareLogo.src,
+        description:
+          'PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY PLAYERS  AND 7 CUSTOM GAMES',
+      },
+    ],
+  ]
 
   return (
     <Layout>
@@ -434,127 +542,199 @@ const Clients: NextPage<PageProps> = ({ loaded }) => {
             <span ref={ourClientsTextRef}>Our</span>
             <span ref={clientsTextRef}>CLIENTS</span>
           </div>
+          <div
+            className={styles['clients-page__next-slider']}
+            ref={nextSliderArrowRef}
+            style={{
+              transform: backArrow ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
+            onClick={() => {
+
+
+              if (backArrow) {
+
+                onNextClients()
+                setCurrentIndex(curretnIndex - 1)
+                if (curretnIndex - 1 == 0) {
+                  setBackArrow(false)
+                }
+              } else {
+
+
+                setCurrentIndex(curretnIndex + 1)
+                onNextClients()
+                if (curretnIndex + 1 == 2) {
+                  setBackArrow(true)
+                }
+              }
+            }}
+          >
+            <svg
+              width="30"
+              height="26"
+              viewBox="0 0 12 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.03406 0.83L11.1361 5.044V5.156L7.03406 9.37L6.26406 8.6L9.23207 5.646H0.776064V4.554H9.23207L6.26406 1.6L7.03406 0.83Z"
+                fill="#272822"
+              />
+            </svg>
+          </div>
+
 
           <div className={styles['clients-section']} ref={clientsSectionRef}>
             <div className={styles['clients-section__inner']}>
               <div className={styles['clients-section__boxes']}>
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[0] = ref
-                    }}
-                  >
-                    <img src={bowleroLogo.src} alt="Bowlero Corporation" />
-                  </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[0] = ref
-                    }}
-                  >
-                    NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER
-                    CERTIFICATION PROGRAM
-                  </div>
+                <div className={styles['clients-section__boxes--mobile']}>
+                  {sectionArray[curretnIndex].map((data, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <div className={styles['clients-section__box']}>
+                          <div
+                            className={styles['clients-section__logo']}
+                            ref={(ref) => {
+                              if (ref)
+                                clientsMobileItemLogoRef.current[index] = ref
+                            }}
+                          >
+                            <img src={data.image} alt="Bowlero Corporation" />
+                          </div>
+                          <div
+                            className={styles['clients-section__text']}
+                            ref={(ref) => {
+                              if (ref)
+                                clientsMobileItemTitleRef.current[index] = ref
+                            }}
+                          >
+                            {data.description}
+                          </div>
+                        </div>
+                      </Fragment>
+                    )
+                  })}
                 </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[1] = ref
-                    }}
-                  >
-                    <img src={styrLogo.src} alt="STYR" />
+                <div className={styles['clients-section__boxes--desktop']}>
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[0] = ref
+                      }}
+                    >
+                      <img src={bowleroLogo.src} alt="Bowlero Corporation" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[0] = ref
+                      }}
+                    >
+                      NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER
+                      CERTIFICATION PROGRAM
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[1] = ref
-                    }}
-                  >
-                    HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET BACKED
-                    NFTS
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[2] = ref
-                    }}
-                  >
-                    <img src={GSLogo.src} alt="Game Station" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[1] = ref
+                      }}
+                    >
+                      <img src={styrLogo.src} alt="STYR" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[1] = ref
+                      }}
+                    >
+                      HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET
+                      BACKED NFTS
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[2] = ref
-                    }}
-                  >
-                    CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING AND
-                    AIRDROPS
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[3] = ref
-                    }}
-                  >
-                    <img src={JGILogo.src} alt="Jane Goodall Institute" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[2] = ref
+                      }}
+                    >
+                      <img src={GSLogo.src} alt="Game Station" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[2] = ref
+                      }}
+                    >
+                      CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING
+                      AND AIRDROPS
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[3] = ref
-                    }}
-                  >
-                    MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR NATIONAL
-                    SPORTS ORGANIZATIONS
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[4] = ref
-                    }}
-                  >
-                    <img src={etherealLogo.src} alt="Ethereal Collective" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[3] = ref
+                      }}
+                    >
+                      <img src={JGILogo.src} alt="Jane Goodall Institute" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[3] = ref
+                      }}
+                    >
+                      MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR
+                      NATIONAL SPORTS ORGANIZATIONS
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[4] = ref
-                    }}
-                  >
-                    WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR. GOODALLS
-                    LEGACY AND RESEARCH
-                  </div>
-                </div>
 
-                <div className={styles['clients-section__box']}>
-                  <div
-                    className={styles['clients-section__logo']}
-                    ref={(ref) => {
-                      if (ref) clientsItemLogoRef.current[5] = ref
-                    }}
-                  >
-                    <img src={pipeflareLogo.src} alt="Pipeflare" />
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[4] = ref
+                      }}
+                    >
+                      <img src={etherealLogo.src} alt="Ethereal Collective" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[4] = ref
+                      }}
+                    >
+                      WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR.
+                      GOODALLS LEGACY AND RESEARCH
+                    </div>
                   </div>
-                  <div
-                    className={styles['clients-section__text']}
-                    ref={(ref) => {
-                      if (ref) clientsItemTitleRef.current[5] = ref
-                    }}
-                  >
-                    PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY PLAYERS
-                    AND 7 CUSTOM GAMES
+
+                  <div className={styles['clients-section__box']}>
+                    <div
+                      className={styles['clients-section__logo']}
+                      ref={(ref) => {
+                        if (ref) clientsItemLogoRef.current[5] = ref
+                      }}
+                    >
+                      <img src={pipeflareLogo.src} alt="Pipeflare" />
+                    </div>
+                    <div
+                      className={styles['clients-section__text']}
+                      ref={(ref) => {
+                        if (ref) clientsItemTitleRef.current[5] = ref
+                      }}
+                    >
+                      PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY
+                      PLAYERS AND 7 CUSTOM GAMES
+                    </div>
                   </div>
                 </div>
               </div>
