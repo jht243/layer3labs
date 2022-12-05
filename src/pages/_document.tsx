@@ -14,7 +14,10 @@ class MyDocument extends Document {
         </head>
         <body>
           <div id={'globalLoader'}>
+          <div id='loaderImg'>
             <img src="/logo.svg" alt="Layer 3" />
+          </div>
+
           </div>
           <Main />
           <NextScript />

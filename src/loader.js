@@ -1,20 +1,28 @@
 export default `
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
     display: block;
 }
+
 #globalLoader {
-    position: fixed; 
-    top: 0;
-    left: 0;
     width: 100vw;
-    height: 100vh;
     background-color: #272822;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 9999;
     transition: opacity 1s ease 0.5s;
 }
+
+#loaderImg {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
 #globalLoader img {
     max-width: 85vw;
     max-height: 40vh;

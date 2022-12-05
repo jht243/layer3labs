@@ -915,8 +915,8 @@ const Services: NextPage<PageProps> = ({
             ref={nextLinkRef}
           >
             <svg
-              width="26"
-              height="30"
+              // width="26"
+              // height="30"
               viewBox="0 0 26 30"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -960,7 +960,7 @@ const Services: NextPage<PageProps> = ({
           >
             <svg
               width="30"
-              height="26"
+              height="24"
               viewBox="0 0 12 10"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
