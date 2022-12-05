@@ -5,6 +5,7 @@
   0% {
     background-color: yellow;
   }
+
   100% {
     background-color: red;
   }
@@ -15,22 +16,24 @@
 
   opacity: 0;
   transition: opacity 1s ease;
+
   @include sm {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    height: calc(100% - 60px);
-    z-index: 999;
-    overflow-y: auto;
-    transition: all 0.3s ease;
+    display: none;
+    // position: fixed;
+    // top: 60px;
+    // left: 0;
+    // height: calc(100% - 60px);
+    // z-index: 99;
+    // overflow-y: auto;
+    // transition: all 0.3s ease;
 
-    opacity: 0;
-    transform: translateX(-100%);
+    // opacity: 0;
+    // transform: translateX(-100%);
 
-    &.is-opened {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    // &.is-opened {
+    //   opacity: 1;
+    //   transform: translateX(0);
+    // }
   }
 
   &.is-home {
@@ -78,10 +81,12 @@
 
     &.is-animating {
       pointer-events: none;
+
       &:before {
         background-color: $primary !important;
       }
-      & + #{$this}__item {
+
+      &+#{$this}__item {
         border-left-color: #707070;
       }
     }
@@ -103,7 +108,7 @@
     }
 
     &.is-transformed {
-      & + #{$this}__item {
+      &+#{$this}__item {
         border-left-color: #707070;
         transition: background-color 0.25s ease, transform 1.5s ease,
           border-left-color 0.1s linear;
@@ -112,6 +117,7 @@
       &:before {
         width: calc(100vw - 65px);
       }
+
       &:after {
         opacity: 0;
         width: 0;
@@ -122,26 +128,33 @@
     &:nth-child(1) {
       border-left: 1px solid #707070;
       right: calc(65px * 2);
+
       &.is-animating {
         pointer-events: none;
+
         &:before {
           background-color: $primary !important;
         }
       }
+
       &:before {
         background-color: $primary;
         // animation: backgroundChange 5s;
       }
+
       &:after {
         background-color: transparent;
       }
+
       &.is-transformed {
         border-right: 1px solid #707070;
         // transform: 0;
         transform: translateX(-100vw) translateX(calc(65px * 3));
+
         @media screen and (min-width: 1920px) {
           transform: translateX(-1920px) translateX(calc(65px * 3));
         }
+
         @include sm {
           transform: none;
         }
@@ -159,18 +172,22 @@
       &:before {
         background-color: $services;
       }
+
       &.is-animating {
         &:before {
           background-color: $services !important;
         }
       }
+
       &.is-transformed {
         border-right: 1px solid #707070;
         border-left: none;
         transform: translateX(-100vw) translateX(calc(65px * 3));
+
         @media screen and (min-width: 1920px) {
           transform: translateX(-1920px) translateX(calc(65px * 3));
         }
+
         @include sm {
           transform: none;
         }
@@ -188,6 +205,7 @@
       &:before {
         background-color: $clients;
       }
+
       &.is-animating {
         &:before {
           background-color: $clients !important;
@@ -198,9 +216,11 @@
         border-right: 1px solid #707070;
         border-left: none;
         transform: translateX(-100vw) translateX(calc(65px * 3));
+
         @media screen and (min-width: 1920px) {
           transform: translateX(-1920px) translateX(calc(65px * 3));
         }
+
         @include sm {
           transform: none;
         }
@@ -256,6 +276,7 @@
     text-decoration: none;
     width: 100%;
     margin-bottom: -20px;
+
     @include sm {
       transform: none;
       margin-bottom: 0;
