@@ -105,11 +105,11 @@ const Services: NextPage<PageProps> = ({
         if (isMobile && isDesktopHeight) {
           topOur = '12%'
           leftOur = '10.5%'
-          topServices = '91.7%'
+          topServices = '92.5%'
           leftServices = '79%'
           topProcessOur = '12%'
           leftProcessOur = '9.5%'
-          topProcessProcess = '91.7%'
+          topProcessProcess = '92.5%'
           leftProcessProcess = '75%'
         } else {
           if (isDesktopHeight) {
@@ -135,11 +135,11 @@ const Services: NextPage<PageProps> = ({
           if (isMobile) {
             topOur = '12%'
             leftOur = '10.5%'
-            topServices = '91.7%'
+            topServices = '92.5%'
             leftServices = '79%'
             topProcessOur = '12%'
             leftProcessOur = '9.5%'
-            topProcessProcess = '91.7%'
+            topProcessProcess = '92.5%'
             leftProcessProcess = '75%'
           }
         }

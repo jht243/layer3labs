@@ -36,6 +36,15 @@ interface PageProps {
   setIsMenuOpen: (data: boolean) => void
 }
 
+const linkArray = [
+  'https://www.nasdaq.com/articles/exploring-the-next-frontier-of-nfts',
+  'https://www.cmcmarkets.com/en/opto/nfts-to-act-as-loyalty-stamps-for-brands',
+  'https://www.nasdaq.com/articles/ukraines-crypto-donation-triumph-offers-glimpse-into-the-future-of-giving',
+  'https://restauranttechnologynews.com/2022/05/restaurants-are-the-next-frontier-for-nfts-here-are-some-considerations-and-recommendations/',
+  'https://www.amazon.com/dp/B09K2MFPWX',
+  'https://blocktelegraph.io/jonathan-teplitsky-ceo-of-pipeflare-talks-about-a-better-deal-for-game-developers-and-the-democratizing-nfts/',
+]
+
 const AboutDesktop: NextPage<PageProps> = ({
   loaded,
   isMenuOpen,
@@ -47,9 +56,10 @@ const AboutDesktop: NextPage<PageProps> = ({
   // const [isMenuOpen, setIsMenuOpen] = useState(false)
   // start comman variable -- for animation
   let topOur = '12.5%'
-  let leftOur = '13.8%'
+  let leftOur = '7.5%'
   let topVision = '87.7%'
-  let rightVision = '7%'
+  let rightVision = '0%'
+  let lefttVision = '88%'
   let topTeamOur = '12%'
   let leftTeamOur = '10.8%'
   let topTeamTeam = '89.7%'
@@ -60,7 +70,7 @@ const AboutDesktop: NextPage<PageProps> = ({
   let bgRotate = 12
   let bgBackTop = '4%'
   let bgPrevLeft = '3%'
-  
+
   // end comman variable
   const aboutUsContainer = useRef(null)
   const bgRef = useRef(null)
@@ -83,7 +93,6 @@ const AboutDesktop: NextPage<PageProps> = ({
   const teamMemberSubTitleRef = useRef<HTMLDivElement[]>([])
   const teamMemberDescriptionRef = useRef<HTMLDivElement[]>([])
   const teamMemberSocialRef = useRef<HTMLDivElement[]>([])
-
   const partnersRef = useRef(null)
 
   const isReloadAnimation = useSelector(
@@ -310,10 +319,11 @@ const AboutDesktop: NextPage<PageProps> = ({
         // let topVision = '87.7%'
         // let rightVision = '7%'
         if (isMobile && isDesktopHeight) {
-          topOur = '17.5%'
-          leftOur = '17.8%'
+          topOur = '1%'
+          leftOur = '12.5%'
           topVision = '81.7%'
-          rightVision = '7%'
+          rightVision = '0%'
+          lefttVision = '79%'
           topTeamOur = '0%'
           leftTeamOur = '10.8%'
           topTeamTeam = '86.7%'
@@ -323,9 +333,10 @@ const AboutDesktop: NextPage<PageProps> = ({
         } else {
           if (isDesktopHeight) {
             topOur = '17.5%'
-            leftOur = '17.8%'
+            leftOur = '7.5%'
             topVision = '81.7%'
             rightVision = '7%'
+            lefttVision = '79%'
             topTeamOur = '0%'
             leftTeamOur = '10.8%'
             topTeamTeam = '96.7%'
@@ -333,20 +344,21 @@ const AboutDesktop: NextPage<PageProps> = ({
           }
           if (isDesktop) {
             topOur = '12.5%'
-            leftOur = '13.8%'
+            leftOur = '7.5%'
             topVision = '87.7%'
-            rightVision = '7%'
+            rightVision = '0%'
+            lefttVision = '88%'
             topTeamOur = '12%'
             leftTeamOur = '10.8%'
             topTeamTeam = '89.7%'
             rightTeamTeam = '0%'
-            
           }
           if (isMobile) {
-            topOur = '17.5%'
+            topOur = '1%'
             leftOur = '17.8%'
-            topVision = '87.7%'
+            topVision = '93.7%'
             rightVision = '7%'
+            lefttVision = '79%'
             topTeamOur = '-2.5%'
             leftTeamOur = '9.8%'
             topTeamTeam = '95%'
@@ -376,9 +388,10 @@ const AboutDesktop: NextPage<PageProps> = ({
           )
           .fromTo(
             visionTextRef.current,
-            { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
+            { left: '50%', top: '50%', xPercent: 0, yPercent: -50 },
             {
-              right: rightVision,
+              // right: rightVision,
+              left: lefttVision,
               top: topVision,
               xPercent: -50,
               yPercent: -50,
@@ -401,7 +414,7 @@ const AboutDesktop: NextPage<PageProps> = ({
         teamSectionRef.current.removeEventListener('scroll', handleTeamScroll)
       }
     }
-  }, [visionTextRef,loaded])
+  }, [visionTextRef, loaded])
 
   const onPrevSection = () => {
     const tl = gsap.timeline()
@@ -418,7 +431,12 @@ const AboutDesktop: NextPage<PageProps> = ({
         repeat: -1,
         opacity: 0,
       })
-      .fromTo(navNextButtonRef.current, { opacity: 0 }, { opacity: 1 }, '<')
+      .fromTo(
+        navNextButtonRef.current,
+        { opacity: 0, display: 'none' },
+        { opacity: 1, display: 'block' },
+        '<'
+      )
       .fromTo(
         // Hide the Team Section
         teamSectionRef.current,
@@ -429,7 +447,7 @@ const AboutDesktop: NextPage<PageProps> = ({
       .fromTo(
         // Rotate the Background
         bgRef.current,
-        { rotate: bgEndRotate, left: bgLeft, top:bgBackTop },
+        { rotate: bgEndRotate, left: bgLeft, top: bgBackTop },
         { rotate: bgRotate, duration: 1, left: bgPrevLeft },
         '<'
       )
@@ -453,9 +471,10 @@ const AboutDesktop: NextPage<PageProps> = ({
       )
       .fromTo(
         visionTextRef.current,
-        { right: '50%', top: '50%', xPercent: 125, yPercent: -50 },
+        { left: '55%', top: '50%', xPercent: 0, yPercent: -50 },
         {
-          right: rightVision,
+          // right: rightVision,
+          left: lefttVision,
           top: topVision,
           xPercent: -50,
           yPercent: -50,
@@ -496,7 +515,12 @@ const AboutDesktop: NextPage<PageProps> = ({
     // let initDuration = tickerWidth / speed;
 
     tl.set(teamSectionRef.current, { clearProps: 'all' })
-      .fromTo(navNextButtonRef.current, { opacity: 1 }, { opacity: 0 }, '<')
+      .fromTo(
+        navNextButtonRef.current,
+        { opacity: 1, display: 'block' },
+        { opacity: 0, display: 'none' },
+        '<'
+      )
       .fromTo(
         ourVisionTextRef.current,
         {
@@ -702,6 +726,22 @@ const AboutDesktop: NextPage<PageProps> = ({
       })
   }
 
+  function generateRandomNumber(min: number, max: number) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1))
+  }
+
+  const redirectToLink = () => {
+    const randomNumber = generateRandomNumber(0, 5)
+    const a = document.createElement('a')
+    a.target = '_blank'
+    a.href = linkArray[randomNumber]
+    a.click()
+    console.log('randomNumber', randomNumber)
+
+    // return linkArray[randomNumber].toString()
+  }
+
   return (
     <>
       <div
@@ -816,11 +856,10 @@ const AboutDesktop: NextPage<PageProps> = ({
             </div>
           )}
         </div>
-        <div className={styles['about-page__vision']}>
-          <span ref={ourVisionTextRef}>Our</span>
-          <span ref={visionTextRef}>vision</span>
-        </div>
+
         <div className={styles['about-page__inner']}>
+          {/* CHANGE STRUCTURE */}
+
           <div className={styles['about-page__next']} ref={navNextButtonRef}>
             <svg
               // width="26"
@@ -835,7 +874,10 @@ const AboutDesktop: NextPage<PageProps> = ({
               />
             </svg>
           </div>
-
+          <div className={styles['about-page__vision']}>
+            <span ref={ourVisionTextRef}>Our</span>
+            <span ref={visionTextRef}>vision</span>
+          </div>
           <div className="sections-wrapper" ref={titlesRef}>
             <section className="section-title">
               <div className="section-title__inner">
@@ -1283,6 +1325,8 @@ const AboutDesktop: NextPage<PageProps> = ({
       </div>
       <div className={styles['animatedHeadLine']}>
         <div
+          onClick={() => redirectToLink()}
+          style={{ cursor: 'pointer' }}
           className={cx(styles['about-page__headline'])}
           ref={leftToRightScroll}
         >
