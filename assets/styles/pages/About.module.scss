@@ -52,11 +52,29 @@
 
     @include sm {
       position: absolute;
-      top: -3%;
-      left: 0%;
-      z-index: -1;
-      height: calc(var(--vh) + 100px);
-      width: 87vw;
+      height:calc(var(--vh) - 5px);
+      top: 6%;
+      width:100vw;
+      left: -10%;
+      width: 56vh;
+      transform: rotate(25deg);
+      z-index:-1;
+      // z-index: -1;
+      // height: calc(var(--vh) + 100px);
+      // width: 87vw;
+
+      // left: -9vh;
+      // width: 60vh;
+      // height: 90%;
+      // top: 12vh;
+      // transform: rotate(29deg);
+
+      // top: 24%;
+      // left: -37%;
+      // z-index: -1;
+      // height: 60vh;
+      // width: 76vh;
+      // transform: rotate(50deg);
     }
   }
 
@@ -79,29 +97,34 @@
     cursor: pointer;
     z-index: 10;
     animation: bounce 3s ease infinite;
+    width: 26px;
+    height: 30px;
 
     // @include xl {
     //   left: 100px;
     // }
 
     @include sm {
-      bottom: 0px;
-      left: 25px;
+      width: 23px;
+      height: 24px;
+      bottom: 1.5vh;
+      left: 10px;
     }
   }
 
-  &__menugroup{
+  &__menugroup {
     position: absolute;
     width: 100%;
     margin-left: -20px;
     margin-top: 20px;
     display: none;
+
     @include sm {
       display: block;
     }
   }
 
-  &__optiongroup{
+  &__optiongroup {
     position: absolute;
     width: 100%;
     z-index: 100000;
@@ -123,11 +146,12 @@
     z-index: 1000;
     cursor: pointer;
     text-transform: capitalize;
-    
+
     @include sm {
       display: flex;
     }
   }
+
   &__optionMenu {
     display: none;
     // background-color: $primary;
@@ -141,13 +165,16 @@
     align-items: center;
     z-index: 1000;
     cursor: pointer;
-    &--about{
+
+    &--about {
       background-color: $primary;
     }
-    &--client{
+
+    &--client {
       background-color: $clients;
     }
-    &--services{
+
+    &--services {
       background-color: $services;
     }
 
@@ -294,35 +321,40 @@
     bottom: 0;
     position: absolute;
 
-    @include sm {
-      bottom: calc(100vh - calc(100vh - 23vh));
-    }
+    // @include sm {
+    //   bottom: 60px;
+    // }
 
-    @include xs {
-      bottom: calc(100vh - calc(100vh * 1.035));
-    }
+    // @include xs {
+    //   bottom: calc(100vh - calc(100vh * 1.035));
+    // }
 
-    @include r(380) {
-      bottom: calc(100vh - calc(100vh * 1.085))
-    }
+    // // @include r(380) {
+    // //   bottom: calc(100vh - calc(100vh * 1.085))
+    // // }
 
     &--subhead {
       margin-right: 28px;
       font-weight: 500;
       font-size: 20px;
-      line-height: 24px;
+      line-height: 44px;
 
+      @include sm {
+        font-size: 15px;
+        line-height: 25px;
+      }
     }
 
     &--head {
+      margin-top: 0px;
       margin-right: 30px;
       font-weight: 400;
       font-size: 36px;
       line-height: 44px;
 
       @include sm {
-        font-size: 20px;
-        line-height: 36px;
+        font-size: 15px;
+        line-height: 15px;
       }
     }
   }
@@ -791,5 +823,14 @@
 
   100% {
     transform: translateY(0);
+  }
+}
+
+.animatedHeadLine {
+  position: absolute;
+  bottom: 65px;
+
+  @include sm {
+    bottom: 39px
   }
 }

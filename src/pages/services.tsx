@@ -105,11 +105,11 @@ const Services: NextPage<PageProps> = ({
         if (isMobile && isDesktopHeight) {
           topOur = '12%'
           leftOur = '10.5%'
-          topServices = '91.7%'
+          topServices = '92.5%'
           leftServices = '79%'
           topProcessOur = '12%'
           leftProcessOur = '9.5%'
-          topProcessProcess = '91.7%'
+          topProcessProcess = '92.5%'
           leftProcessProcess = '75%'
         } else {
           if (isDesktopHeight) {
@@ -135,11 +135,11 @@ const Services: NextPage<PageProps> = ({
           if (isMobile) {
             topOur = '12%'
             leftOur = '10.5%'
-            topServices = '91.7%'
+            topServices = '92.5%'
             leftServices = '79%'
             topProcessOur = '12%'
             leftProcessOur = '9.5%'
-            topProcessProcess = '91.7%'
+            topProcessProcess = '92.5%'
             leftProcessProcess = '75%'
           }
         }
@@ -915,8 +915,8 @@ const Services: NextPage<PageProps> = ({
             ref={nextLinkRef}
           >
             <svg
-              width="26"
-              height="30"
+              // width="26"
+              // height="30"
               viewBox="0 0 26 30"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -960,7 +960,7 @@ const Services: NextPage<PageProps> = ({
           >
             <svg
               width="30"
-              height="26"
+              height="24"
               viewBox="0 0 12 10"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
