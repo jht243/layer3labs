@@ -13,7 +13,7 @@ body {
     width: 100vw;
     background-color: #272822;
     z-index: 9999;
-    transition: opacity 1s ease 0.5s;
+    transition: opacity 1s ease 1s;
 }
 
 #loaderImg {
