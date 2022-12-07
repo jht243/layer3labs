@@ -52,13 +52,13 @@
 
     @include sm {
       position: absolute;
-      height:calc(var(--vh) - 5px);
+      height: calc(var(--vh) - 5px);
       top: 6%;
-      width:100vw;
+      width: 100vw;
       left: -10%;
       width: 56vh;
       transform: rotate(25deg);
-      z-index:-1;
+      z-index: -1;
       // z-index: -1;
       // height: calc(var(--vh) + 100px);
       // width: 87vw;
@@ -95,7 +95,7 @@
     left: $gap_padding;
     bottom: 27px;
     cursor: pointer;
-    z-index: 10;
+    z-index: 99999;
     animation: bounce 3s ease infinite;
     width: 26px;
     height: 30px;
@@ -507,7 +507,7 @@
 
       @include xs {
         width: 100px;
-        height: 85px;
+        height: 50px;
       }
     }
 
@@ -527,7 +527,7 @@
 
       @include xs {
         width: 70px;
-        height: 81px;
+        height: 50px;
       }
     }
 
@@ -547,7 +547,7 @@
 
       @include xs {
         width: 100px;
-        height: 82px;
+        height: 50px;
       }
     }
 
@@ -567,7 +567,7 @@
 
       @include xs {
         width: 90px;
-        height: 105px;
+        height: 50px;
       }
     }
 
@@ -587,7 +587,7 @@
 
       @include xs {
         width: 120px;
-        height: 70px;
+        height: 50px;
       }
     }
   }
@@ -644,12 +644,52 @@
   }
 
   @include sm {
-    height: calc(60vh - 50px);
+    height: 100%;
+    width: 100%;
   }
 
   @include xs {
     flex-direction: column;
-    height: calc(75vh - 60px);
+    height: 100%;
+    margin-bottom: 30px;
+  }
+
+  &__group-slider{
+    display: flex;
+    align-items: center;
+  }
+
+  &__next-slider {
+    // position: absolute;
+    // top: 9vh;
+    // right: 1vw;
+    cursor: pointer;
+    z-index: 99999;
+    display: none;
+
+    @include sm {
+      display: block;
+    }
+  }
+
+  &--desktop {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &--mobile {
+    @include sm {
+      display: flex;
+      flex-direction: column;
+      padding: 0 10px;
+    }
+
+    display: none;
   }
 
   &__col {

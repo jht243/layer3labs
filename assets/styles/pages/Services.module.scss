@@ -142,13 +142,17 @@
       display: flex;
     }
   }
+  &__group-slider{
+    display: flex;
+    align-items: center;
+  }
 
   &__next-slider {
-    position: absolute;
-    top: 9vh;
-    right: 1vw;
+    // position: absolute;
+    // top: 9vh;
+    // right: 1vw;
     cursor: pointer;
-    z-index: 99;
+    z-index: 99999;
     display: none;
 
     @include sm {
@@ -312,7 +316,7 @@
     @include sm {
       display: flex;
       flex-direction: column;
-
+      padding: 0 10px;
     }
 
     display: none;

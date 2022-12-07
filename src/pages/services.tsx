@@ -337,20 +337,18 @@ const Services: NextPage<PageProps> = ({
         description:
           'DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND RETENTION',
       },
-    ],
-    [
       {
         title: 'TRADING PLATFORMS',
         description:
           'CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD DIGITIZED GOODS',
       },
+    ],
+    [
       {
         title: 'PLAY-TO-EARN GAMES',
         description:
           'HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT IN UNITY',
       },
-    ],
-    [
       {
         title: 'METAVERSE BUILDS',
         description:
@@ -473,7 +471,7 @@ const Services: NextPage<PageProps> = ({
         },
         {
           pointerEvents: 'auto',
-          zIndex: 30,
+          zIndex: 999,
         },
         '<'
       )
@@ -804,87 +802,87 @@ const Services: NextPage<PageProps> = ({
             </div>
           </div>
           {isMenuOpen && (
-          <div className={styles['services-page__optiongroup']}>
-            <div
-              onClick={() => {
-                router.push('about')
-                setIsMenuOpen(false)
-              }}
-              className={cx(
-                styles['services-page__optionMenu'],
-                styles['services-page__optionMenu--about']
-              )}
-            >
-              <div>ABOUT US</div>
-              <div>
-                <svg
-                  width="16px"
-                  height="16px"
-                  viewBox="0 0 42 112"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
-                    fill="#272822"
-                  />
-                </svg>
+            <div className={styles['services-page__optiongroup']}>
+              <div
+                onClick={() => {
+                  router.push('about')
+                  setIsMenuOpen(false)
+                }}
+                className={cx(
+                  styles['services-page__optionMenu'],
+                  styles['services-page__optionMenu--about']
+                )}
+              >
+                <div>ABOUT US</div>
+                <div>
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 42 112"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M26.626 0.869995L0.645996 111.113H15.36L41.335 0.869995H26.626Z"
+                      fill="#272822"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                className={cx(
+                  styles['services-page__optionMenu'],
+                  styles['services-page__optionMenu--services']
+                )}
+                onClick={() => {
+                  router.push('services')
+                  setIsMenuOpen(false)
+                }}
+              >
+                <div>SERVICES</div>
+                <div>
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 26 111"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
+                      fill="#272822"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                onClick={() => {
+                  router.push('clients')
+                  setIsMenuOpen(false)
+                }}
+                className={cx(
+                  styles['services-page__optionMenu'],
+                  styles['services-page__optionMenu--client']
+                )}
+              >
+                <div>CLIENTS</div>
+                <div>
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 15 112"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 111.114H14.483V0.870117H0V111.114Z"
+                      fill="#272822"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
-            <div
-              className={cx(
-                styles['services-page__optionMenu'],
-                styles['services-page__optionMenu--services']
-              )}
-              onClick={() => {
-                router.push('services')
-                setIsMenuOpen(false)
-              }}
-            >
-              <div>SERVICES</div>
-              <div>
-                <svg
-                  width="16px"
-                  height="16px"
-                  viewBox="0 0 26 111"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M25.479 110.993H10.985C10.985 98.5855 8.70602 92.7925 6.06802 86.0855C3.29102 79.0255 0.14502 71.0255 0.14502 55.8705C0.14502 40.7155 3.29102 32.7165 6.06802 25.6565C8.70602 18.9495 10.985 13.1565 10.985 0.749512H25.479C25.479 15.9035 22.333 23.9045 19.556 30.9645C16.918 37.6715 14.639 43.4645 14.639 55.8715C14.639 68.2785 16.918 74.0715 19.556 80.7785C22.333 87.8385 25.479 95.8395 25.479 110.994"
-                    fill="#272822"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div
-              onClick={() => {
-                router.push('clients')
-                setIsMenuOpen(false)
-              }}
-              className={cx(
-                styles['services-page__optionMenu'],
-                styles['services-page__optionMenu--client']
-              )}
-            >
-              <div>CLIENTS</div>
-              <div>
-              <svg
-                   width="16px"
-                   height="16px"
-                  viewBox="0 0 15 112"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 111.114H14.483V0.870117H0V111.114Z"
-                    fill="#272822"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        )}
+          )}
         </div>
         {/* <div
           className={styles['services-page__bg']}
@@ -936,7 +934,7 @@ const Services: NextPage<PageProps> = ({
             <span ref={servicesTextRef}>SERVICES</span>
           </div>
 
-          <div
+          {/* <div
             className={styles['services-page__next-slider']}
             ref={nextSliderArrowRef}
             style={{
@@ -952,7 +950,7 @@ const Services: NextPage<PageProps> = ({
               } else {
                 setCurrentIndex(curretnIndex + 1)
                 onNextServices()
-                if (curretnIndex + 1 == 2) {
+                if (curretnIndex + 1 == 1) {
                   setBackArrow(true)
                 }
               }
@@ -970,7 +968,7 @@ const Services: NextPage<PageProps> = ({
                 fill="#272822"
               />
             </svg>
-          </div>
+          </div> */}
 
           <div className={styles['benefits-section']} ref={benefitsSectionRef}>
             <div className={styles['benefits-section__inner']}>
@@ -1096,33 +1094,108 @@ const Services: NextPage<PageProps> = ({
                 </div>
               </div>
               {/* mobile */}
-              <div className={styles['benefits-section--mobile']}>
-                {sectionArray[curretnIndex].map((data, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <div className={styles['benefits-section__row']}>
-                        <div
-                          className={styles['benefits-section__title']}
-                          ref={(ref) => {
-                            if (ref)
-                              clientsMobileItemLogoRef.current[index] = ref
-                          }}
-                        >
-                          {data.title}
+              <div className={styles['services-page__group-slider']}>
+                <div
+                  className={styles['services-page__next-slider']}
+                  ref={nextSliderArrowRef}
+                  style={{
+                    transform:  'rotate(180deg)' ,
+                  }}
+                  onClick={() => {
+                    console.log('gfbsdbvhjsdbfvsdfvbsmndsfvsdvbh');
+                    
+                    if (backArrow) {
+                      onNextServices()
+                      setCurrentIndex(curretnIndex - 1)
+                      if (curretnIndex - 1 == 0) {
+                        setBackArrow(false)
+                      }
+                    } else {
+                      setCurrentIndex(curretnIndex + 1)
+                      onNextServices()
+                      if (curretnIndex + 1 == 1) {
+                        setBackArrow(true)
+                      }
+                    }
+                  }}
+                >
+                  <svg
+                    width="30"
+                    height="24"
+                    viewBox="0 0 12 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.03406 0.83L11.1361 5.044V5.156L7.03406 9.37L6.26406 8.6L9.23207 5.646H0.776064V4.554H9.23207L6.26406 1.6L7.03406 0.83Z"
+                      fill="#272822"
+                    />
+                  </svg>
+                </div>
+                <div className={styles['benefits-section--mobile']}>
+                  {sectionArray[curretnIndex].map((data, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <div className={styles['benefits-section__row']}>
+                          <div
+                            className={styles['benefits-section__title']}
+                            ref={(ref) => {
+                              if (ref)
+                                clientsMobileItemLogoRef.current[index] = ref
+                            }}
+                          >
+                            {data.title}
+                          </div>
+                          <div
+                            className={styles['benefits-section__text']}
+                            ref={(ref) => {
+                              if (ref)
+                                clientsMobileItemTitleRef.current[index] = ref
+                            }}
+                          >
+                            {data.description}
+                          </div>
                         </div>
-                        <div
-                          className={styles['benefits-section__text']}
-                          ref={(ref) => {
-                            if (ref)
-                              clientsMobileItemTitleRef.current[index] = ref
-                          }}
-                        >
-                          {data.description}
-                        </div>
-                      </div>
-                    </Fragment>
-                  )
-                })}
+                      </Fragment>
+                    )
+                  })}
+                </div>
+                <div
+                  className={styles['services-page__next-slider']}
+                  ref={nextSliderArrowRef}
+                  style={{
+                    transform: 'rotate(0deg)',
+                  }}
+                  onClick={() => {
+                    console.log('hchbhcbcghbcncxhhjxchjxjnncxnjdn')
+                    if (backArrow) {
+                      onNextServices()
+                      setCurrentIndex(curretnIndex - 1)
+                      if (curretnIndex - 1 == 0) {
+                        setBackArrow(false)
+                      }
+                    } else {
+                      setCurrentIndex(curretnIndex + 1)
+                      onNextServices()
+                      if (curretnIndex + 1 == 1) {
+                        setBackArrow(true)
+                      }
+                    }
+                  }}
+                >
+                  <svg
+                    width="30"
+                    height="24"
+                    viewBox="0 0 12 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.03406 0.83L11.1361 5.044V5.156L7.03406 9.37L6.26406 8.6L9.23207 5.646H0.776064V4.554H9.23207L6.26406 1.6L7.03406 0.83Z"
+                      fill="#272822"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
