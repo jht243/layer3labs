@@ -340,7 +340,7 @@
       overflow: hidden;
 
       @include sm {
-        display: none;
+        grid-template-columns: 50% 50%;
       }
     }
 
@@ -348,6 +348,7 @@
       @include sm {
         display: flex;
         flex-direction: column;
+        display: none;
       }
 
       display: none;
@@ -407,6 +408,7 @@
       font-size: 14px;
       line-height: 1.2;
       border-top: 1px solid #272822;
+      display: none;
     }
   }
 }

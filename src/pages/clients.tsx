@@ -649,7 +649,7 @@ const Clients: NextPage<PageProps> = ({
             <span ref={ourClientsTextRef}>Our</span>
             <span ref={clientsTextRef}>CLIENTS</span>
           </div>
-          <div
+          {/* <div
             className={styles['clients-page__next-slider']}
             ref={nextSliderArrowRef}
             style={{
@@ -683,13 +683,15 @@ const Clients: NextPage<PageProps> = ({
                 fill="#272822"
               />
             </svg>
-          </div>
+          </div> */}
 
           <div className={styles['clients-section']} ref={clientsSectionRef}>
             <div className={styles['clients-section__inner']}>
               <div className={styles['clients-section__boxes']}>
                 <div className={styles['clients-section__boxes--mobile']}>
-                  {sectionArray[curretnIndex].map((data, index) => {
+
+
+                  {/* {sectionArray[curretnIndex].map((data, index) => {
                     return (
                       <Fragment key={index}>
                         <div className={styles['clients-section__box']}>
@@ -714,7 +716,7 @@ const Clients: NextPage<PageProps> = ({
                         </div>
                       </Fragment>
                     )
-                  })}
+                  })} */}
                 </div>
 
                 <div className={styles['clients-section__boxes--desktop']}>
