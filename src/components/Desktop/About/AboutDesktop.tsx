@@ -321,7 +321,6 @@ const AboutDesktop: NextPage<PageProps> = ({
     }
 
     function handleWheel(e: any) {
-      console.log('hagfvdgfj');
       
       if (!listening) return
       direction = e.wheelDeltaY < 0 ? 'down' : 'up'
