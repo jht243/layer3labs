@@ -51,6 +51,7 @@ const Services: NextPage<PageProps> = ({
   const bgRef = useRef(null)
   const nextLinkRef = useRef(null)
   const nextSliderArrowRef = useRef() as MutableRefObject<HTMLDivElement>
+  const backSliderArrowRef = useRef() as MutableRefObject<HTMLDivElement>
 
   const servicesTextRef = useRef(null)
   const ourServicesTextRef = useRef(null)
@@ -285,7 +286,6 @@ const Services: NextPage<PageProps> = ({
             .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
         )
       }
-
       tl.play(0)
     }
 
@@ -303,6 +303,7 @@ const Services: NextPage<PageProps> = ({
         })
         .to(headings[current], { y: 100, autoAlpha: 0, duration: 0.3 })
         .to(headings[next], { y: 0, autoAlpha: 1, duration: 0.3 }, '<+=0.5')
+
     }
 
     return () => {
@@ -362,6 +363,8 @@ const Services: NextPage<PageProps> = ({
   ]
 
   const onPrevSection = () => {
+    console.log("onPrevSection");
+    
     const tl = gsap.timeline()
 
     tl.fromTo(
@@ -537,14 +540,45 @@ const Services: NextPage<PageProps> = ({
         { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
         '<+=0.05'
       )
+      .fromTo(
+
+        nextSliderArrowRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0,
+          opacity: 1,
+          zIndex: 33,
+          duration: 0.2, },
+        '<+=0.05'
+      )
+      .fromTo(
+
+        backSliderArrowRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0,
+          opacity: 1,
+          zIndex: 33,
+          duration: 0.2, },
+        '<+=0.05'
+      )
       .to(
         // Show Next Client Arrow
-        nextSliderArrowRef.current,
+        backSliderArrowRef.current,
         { opacity: 1, duration: 0.2 }
+      )
+      .to(
+        backSliderArrowRef.current,
+        {
+          y: 0,
+          opacity: 1,
+          zIndex: 33,
+          duration: 0.2,
+        },
+        '<'
       )
   }
 
   const onNextSection = () => {
+    console.log("onNextSection");
     const tl = gsap.timeline()
 
     tl.to(nextLinkRef.current, {
@@ -552,11 +586,7 @@ const Services: NextPage<PageProps> = ({
       opacity: 0,
       duration: 0.5,
     })
-      .to(
-        // Show Next Services Arrow
-        nextSliderArrowRef.current,
-        { opacity: 0, duration: 0.5 }
-      )
+
       .fromTo(
         ourServicesTextRef.current,
         {
@@ -583,6 +613,16 @@ const Services: NextPage<PageProps> = ({
         },
         '<'
       )
+      // .to(nextSliderArrowRef.current, {
+      //   pointerEvents: 'none',
+      //   opacity: 0,
+      //   duration: 0.2,
+      // })
+      // .to(backSliderArrowRef.current, {
+      //   pointerEvents: 'none',
+      //   opacity: 0,
+      //   duration: 0.2,
+      // })
       .fromTo(
         benefitsSectionRef.current,
         {
@@ -766,6 +806,20 @@ const Services: NextPage<PageProps> = ({
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
         '<+=0.05'
+      )
+      .fromTo(
+        // Show Next Section Arrow button
+        nextSliderArrowRef.current,
+        { opacity: 0 },
+        { opacity: 1, zIndex: 1000 },
+        '<'
+      )
+      .fromTo(
+        // Show Next Section Arrow button
+        backSliderArrowRef.current,
+        { opacity: 0 },
+        { opacity: 1, zIndex: 1000 },
+        '<'
       )
   }
 
@@ -1162,7 +1216,7 @@ const Services: NextPage<PageProps> = ({
                 </div>
                 <div
                   className={styles['services-page__next-slider']}
-                  ref={nextSliderArrowRef}
+                  ref={backSliderArrowRef}
                   style={{
                     transform: 'rotate(0deg)',
                   }}

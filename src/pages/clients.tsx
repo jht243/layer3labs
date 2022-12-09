@@ -74,6 +74,7 @@ const Clients: NextPage<PageProps> = ({
 
   const testimonBlockTitleRef = useRef<HTMLDivElement[]>([])
   const testimonBlockSubTitleRef = useRef<HTMLDivElement[]>([])
+  const [isMobileScreen, setisMobileScreen] = useState<boolean>(false)
 
   const isReloadAnimation = useSelector(
     (state: RootState) => state.common.reloadAnimation
@@ -102,6 +103,7 @@ const Clients: NextPage<PageProps> = ({
           context.conditions
 
         if (isMobile && isDesktopHeight) {
+          setisMobileScreen(true)
           topOur = '12%'
           leftOur = '11%'
           topClients = '89.7%'
@@ -132,6 +134,7 @@ const Clients: NextPage<PageProps> = ({
             leftCustomersCustomers = '82.5%'
           }
           if (isMobile) {
+            setisMobileScreen(true)
             topOur = '10%'
             leftOur = '11%'
             topClients = '89.7%'
@@ -689,8 +692,6 @@ const Clients: NextPage<PageProps> = ({
             <div className={styles['clients-section__inner']}>
               <div className={styles['clients-section__boxes']}>
                 <div className={styles['clients-section__boxes--mobile']}>
-
-
                   {/* {sectionArray[curretnIndex].map((data, index) => {
                     return (
                       <Fragment key={index}>
@@ -827,7 +828,11 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemLogoRef.current[5] = ref
                       }}
                     >
-                      <img src={pipeflareLogo.src} alt="Pipeflare" />
+                      <img
+                        style={{ height: isMobileScreen ?  "50px" : "100%"}}
+                        src={pipeflareLogo.src}
+                        alt="Pipeflare"
+                      />
                     </div>
                     <div
                       className={styles['clients-section__text']}

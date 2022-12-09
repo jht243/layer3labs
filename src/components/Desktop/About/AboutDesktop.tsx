@@ -146,6 +146,7 @@ const AboutDesktop: NextPage<PageProps> = ({
   const teamMemberDescriptionRef = useRef<HTMLDivElement[]>([])
   const teamMemberSocialRef = useRef<HTMLDivElement[]>([])
   const partnersRef = useRef(null)
+  const [isMobileScreen, setisMobileScreen] = useState<boolean>(false)
 
   const isReloadAnimation = useSelector(
     (state: RootState) => state.common.reloadAnimation
@@ -158,6 +159,8 @@ const AboutDesktop: NextPage<PageProps> = ({
     { id: 'large', media: '(min-width: 1000px) and (max-width: 1300px)' },
     { id: 'x-large', media: '(min-width: 1300px)' },
   ]
+
+
 
   useEffect(() => {
     if (!loaded) return
@@ -372,6 +375,7 @@ const AboutDesktop: NextPage<PageProps> = ({
         // let topVision = '87.7%'
         // let rightVision = '7%'
         if (isMobile && isDesktopHeight) {
+          setisMobileScreen(true)
           topOur = '1%'
           leftOur = '12.5%'
           topVision = '81.7%'
@@ -407,6 +411,7 @@ const AboutDesktop: NextPage<PageProps> = ({
             rightTeamTeam = '0%'
           }
           if (isMobile) {
+            setisMobileScreen(true)
             topOur = '1%'
             leftOur = '17.8%'
             topVision = '93.7%'
@@ -935,8 +940,8 @@ const AboutDesktop: NextPage<PageProps> = ({
             <section className="section-title">
               <div className="section-title__inner">
                 <h2 className="section-heading">
-                  <div>EMPOWERING PROGRESSIVE BRANDS TO</div>
-                  <div>BRIDGE THE GAP INTO WEB3</div>
+                  <div>EMPOWERING PROGRESSIVE BRANDS {!isMobileScreen && "TO"}</div>
+                  <div>{isMobileScreen && "TO"} BRIDGE THE GAP INTO WEB3</div>
                 </h2>
               </div>
             </section>
