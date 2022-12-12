@@ -325,6 +325,7 @@
     padding: 35px;
 
     @include sm {
+      text-align: -webkit-center;
       padding: 0;
     }
   }
