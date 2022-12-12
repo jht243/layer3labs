@@ -837,6 +837,66 @@ const AboutDesktop: NextPage<PageProps> = ({
     // return linkArray[randomNumber].toString()
   }
 
+  const onNextServices = () => {
+    const tl = gsap.timeline()
+
+    // Hide Customer Section
+    tl.to(
+      // Hide Next Section Arrow button
+      nextLinkRef.current,
+      { opacity: 0, duration: 0.5 }
+    )
+      .fromTo(
+        // Show Next Section Arrow button
+        nextLinkRef.current,
+        { opacity: 0 },
+        { opacity: 1, zIndex: 1000 },
+        '<'
+      ).fromTo(
+        teamMemberTitleRef.current,
+        {
+          y: 200,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.2,
+        },
+        '<+=0.05'
+      )
+      .fromTo(
+        teamMemberSubTitleRef.current,
+        {
+          y: 200,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.2,
+        },
+        '<+=0.05'
+      )
+      .fromTo(
+        teamMemberDescriptionRef.current,
+        {
+          y: 200,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.2,
+        },
+        '<+=0.05'
+      )
+
+  }
+
   return (
     <>
       <div
@@ -1410,19 +1470,21 @@ const AboutDesktop: NextPage<PageProps> = ({
                   ref={prevSliderArrowRef}
                   style={{
                     transform:  'rotate(180deg)' ,
+                    display : isMobileScreen ?  (curretnIndex === 0) ? 'none' : 'block' : 'none',
+
                   }}
                   onClick={() => {
                     console.log('gfbsdbvhjsdbfvsdfvbsmndsfvsdvbh');
                     
                     if (backArrow) {
-                      // onNextServices()
+                      onNextServices()
                       setCurrentIndex(curretnIndex - 1)
                       if (curretnIndex - 1 == 0) {
                         setBackArrow(false)
                       }
                     } else {
                       setCurrentIndex(curretnIndex + 1)
-                      // onNextServices()
+                      onNextServices()
                       if (curretnIndex + 1 == 1) {
                         setBackArrow(true)
                       }
@@ -1511,14 +1573,14 @@ const AboutDesktop: NextPage<PageProps> = ({
 
                     
                     if (backArrow) {
-                      // onNextServices()
+                      onNextServices()
                       setCurrentIndex(curretnIndex - 1)
                       if (curretnIndex - 1 == 0) {
                         setBackArrow(false)
                       }
                     } else {
                       setCurrentIndex(curretnIndex + 1)
-                      // onNextServices()
+                      onNextServices()
                       if (curretnIndex + 1 == 1) {
                         setBackArrow(true)
                       }
