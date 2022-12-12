@@ -71,6 +71,7 @@ const AboutDesktop: NextPage<PageProps> = ({
   let bgRotate = 12
   let bgBackTop = '4%'
   let bgPrevLeft = '3%'
+  let initmobileOurTop = "50%"
 
   let teamArray = [
     [
@@ -134,6 +135,8 @@ const AboutDesktop: NextPage<PageProps> = ({
   const ourVisionTextRef = useRef(null)
 
   const titlesRef = useRef(null)
+  const prevSliderArrowRef = useRef(null)
+  const nextSliderArrowRef = useRef(null)
 
   const teamTitleMainRef = useRef(null)
   const teamTitle1Ref = useRef(null)
@@ -387,6 +390,7 @@ const AboutDesktop: NextPage<PageProps> = ({
           rightTeamTeam = '0%'
           bgEndRotate = -85
           bgLeft = '-25%'
+          initmobileOurTop = "53.9%"
         } else {
           if (isDesktopHeight) {
             topOur = '17.5%'
@@ -398,6 +402,7 @@ const AboutDesktop: NextPage<PageProps> = ({
             leftTeamOur = '10.8%'
             topTeamTeam = '96.7%'
             rightTeamTeam = '0%'
+          initmobileOurTop = "50%"
           }
           if (isDesktop) {
             topOur = '12.5%'
@@ -409,6 +414,8 @@ const AboutDesktop: NextPage<PageProps> = ({
             leftTeamOur = '10.8%'
             topTeamTeam = '89.7%'
             rightTeamTeam = '0%'
+          initmobileOurTop = "50%"
+
           }
           if (isMobile) {
             setisMobileScreen(true)
@@ -427,6 +434,8 @@ const AboutDesktop: NextPage<PageProps> = ({
             bgRotate = 25
             bgBackTop = '6%'
             bgPrevLeft = '-10%'
+          initmobileOurTop = "52.5%"
+
           }
         }
 
@@ -434,7 +443,7 @@ const AboutDesktop: NextPage<PageProps> = ({
           .set(visionTextRef.current, { autoAlpha: 1 })
           .fromTo(
             ourVisionTextRef.current,
-            { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
+            { left: '50%', top: initmobileOurTop, xPercent: -175, yPercent: -50 },
             {
               left: leftOur,
               top: topOur,
@@ -517,7 +526,7 @@ const AboutDesktop: NextPage<PageProps> = ({
       .to(visionTextRef.current, { autoAlpha: 1 }, '<')
       .fromTo(
         ourVisionTextRef.current,
-        { left: '50%', top: '50%', xPercent: -175, yPercent: -50 },
+        { left: '50%', top: initmobileOurTop, xPercent: -175, yPercent: -50 },
         {
           left: leftOur,
           top: topOur,
@@ -640,7 +649,7 @@ const AboutDesktop: NextPage<PageProps> = ({
         teamTitle1Ref.current,
         {
           left: '50%',
-          top: '50%',
+          top: initmobileOurTop,
           xPercent: -150,
           yPercent: -50,
         },
@@ -731,6 +740,34 @@ const AboutDesktop: NextPage<PageProps> = ({
           stagger: 0.2,
         },
         '<+=0.05'
+      )
+      .fromTo(
+        prevSliderArrowRef.current,
+        {
+          y: 200,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.2,
+        },
+        '<'
+      )
+      .fromTo(
+        nextSliderArrowRef.current,
+        {
+          y: 200,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.2,
+        },
+        '<'
       )
       .fromTo(
         teamMemberSocialRef.current,
@@ -1370,7 +1407,7 @@ const AboutDesktop: NextPage<PageProps> = ({
               <div className={styles['team-section__group-slider']}>
               <div
                   className={styles['team-section__next-slider']}
-                  // ref={nextSliderArrowRef}
+                  ref={prevSliderArrowRef}
                   style={{
                     transform:  'rotate(180deg)' ,
                   }}
@@ -1464,12 +1501,14 @@ const AboutDesktop: NextPage<PageProps> = ({
                 </div>
                 <div
                   className={styles['team-section__next-slider']}
-                  // ref={nextSliderArrowRef}
+                  ref={nextSliderArrowRef}
                   style={{
                     transform:  'rotate(0deg)' ,
+                    display : isMobileScreen ?  (curretnIndex === (teamArray.length - 1)) ? 'none' : 'block' : 'none',
                   }}
                   onClick={() => {
-                    console.log('gfbsdbvhjsdbfvsdfvbsmndsfvsdvbh');
+                    console.log('gfbsdbvhjsdbfvsdfvbsmndsfvsdvbh',curretnIndex === teamArray.length);
+
                     
                     if (backArrow) {
                       // onNextServices()

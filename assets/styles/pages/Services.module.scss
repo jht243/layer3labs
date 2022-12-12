@@ -145,7 +145,7 @@
   &__group-slider{
     display: flex;
     align-items: center;
-    width: 287px;
+    // width: 287px;
   }
 
   &__next-slider {
@@ -297,9 +297,9 @@
   display: flex;
   justify-content: center;
   height: 95vh;
-  width: 100%;
-  margin: auto;
-  max-width: calc(100 / 1440 * 1200%);
+  // width: 100%;
+  // margin: auto;
+  // max-width: calc(100 / 1440 * 1200%);
 
   // @include sm {
   //   display: none;
@@ -362,7 +362,7 @@
 
     @include sm {
       flex-direction: column;
-      margin-bottom: 14px;
+      margin-bottom: 30px;
       margin-top: 30px;
     }
 
