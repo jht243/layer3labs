@@ -434,7 +434,7 @@ const AboutDesktop: NextPage<PageProps> = ({
             bgRotate = 25
             bgBackTop = '6%'
             bgPrevLeft = '-10%'
-          initmobileOurTop = "52.5%"
+          initmobileOurTop = "52%"
 
           }
         }
@@ -650,7 +650,7 @@ const AboutDesktop: NextPage<PageProps> = ({
         {
           left: '50%',
           top: initmobileOurTop,
-          xPercent: -150,
+          xPercent: -175,
           yPercent: -50,
         },
         {
@@ -665,10 +665,10 @@ const AboutDesktop: NextPage<PageProps> = ({
       .fromTo(
         teamTitle2Ref.current,
         {
-          right: '50%',
+          right: '35%',
           top: '50%',
-          xPercent: 155,
-          yPercent: -50,
+          xPercent: 0,
+          yPercent: -51,
         },
         {
           right: rightTeamTeam,
