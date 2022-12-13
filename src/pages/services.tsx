@@ -521,7 +521,7 @@ const Services: NextPage<PageProps> = ({
         {
           y: 0,
           opacity: 1,
-          zIndex: 33,
+          zIndex: 1000,
           duration: 0.2,
         },
         '<'

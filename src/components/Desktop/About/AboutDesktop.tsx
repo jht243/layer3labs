@@ -434,7 +434,7 @@ const AboutDesktop: NextPage<PageProps> = ({
             bgRotate = 25
             bgBackTop = '6%'
             bgPrevLeft = '-10%'
-          initmobileOurTop = "52%"
+          initmobileOurTop = "50%"
 
           }
         }
