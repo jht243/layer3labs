@@ -343,6 +343,9 @@
       @include sm {
         grid-template-columns: 50% 50%;
       }
+      @media screen and (max-width: 330px) {
+        min-height: 19rem;
+      }
     }
 
     &--mobile {

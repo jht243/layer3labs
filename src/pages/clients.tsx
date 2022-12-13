@@ -287,28 +287,28 @@ const Clients: NextPage<PageProps> = ({
         // Show Items Logo
         clientsItemLogoRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3, delay:0.2 , stagger: 0.2 },
         '<+=1'
       )
       .fromTo(
         // Show Items Text
         clientsItemTitleRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3,delay:0.2 ,  stagger: 0.2 },
         '<+=0.05'
       )
       .fromTo(
         // Show Items Logo
         clientsMobileItemLogoRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3,delay:0.2 ,  stagger: 0.2 },
         '<+=1'
       )
       .fromTo(
         // Show Items Text
         clientsMobileItemTitleRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3,delay:0.2 ,  stagger: 0.2 },
         '<+=0.05'
       )
       .to(
