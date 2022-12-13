@@ -665,13 +665,10 @@ const AboutDesktop: NextPage<PageProps> = ({
       .fromTo(
         teamTitle2Ref.current,
         {
-          right: '35%',
-          top: '50%',
-          xPercent: 0,
-          yPercent: -51,
+          left: '55%', top: '50%', xPercent: 0, yPercent: -50 
         },
         {
-          right: rightTeamTeam,
+          left: lefttVision,
           top: topTeamTeam,
           xPercent: -50,
           yPercent: -50,
