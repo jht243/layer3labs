@@ -325,6 +325,7 @@
     padding: 35px;
 
     @include sm {
+      text-align: -webkit-center;
       padding: 0;
     }
   }
@@ -340,7 +341,10 @@
       overflow: hidden;
 
       @include sm {
-        display: none;
+        grid-template-columns: 50% 50%;
+      }
+      @media screen and (max-width: 330px) {
+        min-height: 19rem;
       }
     }
 
@@ -348,6 +352,7 @@
       @include sm {
         display: flex;
         flex-direction: column;
+        display: none;
       }
 
       display: none;
@@ -386,7 +391,7 @@
       height: 100%;
 
       @include sm {
-        // height: 50px;
+        // height: 60px;
         object-fit: contain;
 
       }
@@ -407,6 +412,7 @@
       font-size: 14px;
       line-height: 1.2;
       border-top: 1px solid #272822;
+      display: none;
     }
   }
 }

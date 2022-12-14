@@ -50,6 +50,8 @@ const Clients: NextPage<PageProps> = ({
   let leftCustomersOur = '15%'
   let topCustomersCustomers = '92.7%'
   let leftCustomersCustomers = '82.5%'
+  let initOURTextLeft = '62%'
+
   const router = useRouter()
 
   const bgRef = useRef(null)
@@ -74,6 +76,7 @@ const Clients: NextPage<PageProps> = ({
 
   const testimonBlockTitleRef = useRef<HTMLDivElement[]>([])
   const testimonBlockSubTitleRef = useRef<HTMLDivElement[]>([])
+  const [isMobileScreen, setisMobileScreen] = useState<boolean>(false)
 
   const isReloadAnimation = useSelector(
     (state: RootState) => state.common.reloadAnimation
@@ -102,6 +105,7 @@ const Clients: NextPage<PageProps> = ({
           context.conditions
 
         if (isMobile && isDesktopHeight) {
+          setisMobileScreen(true)
           topOur = '12%'
           leftOur = '11%'
           topClients = '89.7%'
@@ -110,6 +114,7 @@ const Clients: NextPage<PageProps> = ({
           leftCustomersOur = '15%'
           topCustomersCustomers = '89.7%'
           leftCustomersCustomers = '82.5%'
+          initOURTextLeft = '62%'
         } else {
           if (isDesktopHeight) {
             topOur = '12%'
@@ -120,6 +125,7 @@ const Clients: NextPage<PageProps> = ({
             leftCustomersOur = '15%'
             topCustomersCustomers = '92.7%'
             leftCustomersCustomers = '82.5%'
+            initOURTextLeft = '50%'
           }
           if (isDesktop) {
             topOur = '12%'
@@ -130,8 +136,10 @@ const Clients: NextPage<PageProps> = ({
             leftCustomersOur = '15%'
             topCustomersCustomers = '92.7%'
             leftCustomersCustomers = '82.5%'
+            initOURTextLeft = '50%'
           }
           if (isMobile) {
+            setisMobileScreen(true)
             topOur = '10%'
             leftOur = '11%'
             topClients = '89.7%'
@@ -140,6 +148,7 @@ const Clients: NextPage<PageProps> = ({
             leftCustomersOur = '20%'
             topCustomersCustomers = '89.7%'
             leftCustomersCustomers = '72.5%'
+            initOURTextLeft = '62%'
           }
         }
       }
@@ -179,6 +188,7 @@ const Clients: NextPage<PageProps> = ({
   }, [clientsTextRef, loaded])
 
   const onPrevSection = () => {
+    console.log('onPrevSection')
     const tl = gsap.timeline()
 
     //  Hide Our Customer Section
@@ -232,7 +242,7 @@ const Clients: NextPage<PageProps> = ({
         {
           left: '50%',
           top: '50%',
-          xPercent: -250,
+          xPercent: -200,
           yPercent: -50,
           opacity: 1,
           y: 0,
@@ -250,7 +260,7 @@ const Clients: NextPage<PageProps> = ({
         // Show the client Text
         clientsTextRef.current,
         {
-          left: '50%',
+          left: '56%',
           top: '50%',
           xPercent: -20,
           yPercent: -50,
@@ -277,28 +287,28 @@ const Clients: NextPage<PageProps> = ({
         // Show Items Logo
         clientsItemLogoRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3, delay:0.2 , stagger: 0.2 },
         '<+=1'
       )
       .fromTo(
         // Show Items Text
         clientsItemTitleRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3,delay:0.2 ,  stagger: 0.2 },
         '<+=0.05'
       )
       .fromTo(
         // Show Items Logo
         clientsMobileItemLogoRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3,delay:0.2 ,  stagger: 0.2 },
         '<+=1'
       )
       .fromTo(
         // Show Items Text
         clientsMobileItemTitleRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.3,delay:0.2 ,  stagger: 0.2 },
         '<+=0.05'
       )
       .to(
@@ -309,6 +319,8 @@ const Clients: NextPage<PageProps> = ({
   }
 
   const onNextSection = () => {
+    console.log('onNextSection')
+
     const tl = gsap.timeline()
 
     // Hide Customer Section
@@ -649,7 +661,7 @@ const Clients: NextPage<PageProps> = ({
             <span ref={ourClientsTextRef}>Our</span>
             <span ref={clientsTextRef}>CLIENTS</span>
           </div>
-          <div
+          {/* <div
             className={styles['clients-page__next-slider']}
             ref={nextSliderArrowRef}
             style={{
@@ -683,13 +695,13 @@ const Clients: NextPage<PageProps> = ({
                 fill="#272822"
               />
             </svg>
-          </div>
+          </div> */}
 
           <div className={styles['clients-section']} ref={clientsSectionRef}>
             <div className={styles['clients-section__inner']}>
               <div className={styles['clients-section__boxes']}>
                 <div className={styles['clients-section__boxes--mobile']}>
-                  {sectionArray[curretnIndex].map((data, index) => {
+                  {/* {sectionArray[curretnIndex].map((data, index) => {
                     return (
                       <Fragment key={index}>
                         <div className={styles['clients-section__box']}>
@@ -714,7 +726,7 @@ const Clients: NextPage<PageProps> = ({
                         </div>
                       </Fragment>
                     )
-                  })}
+                  })} */}
                 </div>
 
                 <div className={styles['clients-section__boxes--desktop']}>
@@ -825,7 +837,11 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemLogoRef.current[5] = ref
                       }}
                     >
-                      <img src={pipeflareLogo.src} alt="Pipeflare" />
+                      <img
+                        style={{ height: isMobileScreen ? '50px' : '100%' }}
+                        src={pipeflareLogo.src}
+                        alt="Pipeflare"
+                      />
                     </div>
                     <div
                       className={styles['clients-section__text']}
