@@ -2,120 +2,15 @@
 @import 'assets/styles/helpers/index';
 
 .home-page {
-  height: calc(var(--vh) - 65px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 68px;
+  padding-top: 135px;
   opacity: 0;
-  //padding-left: $nav_link_width + $gap_padding;
-  //padding-right: $nav_link_width * 2 + $gap_padding;
   transition: opacity 1s ease 0.5s;
-
-  @include lg {
-    padding-left: 30px;
-  }
-
-  @include md {
-    padding-left: 20px;
-  }
-
-  @include sm {
-    padding: 100px 20px 15px;
-  height: calc(var(--vh) - 40px);
-
-  }
-
-  &__optionMenu {
-    text-transform: capitalize;
-    width: 100%;
-    display: none;
-    // background-color: $primary;
-    padding: 7px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    cursor: pointer;
-    &--about{
-      background-color: $primary;
-    }
-    &--client{
-      background-color: $clients;
-    }
-    &--services{
-      background-color: $services;
-    }
-
-    @include sm {
-      display: flex;
-    }
-  }
-  
-  &__optiongroup{
-    position: absolute;
-    width: 100%;
-    z-index: 100000;
-    text-transform: capitalize;
-    margin-top: 60px;
-  }
 
   &.is-loaded {
     opacity: 1;
-  }
-
-  &__notes {
-    max-width: 1285px;
-    padding-right: $nav_link_width * 3 + $gap_padding;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 48px;
-    color: #272822;
-    padding-bottom: 20px;
-
-    @include r(1600) {
-      font-size: 36px;
-    }
-
-    @include lg {
-      font-size: 30px;
-      line-height: 1.3;
-    }
-
-    @include md {
-      font-size: 26px;
-    }
-
-    @include sm {
-      font-size: 24px;
-      padding-right: 0;
-      max-width: none;
-    }
-
-    @include xs {
-      padding-top: 20px;
-      font-size: 20px;
-    }
-
-    p {
-      @include sm {
-        margin-bottom: 24px;
-      }
-    }
-
-    a {
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 24px;
-      color: #272822;
-      text-decoration: none;
-      @include xs {
-        font-size: 18px;
-      }
-    }
   }
 }
 
@@ -126,26 +21,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 144px;
-  padding: 43px 1.8vw 0 0;
+  height: 110px;
 
   @include sm {
     padding: 0;
     height: auto;
-  }
-
-  &.is-loaded {
-    .anim-head__dummy {
-      flex-grow: 1;
-    }
-
-    .anim-head__path {
-      opacity: 0;
-    }
-  }
-
-  &__dummy {
-    transition: all 1.5s ease 1s;
   }
 
   &__text {
@@ -164,7 +44,7 @@
 
   &__path {
     height: 100%;
-    margin-left: 140px;
+    margin-left: 47px;
     transition: all 0.5s ease 2.5s;
     pointer-events: none;
 
