@@ -12,7 +12,7 @@ class MyDocument extends Document {
         <head>
           <style>{loader}</style>
         </head>
-        <body>
+        <body className="no-scroll">
           <div id={'globalLoader'}>
           <div id='loaderImg'>
             <img src="/logo.svg" alt="Layer 3" />

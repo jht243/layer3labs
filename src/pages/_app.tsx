@@ -23,18 +23,24 @@ const Application = ({ Component, pageProps }: ApplicationProps) => {
     const checkLoader = async () => {
       if (typeof window !== 'undefined') {
         const loader = document.getElementById('globalLoader')
+        document.body.classList.add('no-scroll')
         if (loader) {
           await sleep(2)
           loader.style.opacity = '0'
-          await sleep(1)
+          await sleep(1.5)
           setLoaded(true)
           loader.style.display = 'none'
+          document.body.classList.remove('no-scroll')
         }
       }
     }
 
     checkLoader().catch(console.error)
   }, [])
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [router.pathname]);
 
   return (
     <div>

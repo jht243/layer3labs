@@ -1,0 +1,26 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.services {
+  display: flex;
+
+  &__title {
+    margin-right: 62px;
+  }
+
+  &__content {
+    display: flex;
+    flex-grow: 1;
+    margin-left: auto;
+  }
+
+  &__col {
+    width: 50%;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 51px;
+    }
+  }
+}

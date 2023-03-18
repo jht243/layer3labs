@@ -1,0 +1,25 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.team {
+  overflow: hidden;
+
+  &__title {
+    margin-bottom: 71px;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: -35px -42px;
+  }
+
+  &__member {
+    margin: 35px 42px;
+    width: calc(100% / 3 - 42px);
+    max-width: 320px;
+  }
+}

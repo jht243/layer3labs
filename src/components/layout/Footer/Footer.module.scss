@@ -2,10 +2,6 @@
 @import 'assets/styles/helpers/index';
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,7 +52,7 @@
         display: none;
       }
     }
-    
+
     a {
       color: inherit;
       text-decoration: none;

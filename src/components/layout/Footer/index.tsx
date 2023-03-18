@@ -1,6 +1,7 @@
+import React, { FC } from 'react'
+
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { FC } from 'react'
 
 import styles from './Footer.module.scss'
 
@@ -20,9 +21,6 @@ const Footer: FC = () => {
         <a href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry">
           CONTACT US
         </a>
-        {/* <a href="#." target="_blank" rel="noopener nofollow">
-          INSTAGRAM
-        </a> */}
       </div>
       <div className={styles['footer__logo']}>
         <Image
