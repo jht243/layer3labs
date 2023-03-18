@@ -30,6 +30,7 @@ const Application = ({ Component, pageProps }: ApplicationProps) => {
           await sleep(1.5)
           setLoaded(true)
           loader.style.display = 'none'
+          await sleep(1)
           document.body.classList.remove('no-scroll')
         }
       }

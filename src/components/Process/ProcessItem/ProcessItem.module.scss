@@ -1,0 +1,47 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.process-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 880px;
+  width: 100%;
+  min-height: 74px;
+  padding: 12px 35px 12px 20px;
+  background-color: #ffffff;
+
+  &:not(:last-child) {
+    margin-bottom: 76px;
+  }
+
+  &__count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 31px;
+    height: 31px;
+    flex-shrink: 0;
+    margin-right: 29px;
+    @include ff-medium;
+    font-size: 20px;
+    line-height: 1;
+    color: $text;
+    background-color: $services;
+  }
+
+  &__title {
+    @include ff-medium;
+    font-size: 20px;
+    line-height: 1;
+    color: $text;
+  }
+
+  &__text {
+    width: percentage(612 / 880);
+    margin-left: auto;
+    font-size: 21px;
+    line-height: 1.2;
+    color: $text;
+  }
+}

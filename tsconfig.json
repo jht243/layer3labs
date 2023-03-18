@@ -28,7 +28,7 @@
       "@/assets/*": ["assets/*"],
       "@/styles/*": ["assets/styles/*"],
       "@/images/*": ["assets/images/*"],
-      "@/types/*": ["src/types/*"]
+      "@/types/*": ["src/types/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

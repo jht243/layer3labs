@@ -58,7 +58,17 @@
   }
 
   &__services {
-    margin-bottom: 110px;
+    width: 100%;
+    max-width: 1244px;
+    padding: 0 20px;
+    margin: 0 auto 110px;
+  }
+
+  &__processes {
+    width: 100%;
+    max-width: 1244px;
+    padding: 0 20px;
+    margin: 0 auto 110px;
   }
 }
 

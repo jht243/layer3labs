@@ -10,6 +10,7 @@ interface Props {
   classes?: string;
   align?: string;
   lineWidth?: number;
+  fontSize?: string;
   [key: string]: any;
 }
 
@@ -20,10 +21,12 @@ const Headline: FC<Props> = (
       tag: Tag = 'h2',
       classes,
       align,
-      lineWidth = 320
+      lineWidth = 320,
+      fontSize,
     }) => {
+  const classNames = cx(styles['headline'], styles[`align-${align}`], { [styles[`is-fz-${fontSize}`]]: fontSize }, classes)
   return (
-      <Tag className={cx(styles['headline'], styles[`align-${align}`], classes)}>
+      <Tag className={classNames}>
         {title}
         <hr style={{ backgroundColor: color, width: `${lineWidth}px` }} />
       </Tag>

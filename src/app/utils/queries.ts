@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig, AxiosError } from 'axios'
 const baseConfig = {
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/data',
     'Access-Control-Allow-Origin': '*',
   },
 }

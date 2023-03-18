@@ -17,7 +17,7 @@ const Services: FC<Props> = ({ services }) => {
   return (
       <div className={styles['services']}>
         <div className={styles['services__title']}>
-          <Headline title="Our Services" color="#D1FF80" lineWidth={195} />
+          <Headline title="Our Services" color="#D1FF80" lineWidth={195} fontSize="sm" />
         </div>
 
         <div className={styles['services__content']}>
