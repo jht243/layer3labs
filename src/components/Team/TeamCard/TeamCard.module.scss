@@ -9,11 +9,19 @@
   min-height: 448px;
   background-color: #ffffff;
 
+  @include xs {
+    min-height: 312px;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 27px 25px 0;
+
+    @include xs {
+      padding: 17px 20px 0;
+    }
   }
 
   &__image {
@@ -24,6 +32,13 @@
     border: 3px solid $primary;
     border-radius: 50%;
     overflow: hidden;
+
+    @include xs {
+      width: 90px;
+      height: 90px;
+      padding: 4px;
+      margin-bottom: 14px;
+    }
   }
 
   &__name,
@@ -33,6 +48,10 @@
     text-align: center;
     text-transform: capitalize;
     color: $text;
+
+    @include xs {
+      font-size: 18px;
+    }
   }
 
   &__name {
@@ -41,6 +60,9 @@
 
   &__position {
     margin-bottom: 31px;
+    @include xs {
+      margin-bottom: 17px;
+    }
   }
 
   &__text {
@@ -49,6 +71,11 @@
     line-height: 1.2;
     text-align: center;
     color: $text;
+
+    @include xs {
+      margin-bottom: 21px;
+      font-size: 13px;
+    }
   }
 
   &__linked {
@@ -65,8 +92,12 @@
     text-align: center;
     text-decoration: none;
     background-color: $primary;
-
     @include glass-hover-animation;
+
+    @include xs {
+      height: 29px;
+      font-size: 13px;
+    }
 
     span {
       margin-left: 4px;

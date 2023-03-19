@@ -9,17 +9,26 @@
   height: 65px;
   padding: 10px 32px;
   background-color: #272822;
+
   @include sm {
-    height: 40px;
     padding: 15px 17px;
     z-index: 999;
   }
+
+  @include xs {
+
+    display: block;
+    height: auto;
+    padding: 26px 20px 38px;
+  }
+
   &__logo {
     cursor: pointer;
     @include sm {
       display: none;
     }
   }
+
   &__col {
     display: flex;
     width: 200px;
@@ -28,22 +37,22 @@
     font-size: 14px;
     line-height: 22px;
     color: #f4f5f4;
+
     @include xs {
+      width: auto;
       font-size: 14px;
-      line-height: 1.4;
+      line-height: 1.2;
     }
 
-    &--left{
+    &:last-child {
+      @include xs {
+        margin-top: 36px;
+      }
+    }
+
+    &--left {
       text-align: right;
     }
-
-    // &:nth-child(1) {
-    //   @include sm {
-    //     flex-direction: row;
-    //     justify-content: space-between;
-    //     width: 100%;
-    //   }
-    // }
 
     &:nth-child(2) {
       text-align: right;

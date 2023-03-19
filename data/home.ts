@@ -1,12 +1,19 @@
+import ClientsType from '@/types/clients';
 import ProcessType from '@/types/processes';
 import ServicesType from '@/types/services';
 
+import bowleroLogo from '@/images/bowlero@x2.png';
+import etherealLogo from '@/images/ethereal@x2.png';
+import GSLogo from '@/images/gn@x2.png';
+import JGILogo from '@/images/jgi@x2.png';
+import pipeflareLogo from '@/images/pipeflare@x2.png';
 import advisoryIcon from '@/images/services/advisory.svg';
 import gamesIcon from '@/images/services/games.svg';
 import loyaltyIcon from '@/images/services/loyalty.svg';
 import marketplaceIcon from '@/images/services/marketplace.svg';
 import metaverseIcon from '@/images/services/metaverse.svg';
 import tradingIcon from '@/images/services/trading.svg';
+import styrLogo from '@/images/styr@x2.png';
 import deanPhoto from '@/images/team/dean-steinbeck.png';
 import jonathanPhoto from '@/images/team/jonathan-teplitsky.png';
 import liatPhoto from '@/images/team/liat-aaronson.png';
@@ -111,4 +118,43 @@ const processes = [
   },
 ] as ProcessType[];
 
-export { team, services, processes }
+const clients = [
+  {
+    image: bowleroLogo,
+    text: 'NFT marketplace and minting platform for league bowler certification program',
+    width: 155,
+    height: 44,
+  },
+  {
+    image: styrLogo,
+    text: 'High frequency trading sneaker marketplace with asset backed nfts',
+    width: 76,
+    height: 61,
+  },
+  {
+    image: GSLogo,
+    text: 'Crypto micro-wallet lead generation platform with gaming and airdrops',
+    width: 168,
+    height: 43,
+  },
+  {
+    image: JGILogo,
+    text: 'membership, charity, and nft ticketing platform for national sports organizations',
+    width: 124,
+    height: 51,
+  },
+  {
+    image: etherealLogo,
+    text: 'Web3.0 strategy and implementation to preserve dr. goodalls legacy and research',
+    width: 130,
+    height: 51,
+  },
+  {
+    image: pipeflareLogo,
+    text: 'Play-to-earn gaming platform supporting 60,000 daily players and 7 custom games',
+    width: 138,
+    height: 77,
+  },
+] as ClientsType[];
+
+export { team, services, processes, clients }

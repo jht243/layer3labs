@@ -7,6 +7,10 @@
 
   &__content {
     padding-top: 18px;
+
+    @include sm {
+      padding: 0;
+    }
   }
 
   &__icon {
@@ -19,6 +23,12 @@
     flex-shrink: 0;
     margin-right: 29px;
     background-color: #ffffff;
+
+    @include xs {
+      width: 56px;
+      height: 56px;
+      margin-right: 16px;
+    }
 
     span {
       position: relative;
@@ -36,6 +46,11 @@
     line-height: 1.2;
     text-transform: uppercase;
     color: $text;
+
+    @include xs {
+      margin-bottom: 13px;
+      font-size: 18px;
+    }
   }
 
   &__text {
@@ -43,5 +58,9 @@
     font-size: 20px;
     line-height: 1.2;
     color: $text;
+
+    @include xs {
+      font-size: 15px;
+    }
   }
 }

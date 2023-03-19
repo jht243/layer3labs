@@ -5,6 +5,7 @@ img {
 
 .main {
   padding-bottom: 65px;
+  overflow: hidden;
 
   @include sm {
     padding-bottom: 40px;

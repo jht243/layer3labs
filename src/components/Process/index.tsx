@@ -19,7 +19,7 @@ const Process: FC<Props> = ({ processes }) => {
       <div className={styles['process']}>
         <div className={styles['process__left']}>
           <div className={styles['process__title']}>
-            <Headline title="Our Process" color="#D1FF80" lineWidth={195} fontSize="sm" />
+            <Headline title="Our Process" color="#D1FF80" lineWidth={195} fontSize="sm" align="mobile-center" />
           </div>
           <div className={styles['process__subtitle']}>
             <Image

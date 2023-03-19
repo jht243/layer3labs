@@ -11,8 +11,16 @@
   padding: 12px 35px 12px 20px;
   background-color: #ffffff;
 
+  @include xs {
+    padding: 11px 6px 11px 16px;
+  }
+
   &:not(:last-child) {
     margin-bottom: 76px;
+
+    @include xs {
+      margin-bottom: 26px;
+    }
   }
 
   &__count {
@@ -28,13 +36,26 @@
     line-height: 1;
     color: $text;
     background-color: $services;
+
+    @include xs {
+      width: 25px;
+      height: 25px;
+      margin-right: 12px;
+      font-size: 16px;
+    }
   }
 
   &__title {
+    margin-right: 20px;
     @include ff-medium;
     font-size: 20px;
     line-height: 1;
     color: $text;
+
+    @include xs {
+      margin-right: 0;
+      font-size: 13px;
+    }
   }
 
   &__text {
@@ -43,5 +64,9 @@
     font-size: 21px;
     line-height: 1.2;
     color: $text;
+    @include xs {
+      width: percentage(195 / 320);
+      font-size: 13px;
+    }
   }
 }

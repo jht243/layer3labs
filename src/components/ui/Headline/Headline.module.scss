@@ -4,12 +4,17 @@
 .headline {
   position: relative;
   display: inline-flex;
-  padding: 0 0 31px;
+  padding: 0 0 44px;
   @include ff-bold;
   font-size: 36px;
   line-height: 1.194;
   color: #2B2E34;
   text-transform: uppercase;
+
+  @include xs {
+    padding-bottom: 13px;
+    font-size: 16px;
+  }
 
   &.align-center {
     hr {
@@ -18,9 +23,22 @@
     }
   }
 
+  &.mobile-center {
+    hr {
+      @include sm {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
   &.is-fz-sm {
     font-size: 33px;
     line-height: 1.212;
+
+    @include xs {
+      font-size: 16px;
+    }
   }
 
   hr {
@@ -34,6 +52,7 @@
 
     @include xs {
       width: 150px !important;
+      height: 5px;
       left: 50%;
       transform: translateX(-50%);
     }

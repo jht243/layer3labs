@@ -1,0 +1,55 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.anim-head {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 110px;
+  margin-bottom: 138px;
+
+  @include sm {
+    padding: 0;
+    height: 36px;
+    margin-bottom: 37px;
+  }
+
+  &__text {
+    height: 100%;
+    transition: transform 1s ease 1s;
+    @include sm {
+      max-width: 143px;
+    }
+
+    img {
+      height: 100%;
+
+      @include sm {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &__path {
+    height: 100%;
+    margin-left: 47px;
+    transition: all 0.5s ease 2.5s;
+    pointer-events: none;
+
+    @include sm {
+      height: 36px;
+      margin-left: 15px;
+      //display: none;
+    }
+
+    svg {
+      display: block;
+      height: 100%;
+      width: auto;
+    }
+  }
+}
