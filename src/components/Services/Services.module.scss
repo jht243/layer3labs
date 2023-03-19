@@ -1,0 +1,61 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.services {
+  display: flex;
+  @include md {
+    display: block;
+  }
+
+  &__title {
+    margin-right: 62px;
+
+    @include md {
+      margin-right: 0;
+      margin-bottom: 40px;
+    }
+
+    @include sm {
+      text-align: center;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-grow: 1;
+    margin-left: auto;
+
+    @include sm {
+      display: block;
+    }
+  }
+
+  &__col {
+    width: 50%;
+
+    @include xl {
+      padding-right: 20px;
+    }
+
+    @include sm {
+      padding: 0;
+      width: 100%;
+    }
+
+    &:not(:last-child) {
+      @include sm {
+        margin-bottom: 33px;
+      }
+    }
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 51px;
+
+      @include sm {
+        margin-bottom: 33px;
+      }
+    }
+  }
+}

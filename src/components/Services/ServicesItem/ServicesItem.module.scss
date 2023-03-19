@@ -1,0 +1,66 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.services-item {
+  display: flex;
+  align-items: flex-start;
+
+  &__content {
+    padding-top: 18px;
+
+    @include sm {
+      padding: 0;
+    }
+  }
+
+  &__icon {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 29px;
+    background-color: #ffffff;
+
+    @include xs {
+      width: 56px;
+      height: 56px;
+      margin-right: 16px;
+    }
+
+    span {
+      position: relative;
+      display: block;
+      flex-shrink: 0;
+      width: 45%;
+      height: 45%;
+    }
+  }
+
+  &__title {
+    margin-bottom: 25px;
+    @include ff-bold;
+    font-size: 25px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: $text;
+
+    @include xs {
+      margin-bottom: 13px;
+      font-size: 18px;
+    }
+  }
+
+  &__text {
+    max-width: 316px;
+    font-size: 20px;
+    line-height: 1.2;
+    color: $text;
+
+    @include xs {
+      font-size: 15px;
+    }
+  }
+}

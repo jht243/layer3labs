@@ -5,11 +5,19 @@ img {
 
 .main {
   padding-bottom: 65px;
+  overflow: hidden;
 
   @include sm {
     padding-bottom: 40px;
   }
 }
+
+.container {
+  max-width: 1552px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .mobile-container{
   display: none;
   padding-bottom: 65px;

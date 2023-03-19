@@ -9,8 +9,20 @@ body {
     display: block;
 }
 
-#globalLoader {
+body.no-scroll {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
+    overflow: hidden;
+}
+
+#globalLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: #272822;
     z-index: 9999;
     transition: opacity 1s ease 1s;

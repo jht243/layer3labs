@@ -1,0 +1,50 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.team {
+  overflow: hidden;
+
+  &__title {
+    margin-bottom: 71px;
+    text-align: center;
+
+    @include xs {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: -35px -42px;
+
+    @include xs {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  &__member {
+    margin: 35px 42px;
+    width: calc(100% / 3 - 42px);
+    max-width: 320px;
+
+    @include md {
+      width: calc(50% - 42px);
+    }
+
+    @include xs {
+      width: 100%;
+      max-width: 253px;
+      margin: 0;
+    }
+
+    &:not(:last-child) {
+      @include xs {
+        margin-bottom: 17px;
+      }
+    }
+  }
+}

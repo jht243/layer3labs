@@ -1,0 +1,114 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 448px;
+  background-color: #ffffff;
+
+  @include xs {
+    min-height: 312px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 27px 25px 0;
+
+    @include xs {
+      padding: 17px 20px 0;
+    }
+  }
+
+  &__image {
+    width: 126px;
+    height: 126px;
+    padding: 6px;
+    margin-bottom: 27px;
+    border: 3px solid $primary;
+    border-radius: 50%;
+    overflow: hidden;
+
+    @include xs {
+      width: 90px;
+      height: 90px;
+      padding: 4px;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__name,
+  &__position {
+    font-size: 22px;
+    line-height: 1.182;
+    text-align: center;
+    text-transform: capitalize;
+    color: $text;
+
+    @include xs {
+      font-size: 18px;
+    }
+  }
+
+  &__name {
+    @include ff-bold;
+  }
+
+  &__position {
+    margin-bottom: 31px;
+    @include xs {
+      margin-bottom: 17px;
+    }
+  }
+
+  &__text {
+    margin-bottom: 23px;
+    font-size: 15px;
+    line-height: 1.2;
+    text-align: center;
+    color: $text;
+
+    @include xs {
+      margin-bottom: 21px;
+      font-size: 13px;
+    }
+  }
+
+  &__linked {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    width: 100%;
+    height: 54px;
+    @include ff-medium;
+    font-size: 16px;
+    line-height: 1;
+    color: $text;
+    text-align: center;
+    text-decoration: none;
+    background-color: $primary;
+    @include glass-hover-animation;
+
+    @include xs {
+      height: 29px;
+      font-size: 13px;
+    }
+
+    span {
+      margin-left: 4px;
+      transition: all .25s ease;
+      transform-origin: center;
+    }
+
+    &:hover {
+      span {
+        transform: translateX(4px) translateY(-4px);
+      }
+    }
+  }
+}

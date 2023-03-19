@@ -1,0 +1,148 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1244px;
+  padding: 70px 20px 0;
+  margin: 0 auto;
+
+  @include sm {
+    padding-top: 24px;
+  }
+
+  &__social {
+    position: absolute;
+    left: 20px;
+    bottom: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: #2B2E34;
+    transition: all .25s ease;
+
+    @include sm {
+      position: static;
+      width: 26px;
+      height: 26px;
+
+      svg {
+        width: 50%;
+      }
+    }
+
+    &:hover {
+      background-color: $primary;
+    }
+  }
+
+  &__nav {
+    @include sm {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #ffffff;
+      transform: translateX(-100%);
+      transition: all .4s ease;
+    }
+
+    &.is-active {
+      transform: translateX(0);
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      @include sm {
+        flex-direction: column;
+      }
+
+      li {
+        margin: 0 40px;
+        @include sm {
+          margin: 20px;
+        }
+      }
+
+      a {
+        @include ff-bold;
+        font-size: 20px;
+        line-height: 1.2;
+        color: $text;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__burger {
+    z-index: 1000;
+    background-color: transparent;
+    border: none;
+    order: 3;
+    margin-left: auto;
+
+    @include smUp {
+      display: none;
+    }
+  }
+}
+
+.burger {
+  position: relative;
+
+  svg {
+    path {
+      transition: all .4s ease;
+    }
+  }
+
+  &.is-active {
+    svg {
+      path {
+        &:nth-child(1) {
+          transform: rotate(115deg) translateX(-8px) translateY(-25px);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: rotate(50deg) translateX(5px) translateY(-27px)
+        }
+      }
+    }
+
+    span {
+      background-color: #ffffff;
+      transform: translateX(300px);
+
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+}
