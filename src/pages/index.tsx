@@ -10,10 +10,12 @@ import Investors from '@/components/Investors';
 import Process from '@/components/Process';
 import Services from '@/components/Services';
 import Team from '@/components/Team';
+import Testimonials from '@/components/Testimonials';
 import Header from '@/components/layout/Header';
+import { NavLink } from '@/components/ui/NavLink';
 import Layout from '@/layouts/index';
 
-import { team, services, processes, clients } from '../../data/home';
+import { team, services, processes, clients, testimonials } from '../../data/home';
 
 import styles from '@/styles/pages/Home.module.scss';
 
@@ -74,6 +76,14 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
 
           <div className={styles['home-page__clients']}>
             <Clients clients={clients} />
+          </div>
+
+          <div className={styles['home-page__testimonials']}>
+            <Testimonials testimonials={testimonials} />
+          </div>
+
+          <div className={styles['home-page__about-link']}>
+            <NavLink href="/about">DISCOVER MORE ABOUT US</NavLink>
           </div>
         </div>
       </Layout>

@@ -1,0 +1,63 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.testimonial-item {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px 21px;
+  min-height: 463px;
+  height: 100%;
+  background-color: #ffffff;
+
+  @include sm {
+    min-height: 283px;
+  }
+
+  @include xs {
+    padding: 32px 17px 22px;
+  }
+
+  &__logo {
+    height: 120px;
+    text-align: center;
+  }
+
+  &__text {
+    margin-bottom: 45px;
+    font-size: 21px;
+    line-height: 1.2;
+    text-align: center;
+    color: $text;
+
+    @include xs {
+      font-size: 13px;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  &__photo {
+    margin-right: 25px;
+    flex-shrink: 0;
+
+    @include xs {
+      margin-right: 8px;
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &__name {
+    font-size: 15px;
+    line-height: 1.2;
+    color: $text;
+
+    @include xs {
+      font-size: 13px;
+    }
+  }
+}

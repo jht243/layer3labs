@@ -168,7 +168,38 @@
     }
 
     @include xs {
-      margin-bottom: 33px;
+      margin-bottom: 37px;
+    }
+  }
+
+  &__testimonials {
+    margin: 0 auto 76px;
+
+    @include sm {
+      margin-bottom: 45px;
+    }
+
+    @include xs {
+      margin-bottom: 37px;
+    }
+  }
+
+  &__about-link {
+    margin-left: 68px;
+
+    @include sm {
+      margin-left: 20px;
+    }
+
+    a {
+      font-size: 20px;
+      line-height: 24px;
+      color: $text;
+      text-decoration: none;
+
+      @include xs {
+        font-size: 16px;
+      }
     }
   }
 }

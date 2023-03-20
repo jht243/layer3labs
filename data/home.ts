@@ -1,6 +1,7 @@
 import ClientsType from '@/types/clients';
 import ProcessType from '@/types/processes';
 import ServicesType from '@/types/services';
+import TestimonialsType from '@/types/testimonials';
 
 import bowleroLogo from '@/images/bowlero@x2.png';
 import etherealLogo from '@/images/ethereal@x2.png';
@@ -157,4 +158,43 @@ const clients = [
   },
 ] as ClientsType[];
 
-export { team, services, processes, clients }
+const testimonials = [
+  {
+    logo: bowleroLogo,
+    text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
+    photo: bowleroLogo,
+    name: 'JASON KOVAR, COO OF GAMESTATION',
+    width: 140,
+    height: 41,
+    company: 'Bowlero Corporation'
+  },
+  {
+    logo: bowleroLogo,
+    text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
+    photo: null,
+    name: 'JASON KOVAR, COO OF GAMESTATION',
+    width: 140,
+    height: 41,
+    company: 'Bowlero Corporation'
+  },
+  {
+    logo: bowleroLogo,
+    text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
+    photo: null,
+    name: 'JASON KOVAR, COO OF GAMESTATION',
+    width: 140,
+    height: 41,
+    company: 'Bowlero Corporation'
+  },
+  {
+    logo: bowleroLogo,
+    text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
+    photo: null,
+    name: 'JASON KOVAR, COO OF GAMESTATION',
+    width: 140,
+    height: 41,
+    company: 'Bowlero Corporation'
+  },
+] as TestimonialsType[];
+
+export { team, services, processes, clients, testimonials }

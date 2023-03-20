@@ -1,0 +1,89 @@
+@import 'assets/styles/variables/index';
+@import 'assets/styles/helpers/index';
+
+.testimonials {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1700px;
+    height: 154px;
+    background-color: $clients;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    opacity: 0.5;
+  }
+
+  &__slider {
+    position: relative;
+    overflow: hidden;
+    max-width: calc(1066px + 76px);
+    padding: 0 38px;
+    margin: 0 auto;
+    cursor: grab;
+  }
+
+  &__title {
+    margin-bottom: 50px;
+    text-align: center;
+
+    @include xs {
+      margin-bottom: 29px;
+    }
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    will-change: transform;
+    margin-left: -38px;
+
+    @include xs {
+      margin-left: -69px;
+    }
+  }
+
+  &__slide {
+    position: relative;
+    flex: 0 0 auto;
+    max-width: 368px;
+    width: 100%;
+    padding-left: 38px;
+
+    @include xs {
+      max-width: 291px;
+      padding-left: 69px;
+    }
+  }
+
+  &__slide-inner {
+    height: 100%;
+  }
+
+  &__prev,
+  &__next {
+    position: absolute;
+    top: 50%;
+    z-index: 9;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__prev {
+    left: 0;
+    @include xs {
+      left: 20px;
+    }
+  }
+
+  &__next {
+    right: 0;
+    @include xs {
+      right: 20px;
+    }
+  }
+}
