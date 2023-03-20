@@ -28,42 +28,42 @@ const team = [
     name: 'Jonathan Teplitsky',
     position: 'CEO & Team Lead',
     text: 'JONATHAN HOLDS AN MBA FROM HARVARD BUSINESS SCHOOL AND HAS 10+ YEARS OF MARKETING EXPERIENCE.',
-    linkedin: '#.'
+    linkedin: 'https://www.linkedin.com/in/jonathanteplitsky/'
   },
   {
     image: mayPhoto,
     name: 'May Lunawong',
     position: 'Product Manager',
     text: 'MAY IS A PRODUCT MANAGER WITH A BACKGROUND IN PRODUCT MANAGEMENT OF TELECOMMUNICATION TECHNOLOGY FOR OVER 7+ YEARS. ',
-    linkedin: '#.'
+    linkedin: 'https://www.linkedin.com/in/nutchara-lunawong-954183190/'
   },
   {
     image: robertPhoto,
     name: 'Robert Viglione',
     position: 'Company Advisor',
     text: 'CEO AND CO-FOUNDER OF HORIZEN AND HORIZEN LABS.  FORMER US AIR FORCE PHYSICIST AND MILITARY INTELLIGENCE. BA IN PHYSICS, MBA AND PHD IN FINANCE.',
-    linkedin: '#.'
+    linkedin: 'https://www.linkedin.com/in/robert-viglione-2780634/'
   },
   {
     image: liatPhoto,
     name: 'Liat Aaronson',
     position: 'Company Advisor',
     text: 'COO AT HORIZEN LABS, HIGH-GROWTH BLOCKCHAIN STARTUP. INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.',
-    linkedin: '#.'
+    linkedin: 'https://www.linkedin.com/in/liataaronson/'
   },
   {
     image: rosarioPhoto,
     name: 'Rosario Pabst',
     position: 'Company Advisor',
     text: 'SENIOR EXECUTIVE AT HORIZEN. OVER 10 YEARS IN SOFTWARE PROGRAM MANAGEMENT. BS IN PUBLIC ADMINISTRATION AND MS IN SYSTEMS ENGINEERING.',
-    linkedin: '#.'
+    linkedin: 'https://www.linkedin.com/in/dean-steinbeck/'
   },
   {
     image: deanPhoto,
     name: 'Dean Steinbeck',
     position: 'Product Manager',
     text: 'PRESIDENT AND GENERAL COUNSEL OF HORIZEN LABS. 15 YEARS REPRESENTING VC-BACKED SOFTWARE DEVELOPMENT COMPANIES WITH A FOCUS ON DATA. ',
-    linkedin: '#.'
+    linkedin: 'https://www.linkedin.com/in/rosario-pabst/'
   }
 ]
 
