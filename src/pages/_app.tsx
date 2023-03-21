@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Provider } from 'react-redux'
 
+import { useHashHandler } from '@/app/hooks/useHashHandler';
 import { useWindowSize } from '@/app/hooks/useWindowSize'
 import { store } from '@/app/store'
 import { sleep } from '@/app/utils/helpers'
@@ -18,6 +19,7 @@ const Application = ({ Component, pageProps }: ApplicationProps) => {
   const [loaded, setLoaded] = useState<boolean>(false)
 
   useWindowSize()
+  useHashHandler(loaded)
 
   useEffect(() => {
     const checkLoader = async () => {

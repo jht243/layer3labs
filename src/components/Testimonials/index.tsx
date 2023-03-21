@@ -36,9 +36,9 @@ const Testimonials: FC<Props> = ({ testimonials }) => {
         </div>
         <div className={styles['testimonials__slider']} ref={emblaRef}>
           <div className={styles['testimonials__container']}>
-            {testimonials.map((item) => {
+            {testimonials.map((item, index) => {
               return (
-                  <div key={item.name} className={styles['testimonials__slide']}>
+                  <div key={index.toString()} className={styles['testimonials__slide']}>
                     <div className={styles['testimonials__slide-inner']}>
                       <TestimonialItem testimonial={item} />
                     </div>

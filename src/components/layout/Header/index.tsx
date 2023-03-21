@@ -3,8 +3,6 @@ import React, { FC, useEffect, useState } from 'react';
 import cx from 'classnames';
 import { useRouter } from 'next/router';
 
-import { NavLink } from '@/components/ui/NavLink';
-
 import styles from './Header.module.scss';
 
 interface Props {
@@ -27,6 +25,14 @@ const Header: FC<Props> = ({}) => {
     document.body.style.overflow = 'unset';
   }, [router.pathname]);
 
+  const moveTo = (e: any) => {
+    e.preventDefault();
+    history.replaceState({}, '', e.target.href);
+    const popStateEvent = new PopStateEvent('popstate');
+    dispatchEvent(popStateEvent);
+    setMenuOpened(false);
+  }
+
   return (
       <header className={styles['header']}>
         <a
@@ -45,13 +51,13 @@ const Header: FC<Props> = ({}) => {
         <nav className={cx(styles['header__nav'], { [styles['is-active']]: menuOpened })}>
           <ul>
             <li>
-              <NavLink href="/about">ABOUT US</NavLink>
+              <a href="#about" onClick={moveTo}>ABOUT US</a>
             </li>
             <li>
-              <NavLink href="/services">OUR SERVICES</NavLink>
+              <a href="#services" onClick={moveTo}>OUR SERVICES</a>
             </li>
             <li>
-              <NavLink href="/clients">OUR CLIENTS</NavLink>
+              <a href="#clients" onClick={moveTo}>OUR CLIENTS</a>
             </li>
           </ul>
         </nav>

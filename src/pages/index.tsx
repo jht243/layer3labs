@@ -60,13 +60,13 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
             <Investors />
           </div>
 
-          <div className="container">
+          <div id="about" className="container">
             <div className={styles['home-page__team']}>
               <Team team={team} />
             </div>
           </div>
 
-          <div className={styles['home-page__services']}>
+          <div id="services" className={styles['home-page__services']}>
             <Services services={services} />
           </div>
 
@@ -74,7 +74,7 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
             <Process processes={processes} />
           </div>
 
-          <div className={styles['home-page__clients']}>
+          <div id="clients" className={styles['home-page__clients']}>
             <Clients clients={clients} />
           </div>
 
@@ -83,7 +83,7 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
           </div>
 
           <div className={styles['home-page__about-link']}>
-            <NavLink href="/about">DISCOVER MORE ABOUT US</NavLink>
+            <NavLink href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry">CONTACT US</NavLink>
           </div>
         </div>
       </Layout>

@@ -47,4 +47,44 @@
       }
     }
   }
+
+  &__more-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 44px auto 0;
+
+    @include sm {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__more {
+    min-width: 320px;
+    padding: 20px 133px;
+    background: #272822;
+    border-radius: 46px;
+    @include ff-medium;
+    font-size: 20px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    color: #D1FF80;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+
+    @include glass-hover-animation(#fff, #fff);
+
+    @include sm {
+      min-width: auto;
+      padding: 12px 70px 14px;
+      font-size: 16px;
+    }
+
+    @include xs {
+      padding: 9px 54px 10px;
+      font-size: 12px;
+    }
+  }
 }
