@@ -162,39 +162,39 @@ const testimonials = [
   {
     logo: GSLogo,
     text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
-    photo: GSLogo,
+    // photo: GSLogo,
     name: 'JASON KOVAR, COO OF GAMESTATION',
     width: 140,
     height: 41,
     company: 'Bowlero Corporation'
   },
-  {
-    logo: GSLogo,
-    text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
-    photo: null,
-    name: 'JASON KOVAR, COO OF GAMESTATION',
-    width: 140,
-    height: 41,
-    company: 'Bowlero Corporation'
-  },
-  {
-    logo: GSLogo,
-    text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
-    photo: null,
-    name: 'JASON KOVAR, COO OF GAMESTATION',
-    width: 140,
-    height: 41,
-    company: 'Bowlero Corporation'
-  },
-  {
-    logo: GSLogo,
-    text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
-    photo: null,
-    name: 'JASON KOVAR, COO OF GAMESTATION',
-    width: 140,
-    height: 41,
-    company: 'Bowlero Corporation'
-  },
+  // {
+  //   logo: GSLogo,
+  //   text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
+  //   photo: null,
+  //   name: 'JASON KOVAR, COO OF GAMESTATION',
+  //   width: 140,
+  //   height: 41,
+  //   company: 'Bowlero Corporation'
+  // },
+  // {
+  //   logo: GSLogo,
+  //   text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
+  //   photo: null,
+  //   name: 'JASON KOVAR, COO OF GAMESTATION',
+  //   width: 140,
+  //   height: 41,
+  //   company: 'Bowlero Corporation'
+  // },
+  // {
+  //   logo: GSLogo,
+  //   text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
+  //   photo: null,
+  //   name: 'JASON KOVAR, COO OF GAMESTATION',
+  //   width: 140,
+  //   height: 41,
+  //   company: 'Bowlero Corporation'
+  // },
 ] as TestimonialsType[];
 
 export { team, services, processes, clients, testimonials }
