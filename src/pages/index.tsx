@@ -41,9 +41,9 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
             </h1>
 
             <p className={styles['home-page__subtitle']}>
-              We start by getting to know you, your brand, and your goals.
+              We start by getting to know&nbsp;you, your&nbsp;brand, and&nbsp;your&nbsp;goals.
               <br />
-              Then we create amazing Web3 experiences, from NFT Marketplaces to masterful Metaverses.
+              Then we create amazing Web3 experiences, from NFT&nbsp;Marketplaces to&nbsp;masterful Metaverses.
             </p>
 
             <div className={styles['home-page__contact-wrap']}>
@@ -82,8 +82,14 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
             <Testimonials testimonials={testimonials} />
           </div>
 
-          <div className={styles['home-page__about-link']}>
-            <NavLink href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry">CONTACT US</NavLink>
+
+          <div className={cx(styles['home-page__contact-wrap'], styles['is-bottom'])}>
+            <a
+                href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry"
+                className={styles['home-page__contact']}
+            >
+              contact us
+            </a>
           </div>
         </div>
       </Layout>

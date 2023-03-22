@@ -60,16 +60,6 @@ const Investors: FC<Props> = ({}) => {
 
           <div className={styles['investors__item']}>
             <Image
-                src={horizenLogo.src}
-                alt="Horizen"
-                width={135}
-                height={96}
-                objectFit="contain"
-            />
-          </div>
-
-          <div className={styles['investors__item']}>
-            <Image
                 src={polygonStudiosLogo.src}
                 alt="Polygon Studios"
                 width={159}

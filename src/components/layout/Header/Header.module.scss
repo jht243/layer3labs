@@ -77,6 +77,27 @@
         @include sm {
           margin: 20px;
         }
+        &:first-child {
+          a {
+            &:hover {
+              color: $primary;
+            }
+          }
+        }
+        &:nth-child(2) {
+          a {
+            &:hover {
+              color: $services;
+            }
+          }
+        }
+        &:nth-child(3) {
+          a {
+            &:hover {
+              color: $clients;
+            }
+          }
+        }
       }
 
       a {
@@ -85,6 +106,7 @@
         line-height: 1.2;
         color: $text;
         text-decoration: none;
+        transition: all .25s ease;
       }
     }
   }

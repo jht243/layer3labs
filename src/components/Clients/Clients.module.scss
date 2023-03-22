@@ -36,10 +36,15 @@
 
   &__item-image {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
     padding-bottom: 25px;
     margin-bottom: 25px;
     text-align: center;
     @include xs {
+      height: auto;
       padding-bottom: 23px;
       margin-bottom: 21px;
     }

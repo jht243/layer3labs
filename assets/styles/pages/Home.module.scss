@@ -46,7 +46,7 @@
 
   &__subtitle {
     max-width: 1065px;
-    margin: 0 auto 98px;
+    margin: 0 auto 64px;
     @include ff-medium;
     font-size: 25px;
     line-height: 1.2;
@@ -75,6 +75,13 @@
 
     @include xs {
       margin-bottom: 39px;
+    }
+
+    &.is-bottom {
+      margin-bottom: 42px;
+      @include xs {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -109,10 +116,6 @@
     @include sm {
       margin-bottom: 45px;
     }
-
-    @include xs {
-      margin-bottom: 33px;
-    }
   }
 
   &__team {
@@ -120,10 +123,6 @@
 
     @include sm {
       margin-bottom: 45px;
-    }
-
-    @include xs {
-      margin-bottom: 33px;
     }
   }
 
@@ -136,10 +135,6 @@
     @include sm {
       margin-bottom: 45px;
     }
-
-    @include xs {
-      margin-bottom: 33px;
-    }
   }
 
   &__processes {
@@ -150,10 +145,6 @@
 
     @include sm {
       margin-bottom: 45px;
-    }
-
-    @include xs {
-      margin-bottom: 33px;
     }
   }
 
@@ -166,10 +157,6 @@
     @include sm {
       margin-bottom: 45px;
     }
-
-    @include xs {
-      margin-bottom: 37px;
-    }
   }
 
   &__testimonials {
@@ -178,29 +165,6 @@
 
     @include sm {
       margin-bottom: 45px;
-    }
-
-    @include xs {
-      margin-bottom: 37px;
-    }
-  }
-
-  &__about-link {
-    margin-left: 68px;
-
-    @include sm {
-      margin-left: 20px;
-    }
-
-    a {
-      font-size: 20px;
-      line-height: 24px;
-      color: $text;
-      text-decoration: none;
-
-      @include xs {
-        font-size: 16px;
-      }
     }
   }
 }
