@@ -52,5 +52,11 @@
       width: calc(50% - 100px);
       margin: 10px 20px;
     }
+
+    &.is-desktop {
+      @include sm {
+        display: none;
+      }
+    }
   }
 }

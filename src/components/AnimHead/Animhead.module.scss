@@ -9,12 +9,10 @@
   justify-content: center;
   width: 100%;
   height: 110px;
-  margin-bottom: 138px;
 
   @include sm {
     padding: 0;
     height: 36px;
-    margin-bottom: 37px;
   }
 
   &__text {

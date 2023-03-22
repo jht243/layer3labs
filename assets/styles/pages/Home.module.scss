@@ -17,10 +17,12 @@
   }
 
   &__anim-logo {
-    padding-top: 135px;
+    padding-top: 100px;
+    padding-bottom: 90px;
 
     @include sm {
-      padding-top: 22px;
+      padding-top: 30px;
+      padding-bottom: 22px;
     }
   }
 

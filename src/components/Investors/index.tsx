@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import cx from 'classnames';
 import Image from 'next/image';
 
 import Headline from '@/components/ui/Headline';
@@ -54,6 +55,16 @@ const Investors: FC<Props> = ({}) => {
                 alt="Polygon"
                 width={149}
                 height={32}
+                objectFit="contain"
+            />
+          </div>
+
+          <div className={cx(styles['investors__item'], styles['is-desktop'])}>
+            <Image
+                src={horizenLogo.src}
+                alt="Horizen"
+                width={135}
+                height={96}
                 objectFit="contain"
             />
           </div>
