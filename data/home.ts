@@ -6,6 +6,8 @@ import TestimonialsType from '@/types/testimonials';
 import bowleroLogo from '@/images/bowlero@x2.png';
 import etherealLogo from '@/images/ethereal@x2.png';
 import GSLogo from '@/images/gn@x2.png';
+import horizenLogo from '@/images/horizen2.png';
+import beyondallthenoiseLogo from '@/images/beyondallthenoise.png';
 import JGILogo from '@/images/jgi@x2.png';
 import pipeflareLogo from '@/images/pipeflare@x2.png';
 import advisoryIcon from '@/images/services/advisory.svg';
@@ -160,6 +162,33 @@ const clients = [
 
 const testimonials = [
   {
+    logo: styrLogo,
+    text: '“Layer 3 Labs helped us design and build a novel sneaker trading platform. They helped us turn an idea into a well architected blockchain-based application.”',
+    // photo: GSLogo,
+    name: 'Gene-STYR Trading',
+    width: 76,
+    height: 61,
+    company: 'STYR TRADE'
+  },
+  {
+    logo: horizenLogo,
+    text: '"Layer3Labs heled us build a blockchain based game in which users cans interact with the Punkz token. The team has a fantastic understanding of our needs and delivered an easy-to-use and engaging game."',
+    // photo: GSLogo,
+    name: 'Manon - Horizen',
+    width: 175,
+    height: 90,
+    company: 'Horizen'
+  },
+  {
+    logo: beyondallthenoiseLogo,
+    text: '"It’s been a pleasure working with Jonathan’s team to build large-scale IP based blockchain games. His technology makes it easy for non-crypto savvy gamers to join Web3."',
+    // photo: GSLogo,
+    name: 'Pat-Beyond All The Noise',
+    width: 220,
+    height: 60,
+    company: 'Beyond All The Noise'
+  },
+  {
     logo: GSLogo,
     text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
     // photo: GSLogo,
@@ -168,33 +197,6 @@ const testimonials = [
     height: 41,
     company: 'Bowlero Corporation'
   },
-  // {
-  //   logo: GSLogo,
-  //   text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
-  //   photo: null,
-  //   name: 'JASON KOVAR, COO OF GAMESTATION',
-  //   width: 140,
-  //   height: 41,
-  //   company: 'Bowlero Corporation'
-  // },
-  // {
-  //   logo: GSLogo,
-  //   text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
-  //   photo: null,
-  //   name: 'JASON KOVAR, COO OF GAMESTATION',
-  //   width: 140,
-  //   height: 41,
-  //   company: 'Bowlero Corporation'
-  // },
-  // {
-  //   logo: GSLogo,
-  //   text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
-  //   photo: null,
-  //   name: 'JASON KOVAR, COO OF GAMESTATION',
-  //   width: 140,
-  //   height: 41,
-  //   company: 'Bowlero Corporation'
-  // },
 ] as TestimonialsType[];
 
 export { team, services, processes, clients, testimonials }
