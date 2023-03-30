@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import useEmblaCarousel from 'embla-carousel-react'
 
@@ -13,6 +13,7 @@ interface Props {
 }
 
 const Testimonials: FC<Props> = ({ testimonials }) => {
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'center',
     loop: true,
@@ -28,6 +29,18 @@ const Testimonials: FC<Props> = ({ testimonials }) => {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
+
+  const onScroll = useCallback(() => {
+    if (!emblaApi) return;
+    const progress = Math.max(0, Math.min(1, emblaApi.scrollProgress()));
+    setScrollProgress(progress * 100);
+  }, [emblaApi, setScrollProgress]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onScroll();
+    emblaApi.on("scroll", onScroll);
+  }, [emblaApi, onScroll]);
 
   return (
       <div className={styles['testimonials']}>
@@ -61,6 +74,15 @@ const Testimonials: FC<Props> = ({ testimonials }) => {
                 </button>
               </> : null}
         </div>
+
+
+        {(testimonials && testimonials.length > 3) ?
+            <div className={styles['testimonials__progress']}>
+              <div
+                  className={styles['testimonials__progress-bar']}
+                  style={{ transform: `translateX(${scrollProgress}%)` }}
+              />
+            </div> : null}
       </div>
   );
 };
