@@ -1,28 +1,28 @@
-import ClientsType from '@/types/clients';
-import ProcessType from '@/types/processes';
-import ServicesType from '@/types/services';
-import TestimonialsType from '@/types/testimonials';
+import ClientsType from '@/types/clients'
+import ProcessType from '@/types/processes'
+import ServicesType from '@/types/services'
+import TestimonialsType from '@/types/testimonials'
 
-import bowleroLogo from '@/images/bowlero@x2.png';
-import etherealLogo from '@/images/ethereal@x2.png';
-import GSLogo from '@/images/gn@x2.png';
-import horizenLogo from '@/images/horizen2.png';
-import beyondallthenoiseLogo from '@/images/beyondallthenoise.png';
-import JGILogo from '@/images/jgi@x2.png';
-import pipeflareLogo from '@/images/pipeflare@x2.png';
-import advisoryIcon from '@/images/services/advisory.svg';
-import gamesIcon from '@/images/services/games.svg';
-import loyaltyIcon from '@/images/services/loyalty.svg';
-import marketplaceIcon from '@/images/services/marketplace.svg';
-import metaverseIcon from '@/images/services/metaverse.svg';
-import tradingIcon from '@/images/services/trading.svg';
-import styrLogo from '@/images/styr@x2.png';
-import deanPhoto from '@/images/team/dean-steinbeck.png';
-import jonathanPhoto from '@/images/team/jonathan-teplitsky.png';
-import liatPhoto from '@/images/team/liat-aaronson.png';
-import mayPhoto from '@/images/team/may-lunawong.png';
-import robertPhoto from '@/images/team/robert-viglione.png';
-import rosarioPhoto from '@/images/team/rosario-pabst.png';
+import bowleroLogo from '@/images/bowlero@x2.png'
+import etherealLogo from '@/images/ethereal@x2.png'
+import GSLogo from '@/images/gn@x2.png'
+import horizenLogo from '@/images/horizen2.png'
+import beyondallthenoiseLogo from '@/images/beyondallthenoise.png'
+import JGILogo from '@/images/jgi@x2.png'
+import pipeflareLogo from '@/images/pipeflare@x2.png'
+import advisoryIcon from '@/images/services/advisory.svg'
+import gamesIcon from '@/images/services/games.svg'
+import loyaltyIcon from '@/images/services/loyalty.svg'
+import marketplaceIcon from '@/images/services/marketplace.svg'
+import metaverseIcon from '@/images/services/metaverse.svg'
+import tradingIcon from '@/images/services/trading.svg'
+import styrLogo from '@/images/styr@x2.png'
+import deanPhoto from '@/images/team/dean-steinbeck.png'
+import jonathanPhoto from '@/images/team/jonathan-teplitsky.png'
+import liatPhoto from '@/images/team/liat-aaronson.png'
+import mayPhoto from '@/images/team/may-lunawong.png'
+import robertPhoto from '@/images/team/robert-viglione.png'
+import rosarioPhoto from '@/images/team/rosario-pabst.png'
 
 const team = [
   {
@@ -30,43 +30,43 @@ const team = [
     name: 'Jonathan Teplitsky',
     position: 'CEO & Team Lead',
     text: 'JONATHAN HOLDS AN MBA FROM HARVARD BUSINESS SCHOOL AND HAS 10+ YEARS OF MARKETING EXPERIENCE.',
-    linkedin: 'https://www.linkedin.com/in/jonathanteplitsky/'
+    linkedin: 'https://www.linkedin.com/in/jonathanteplitsky/',
   },
   {
     image: mayPhoto,
     name: 'May Lunawong',
     position: 'Product Manager',
     text: 'MAY IS A PRODUCT MANAGER WITH A BACKGROUND IN PRODUCT MANAGEMENT OF TELECOMMUNICATION TECHNOLOGY FOR OVER 7+ YEARS. ',
-    linkedin: 'https://www.linkedin.com/in/nutchara-lunawong-954183190/'
+    linkedin: 'https://www.linkedin.com/in/nutchara-lunawong-954183190/',
   },
   {
     image: robertPhoto,
     name: 'Robert Viglione',
     position: 'Company Advisor',
     text: 'CEO AND CO-FOUNDER OF HORIZEN AND HORIZEN LABS.  FORMER US AIR FORCE PHYSICIST AND MILITARY INTELLIGENCE. BA IN PHYSICS, MBA AND PHD IN FINANCE.',
-    linkedin: 'https://www.linkedin.com/in/robert-viglione-2780634/'
+    linkedin: 'https://www.linkedin.com/in/robert-viglione-2780634/',
   },
   {
     image: liatPhoto,
     name: 'Liat Aaronson',
     position: 'Company Advisor',
     text: 'COO AT HORIZEN LABS, HIGH-GROWTH BLOCKCHAIN STARTUP. INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.',
-    linkedin: 'https://www.linkedin.com/in/liataaronson/'
+    linkedin: 'https://www.linkedin.com/in/liataaronson/',
   },
   {
     image: rosarioPhoto,
     name: 'Rosario Pabst',
     position: 'Company Advisor',
     text: 'SENIOR EXECUTIVE AT HORIZEN. OVER 10 YEARS IN SOFTWARE PROGRAM MANAGEMENT. BS IN PUBLIC ADMINISTRATION AND MS IN SYSTEMS ENGINEERING.',
-    linkedin: 'https://www.linkedin.com/in/dean-steinbeck/'
+    linkedin: 'https://www.linkedin.com/in/dean-steinbeck/',
   },
   {
     image: deanPhoto,
     name: 'Dean Steinbeck',
     position: 'Product Manager',
     text: 'PRESIDENT AND GENERAL COUNSEL OF HORIZEN LABS. 15 YEARS REPRESENTING VC-BACKED SOFTWARE DEVELOPMENT COMPANIES WITH A FOCUS ON DATA. ',
-    linkedin: 'https://www.linkedin.com/in/rosario-pabst/'
-  }
+    linkedin: 'https://www.linkedin.com/in/rosario-pabst/',
+  },
 ]
 
 const services = {
@@ -83,7 +83,7 @@ const services = {
     },
     {
       title: 'METAVERSE BUILDS',
-      text: 'Create metaverse experiences that add to your brand\'s value proposition',
+      text: "Create metaverse experiences that add to your brand's value proposition",
       icon: metaverseIcon,
     },
   ] as ServicesType[],
@@ -100,7 +100,7 @@ const services = {
     },
     {
       title: 'Advisory Services',
-      text: 'We\'ll help you integrate your web3 strategy with your business goals',
+      text: "We'll help you integrate your web3 strategy with your business goals",
       icon: advisoryIcon,
     },
   ] as ServicesType[],
@@ -119,7 +119,7 @@ const processes = [
     title: 'MANAGE',
     text: 'We manage the day-to-day backend operations',
   },
-] as ProcessType[];
+] as ProcessType[]
 
 const clients = [
   {
@@ -142,7 +142,7 @@ const clients = [
   },
   {
     image: JGILogo,
-    text: 'membership, charity, and nft ticketing platform for national sports organizations',
+    text: 'Membership, charity, and nft ticketing platform for national sports organizations',
     width: 124,
     height: 51,
   },
@@ -158,45 +158,45 @@ const clients = [
     width: 138,
     height: 77,
   },
-] as ClientsType[];
+] as ClientsType[]
 
 const testimonials = [
   {
     logo: styrLogo,
     text: '“Layer 3 Labs helped us design and build a novel sneaker trading platform. They helped us turn an idea into a well architected blockchain-based application.”',
     // photo: GSLogo,
-    name: 'Gene-STYR Trading',
+    name: 'Gene Rachmansky, CEO of STYR Trading',
     width: 76,
     height: 61,
-    company: 'STYR TRADE'
+    company: 'STYR TRADE',
   },
   {
     logo: horizenLogo,
     text: '"Layer3Labs heled us build a blockchain based game in which users cans interact with the Punkz token. The team has a fantastic understanding of our needs and delivered an easy-to-use and engaging game."',
     // photo: GSLogo,
-    name: 'Manon - Horizen',
+    name: 'Manon, Senior Marketing Manager at Horizen',
     width: 175,
     height: 90,
-    company: 'Horizen'
+    company: 'Horizen',
   },
   {
     logo: beyondallthenoiseLogo,
     text: '"It’s been a pleasure working with Jonathan’s team to build large-scale IP based blockchain games. His technology makes it easy for non-crypto savvy gamers to join Web3."',
     // photo: GSLogo,
-    name: 'Pat-Beyond All The Noise',
+    name: 'Pat Doran, CEO of Beyond All The Noise',
     width: 220,
     height: 60,
-    company: 'Beyond All The Noise'
+    company: 'Beyond All The Noise',
   },
   {
     logo: GSLogo,
     text: '“I wanted to mention how fun, motivating, De-stressing and invigorating it is to work with layer III, everything went very smoothly.”',
     // photo: GSLogo,
-    name: 'JASON KOVAR, COO OF GAMESTATION',
+    name: 'Jason Kovar, COO of GAMESTATION',
     width: 140,
     height: 41,
-    company: 'Bowlero Corporation'
+    company: 'Gamestation',
   },
-] as TestimonialsType[];
+] as TestimonialsType[]
 
-export { team, services, processes, clients, testimonials }
+export {team, services, processes, clients, testimonials}

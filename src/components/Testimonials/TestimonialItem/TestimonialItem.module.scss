@@ -1,5 +1,5 @@
-@import 'assets/styles/variables/index';
-@import 'assets/styles/helpers/index';
+@import "assets/styles/variables/index";
+@import "assets/styles/helpers/index";
 
 .testimonial-item {
   display: flex;
@@ -18,7 +18,10 @@
   }
 
   &__logo {
-    height: 120px;
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    padding-bottom: 20px;
     text-align: center;
   }
 

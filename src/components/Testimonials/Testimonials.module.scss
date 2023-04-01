@@ -1,11 +1,11 @@
-@import 'assets/styles/variables/index';
-@import 'assets/styles/helpers/index';
+@import "assets/styles/variables/index";
+@import "assets/styles/helpers/index";
 
 .testimonials {
   position: relative;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -23,6 +23,9 @@
     padding: 0 38px;
     margin: 0 auto;
     cursor: grab;
+    @include lg {
+      padding-bottom: 50px;
+    }
   }
 
   &__title {
@@ -51,73 +54,69 @@
     max-width: 368px;
     width: 100%;
     padding-left: 38px;
+    user-select: none;
 
     @include xs {
-      max-width: 291px;
+      max-width: 100%;
       padding-left: 69px;
     }
   }
 
   &__slide-inner {
     height: 100%;
+    @include xs {
+      max-width: 222px;
+      margin: 0 auto;
+    }
   }
 
   &__prev,
   &__next {
     position: absolute;
     top: 50%;
-    z-index: 9;
+    z-index: 9999;
     background-color: transparent;
     border: none;
     outline: none;
     cursor: pointer;
 
     @include lg {
-      display: none;
+      top: auto;
+      bottom: 0;
+    }
+    @include xs {
+      top: 50%;
+      bottom: auto;
     }
   }
 
   &__prev {
     left: 0;
+    transform: translateY(-50%);
+
     @include lg {
+      left: 50%;
+      transform: translateX(-200%);
+    }
+
+    @include xs {
       left: 20px;
+      transform: translateY(-50%);
     }
   }
 
   &__next {
     right: 0;
+    transform: translateY(-50%);
+
     @include lg {
-      right: 20px;
-    }
-  }
-
-  &__progress {
-    position: relative;
-    background-color: #ffffff;
-    margin-top: 30px;
-    max-width: 270px;
-    width: calc(100% - 40px);
-    height: 4px;
-    overflow: hidden;
-    border-radius: 2px;
-    margin-left: auto;
-    margin-right: auto;
-
-    @include lgUp {
-      display: none;
+      right: 50%;
+      transform: translateX(200%);
     }
 
     @include xs {
-      max-width: 160px;
+      right: 20px;
+      transform: translateY(-50%);
     }
-  }
-
-  &__progress-bar {
-    position: absolute;
-    background-color: #272822;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    left: -100%;
   }
 }

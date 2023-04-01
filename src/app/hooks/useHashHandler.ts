@@ -1,33 +1,27 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react'
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
-export function useHashHandler (loaded: boolean) {
+export function useHashHandler(loaded?: boolean) {
   const router = useRouter()
-  const [isMounted, setMounted] = useState(false)
 
   const updateHash = useCallback((hash: string) => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') return
     if (!hash) {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
     } else {
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, (loaded && isMounted) ? 0 : 1600);
+      const id = hash.replace('#', '')
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
-  }, [isMounted, loaded])
+  }, [])
 
   useEffect(() => {
     const hash = window.location.hash
     updateHash(hash)
-    if (loaded && !isMounted) {
-      setMounted(true)
-    }
-  }, [isMounted, loaded, updateHash])
+  }, [loaded, updateHash])
 
   useEffect(() => {
     const onWindowHashChange = () => updateHash(window.location.hash)
