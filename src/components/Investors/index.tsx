@@ -7,10 +7,12 @@ import Headline from '@/components/ui/Headline'
 
 import styles from './Investors.module.scss'
 
+import avalancheLogo from '@/images/avalanche.png'
 import beyondLogo from '@/images/beyond-gray.png'
 import dcgLogo from '@/images/dcg-gray.png'
 import horizenLogo from '@/images/horizen-gray.png'
 import horizenLabsLogo from '@/images/horizen-labs-gray.png'
+import nearLogo from '@/images/near.png'
 import polygonLogo from '@/images/polygon-gray.svg'
 import polygonStudiosLogo from '@/images/polygon-studios-gray.png'
 
@@ -81,9 +83,29 @@ const Investors: FC<Props> = ({}) => {
         <div className={styles['investors__item']}>
           <Image
             src={beyondLogo.src}
-            alt="Polygon Studios"
+            alt="Beyond all the noise"
             width={256}
             height={32}
+            objectFit="contain"
+          />
+        </div>
+
+        <div className={styles['investors__item']}>
+          <Image
+            src={avalancheLogo.src}
+            alt="Avalanche"
+            width={207}
+            height={43}
+            objectFit="contain"
+          />
+        </div>
+
+        <div className={styles['investors__item']}>
+          <Image
+            src={nearLogo.src}
+            alt="Near"
+            width={157}
+            height={44}
             objectFit="contain"
           />
         </div>

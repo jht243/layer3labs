@@ -53,6 +53,10 @@
       margin: 10px 20px;
     }
 
+    @include r(370) {
+      width: calc(65% - 100px);
+    }
+
     &.is-desktop {
       @include sm {
         display: none;
