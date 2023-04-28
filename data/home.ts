@@ -130,7 +130,7 @@ const clients = [
   },
   {
     image: styrLogo,
-    text: 'High frequency trading sneaker marketplace with asset backed nfts',
+    text: 'High frequency trading asset backed sneaker marketplace',
     width: 200,
     height: 36,
   },
@@ -163,7 +163,7 @@ const clients = [
 const testimonials = [
   {
     logo: styrLogo,
-    text: 'High frequency trading asset backed sneaker marketplace',
+    text: '“Layer 3 Labs helped us design and build a novel sneaker trading platform. They helped us turn an idea into a well architected blockchain-based application.” - STYR Trade',
     // photo: GSLogo,
     name: 'Gene Rachmansky, co-CEO, STYR Trade',
     width: 170,
