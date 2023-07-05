@@ -48,6 +48,12 @@
   &__item {
     margin: 30px 48px;
 
+    @include r(1540) {
+      display: flex;
+      justify-content: center;
+      width: calc(100% / 3 - 100px);
+    }
+
     @include xs {
       width: calc(50% - 100px);
       margin: 10px 20px;
