@@ -23,6 +23,7 @@ import liatPhoto from '@/images/team/liat-aaronson.png'
 import mayPhoto from '@/images/team/may-lunawong.png'
 import robertPhoto from '@/images/team/robert-viglione.png'
 import rosarioPhoto from '@/images/team/rosario-pabst.png'
+import christinePhoto from '@/images/team/christine-yoong.jpg'
 
 const team = [
   {
@@ -59,6 +60,13 @@ const team = [
     position: 'Company Advisor',
     text: 'SENIOR EXECUTIVE AT HORIZEN. OVER 10 YEARS IN SOFTWARE PROGRAM MANAGEMENT. BS IN PUBLIC ADMINISTRATION AND MS IN SYSTEMS ENGINEERING.',
     linkedin: 'https://www.linkedin.com/in/dean-steinbeck/',
+  },
+  {
+    image: christinePhoto,
+    name: 'Christine Yoong',
+    position: 'Company Advisor',
+    text: 'Technology executive with a background in Cloud Infrastructure & Finance. MBA from Harvard Business School. Company builder & operator.',
+    linkedin: 'https://www.linkedin.com/in/christineyoong/',
   },
   {
     image: deanPhoto,
