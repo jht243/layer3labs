@@ -68,13 +68,6 @@ const team = [
     text: 'Technology executive with a background in Cloud Infrastructure & Finance. MBA from Harvard Business School. Company builder & operator.',
     linkedin: 'https://www.linkedin.com/in/christineyoong/',
   },
-  {
-    image: deanPhoto,
-    name: 'Dean Steinbeck',
-    position: 'Product Manager',
-    text: 'PRESIDENT AND GENERAL COUNSEL OF HORIZEN LABS. 15 YEARS REPRESENTING VC-BACKED SOFTWARE DEVELOPMENT COMPANIES WITH A FOCUS ON DATA. ',
-    linkedin: 'https://www.linkedin.com/in/rosario-pabst/',
-  },
 ]
 
 const services = {
@@ -171,7 +164,7 @@ const clients = [
 const testimonials = [
   {
     logo: styrLogo,
-    text: '“Layer 3 Labs helped us design and build a novel sneaker trading platform. They helped us turn an idea into a well architected blockchain-based application.” - STYR Trade',
+    text: '“Layer 3 Labs helped us design and build an innovative sneaker trading platform. Together we turned an idea into a well architected trading application.” - STYR Trade',
     // photo: GSLogo,
     name: 'Gene Rachmansky, co-CEO, STYR Trade',
     width: 170,
