@@ -164,9 +164,9 @@ const clients = [
 const testimonials = [
   {
     logo: styrLogo,
-    text: '“Layer 3 Labs helped us design and build an innovative sneaker trading platform. Together we turned an idea into a well architected trading application.” - STYR Trade',
+    text: '“Layer 3 Labs helped us design and build an innovative sneaker trading platform. Together we turned an idea into a well architected trading application.”',
     // photo: GSLogo,
-    name: 'Gene Rachmansky, co-CEO, STYR Trade',
+    name: 'Oscar R., Founder STYR Trade',
     width: 170,
     height: 30,
     company: 'STYR TRADE',
