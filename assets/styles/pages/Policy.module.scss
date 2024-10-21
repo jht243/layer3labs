@@ -1,0 +1,121 @@
+@import "assets/styles/variables/index";
+@import "assets/styles/helpers/index";
+
+.simplePage {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 14px;
+  padding-bottom: 44px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.wysiwyg {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--grey-text);
+  @include ff-default;
+
+  a {
+    color: #000000;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    word-break: break-all;
+    border-bottom: 1px solid currentColor;
+    white-space: nowrap;
+
+    &:hover {
+      border-bottom: 1px solid transparent;
+    }
+  }
+
+  h1 {
+    margin-bottom: 24px;
+
+    @include xs {
+      margin-bottom: 16px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 24px;
+
+    @include xs {
+      margin-bottom: 16px;
+    }
+  }
+
+  h3 {
+    margin-bottom: 24px;
+
+    @include xs {
+      margin-bottom: 16px;
+    }
+  }
+
+  h4 {
+    margin-bottom: 22px;
+
+    @include xs {
+      margin-bottom: 16px;
+    }
+  }
+
+  p {
+
+    & + p {
+      margin-top: 20px;
+
+      @include xs {
+        margin-top: 16px;
+      }
+    }
+
+    & + ul,
+    & + ol {
+      margin-top: 20px;
+
+      @include xs {
+        margin-top: 16px;
+      }
+    }
+
+    & + h2,
+    & + h3,
+    & + h4 {
+      margin-top: 31px;
+
+      @include xs {
+        margin-top: 16px;
+      }
+    }
+  }
+
+  ul,
+  ol {
+    & + h2,
+    & + h3,
+    & + h4,
+    & + p {
+      margin-top: 31px;
+
+      @include xs {
+        margin-top: 16px;
+      }
+    }
+  }
+
+  li {
+    margin-left: 15px;
+    list-style: disc;
+
+    & + li {
+      margin-top: 20px;
+
+      @include xs {
+        margin-top: 16px;
+      }
+    }
+  }
+}
