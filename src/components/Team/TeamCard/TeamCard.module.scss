@@ -75,6 +75,7 @@
     line-height: 1.2;
     text-align: center;
     color: $text;
+    text-transform: uppercase;
 
     @include xs {
       margin-bottom: 21px;
