@@ -37,18 +37,18 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
 
             <h1 className={styles['home-page__title']}>
               We are a software development and advisory firm
-              that will help you navigate the world of Web3.
+              that will help you navigate the world of AI Apps.
             </h1>
 
             <p className={styles['home-page__subtitle']}>
               We start by getting to know&nbsp;you, your&nbsp;brand, and&nbsp;your&nbsp;goals.
               <br />
-              Then we create amazing Web3 experiences, from NFT&nbsp;Marketplaces to&nbsp;masterful Metaverses.
+              Then we create amazing AI experiences, from Custom&nbsp;Agents to&nbsp;Enterprise Solutions.
             </p>
 
             <div className={styles['home-page__contact-wrap']}>
               <a
-                  href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry"
+                  href="mailto:partners@layer3labs.io?subject=AI App Development Inquiry"
                   className={styles['home-page__contact']}
               >
                 contact us
@@ -85,7 +85,7 @@ const Home: NextPage<PageProps> = ({ loaded }) => {
 
           <div className={cx(styles['home-page__contact-wrap'], styles['is-bottom'])}>
             <a
-                href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry"
+                href="mailto:partners@layer3labs.io?subject=AI App Development Inquiry"
                 className={styles['home-page__contact']}
             >
               contact us

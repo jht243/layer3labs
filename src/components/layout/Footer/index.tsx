@@ -15,10 +15,12 @@ const Footer: FC = () => {
         >
           LINKEDIN
         </a>
-        <a href="mailto:partners@layer3labs.io?subject=Web3 Development Inquiry">
+        <a href="mailto:partners@layer3labs.io?subject=AI App Development Inquiry">
           CONTACT US
         </a>
-        <Link href="/policy">PRIVACY POLICY</Link>
+        <Link href="/privacy">PRIVACY POLICY</Link>
+        <Link href="/terms">TERMS OF SERVICE</Link>
+        <Link href="/support">SUPPORT</Link>
       </div>
       <div className={styles['footer__col']}>
         <a

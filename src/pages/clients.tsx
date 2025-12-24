@@ -745,7 +745,7 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemTitleRef.current[0] = ref
                       }}
                     >
-                      NFT MARKETPLACE AND MINTING PLATFORM FOR LEAGUE BOWLER
+                      DIGITAL ASSET MARKETPLACE AND PLATFORM FOR LEAGUE BOWLER
                       CERTIFICATION PROGRAM
                     </div>
                   </div>
@@ -765,8 +765,8 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemTitleRef.current[1] = ref
                       }}
                     >
-                      HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH ASSET
-                      BACKED NFTS
+                      HIGH FREQUENCY TRADING SNEAKER MARKETPLACE WITH DIGITAL
+                      ASSETS
                     </div>
                   </div>
 
@@ -785,8 +785,8 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemTitleRef.current[2] = ref
                       }}
                     >
-                      CRYPTO MICRO-WALLET LEAD GENERATION PLATFORM WITH GAMING
-                      AND AIRDROPS
+                      DIGITAL WALLET LEAD GENERATION PLATFORM WITH GAMING
+                      REWARDS
                     </div>
                   </div>
 
@@ -805,7 +805,7 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemTitleRef.current[3] = ref
                       }}
                     >
-                      MEMBERSHIP, CHARITY, AND NFT TICKETING PLATFORM FOR
+                      MEMBERSHIP, CHARITY, AND DIGITAL TICKETING PLATFORM FOR
                       NATIONAL SPORTS ORGANIZATIONS
                     </div>
                   </div>
@@ -825,7 +825,7 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemTitleRef.current[4] = ref
                       }}
                     >
-                      WEB3.0 STRATEGY AND IMPLEMENTATION TO PRESERVE DR.
+                      DIGITAL STRATEGY AND IMPLEMENTATION TO PRESERVE DR.
                       GOODALLS LEGACY AND RESEARCH
                     </div>
                   </div>
@@ -849,7 +849,7 @@ const Clients: NextPage<PageProps> = ({
                         if (ref) clientsItemTitleRef.current[5] = ref
                       }}
                     >
-                      PLAY-TO-EARN GAMING PLATFORM SUPPORTING 60,000 DAILY
+                      GAMING PLATFORM SUPPORTING 60,000 DAILY
                       PLAYERS AND 7 CUSTOM GAMES
                     </div>
                   </div>
