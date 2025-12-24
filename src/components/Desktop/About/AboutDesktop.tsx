@@ -38,12 +38,12 @@ interface PageProps {
 }
 
 const linkArray = [
-  'https://www.nasdaq.com/articles/exploring-the-next-frontier-of-nfts',
-  'https://www.cmcmarkets.com/en/opto/nfts-to-act-as-loyalty-stamps-for-brands',
-  'https://www.nasdaq.com/articles/ukraines-crypto-donation-triumph-offers-glimpse-into-the-future-of-giving',
-  'https://restauranttechnologynews.com/2022/05/restaurants-are-the-next-frontier-for-nfts-here-are-some-considerations-and-recommendations/',
-  'https://www.amazon.com/dp/B09K2MFPWX',
-  'https://blocktelegraph.io/jonathan-teplitsky-ceo-of-pipeflare-talks-about-a-better-deal-for-game-developers-and-the-democratizing-nfts/',
+  'https://openai.com/research',
+  'https://www.anthropic.com/news',
+  'https://cloud.google.com/ai',
+  'https://aws.amazon.com/ai/',
+  'https://www.microsoft.com/en-us/ai',
+  'https://www.nvidia.com/en-us/ai/',
 ]
 
 const AboutDesktop: NextPage<PageProps> = ({
@@ -104,7 +104,7 @@ const AboutDesktop: NextPage<PageProps> = ({
         linkedinLink: 'https://www.linkedin.com/in/liataaronson/',
         position: 'COMPANY ADVISOR',
         description:
-          'COO AT HORIZEN LABS, HIGH-GROWTH BLOCKCHAIN STARTUP. INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.',
+          'COO AT HORIZEN LABS, HIGH-GROWTH TECHNOLOGY STARTUP. INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.',
       },
       {
         name: 'DEAN STEINBECK',
@@ -1035,7 +1035,7 @@ const AboutDesktop: NextPage<PageProps> = ({
               <div className="section-title__inner">
                 <h2 className="section-heading">
                   <div>EMPOWERING PROGRESSIVE BRANDS {!isMobileScreen && "TO"}</div>
-                  <div>{isMobileScreen && "TO"} BRIDGE THE GAP INTO WEB3</div>
+                  <div>{isMobileScreen && "TO"} BUILD, DEPLOY & MAINTAIN AI APPS</div>
                 </h2>
               </div>
             </section>
@@ -1051,8 +1051,8 @@ const AboutDesktop: NextPage<PageProps> = ({
             <section className="section-title">
               <div className="section-title__inner">
                 <h2 className="section-heading">
-                  <div>BACKED BY THE LARGEST INVESTORS</div>
-                  <div>IN CRYPTO</div>
+                  <div>BACKED BY LEADING INVESTORS</div>
+                  <div>IN TECH</div>
                 </h2>
               </div>
             </section>
@@ -1353,7 +1353,7 @@ const AboutDesktop: NextPage<PageProps> = ({
                         if (ref) teamMemberDescriptionRef.current[3] = ref
                       }}
                     >
-                      COO AT HORIZEN LABS, HIGH-GROWTH BLOCKCHAIN STARTUP.
+                      COO AT HORIZEN LABS, HIGH-GROWTH TECHNOLOGY STARTUP.
                       INVESTMENT PARTNER IN VC FUND AND FORMER M&A LAWYER RAN
                       ACADEMIC ACCELERATOR FOR SAM ZELL AT IDC HERZLIYA.
                     </div>
@@ -1608,11 +1608,11 @@ const AboutDesktop: NextPage<PageProps> = ({
           </div>
           <div  className={cx(styles['about-page__headline--content'])}>
             <span className={cx(styles['about-page__headline--subhead'])}>IN THE PRESS</span>
-            <span  className={cx(styles['about-page__headline--head'])}>WHAT IS BLOCKCHAIN?</span>
+            <span  className={cx(styles['about-page__headline--head'])}>WHAT IS AN AI APP?</span>
           </div>
           <div className={cx(styles['about-page__headline--content'])}>
             <span className={cx(styles['about-page__headline--subhead'])}>IN THE PRESS</span>
-            <span className={cx(styles['about-page__headline--head'])}>5 THINGS YOU NEED TO KNOW IN THE NFT INDUSTRY</span>
+            <span className={cx(styles['about-page__headline--head'])}>5 THINGS YOU NEED TO KNOW ABOUT DEPLOYING AI APPS</span>
           </div>
         </div> */}
         </div>
@@ -1634,14 +1634,14 @@ const AboutDesktop: NextPage<PageProps> = ({
             IN THE PRESS
           </div>
           <div className={cx(styles['about-page__headline--head'])}>
-            WHAT IS BLOCKCHAIN?
+            WHAT IS AN AI APP?
           </div>
         </div>
         {/* <div className={cx(styles['about-page__headline--subhead'])}>
         IN THE PRESS
         </div>
         <div className={cx(styles['about-page__headline--head'])}>
-        5 THINGS YOU NEED TO KNOW IN THE NFT INDUSTRY
+        5 THINGS YOU NEED TO KNOW ABOUT DEPLOYING AI APPS
         </div> */}
       </div>
     </>

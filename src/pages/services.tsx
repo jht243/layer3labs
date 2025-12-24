@@ -329,31 +329,31 @@ const Services: NextPage<PageProps> = ({
   const sectionArray = [
     [
       {
-        title: 'NFT MARKETPLACES',
+        title: 'AI APP MVPS',
         description:
-          'DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT CREDIT CARD PAYMENTS',
+          'SHIP AN AI APP MVP IN UNDER 30 DAYS, FROM UX TO PRODUCTION DEPLOYMENT',
       },
       {
-        title: 'LOYALTY PROGRAMS',
+        title: 'AI INTEGRATIONS',
         description:
-          'DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND RETENTION',
+          'INTEGRATE LLMS INTO YOUR PRODUCT AND INTERNAL WORKFLOWS SAFELY AND RELIABLY',
       },
       {
-        title: 'TRADING PLATFORMS',
+        title: 'MLOPS & RELIABILITY',
         description:
-          'CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND HOLD DIGITIZED GOODS',
+          'DEPLOY, MONITOR, AND MAINTAIN AI APPS WITH EVALUATIONS, OBSERVABILITY, AND GUARDRAILS',
       },
     ],
     [
       {
-        title: 'PLAY-TO-EARN GAMES',
+        title: 'AI AGENTS & AUTOMATION',
         description:
-          'HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT IN UNITY',
+          'BUILD AGENTIC WORKFLOWS THAT AUTOMATE RESEARCH, OPERATIONS, AND SUPPORT',
       },
       {
-        title: 'METAVERSE BUILDS',
+        title: 'AI UX & CHAT INTERFACES',
         description:
-          "CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S VALUE PROPOSITION",
+          'DESIGN AND BUILD HIGH-CONVERTING AI UX, INCLUDING CHAT, VOICE, AND MULTI-MODAL EXPERIENCES',
       },
       {
         title: '',
@@ -1035,7 +1035,7 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsTitleRef.current[0] = ref
                       }}
                     >
-                      NFT MARKETPLACES
+                      AI APP MVPS
                     </div>
                   </div>
                   <div className={styles['benefits-section__col']}>
@@ -1045,8 +1045,8 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsSubTitleRef.current[0] = ref
                       }}
                     >
-                      DEPLOY YOUR OWN MARKETPLACE IN UNDER 30 DAYS AND ACCEPT
-                      CREDIT CARD PAYMENTS
+                      SHIP AN AI APP MVP IN UNDER 30 DAYS, FROM UX TO PRODUCTION
+                      DEPLOYMENT
                     </div>
                   </div>
                 </div>
@@ -1059,7 +1059,7 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsTitleRef.current[1] = ref
                       }}
                     >
-                      LOYALTY PROGRAMS
+                      AI INTEGRATIONS
                     </div>
                   </div>
                   <div className={styles['benefits-section__col']}>
@@ -1069,8 +1069,8 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsSubTitleRef.current[1] = ref
                       }}
                     >
-                      DIGITIZE YOUR REWARDS PROGRAM TO INCREASE ENGAGEMENT AND
-                      RETENTION
+                      INTEGRATE LLMS INTO YOUR PRODUCT AND INTERNAL WORKFLOWS
+                      SAFELY AND RELIABLY
                     </div>
                   </div>
                 </div>
@@ -1083,7 +1083,7 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsTitleRef.current[2] = ref
                       }}
                     >
-                      TRADING PLATFORMS
+                      MLOPS & RELIABILITY
                     </div>
                   </div>
                   <div className={styles['benefits-section__col']}>
@@ -1093,8 +1093,8 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsSubTitleRef.current[2] = ref
                       }}
                     >
-                      CREATE A TRADING PLATFORMS FOR USERS TO BUY, SELL, AND
-                      HOLD DIGITIZED GOODS
+                      DEPLOY, MONITOR, AND MAINTAIN AI APPS WITH EVALUATIONS,
+                      OBSERVABILITY, AND GUARDRAILS
                     </div>
                   </div>
                 </div>
@@ -1107,7 +1107,7 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsTitleRef.current[3] = ref
                       }}
                     >
-                      PLAY-TO-EARN GAMES
+                      AI AGENTS & AUTOMATION
                     </div>
                   </div>
                   <div className={styles['benefits-section__col']}>
@@ -1117,8 +1117,8 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsSubTitleRef.current[3] = ref
                       }}
                     >
-                      HARNESS MASSIVE USER ATTENTION THROUGH FUN P2E GAMES BUILT
-                      IN UNITY
+                      BUILD AGENTIC WORKFLOWS THAT AUTOMATE RESEARCH, OPERATIONS,
+                      AND SUPPORT
                     </div>
                   </div>
                 </div>
@@ -1131,7 +1131,7 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsTitleRef.current[4] = ref
                       }}
                     >
-                      METAVERSE BUILDS
+                      AI UX & CHAT INTERFACES
                     </div>
                   </div>
                   <div className={styles['benefits-section__col']}>
@@ -1141,8 +1141,8 @@ const Services: NextPage<PageProps> = ({
                         if (ref) benefitsSubTitleRef.current[4] = ref
                       }}
                     >
-                      CREATE METAVERSE EXPERIENCES THAT ADD TO YOUR BRAND'S
-                      VALUE PROPOSITION
+                      DESIGN AND BUILD HIGH-CONVERTING AI UX, INCLUDING CHAT,
+                      VOICE, AND MULTI-MODAL EXPERIENCES
                     </div>
                   </div>
                 </div>

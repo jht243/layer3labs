@@ -25,7 +25,7 @@ const Investors: FC<Props> = ({}) => {
       <h3 className={styles['investors__subtitle']}>
         EMPOWERING PROGRESSIVE BRANDS TO
         <br />
-        BRIDGE THE GAP INTO WEB3
+        BUILD, DEPLOY & MAINTAIN AI APPS
       </h3>
       <div className={styles['investors__list']}>
         <div className={styles['investors__item']}>

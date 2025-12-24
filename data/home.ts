@@ -172,7 +172,7 @@ const testimonials = [
   },
   {
     logo: horizenLogo,
-    text: '"Layer3Labs heled us build a game in which users cans interact with the Punkz token. The team has a fantastic understanding of our needs and delivered an easy-to-use and engaging game."',
+    text: '"Layer3Labs helped us build a game with AI-powered experiences and personalized engagement. The team has a fantastic understanding of our needs and delivered an easy-to-use and engaging game."',
     // photo: GSLogo,
     name: 'Manon, Senior Marketing Manager at Horizen',
     width: 175,
